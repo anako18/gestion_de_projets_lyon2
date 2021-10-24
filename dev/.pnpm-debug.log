@@ -1,0 +1,23 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 info pnpm": {
+    "err": {
+      "name": "Error",
+      "message": "not found: inspnpm",
+      "code": "ENOENT",
+      "stack": "Error: not found: inspnpm\n    at getNotFoundError (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:48497:51)\n    at Function.whichSync [as sync] (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:48574:13)\n    at getCommandAbsolutePathSync (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:50139:44)\n    at default_1 (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:50148:32)\n    at /home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:129734:39"
+    }
+  },
+  "2 error pnpm": {
+    "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+    "prefix": "/mnt/d/Sync/commun/projets/études/m2cim/gestion-de-projets/git/dev",
+    "err": {
+      "name": "pnpm",
+      "message": "not found: inspnpm",
+      "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+      "stack": "Error: not found: inspnpm\n    at getNotFoundError (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:48497:51)\n    at Function.whichSync [as sync] (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:48574:13)\n    at getCommandAbsolutePathSync (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:50139:44)\n    at default_1 (/home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:50148:32)\n    at /home/gcch/.nvm/versions/node/v16.3.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.19.0/node_modules/pnpm/dist/pnpm.cjs:129734:39"
+    }
+  }
+}
