@@ -125,45 +125,47 @@ export default {
         axios.post("http://localhost:3128/register", formData).then(res => {
           // Post a status message
           this.loading = "";
-
           if (res.data.status == true) {
+            // store the user token and user data in localStorage
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
             // now send the user to the next route
             this.$router.push({
               name: "Dashboard",
-              params: { user: res.data.user }
             });
           } else {
             this.status = res.data.message;
           }
         });
-      } else {
+      }
+      else{
         alert("Passwords do not match");
       }
     },
 
     login() {
       const formData = new FormData();
-
       formData.append("email", this.model.email);
       formData.append("password", this.model.password);
-      this.loading = "Logging In";
-
+      this.loading = "Signing in";
       // Post to server
       axios.post("http://localhost:3128/login", formData).then(res => {
         // Post a status message
+        console.log(res);
         this.loading = "";
-
         if (res.data.status == true) {
+          // store the data in localStorage
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
           // now send the user to the next route
           this.$router.push({
-            name: "Dashboard",
-            params: { user: res.data.user }
+            name: "Dashboard"
           });
         } else {
           this.status = res.data.message;
         }
       });
-    }
+        }
   }
 }
 </script>
