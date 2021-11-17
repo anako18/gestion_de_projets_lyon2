@@ -1,53 +1,68 @@
 <template>
   <div class="container">
-    <h1 class="mb-5">S'enregister</h1>
+    <h1 class="mb-5">
+      S'enregister
+    </h1>
     <form>
       <div class="mb-3 form-group">
         <label for="email" class="form-label">Adresse email</label>
         <input
+          id="email"
+          v-model="email"
           type="email"
           name="email"
-          id="email"
           class="form-control"
           placeholder="nom@adresse.com"
-          v-model="email"
           required
-        />
+        >
       </div>
       <div class="mb-3 form-group">
         <label for="password" class="form-label">Mot de passe</label>
         <input
+          id="password"
+          v-model="password"
           type="password"
           name="password"
-          id="password"
           class="form-control"
           placeholder="Mot de passe"
-          v-model="password"
           required
-        />
-        <div class="form-text">Veuillez choisir un mot de passe compliqué.</div>
+        >
+        <div class="form-text">
+          Veuillez choisir un mot de passe compliqué.
+        </div>
+        <div class="error">
+          {{ error }}
+        </div>
+        >
       </div>
     </form>
-    <button class="btn btn-primary" @click="register">Soumettre</button>
+    <button class="btn btn-primary" @click="register">
+      Soumettre
+    </button>
   </div>
 </template>
 
 <script>
 import AuthentificationService from "@/services/AuthentificationService";
 export default {
-  name: "Register",
+  name: "RegisterComponent",
   data() {
     return {
       email: "",
       password: "",
+      error: null,
     };
   },
   methods: {
     async register() {
-      await AuthentificationService.register({
-        email: this.email,
-        password: this.password,
-      });
+      try {
+        await AuthentificationService.register({
+          email: this.email,
+          password: this.password,
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     },
   },
 };
