@@ -19,7 +19,7 @@ app.use(cors()) // Pour contourner le problème de CORS et ALlow-Access-Origin
 
 require('./routes')(app) // Les routes sont appelées puis passées à l'application
 
-sequelize.sync({ force: false }) // Synchronisation de Sequelize puis lancement de l'application
+sequelize.sync({ force: true }) // Synchronisation de Sequelize puis lancement de l'application
   .then(() => {
     app.listen(config.port, () => {
       console.log(`Application lancée sur localhost:${config.port} !`)
