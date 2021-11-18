@@ -1,8 +1,7 @@
 <template>
-  <div class="page">
-    <h1>WOW</h1>
+  <v-main>
     <EnregistrementFormulaire />
-  </div>
+  </v-main>
 </template>
 
 <script lang="ts">
