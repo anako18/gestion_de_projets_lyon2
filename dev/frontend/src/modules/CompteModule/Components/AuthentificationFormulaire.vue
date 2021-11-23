@@ -1,39 +1,36 @@
 <template>
-  <div class="container">
+  <main class="container">
     <h1>
       S'authentifier
     </h1>
     <form>
+      <label for="email">Adresse email</label>
+      <input
+        id="email"
+        v-model="email"
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="nom@adresse.com"
+        required
+      >
+      <label for="password">Mot de passe</label>
+      <input
+        id="password"
+        v-model="password"
+        type="password"
+        name="password"
+        placeholder="Mot de passe"
+        required
+      >
       <div>
-        <label for="email">Adresse email</label>
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          name="email"
-          placeholder="nom@adresse.com"
-          required
-        >
-      </div>
-      <div>
-        <label for="password">Mot de passe</label>
-        <input
-          id="password"
-          v-model="password"
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          required
-        >
-        <div>
-          {{ erreur }}
-        </div>
+        {{ erreur }}
       </div>
     </form>
-    <button class="btn btn-primary" @click="authentification">
+    <button @click="authentification">
       Soumettre
     </button>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -55,7 +52,7 @@ export default {
           password: this.password
         })
       } catch (erreur) {
-        this.erreur = erreur.response.data.erreur
+        this.erreur = erreur.response.data.error
       }
     }
   }
