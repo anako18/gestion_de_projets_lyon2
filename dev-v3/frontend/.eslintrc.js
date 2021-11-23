@@ -1,31 +1,31 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
-    node: true
+    es2021: true
   },
-  extends: ["plugin:vue/vue3-recommended", "airbnb-base", "plugin:prettier/recommended"],
+  extends: [
+    'plugin:vue/strongly-recommended',
+    'eslint:recommended',
+    'standard'
+  ],
   parserOptions: {
     ecmaVersion: 12,
-    parser: "@typescript-eslint/parser",
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["vue", "@typescript-eslint"],
+  plugins: [
+    'vue'
+  ],
   rules: {
-    "no-shadow": "off",
-    "prefer-destructuring": "off",
-    "import/no-unresolved": "off",
-    "import/extensions": "off",
-    "import/no-absolute-path": "off",
-    "import/no-extraneous-dependencies": "off",
-    "vue/no-multiple-template-root": "off",
-    "no-param-reassign": [
-      "error",
+    'vue/max-attributes-per-line': [
+      'warn',
       {
-        props: true,
-        ignorePropertyModificationsFor: ["state", "config"]
+        singleline: {
+          max: 2
+        },
+        multiline: {
+          max: 1
+        }
       }
     ]
-  },
-  settings: {}
+  }
 }
