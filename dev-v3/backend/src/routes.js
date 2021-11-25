@@ -1,8 +1,8 @@
-const AuthentificationController = require('./controllers/AuthentificationController')
-const AuthentificationControllerPolicy = require('./policies/AuthentificationControllerPolicy')
+const EnregistrementControleur = require('./controllers/EnregistrementControleur')
+const EnregistrementControleurPolitique = require('./policies/EnregistrementControleurPolitique')
 
 module.exports = (app) => {
-  app.post('/register',
-    AuthentificationControllerPolicy.register,
-    AuthentificationController.register)
+  app.post('/enregistrement',
+    EnregistrementControleurPolitique.enregistrement,
+    EnregistrementControleur.enregistrement)
 }

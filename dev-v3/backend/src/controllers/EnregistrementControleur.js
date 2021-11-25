@@ -1,7 +1,7 @@
 const { Utilisateur } = require('../models')
 
 module.exports = {
-  async authentification (req, res) {
+  async enregistrement (req, res) {
     try {
       const utilisateur = await Utilisateur.create(req.body)
       res.send(utilisateur.toJSON())
