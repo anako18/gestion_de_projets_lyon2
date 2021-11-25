@@ -26,8 +26,8 @@
       <div>
         Veuillez choisir un mot de passe compliqué.
       </div>
-      <div>
-        {{ erreur }}
+      <div v-html="erreur">
+        <!-- {{ erreur }} -->
       </div>
     </form>
     <button @click="enregistrement">
