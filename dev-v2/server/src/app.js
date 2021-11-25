@@ -1,28 +1,27 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+const { sequelize } = require('./models')
+const config = require('./config/config')
 
 /**
  * Déclaration de l'application
- * Reçoit des requêtes en JSON ou encodées dans l'URL
+ *
+ * Reçoit des requêtes en JSON ou encodées dans l'URL.
+ * Sequelize est employé comme ORM pour les requêtes vers la base de données.
  */
 const app = express()
-const PORT = process.env.PORT || 8081 // Déclaration du port
 
 app.use(morgan('combined')) // Utilisation de morgan pour logger les requêtes
 app.use(express.json()) // Utilisation du middleware json d'Express
 app.use(express.urlencoded({ extended: false })) // Utilisation du middleware urlencoded non étendu
 app.use(cors()) // Pour contourner le problème de CORS et ALlow-Access-Origin
 
-app.listen(PORT, () => {
-  console.log(`Application lancée sur localhost:${PORT} !`)
-})
+require('./routes')(app) // Les routes sont appelées puis passées à l'application
 
-/**
- * Déclaration de la route pour s'enregistrer
- */
-app.post('/register', (req, res) => {
-  res.send({
-    message: `Utilisateur enregistré avec l'adresse ${req.body.email}.`
+sequelize.sync({ force: false }) // Synchronisation de Sequelize puis lancement de l'application
+  .then(() => {
+    app.listen(config.port, () => {
+      console.log(`Application lancée sur localhost:${config.port} !`)
+    })
   })
-})
