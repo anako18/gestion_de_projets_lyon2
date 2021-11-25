@@ -19,10 +19,10 @@ app.listen(PORT, () => {
 })
 
 /**
- * Déclaration des routes
+ * Déclaration de la route pour s'enregistrer
  */
-app.get('/status', (req, res) => {
+app.post('/register', (req, res) => {
   res.send({
-    message: 'hello world'
+    message: `Utilisateur enregistré avec l'adresse ${req.body.email}.`
   })
 })
