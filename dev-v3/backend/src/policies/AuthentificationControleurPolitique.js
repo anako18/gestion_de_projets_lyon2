@@ -1,7 +1,7 @@
 const Joi = require('joi')
 
 module.exports = {
-  enregistrement (req, res, next) {
+  authentification (req, res, next) {
     const schema = Joi.object({
       email: Joi.string()
         .email()
@@ -28,7 +28,7 @@ module.exports = {
           break
         default:
           res.status(400).send({
-            erreur: "Erreur lors de l'enregistrement"
+            erreur: "Erreur lors de l'authentification."
           })
       }
     } else {
