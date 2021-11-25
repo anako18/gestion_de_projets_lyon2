@@ -1,0 +1,78 @@
+$couleur-noire: hsl(0deg, 0%, 0%);
+$couleur-blanche: hsl(0deg, 0%, 100%);
+$marge-ligne: 1;
+$couleur-ombre: 253deg, 91%, 49%;
+
+:root {
+  --shadow-color: $couleur-ombre;
+  --shadow-elevation-low:
+    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
+    0.9px 0.7px 1.7px hsl(var(--shadow-color) / 0.62);
+  --shadow-elevation-medium:
+    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
+    4.4px 3.4px 8.3px hsl(var(--shadow-color) / 0.86);
+  --shadow-elevation-high:
+    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
+    7.6px 5.9px 14.4px hsl(var(--shadow-color) / 0.71),
+    23.9px 18.5px 45.3px hsl(var(--shadow-color) / 1);
+}
+
+@mixin bordure {
+  border: 1px solid hsl(#{$couleur-ombre});
+  border-radius: 4px 4px;
+}
+@mixin marge-basse-1 {
+  margin-bottom: #{$marge-ligne}rem;
+}
+@mixin marge-basse-2 {
+  margin-bottom: #{$marge-ligne * 2}rem;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-size: 1rem;
+}
+
+h1 {
+  margin: unset;
+  @include marge-basse-2();
+}
+form {
+  @include marge-basse-2();
+  label {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+  input {
+    display: block;
+    @include marge-basse-1;
+  }
+}
+
+
+a {
+  color: unset;
+  text-decoration: unset;
+  &:hover {
+    color: red;
+  }
+}
+
+/**
+*   Structure
+*/
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 3rem);
+}
+
+.container {
+  margin: auto;
+  padding: 4rem;
+  box-shadow: var(--shadow-elevation-medium);
+  // @include bordure;
+}
