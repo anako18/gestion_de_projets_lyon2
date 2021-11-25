@@ -1,8 +1,7 @@
 <template>
-  <!-- <HeaderNav /> -->
-  <RouterView />
+  <v-app>
+    <RouterView />
+  </v-app>
 </template>
 
-<script lang="ts" setup>
-  // import HeaderNav from "@/components/HeaderNav.vue"
-</script>
+<script lang="ts" setup></script>

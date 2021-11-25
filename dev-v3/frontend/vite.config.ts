@@ -1,14 +1,23 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { resolve } from "path";
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import vuetify from "@vuetify/vite-plugin"
+
+import path from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vuetify({
+      autoImport: true,
+      styles: "expose"
+    })
+  ],
+  define: { "process.env": {} },
   base: "./",
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src")
+      "@": path.resolve(__dirname, "src")
     }
   },
   css: {
@@ -21,4 +30,4 @@ export default defineConfig({
   server: {
     host: "0.0.0.0"
   }
-});
+})

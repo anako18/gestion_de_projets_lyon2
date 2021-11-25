@@ -4,27 +4,33 @@
   "private": true,
   "description": "Le frontend pour dev-v3.",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build-tsc": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "format": "prettier --write ./src",
+    "build": "vite build",
     "lint": "eslint ./src --ext .vue,.js,.ts",
+    "build-tsc": "vue-tsc --noEmit && vite build",
+    "dev": "vite",
+    "format": "prettier --write ./src",
     "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "axios": "^0.21.4",
     "core-js": "^3.19.1",
     "pinia": "^2.0.3",
+    "roboto-fontface": "*",
     "vue": "^3.2.22",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuetify": "^3.0.0-alpha.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@vitejs/plugin-vue": "^1.9.4",
+    "@vue/cli-service": "~5.0.0-beta.3",
     "@vue/compiler-sfc": "^3.2.22",
+    "@vuetify/vite-plugin": "^1.0.0-alpha.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -33,8 +39,11 @@
     "eslint-plugin-vue": "^7.20.0",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
+    "sass-loader": "^10.0.0",
     "typescript": "^4.4.4",
     "vite": "^2.6.14",
-    "vue-tsc": "^0.3.0"
+    "vue-cli-plugin-vuetify": "~2.4.3",
+    "vue-tsc": "^0.3.0",
+    "vuetify-loader": "^2.0.0-alpha.0"
   }
 }
