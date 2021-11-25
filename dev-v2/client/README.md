@@ -1,24 +1,25 @@
 # dev-frontend
+Partie *frontend* du projet.
 
-## Project setup
+## Installation du projet
 ```
-pnpm install
-```
-
-### Compiles and hot-reloads for development
-```
-pnpm run serve
+npm install
 ```
 
-### Compiles and minifies for production
+### Compilation et rechargement à chaud pour développement
 ```
-pnpm run build
-```
-
-### Lints and fixes files
-```
-pnpm run lint
+npm run serve
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Compiler pour production
+```
+npm run build
+```
+
+### Linter et signaler les erreurs
+```
+npm run lint
+```
+
+### Personnaliser la configuration
+Voir la [Documentation](https://cli.vuejs.org/config/).
