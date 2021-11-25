@@ -1,21 +1,20 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue"
+import VueRouter from "vue-router"
 
-import Register from '@/components/Register'
-
+import RegisterComponent from "@/components/Register"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Register',
-    component: Register
+    path: "/",
+    name: "Register",
+    component: RegisterComponent
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 })
