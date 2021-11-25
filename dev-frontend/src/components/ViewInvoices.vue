@@ -33,20 +33,26 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "ViewInvoices",
+  components: {},
   data() {
     return {
       invoices: [],
-      user: this.$route.params.user
+      user: '',
     };
   },
   mounted() {
+    this.user = JSON.parse(localStorage.getItem('user'));
     axios
-      .get(`http://localhost:3128/invoice/user/${this.user.id}`)
+      .get(`http://localhost:3128/invoice/user/${this.user.id}`,
+        {
+          headers: {"x-access-token": localStorage.getItem("token")}
+        }
+      )
       .then(res => {
         if (res.data.status == true) {
+          console.log(res.data.invoices);
           this.invoices = res.data.invoices;
         }
       });
