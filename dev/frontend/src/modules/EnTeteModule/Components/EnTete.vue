@@ -7,9 +7,9 @@
       <router-link to="Enregistrement" class="entete__menu__lien">
         Enregistrement
       </router-link>
-      <!-- <router-link to="Authentification" class="entete__menu__lien">
+      <router-link to="Authentification" class="entete__menu__lien">
         Authentification
-      </router-link> -->
+      </router-link>
     </menu>
   </header>
 </template>

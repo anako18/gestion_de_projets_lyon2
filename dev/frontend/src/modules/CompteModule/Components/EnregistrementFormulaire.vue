@@ -50,8 +50,6 @@ export default {
   methods: {
     async enregistrement () {
       try {
-        console.log(this.email)
-        console.log(this.password)
         await EnregistrementService.enregistrement({
           email: this.email,
           password: this.password
