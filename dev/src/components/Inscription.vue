@@ -23,10 +23,10 @@
 
 <script>
 export default {
-  name: 'Inscription',
+  name: "Inscription",
   data () {
     return {
-      bienvenue: 'Bienvenue'
+      bienvenue: "Bienvenue"
     }
   }
 }
