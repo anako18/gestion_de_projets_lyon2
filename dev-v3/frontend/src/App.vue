@@ -1,7 +1,11 @@
 <template>
-  <v-app>
-    <RouterView />
-  </v-app>
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<style>
+.container {
+  margin-top: 2rem;
+}
+</style>
