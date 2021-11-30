@@ -1,16 +1,18 @@
 module.exports = {
   env: {
     commonjs: true,
-    es2021: true,
+    es2020: true,
     node: true
   },
   extends: [
-    'eslint:recommended',
-    'standard'
+    "eslint:recommended",
+    "standard"
   ],
   parserOptions: {
-    ecmaVersion: 12
+    ecmaVersion: 11
   },
   rules: {
+    quotes: ["error", "double"],
+    semi: ["error", "always"]
   }
-}
+};
