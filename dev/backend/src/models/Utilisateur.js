@@ -1,5 +1,5 @@
 module.exports = (Sequelize, DataTypes) =>
-  Sequelize.define('Utilisateur', {
+  Sequelize.define("Utilisateur", {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -9,4 +9,4 @@ module.exports = (Sequelize, DataTypes) =>
       type: DataTypes.STRING,
       allowNull: false
     }
-  })
+  });
