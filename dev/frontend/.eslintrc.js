@@ -1,23 +1,23 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2020: true
   },
   extends: [
-    'plugin:vue/strongly-recommended',
-    'eslint:recommended',
-    'standard'
+    "plugin:vue/strongly-recommended",
+    "eslint:recommended",
+    "standard"
   ],
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module'
+    ecmaVersion: 11,
+    sourceType: "module"
   },
   plugins: [
-    'vue'
+    "vue"
   ],
   rules: {
-    'vue/max-attributes-per-line': [
-      'warn',
+    "vue/max-attributes-per-line": [
+      "warn",
       {
         singleline: {
           max: 2
@@ -26,6 +26,8 @@ module.exports = {
           max: 1
         }
       }
-    ]
+    ],
+    quotes: ["error", "double"],
+    semi: ["error", "always"]
   }
-}
+};
