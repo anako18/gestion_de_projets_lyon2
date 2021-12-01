@@ -16,8 +16,8 @@
 
 <script>
 export default {
-  name: 'EnTete'
-}
+  name: "EnTete"
+};
 </script>
 
 <style lang="scss" scoped>

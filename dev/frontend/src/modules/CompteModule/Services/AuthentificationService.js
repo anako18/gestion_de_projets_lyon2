@@ -1,4 +1,5 @@
-import Api from '../../../services/Api'
+"use strict";
+import Api from "../../../services/Api";
 
 /**
  * Requête d'authentification
@@ -6,6 +7,6 @@ import Api from '../../../services/Api'
  */
 export default {
   authentification (credentials) {
-    return Api().post('authentification', credentials)
+    return Api().post("authentification", credentials);
   }
-}
+};

@@ -1,33 +1,34 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import IndexVue from '../views/Index'
-import EnregistrementFormulaire from '../modules/CompteModule/Components/EnregistrementFormulaire.vue'
-import AuthentificationFormulaire from '../modules/CompteModule/Components/AuthentificationFormulaire.vue'
+"use strict";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import IndexVue from "../views/Index";
+import EnregistrementFormulaire from "../modules/CompteModule/Components/EnregistrementFormulaire.vue";
+import AuthentificationFormulaire from "../modules/CompteModule/Components/AuthentificationFormulaire.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Index',
+    path: "/",
+    name: "Index",
     component: IndexVue,
     children: [
       {
-        path: 'enregistrement',
+        path: "enregistrement",
         component: EnregistrementFormulaire
       },
       {
-        path: 'authentification',
+        path: "authentification",
         component: AuthentificationFormulaire
       }
     ]
   }
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

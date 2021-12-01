@@ -37,15 +37,15 @@
 </template>
 
 <script>
-import EnregistrementService from '../Services/EnregistrementService'
+import EnregistrementService from "../Services/EnregistrementService";
 export default {
-  name: 'EnregistrementFormulaire',
+  name: "EnregistrementFormulaire",
   data () {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       erreur: null
-    }
+    };
   },
   methods: {
     async enregistrement () {
@@ -53,11 +53,11 @@ export default {
         await EnregistrementService.enregistrement({
           email: this.email,
           password: this.password
-        })
+        });
       } catch (erreur) {
         this.erreur = erreur.response.data.error
       }
     }
   }
-}
+};
 </script>

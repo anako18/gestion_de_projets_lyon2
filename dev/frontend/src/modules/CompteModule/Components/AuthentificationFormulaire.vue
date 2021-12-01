@@ -1,8 +1,6 @@
 <template>
   <main class="container">
-    <h1>
-      S'authentifier
-    </h1>
+    <h1>S'authentifier</h1>
     <form>
       <label for="email">Adresse email</label>
       <input
@@ -34,15 +32,15 @@
 </template>
 
 <script>
-import AuthentificationService from '../Services/AuthentificationService'
+import AuthentificationService from "../Services/AuthentificationService";
 export default {
-  name: 'AuthentificationFormulaire',
+  name: "AuthentificationFormulaire",
   data () {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       erreur: null
-    }
+    };
   },
   methods: {
     async authentification () {
@@ -50,11 +48,11 @@ export default {
         await AuthentificationService.authentification({
           email: this.email,
           password: this.password
-        })
+        });
       } catch (erreur) {
-        this.erreur = erreur.response.data.error
+        this.erreur = erreur.response.data.error;
       }
     }
   }
-}
+};
 </script>

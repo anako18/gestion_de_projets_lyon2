@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import EnTete from '../modules/EnTeteModule/Components/EnTete.vue'
+import EnTete from "../modules/EnTeteModule/Components/EnTete.vue";
 
 export default {
-  name: 'IndexVue',
+  name: "IndexVue",
   components: {
     EnTete
   }
-}
+};
 </script>
