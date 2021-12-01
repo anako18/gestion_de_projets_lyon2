@@ -55,7 +55,7 @@ export default {
           password: this.password
         });
       } catch (erreur) {
-        this.erreur = erreur.response.data.error
+        this.erreur = erreur.response.data.message;
       }
     }
   }
