@@ -20,7 +20,7 @@ module.exports = {
   async enregistrement (req, res) {
     try {
       const utilisateur = await Utilisateur.create(req.body);
-      res.status(201).json({
+      return res.status(201).json({
         statut: "Succès",
         data: utilisateur
       });
@@ -39,7 +39,7 @@ module.exports = {
       const erreurJson = erreur.errors[0];
       const erreurMessage = selectionMessageErreur(erreurJson.path, erreurJson.message);
 
-      res.status(400).json({
+      return res.status(400).json({
         statut: "Échec",
         message: erreurMessage
       });
