@@ -1,4 +1,13 @@
 const { Utilisateur } = require("../models");
+const jwt = require("jsonwebtoken");
+const config = require("../config/config");
+
+const signatureJwtUtilisateur = (utilisateur) => {
+  const UNE_SEMAINE = 60 * 60 * 24 * 7;
+  return jwt.sign(utilisateur, config.auth.jwtSecret, {
+    expiresIn: UNE_SEMAINE
+  });
+};
 
 // TODO: Utiliser JWT
 module.exports = {
@@ -37,6 +46,7 @@ module.exports = {
 
       return res.status(200).json({
         statut: "Succès",
+        token: signatureJwtUtilisateur(utilisateur),
         data: utilisateur
       });
     } catch (erreur) {
