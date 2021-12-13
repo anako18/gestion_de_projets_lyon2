@@ -1,6 +1,7 @@
 const { Utilisateur } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const AuthentificationErreur = require("../errors/AuthentificationErreur");
 
 const signatureJwtUtilisateur = (utilisateur) => {
   const UNE_SEMAINE = 60 * 60 * 24 * 7;
@@ -37,7 +38,7 @@ module.exports = {
       const validationUtilisateur = function (utilisateur) {
         const pr = new Promise((resolve, reject) => {
           if (!utilisateur) {
-            reject(new Error("Pas d'utilisateur trouvé"));
+            reject(new AuthentificationErreur("AUCUN_UTILISATEUR_TROUVE"));
           } else {
             resolve();
           }
@@ -49,7 +50,7 @@ module.exports = {
           const val = utilisateur.comparaisonMdp(password);
           val.then(value => {
             if (!value) {
-              reject(new Error("non matching password"));
+              reject(new AuthentificationErreur("MDP_INCORRECT"));
             } else {
               resolve();
             }
@@ -58,22 +59,10 @@ module.exports = {
         return pr;
       };
 
-      /** Fonctions de gestion de l'échec de la validation */
-      const selectionMessageErreur = (type) => {
-        switch (type) {
-          case "Pas d'utilisateur trouvé":
-            return "Les informations de connexion sont incorrectes (utilisateur).";
-          case "non matching password":
-            return "Les informations de connexion sont incorrectes (mdp).";
-          default:
-            return "Authentification : erreur inconnue.";
-        }
-      };
       const retourEchecValidation = (erreur) => {
-        const erreurMessage = selectionMessageErreur(erreur.message);
         return res.status(403).json({
           statut: "Échec",
-          message: erreurMessage
+          message: erreur
         });
       };
 
@@ -92,7 +81,7 @@ module.exports = {
           return retourSuccesValidation();
         })
         .catch(error => {
-          return retourEchecValidation(error);
+          return retourEchecValidation(error.messageUtilisateur);
         });
     } catch (erreur) {
       /** Erreurs non gérées */
