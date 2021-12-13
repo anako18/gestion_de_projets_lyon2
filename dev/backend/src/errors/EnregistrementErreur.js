@@ -1,3 +1,4 @@
+// TODO: Complètement à faire
 class EnregistrementErreur extends Error {
   selectionMessageErreur (message) {
     switch (message) {
