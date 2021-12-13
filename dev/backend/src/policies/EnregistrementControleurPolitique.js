@@ -1,8 +1,10 @@
 const Joi = require("joi");
 
+// TODO: Finir la documentation du code
 module.exports = {
   /**
-   * Définit le schéma de l'enregistrement d'un utilisateur à valider par Joi.
+   * **Définit le schéma de l'enregistrement d'un Utilisateur à valider par Joi**
+   *
    * @param {*} req La requête qui sera validée par Joi.
    * @param {*} res La réponse retournée par Joi.
    * @param {*} next Le passage de la requête à l'élément suivant, ici le contrôleur.
@@ -25,7 +27,8 @@ module.exports = {
 
     // TODO: Créer une fonction qui fonctionne quelque soit le nom du champ
     /**
-     * Sélectionne le message d'erreur qui sera envoyé à l'utilisateur.
+     * **Sélectionne le message d'erreur qui sera envoyé à l'utilisateur**
+     *
      * @param {*} champ Le champ avant provoqué l'erreur.
      * @param {*} type Le type d'erreur renvoyé par Joi.
      * @returns Un message d'erreur pour l'utilisateur.
@@ -66,9 +69,6 @@ module.exports = {
         // erreur: erreurJson
       });
     } else {
-      res.status(200).json({
-        statut: "Succès"
-      });
       next();
     }
   }

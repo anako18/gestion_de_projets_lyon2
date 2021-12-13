@@ -48,12 +48,18 @@ export default {
     };
   },
   methods: {
+    /**
+     * **Enregistre un nouvel Utilisateur**
+     *
+     *  Envoie les données au backend.
+     */
     async enregistrement () {
       try {
         await EnregistrementService.enregistrement({
           email: this.email,
           password: this.password
         });
+        this.erreur = null;
       } catch (erreur) {
         this.erreur = erreur.response.data.message;
       }

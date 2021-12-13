@@ -1,0 +1,39 @@
+### Variables
+@email = jbob-zdar@email.com
+@mdp = haaaaaaaaa
+
+### Enregistrer un utilisateur
+POST {{host}}:{{port}}/enregistrement {{protocol}}
+content-type: {{contenuType}}
+
+{
+    "email": "{{email}}",
+    "password": "{{mdp}}"
+}
+
+### Authentifier un utilisateur (bon mot de passe)
+POST {{host}}:{{port}}/authentification {{protocol}}
+content-type: {{contenuType}}
+
+{
+    "email": "{{email}}",
+    "password": "{{mdp}}"
+}
+
+### Authentifier un utilisateur (mauvais mot de passe)
+POST {{host}}:{{port}}/authentification {{protocol}}
+content-type: {{contenuType}}
+
+{
+    "email": "{{email}}",
+    "password": "mdp"
+}
+
+### Authentifier un utilisateur (mauvais email)
+POST {{host}}:{{port}}/authentification {{protocol}}
+content-type: {{contenuType}}
+
+{
+    "email": "email",
+    "password": "mdp"
+}
