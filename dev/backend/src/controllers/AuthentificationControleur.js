@@ -4,12 +4,15 @@ const config = require("../config/config");
 
 const signatureJwtUtilisateur = (utilisateur) => {
   const UNE_SEMAINE = 60 * 60 * 24 * 7;
-  return jwt.sign(utilisateur, config.auth.jwtSecret, {
-    expiresIn: UNE_SEMAINE
-  });
+  try {
+    return jwt.sign(utilisateur, config.auth.jwtSecret, {
+      expiresIn: UNE_SEMAINE
+    });
+  } catch (erreur) {
+    console.log(erreur);
+  }
 };
 
-// TODO: Utiliser JWT
 module.exports = {
   /**
    * **Authentifie un Utilisateur**
@@ -22,6 +25,7 @@ module.exports = {
    */
   async authentification (req, res) {
     try {
+      /** Correspondance de la requête avec BDD */
       const { email, password } = req.body;
       const utilisateur = await Utilisateur.findOne({
         where: {
@@ -29,43 +33,72 @@ module.exports = {
         }
       });
 
-      const validationUtilisateur = (utilisateur) => {
-        if (!utilisateur) {
-          throw new Error("no user found");
-        }
+      /** Fonctions de validation */
+      const validationUtilisateur = function (utilisateur) {
+        const pr = new Promise((resolve, reject) => {
+          if (!utilisateur) {
+            reject(new Error("Pas d'utilisateur trouvé"));
+          } else {
+            resolve();
+          }
+        });
+        return pr;
       };
-      const validationMotDePasse = (utilisateur, motdepasse) => {
-        const motDePasseValide = motdepasse === utilisateur.password;
-        if (!motDePasseValide) {
-          throw new Error("non matching password");
-        }
+      const validationMotDePasse = function (utilisateur, password) {
+        const pr = new Promise((resolve, reject) => {
+          const val = utilisateur.comparaisonMdp(password);
+          val.then(value => {
+            if (!value) {
+              reject(new Error("non matching password"));
+            } else {
+              resolve();
+            }
+          });
+        });
+        return pr;
       };
 
-      validationUtilisateur(utilisateur);
-      validationMotDePasse(utilisateur, password);
-
-      return res.status(200).json({
-        statut: "Succès",
-        token: signatureJwtUtilisateur(utilisateur),
-        data: utilisateur
-      });
-    } catch (erreur) {
+      /** Fonctions de gestion de l'échec de la validation */
       const selectionMessageErreur = (type) => {
         switch (type) {
-          case "no user found":
-            return "Les informations de connexion sont incorrectes.";
+          case "Pas d'utilisateur trouvé":
+            return "Les informations de connexion sont incorrectes (utilisateur).";
           case "non matching password":
-            return "Les informations de connexion sont incorrectes.";
+            return "Les informations de connexion sont incorrectes (mdp).";
           default:
             return "Authentification : erreur inconnue.";
         }
       };
+      const retourEchecValidation = (erreur) => {
+        const erreurMessage = selectionMessageErreur(erreur.message);
+        return res.status(403).json({
+          statut: "Échec",
+          message: erreurMessage
+        });
+      };
 
-      const erreurMessage = selectionMessageErreur(erreur.message);
+      /** Fonction de gestion du succès de la validation */
+      const retourSuccesValidation = () => {
+        return res.status(200).json({
+          statut: "Succès",
+          token: signatureJwtUtilisateur(utilisateur.toJSON()),
+          data: utilisateur
+        });
+      };
 
+      /** Enclenchement des validations */
+      Promise.all([validationUtilisateur(utilisateur), validationMotDePasse(utilisateur, password)])
+        .then(() => {
+          return retourSuccesValidation();
+        })
+        .catch(error => {
+          return retourEchecValidation(error);
+        });
+    } catch (erreur) {
+      /** Erreurs non gérées */
       return res.status(403).json({
-        statut: "Échec",
-        message: erreurMessage
+        statut: "Échec (Erreur non gérée)",
+        message: erreur
       });
     }
   }
