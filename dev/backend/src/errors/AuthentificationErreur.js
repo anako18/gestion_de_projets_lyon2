@@ -2,7 +2,7 @@ class AuthentificationErreur extends Error {
   selectionMessageErreur (message) {
     switch (message) {
       case "AUCUN_UTILISATEUR_TROUVE":
-        return "Les informations de connexion sont incorrectes (utilisateur).";
+        return "Les informations de connexion sont incorrectes.";
       case "MDP_INCORRECT":
         return "Les informations de connexion sont incorrectes.";
       default:
