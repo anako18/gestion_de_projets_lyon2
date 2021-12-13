@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 // TODO: Finir la documentation du code
+// TODO: Refactoriser la politique en une version commune avec l'Authentification
 module.exports = {
   /**
    * **Définit le schéma de l'enregistrement d'un Utilisateur à valider par Joi**
