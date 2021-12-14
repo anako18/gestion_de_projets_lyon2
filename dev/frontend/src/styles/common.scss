@@ -3,7 +3,6 @@
 html {
   font-size: 18px;
 }
-
 body {
   font-size: 1rem;
   line-height: $typo-ligne-hauteur !important;
@@ -25,6 +24,17 @@ h1, h2, ul, li, p, button {
 button {
   border: unset;
 }
+input[type=email], input[type=password] {
+  min-width: 100%;
+  min-height: 49px;
+  background-color: $couleur-c6;
+  color: $couleur-nmoyen;
+  border: 1px solid $couleur-c4;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 21px;
+  @extend %style-style8;
+}
 
 .style1 {
   @include style(style1);
@@ -44,6 +54,9 @@ button {
 .style6 {
   @extend %style-style6;
 }
+.style7 {
+  @extend %style-style7;
+}
 
 .bouton1 {
   min-width: 100%;
@@ -62,6 +75,14 @@ button {
     background-color: $couleur-c2;
     color: $couleur-nfonce;
   }
+  &.couleur--c4 {
+    background-color: $couleur-c4;
+    color: $couleur-nmoyen;
+  }
+  &.couleur--c6 {
+    background-color: $couleur-c6;
+    color: $couleur-nmoyen;
+  }
   &.icone--inscription {
     position: relative;
     &::before {
@@ -71,7 +92,7 @@ button {
       width: 25.5px;
       height: 29px;
       content: " ";
-      background-image: url("../assets/icone--inscription.png");
+      background-image: url("/src/assets/icone--inscription.png");
       background-size: 100%;
       background-position: center center;
       z-index: 2;
@@ -86,7 +107,22 @@ button {
       width: 29px;
       height: 29px;
       content: " ";
-      background-image: url("../assets/icone--connexion.png");
+      background-image: url("/src/assets/icone--connexion.png");
+      background-size: 100%;
+      background-position: center center;
+      z-index: 2;
+    }
+  }
+  &.icone--google {
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 0px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      content: " ";
+      background-image: url("/src/assets/icone--google.png");
       background-size: 100%;
       background-position: center center;
       z-index: 2;
@@ -142,7 +178,7 @@ main {
     left: 0;
     width: 100vw;
     height: 102px;
-    background-image: url("../assets/forme__premiere-visite.svg");
+    background-image: url("/src/assets/forme__premiere-visite.svg");
     background-color: #FFF;
     z-index: 0;
   }
@@ -173,5 +209,27 @@ main {
   .style6 {
     color: $couleur-nmoyen;
     margin-bottom: 12px;
+  }
+}
+
+.enregistrement, .authentification {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+  padding-top: 80px;
+  .style7 {
+    color: $couleur-c1;
+    margin-bottom: 23px;
+  }
+  .bouton--connexion-google {
+    box-shadow: unset;
+    border: 1px solid $couleur-c5;
+    @extend %style-style8;
+  }
+  &__separateur {
+    min-width: 100%;
+    margin: 15px 0;
+    text-align: center;
   }
 }

@@ -63,7 +63,7 @@ Exemple : le module de gestion de compte (authentification/enregistrement), `Ges
 Pour la convention de nommage, utiliser la PascalCase, en suivant le format `NomModule` pour le module, `NomUtilité` pour ses enfants.
 
 ### `styles`
-L'ensemble des feuilles de style appelés par les composants et vues de l'application se trouvent dans ce dossier. À la racine, on trouvera uniquement des fichiers utilitaires (p. ex. `normalize.scss`). Ensuite, pour les feuilles contenant des styles employés dans l'ensemble de l'application, les placer dans le dossier `partials` et les suffixer d'un tiret de soulignement (p. ex. `_variables.sccs`). Enfin, créer un dossier par vue dans `views` en fonction des composants qui seront contenus dedans (p. ex. `comptemodule/_commun.scss`, `comptemodule/enregistrementformulaire.scss`).
+L'ensemble des feuilles de style appelés par les composants et vues de l'application se trouvent dans ce dossier. À la racine, on trouvera uniquement des fichiers utilitaires (p. ex. `_normalize.scss`). Ensuite, pour les feuilles contenant des styles employés dans l'ensemble de l'application, les placer dans le dossier `partials` et les suffixer d'un tiret de soulignement (p. ex. `_variables.sccs`). Enfin, créer un dossier par vue dans `views` en fonction des composants qui seront contenus dedans (p. ex. `comptemodule/_commun.scss`, `comptemodule/enregistrementformulaire.scss`).
 
 Nommer tous les fichiers en minuscules, en suffixant les `partials` et les feuilles de style communes avec un tiret de soulignement.
 

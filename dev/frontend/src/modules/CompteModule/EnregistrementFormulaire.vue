@@ -1,39 +1,57 @@
 <template>
-  <main class="container">
-    <h1>
-      S'enregister
+  <div class="enregistrement">
+    <h1 class="style7">
+      Inscription
     </h1>
-    <form>
-      <label for="email">Adresse email</label>
-      <input
-        id="email"
-        v-model="email"
-        type="email"
-        name="email"
-        class="form-control"
-        placeholder="nom@adresse.com"
-        required
-      >
-      <label for="password">Mot de passe</label>
-      <input
-        id="password"
-        v-model="password"
-        type="password"
-        name="password"
-        placeholder="Mot de passe"
-        required
-      >
-      <div>
-        Veuillez choisir un mot de passe compliqué.
-      </div>
-      <div v-html="erreur">
-        <!-- {{ erreur }} -->
-      </div>
-    </form>
-    <button @click="enregistrement">
-      Soumettre
-    </button>
-  </main>
+    <section class="enregistrement__google">
+      <button class="bouton1 couleur--c6 icone--google bouton--connexion-google">
+        Continuer avec Google
+      </button>
+    </section>
+    <p>ou</p>
+    <section class="enregistrement__classique">
+      <form>
+        <input
+          name="email"
+          type="email"
+          v-model="email"
+          placeholder="Adresse email"
+          required
+        >
+        <input
+          name="password"
+          type="password"
+          v-model="password"
+          placeholder="Mot de passe"
+          required
+        >
+        <input
+          name="confirmation-password"
+          type="password"
+          placeholder="Confirmation de mot de passe"
+          required
+        >
+        <p v-html="erreur">
+          erreur
+        </p>
+        <input
+          type="checkbox"
+          name="se-souvenir"
+          id=""
+        >
+        <label for="se souvenir">Se souvenir de moi</label>
+      </form>
+      <button class="bouton1 couleur--c1" @click="enregistrement">
+        Je m'inscris
+      </button>
+      <p>
+        Tu as déjà un compte ?
+        <router-link to="connexion">
+          Me connecter
+        </router-link>
+      </p>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -67,3 +85,6 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+</style>

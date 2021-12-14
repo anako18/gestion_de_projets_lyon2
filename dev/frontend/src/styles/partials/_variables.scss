@@ -10,6 +10,8 @@ $couleur-c1: rgba(234, 85, 61, 1);
 $couleur-c2: rgba(236, 246, 255, 1);
 $couleur-c3: rgba(255, 230, 0, 1);
 $couleur-c4: rgba(254, 237, 227, 1);
+$couleur-c5: rgba(66, 133, 244, 1);
+$couleur-c6: rgba(255, 249, 246, 1);
 $couleur-nfonce: rgba(35, 35, 35, 1);
 $couleur-nmoyen: rgba(88, 88, 88, 1);
 $couleur-bouton-ombre: rgba(0, 0, 0, 0.25);
@@ -100,6 +102,18 @@ $typo-casse-extrafin: 300;
   strong {
     font-weight: $typo-casse-fin;
   }
+}
+%style-style7 {
+  font-family: $typo-police-hind;
+  font-weight: $typo-casse-gras;
+  font-size: 28px;
+  line-height: 1;
+}
+%style-style8 {
+  font-family: $typo-police-roboto;
+  font-weight: $typo-casse-fin;
+  font-size: 17px;
+  line-height: 1.16;
 }
 
 
