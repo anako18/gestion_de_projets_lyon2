@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import EnregistrementService from "../Services/EnregistrementService";
+import EnregistrementService from "./EnregistrementService";
 export default {
   name: "EnregistrementFormulaire",
   data () {

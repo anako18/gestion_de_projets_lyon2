@@ -7,8 +7,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./services/Router";
+
 import "./styles/normalize.css";
-import "./styles/common.scss";
 
 Vue.config.productionTip = false;
 

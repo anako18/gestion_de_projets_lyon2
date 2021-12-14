@@ -1,5 +1,5 @@
 "use strict";
-import Api from "../../../services/Api";
+import Api from "../../services/Api";
 
 /**
  * Requête d'authentification

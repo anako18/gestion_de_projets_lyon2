@@ -1,32 +1,4 @@
-$couleur-noire: hsl(0deg, 0%, 0%);
-$couleur-blanche: hsl(0deg, 0%, 100%);
-$marge-ligne: 1;
-$couleur-ombre: 253deg, 91%, 49%;
-
-:root {
-  --shadow-color: $couleur-ombre;
-  --shadow-elevation-low:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    0.9px 0.7px 1.7px hsl(var(--shadow-color) / 0.62);
-  --shadow-elevation-medium:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    4.4px 3.4px 8.3px hsl(var(--shadow-color) / 0.86);
-  --shadow-elevation-high:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    7.6px 5.9px 14.4px hsl(var(--shadow-color) / 0.71),
-    23.9px 18.5px 45.3px hsl(var(--shadow-color) / 1);
-}
-
-@mixin bordure {
-  border: 1px solid hsl(#{$couleur-ombre});
-  border-radius: 4px 4px;
-}
-@mixin marge-basse-1 {
-  margin-bottom: #{$marge-ligne}rem;
-}
-@mixin marge-basse-2 {
-  margin-bottom: #{$marge-ligne * 2}rem;
-}
+@import "./variables";
 
 html {
   font-size: 18px;
@@ -34,45 +6,172 @@ html {
 
 body {
   font-size: 1rem;
+  line-height: $typo-ligne-hauteur !important;
 }
 
-h1 {
-  margin: unset;
-  @include marge-basse-2();
+img {
+  max-width: 100%;
+  object-fit: cover;
 }
-form {
-  @include marge-basse-2();
-  label {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-  }
-  input {
-    display: block;
-    @include marge-basse-1;
-  }
-}
-
 
 a {
   color: unset;
   text-decoration: unset;
-  &:hover {
-    color: red;
+}
+h1, h2, ul, li, p, button {
+  margin: unset;
+  z-index: 1;
+}
+button {
+  border: unset;
+}
+
+.style1 {
+  @include style(style1);
+  margin-bottom: 6px;
+}
+.style2 {
+  @include style(style2, true);
+  color: $couleur-nmoyen;
+  margin-bottom: 18px;
+}
+.style3 {
+  @extend %style-style3;
+}
+.style5 {
+  @extend %style-style5;
+}
+.style6 {
+  @extend %style-style6;
+}
+
+.bouton1 {
+  min-width: 100%;
+  height: 53px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: unset;
+  font-family: Hind;
+  font-size: 16px;
+  font-weight: 700;
+  &.couleur--c1 {
+    background-color: $couleur-c1;
+    color: #FFF;
+  }
+  &.couleur--c2 {
+    background-color: $couleur-c2;
+    color: $couleur-nfonce;
+  }
+  &.icone--inscription {
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 13px;
+      left: 14px;
+      width: 25.5px;
+      height: 29px;
+      content: " ";
+      background-image: url("../assets/icone--inscription.png");
+      background-size: 100%;
+      background-position: center center;
+      z-index: 2;
+    }
+  }
+  &.icone--connexion {
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 13px;
+      left: 14px;
+      width: 29px;
+      height: 29px;
+      content: " ";
+      background-image: url("../assets/icone--connexion.png");
+      background-size: 100%;
+      background-position: center center;
+      z-index: 2;
+    }
   }
 }
 
 /**
 *   Structure
 */
-.page {
+main {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 3rem);
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: #FFF;
+  overflow-x: hidden;
+  &.premiere-visite {
+    background: $couleur-c4;
+  }
 }
 
-.container {
-  margin: auto;
-  padding: 4rem;
-  box-shadow: var(--shadow-elevation-medium);
-  // @include bordure;
+.en-tete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  gap: 4px;
+  padding: 0 #{$marge-goutiere}px;
+  margin: 13px 0 35px 0;
+  &__logo {
+    &--icone {
+     height: 33px;
+    }
+    &--une-ligne {
+      width: 164px;
+    }
+  }
+}
+
+.inscription {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+  &::after {
+    position: absolute;
+    content: " ";
+    bottom: -51px;
+    left: 0;
+    width: 100vw;
+    height: 102px;
+    background-image: url("../assets/forme__premiere-visite.svg");
+    background-color: #FFF;
+    z-index: 0;
+  }
+  .liste {
+    margin-bottom: 27px;
+  }
+  .accroche {
+    text-align: right;
+    margin-bottom: 28px;
+    transform: rotate(-6.11deg);
+    @extend %style-style4;
+  }
+  .bouton--inscription {
+    // margin-bottom: 50px;
+  }
+}
+.connexion {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  flex-grow: 1;
+  background: #FFF;
+  padding: 0 #{$marge-goutiere}px;
+  padding-top: 80px;
+  .style5 {
+    color: $couleur-nfonce;
+  }
+  .style6 {
+    color: $couleur-nmoyen;
+    margin-bottom: 12px;
+  }
 }

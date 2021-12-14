@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import AuthentificationService from "../Services/AuthentificationService";
+import AuthentificationService from "./AuthentificationService";
 export default {
   name: "AuthentificationFormulaire",
   data () {
