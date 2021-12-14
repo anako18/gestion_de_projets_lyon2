@@ -1,7 +1,7 @@
 const { Utilisateur } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
-const AuthentificationErreur = require("../errors/AuthentificationErreur");
+const EnrAuthErreur = require("../errors/EnrAuthErreur");
 
 const signatureJwtUtilisateur = (utilisateur) => {
   const UNE_SEMAINE = 60 * 60 * 24 * 7;
@@ -38,7 +38,7 @@ module.exports = {
       const validationUtilisateur = function (utilisateur) {
         const pr = new Promise((resolve, reject) => {
           if (!utilisateur) {
-            reject(new AuthentificationErreur("AUCUN_UTILISATEUR_TROUVE"));
+            reject(new EnrAuthErreur("AUCUN_UTILISATEUR_TROUVE"));
           } else {
             resolve();
           }
@@ -50,7 +50,7 @@ module.exports = {
           const val = utilisateur.comparaisonMdp(password);
           val.then(value => {
             if (!value) {
-              reject(new AuthentificationErreur("MDP_INCORRECT"));
+              reject(new EnrAuthErreur("MDP_INCORRECT"));
             } else {
               resolve();
             }

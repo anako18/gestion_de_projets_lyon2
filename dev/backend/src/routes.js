@@ -1,15 +1,14 @@
 const EnregistrementControleur = require("./controllers/EnregistrementControleur");
-const EnregistrementControleurPolitique = require("./policies/EnregistrementControleurPolitique");
-
 const AuthentificationControleur = require("./controllers/AuthentificationControleur");
-// const AuthentificationControleurPolitique = require("./policies/AuthentificationControleurPolitique");
+
+const EnregistrementAuthentificationPolitique = require("./policies/EnregistrementAuthentificationPolitique");
 
 module.exports = (app) => {
   app.post("/enregistrement",
-    EnregistrementControleurPolitique.enregistrement,
+    EnregistrementAuthentificationPolitique.enregistrementAuthentification,
     EnregistrementControleur.enregistrement);
 
   app.post("/authentification",
-    // AuthentificationControleurPolitique.authentification,
+    EnregistrementAuthentificationPolitique.enregistrementAuthentification,
     AuthentificationControleur.authentification);
 };
