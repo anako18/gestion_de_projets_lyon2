@@ -30,7 +30,7 @@
       <router-link
         to="/inscription"
         tag="button"
-        class="bouton1 icone--inscription couleur--c1 bouton--inscription"
+        class="bouton1 couleur--c1 icone--inscription bouton--inscription"
       >
         Je m'inscris
       </router-link>
@@ -45,7 +45,7 @@
       <router-link
         to="/connexion"
         tag="button"
-        class="bouton1 icone--connexion couleur--c2"
+        class="bouton1 couleur--c2 icone--connexion"
       >
         Je me connecte
       </router-link>
