@@ -1,34 +1,53 @@
 <template>
-  <main class="container">
-    <h1>S'authentifier</h1>
-    <form>
-      <label for="email">Adresse email</label>
-      <input
-        id="email"
-        v-model="email"
-        type="email"
-        name="email"
-        class="form-control"
-        placeholder="nom@adresse.com"
-        required
-      >
-      <label for="password">Mot de passe</label>
-      <input
-        id="password"
-        v-model="password"
-        type="password"
-        name="password"
-        placeholder="Mot de passe"
-        required
-      >
-      <div>
-        {{ erreur }}
-      </div>
-    </form>
-    <button @click="authentification">
-      Soumettre
-    </button>
-  </main>
+  <div class="authentification">
+    <h1 class="style7">
+      Connexion
+    </h1>
+    <section class="authentification__google">
+      <button class="bouton1 couleur--c6 icone--google bouton--connexion-google">
+        Continuer avec Google
+      </button>
+    </section>
+    <p class="authentification__separateur">
+      ou
+    </p>
+    <section class="authentification__classique">
+      <form>
+        <input
+          name="email"
+          type="email"
+          v-model="email"
+          placeholder="Adresse email"
+          required
+        >
+        <input
+          name="password"
+          type="password"
+          v-model="password"
+          placeholder="Mot de passe"
+          required
+        >
+        <p v-html="erreur">
+          erreur
+        </p>
+        <input
+          type="checkbox"
+          name="se-souvenir"
+          id=""
+        >
+        <label for="se souvenir">Se souvenir de moi</label>
+      </form>
+      <button class="bouton1 couleur--c1" @click="authentification">
+        Je me connecte
+      </button>
+      <p>
+        Tu n'as pas de compte ?
+        <router-link to="inscription">
+          Se créer un compte
+        </router-link>
+      </p>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -50,9 +69,12 @@ export default {
           password: this.password
         });
       } catch (erreur) {
-        this.erreur = erreur.response.data.error;
+        this.erreur = erreur.response.data.message;
       }
     }
   }
 };
 </script>
+
+<style lang="scss">
+</style>
