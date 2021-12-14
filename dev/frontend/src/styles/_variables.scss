@@ -1,0 +1,115 @@
+// Tailles de la vue
+$vue-ht: 667;
+$vue-lg: 375;
+
+// Marges
+$marge-goutiere: 28;
+
+// Couleurs
+$couleur-c1: rgba(234, 85, 61, 1);
+$couleur-c2: rgba(236, 246, 255, 1);
+$couleur-c3: rgba(255, 230, 0, 1);
+$couleur-c4: rgba(254, 237, 227, 1);
+$couleur-nfonce: rgba(35, 35, 35, 1);
+$couleur-nmoyen: rgba(88, 88, 88, 1);
+$couleur-bouton-ombre: rgba(0, 0, 0, 0.25);
+
+// Typographie
+$typo-ligne-hauteur: 1.6;
+
+$typo-police-hind: Hind;
+$typo-police-roboto: Roboto;
+$typo-police-ubuntu: Ubuntu;
+
+$typo-casse-gras: 700;
+$typo-casse-normal: 500;
+$typo-casse-fin: 400;
+$typo-casse-extrafin: 300;
+
+// Styles
+@mixin style($nom, $emphase: false) {
+  @extend %style-#{$nom}__police;
+  @extend %style-#{$nom}__casse;
+  @extend %style-#{$nom}__taille;
+  @extend %style-#{$nom}__hauteur;
+  @if ($emphase == true) {
+    @extend %style-#{$nom}--emphase__casse;
+  }
+}
+
+%style-style1__police {
+  font-family: $typo-police-hind;
+}
+%style-style1__casse {
+  font-weight: $typo-casse-gras;
+}
+%style-style1__taille {
+  font-size: 28px;
+}
+%style-style1__hauteur {
+  line-height: 1;
+}
+
+%style-style2__police {
+  font-family: $typo-police-roboto;
+}
+%style-style2__casse {
+  font-weight: $typo-casse-normal;
+}
+%style-style2__taille {
+  font-size: 21px;
+}
+%style-style2__hauteur {
+  line-height: 1.2;
+}
+%style-style2--emphase__casse {
+  & bold {
+    font-weight: $typo-casse-gras;
+  }
+}
+
+%style-style3 {
+  font-family: $typo-police-roboto;
+  font-size: 18px;
+  font-weight: $typo-casse-normal;
+  line-height: 1.6;
+}
+%style-style4 {
+  font-family: $typo-police-roboto;
+  font-size: 18px;
+  font-weight: $typo-casse-extrafin;
+  line-height: 1.2;
+  strong {
+    font-weight: $typo-casse-fin;
+  }
+}
+%style-style5 {
+  font-family: $typo-police-hind;
+  font-weight: $typo-casse-gras;
+  font-size: 18px;
+  line-height: 1.6;
+  strong {
+    font-weight: $typo-casse-fin; 
+  }
+}
+%style-style6 {
+  font-family: $typo-police-roboto;
+  font-weight: $typo-casse-normal;
+  font-size: 15px;
+  line-height: 1.6;
+  strong {
+    font-weight: $typo-casse-fin;
+  }
+}
+
+
+
+$style-textebouton__police: $typo-police-hind;
+$style-textebouton__casse: $typo-casse-gras;
+$style-textebouton__taille: 16;
+$style-textebouton__hauteur: 1.6;
+
+$style-bouton1-lg: 320;
+$style-bouton1-ht: 53;
+$style-bouton1-radius: 6;
+$style-bouton1-ombre: 0px 4px 8px $couleur-bouton-ombre;

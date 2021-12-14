@@ -1,17 +1,23 @@
 "use strict";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import IndexVue from "../views/Index";
-import EnregistrementFormulaire from "../modules/CompteModule/Components/EnregistrementFormulaire.vue";
-import AuthentificationFormulaire from "../modules/CompteModule/Components/AuthentificationFormulaire.vue";
+import IntroVue from "../views/Intro.vue";
+import PremiereVisiteVue from "../views/PremiereVisite.vue";
+import EnregistrementFormulaire from "../modules/CompteModule/EnregistrementFormulaire.vue";
+import AuthentificationFormulaire from "../modules/CompteModule/AuthentificationFormulaire.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Index",
-    component: IndexVue,
+    name: "Intro",
+    component: IntroVue
+  },
+  {
+    path: "/premiere-visite",
+    name: "Première visite",
+    component: PremiereVisiteVue,
     children: [
       {
         path: "enregistrement",
