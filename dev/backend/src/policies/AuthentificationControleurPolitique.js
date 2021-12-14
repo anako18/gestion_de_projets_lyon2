@@ -1,5 +1,6 @@
 const Joi = require("joi");
 
+// TODO: Implémenter la même politique que pour l'Enregistrement pour éviter les doubles
 module.exports = {
   authentification (req, res, next) {
     const schema = Joi.object({
