@@ -1,6 +1,6 @@
 <template>
   <div class="authentification">
-    <h1 class="style7">
+    <h1 class="style-7">
       Connexion
     </h1>
     <section class="authentification__google">

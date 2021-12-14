@@ -1,10 +1,10 @@
 <template>
   <div class="enregistrement">
-    <h1 class="style7">
+    <h1 class="style-7">
       Inscription
     </h1>
     <section class="enregistrement__google">
-      <button class="bouton1 couleur--c6 icone--google bouton--connexion-google">
+      <button class="bouton-style-1 couleur-c6 icone-google bouton-connexion-google">
         Continuer avec Google
       </button>
     </section>
@@ -41,7 +41,7 @@
         >
         <label for="se souvenir">Se souvenir de moi</label>
       </form>
-      <button class="bouton1 couleur--c1" @click="enregistrement">
+      <button class="bouton-style-1 couleur-c1" @click="enregistrement">
         Je m'inscris
       </button>
       <p>

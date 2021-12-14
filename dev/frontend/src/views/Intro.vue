@@ -18,18 +18,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/_variables.scss";
-@import "../styles/common.scss";
-
-main {
-  justify-content: center;
-  background: $couleur-c1;
-}
-img {
-  max-width: 175px;
-  filter: brightness(255);
-  &:hover {
-    cursor: pointer;
-  }
-}
+  @import "../styles/intro/intro.scss";
 </style>
