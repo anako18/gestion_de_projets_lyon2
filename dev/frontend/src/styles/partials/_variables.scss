@@ -12,6 +12,7 @@ $couleur-c3: rgba(255, 230, 0, 1);
 $couleur-c4: rgba(254, 237, 227, 1);
 $couleur-c5: rgba(66, 133, 244, 1);
 $couleur-c6: rgba(255, 249, 246, 1);
+$couleur-blanc: rgba(255, 255, 255, 1);
 $couleur-nfonce: rgba(35, 35, 35, 1);
 $couleur-nmoyen: rgba(88, 88, 88, 1);
 $couleur-bouton-ombre: rgba(0, 0, 0, 0.25);
@@ -29,54 +30,28 @@ $typo-casse-fin: 400;
 $typo-casse-extrafin: 300;
 
 // Styles
-@mixin style($nom, $emphase: false) {
-  @extend %style-#{$nom}__police;
-  @extend %style-#{$nom}__casse;
-  @extend %style-#{$nom}__taille;
-  @extend %style-#{$nom}__hauteur;
-  @if ($emphase == true) {
-    @extend %style-#{$nom}--emphase__casse;
-  }
-}
-
-%style-style1__police {
+%texte-style-1 {
   font-family: $typo-police-hind;
-}
-%style-style1__casse {
   font-weight: $typo-casse-gras;
-}
-%style-style1__taille {
   font-size: 28px;
-}
-%style-style1__hauteur {
   line-height: 1;
 }
-
-%style-style2__police {
+%texte-style-2 {
   font-family: $typo-police-roboto;
-}
-%style-style2__casse {
-  font-weight: $typo-casse-normal;
-}
-%style-style2__taille {
   font-size: 21px;
-}
-%style-style2__hauteur {
+  font-weight: $typo-casse-normal;
   line-height: 1.2;
-}
-%style-style2--emphase__casse {
-  & bold {
+  strong {
     font-weight: $typo-casse-gras;
   }
 }
-
-%style-style3 {
+%texte-style-3 {
   font-family: $typo-police-roboto;
   font-size: 18px;
   font-weight: $typo-casse-normal;
   line-height: 1.6;
 }
-%style-style4 {
+%texte-style-4 {
   font-family: $typo-police-roboto;
   font-size: 18px;
   font-weight: $typo-casse-extrafin;
@@ -85,16 +60,16 @@ $typo-casse-extrafin: 300;
     font-weight: $typo-casse-fin;
   }
 }
-%style-style5 {
+%texte-style-5 {
   font-family: $typo-police-hind;
   font-weight: $typo-casse-gras;
   font-size: 18px;
   line-height: 1.6;
   strong {
-    font-weight: $typo-casse-fin; 
+    font-weight: $typo-casse-fin;
   }
 }
-%style-style6 {
+%texte-style-6 {
   font-family: $typo-police-roboto;
   font-weight: $typo-casse-normal;
   font-size: 15px;
@@ -103,27 +78,24 @@ $typo-casse-extrafin: 300;
     font-weight: $typo-casse-fin;
   }
 }
-%style-style7 {
+%texte-style-7 {
   font-family: $typo-police-hind;
   font-weight: $typo-casse-gras;
   font-size: 28px;
   line-height: 1;
 }
-%style-style8 {
+%texte-style-8 {
   font-family: $typo-police-roboto;
   font-weight: $typo-casse-fin;
   font-size: 17px;
   line-height: 1.16;
 }
 
-
-
-$style-textebouton__police: $typo-police-hind;
-$style-textebouton__casse: $typo-casse-gras;
-$style-textebouton__taille: 16;
-$style-textebouton__hauteur: 1.6;
-
-$style-bouton1-lg: 320;
-$style-bouton1-ht: 53;
-$style-bouton1-radius: 6;
-$style-bouton1-ombre: 0px 4px 8px $couleur-bouton-ombre;
+// Bouton
+$bouton-style-1-lg: 320;
+$bouton-style-1-ht: 53;
+$bouton-style-1-radius: 6;
+$bouton-style-1-ombre: 0px 4px 8px $couleur-bouton-ombre;
+$bouton-style-1-police-famille: $typo-police-hind;
+$bouton-style-1-police-taille: 16;
+$bouton-style-1-police-casse: $typo-casse-gras;

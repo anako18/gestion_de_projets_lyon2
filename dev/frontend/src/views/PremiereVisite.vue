@@ -13,13 +13,13 @@
       >
     </header>
     <section class="inscription">
-      <h1 class="style1">
+      <h1 class="texte-style-1">
         Première visite ?
       </h1>
-      <p class="style2">
+      <p class="texte-style-2">
         Inscris-toi et participe à des <strong>évènements</strong> proches de chez toi !
       </p>
-      <ul class="liste style3">
+      <ul class="liste texte-style-3">
         <li>Rencontre de nouvelles personnes</li>
         <li>Apprend à cuisiner</li>
         <li>Passe un bon moment</li>
@@ -30,22 +30,22 @@
       <router-link
         to="/inscription"
         tag="button"
-        class="bouton1 couleur--c1 icone--inscription bouton--inscription"
+        class="bouton-style-1 couleur-c1 icone-inscription bouton-inscription"
       >
         Je m'inscris
       </router-link>
     </section>
     <section class="connexion">
-      <h2 class="style5">
+      <h2 class="texte-style-5">
         Tu as déjà un compte ?
       </h2>
-      <p class="style6">
+      <p class="texte-style-6">
         Parfait ! Connecte-toi vite !
       </p>
       <router-link
         to="/connexion"
         tag="button"
-        class="bouton1 couleur--c2 icone--connexion"
+        class="bouton-style-1 couleur-c2 icone-connexion"
       >
         Je me connecte
       </router-link>
@@ -59,7 +59,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-  @import "../styles/common.scss";
-  @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+<style lang="scss">
 </style>
