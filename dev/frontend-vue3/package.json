@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "scss:lint": "stylelint --fix --cache ."
+    "scss:lint": "stylelint --fix --cache .",
+    "scss:lint-nc": "stylelint --fix ."
   },
   "dependencies": {
     "axios": "^0.24.0",
