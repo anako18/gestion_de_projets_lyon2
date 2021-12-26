@@ -1,4 +1,5 @@
 @import "./partials/variables";
+@import "./interface/bouton";
 @import "./normalize";
 
 /* Squelette */
@@ -85,86 +86,6 @@ img {
 
 .texte-style-7 {
   @extend %texte-style-7;
-}
-
-.bouton-style-1 {
-  position: relative;
-  min-width: #{$bouton-style-1-lg}px;
-  min-height: #{$bouton-style-1-ht}px;
-  padding: unset;
-  font-weight: $bouton-style-1-police-casse;
-  font-size: #{$bouton-style-1-police-taille}px;
-  font-family: $bouton-style-1-police-famille;
-  border-radius: #{$bouton-style-1-radius}px;
-  box-shadow: $bouton-style-1-ombre;
-
-  &.couleur-c1 {
-    color: $couleur-blanc;
-    background-color: $couleur-c1;
-  }
-
-  &.couleur-c2 {
-    color: $couleur-nfonce;
-    background-color: $couleur-c2;
-  }
-
-  &.couleur-c4 {
-    color: $couleur-nmoyen;
-    background-color: $couleur-c4;
-  }
-
-  &.couleur-c6 {
-    color: $couleur-nmoyen;
-    background-color: $couleur-c6;
-  }
-
-  &.icone {
-    &-inscription {
-      &::before {
-        position: absolute;
-        top: 13px;
-        left: 14px;
-        z-index: 2;
-        width: 29px;
-        height: 29px;
-        background-image: url("/src/assets/images/icone--inscription.png");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-        content: " ";
-      }
-    }
-
-    &-connexion {
-      &::before {
-        position: absolute;
-        top: 13px;
-        left: 14px;
-        z-index: 2;
-        width: 29px;
-        height: 29px;
-        background-image: url("/src/assets/images/icone--connexion.png");
-        background-position: center center;
-        background-size: 100%;
-        content: " ";
-      }
-    }
-
-    &-google {
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 10px;
-        z-index: 2;
-        width: 50px;
-        height: 50px;
-        background-image: url("/src/assets/images/icone--google.png");
-        background-position: center center;
-        background-size: 100%;
-        content: " ";
-      }
-    }
-  }
 }
 
 // TODO: À exporter dans des feuilles de style par vue

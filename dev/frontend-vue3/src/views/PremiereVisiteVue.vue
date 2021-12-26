@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router"
+import InterfaceBouton from "../modules/InterfaceModule/InterfaceBouton.vue"
 </script>
 
 <template>
@@ -48,9 +49,10 @@ import { RouterLink } from "vue-router"
         Parfait ! Connecte-toi vite !
       </p>
       <router-link to="/connexion">
-        <button type="button" class="bouton-style-1 couleur-c2 icone-connexion">
-          Je me connecte
-        </button>
+        <InterfaceBouton
+          valeur="Je me connecte"
+          class="bouton-style-1 couleur-c2 icone-connexion"
+        />
       </router-link>
     </section>
   </main>

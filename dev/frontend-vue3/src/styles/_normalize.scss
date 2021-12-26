@@ -101,6 +101,7 @@ button,
 [type="reset"],
 [type="submit"] {
   appearance: button;
+  padding: unset;
 }
 
 ::-webkit-inner-spin-button,

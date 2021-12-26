@@ -1,0 +1,48 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.bouton-style-1 {
+  // Couleurs
+  @include bouton-couleur("c1", $couleur-blanc, $couleur-c1);
+  @include bouton-couleur("c2", $couleur-nfonce, $couleur-c2);
+  @include bouton-couleur("c4", $couleur-nmoyen, $couleur-c4);
+  @include bouton-couleur("c6", $couleur-nmoyen, $couleur-c6);
+
+  position: relative;
+  min-width: #{$bouton-style-1-lg}px;
+  min-height: #{$bouton-style-1-ht}px;
+  font-weight: $bouton-style-1-police-casse;
+  font-size: #{$bouton-style-1-police-taille}px;
+  font-family: $bouton-style-1-police-famille;
+  border-radius: #{$bouton-style-1-radius}px;
+  box-shadow: $bouton-style-1-ombre;
+}
+
+// TODO: Harmoniser la gestion des icônes et des couleurs
+.icone,
+%icone {
+  &::before {
+    position: absolute;
+    z-index: 2;
+    background: center center / contain no-repeat;
+    content: " ";
+  }
+
+  // Icône d'inscription
+  &-inscription {
+    @extend %icone;
+    @include bouton-proprietes(13, 14, 29, "icone--inscription");
+  }
+
+  // Icône de connexion
+  &-connexion {
+    @extend %icone;
+    @include bouton-proprietes(13, 14, 29, "icone--connexion");
+  }
+
+  // Logo de Google
+  &-google {
+    @extend %icone;
+    @include bouton-proprietes(0, 10, 50, "icone--google");
+  }
+}
