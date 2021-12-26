@@ -4,7 +4,9 @@
       Connexion
     </h1>
     <section class="authentification__google">
-      <button class="bouton1 couleur--c6 icone--google bouton--connexion-google">
+      <button
+        class="bouton1 couleur--c6 icone--google bouton--connexion-google"
+      >
         Continuer avec Google
       </button>
     </section>
@@ -75,6 +77,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-</style>
