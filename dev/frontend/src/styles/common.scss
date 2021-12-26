@@ -4,27 +4,38 @@
 html {
   font-size: 18px;
 }
+
 body {
   font-size: 1rem;
   line-height: $typo-ligne-hauteur !important;
 }
 
 /* Éléments de base */
-h1, h2, ul, li, p, button {
+h1,
+h2,
+ul,
+li,
+p,
+button {
   margin: unset;
   z-index: 1;
 }
+
 a {
   color: unset;
   text-decoration: unset;
 }
+
 button {
   border: unset;
+
   &:hover {
     cursor: pointer;
   }
 }
-input[type=email], input[type=password] {
+
+input[type="email"],
+input[type="password"] {
   min-width: 100%;
   min-height: 49px;
   background-color: $couleur-c6;
@@ -33,8 +44,10 @@ input[type=email], input[type=password] {
   border-radius: 6px;
   padding: 15px;
   margin-bottom: 21px;
+
   @extend %texte-style-8;
 }
+
 img {
   max-width: 100%;
   object-fit: contain;
@@ -42,28 +55,37 @@ img {
 
 .texte-style-1 {
   @extend %texte-style-1;
+
   margin-bottom: 6px;
 }
+
 .texte-style-2 {
   @extend %texte-style-2;
+
   color: $couleur-nmoyen;
   margin-bottom: 18px;
 }
+
 .texte-style-3 {
   @extend %texte-style-3;
 }
+
 .texte-style-4 {
   @extend %texte-style-4;
 }
+
 .texte-style-5 {
   @extend %texte-style-5;
 }
+
 .texte-style-6 {
   @extend %texte-style-6;
 }
+
 .texte-style-7 {
   @extend %texte-style-7;
 }
+
 .bouton-style-1 {
   position: relative;
   min-width: #{$bouton-style-1-lg}px;
@@ -74,22 +96,27 @@ img {
   border-radius: #{$bouton-style-1-radius}px;
   padding: unset;
   box-shadow: $bouton-style-1-ombre;
+
   &.couleur-c1 {
     background-color: $couleur-c1;
     color: $couleur-blanc;
   }
+
   &.couleur-c2 {
     background-color: $couleur-c2;
     color: $couleur-nfonce;
   }
+
   &.couleur-c4 {
     background-color: $couleur-c4;
     color: $couleur-nmoyen;
   }
+
   &.couleur-c6 {
     background-color: $couleur-c6;
     color: $couleur-nmoyen;
   }
+
   &.icone {
     &-inscription {
       &::before {
@@ -106,6 +133,7 @@ img {
         z-index: 2;
       }
     }
+
     &-connexion {
       &::before {
         position: absolute;
@@ -120,10 +148,11 @@ img {
         z-index: 2;
       }
     }
+
     &-google {
       &::before {
         position: absolute;
-        top: 0px;
+        top: 0;
         left: 10px;
         width: 50px;
         height: 50px;
@@ -134,11 +163,11 @@ img {
         z-index: 2;
       }
     }
-
   }
 }
 
 // TODO: À exporter dans des feuilles de style par vue
+
 /**
 *   Structure
 */
@@ -151,6 +180,7 @@ main {
   min-height: 100vh;
   background: $couleur-blanc;
   overflow-x: hidden;
+
   &.premiere-visite {
     background: $couleur-c4;
   }
@@ -163,11 +193,13 @@ main {
   min-width: 100%;
   gap: 4px;
   padding: 0 #{$marge-goutiere}px;
-  margin: 13px 0 35px 0;
+  margin: 13px 0 35px;
+
   &__logo {
     &--icone {
-     height: 33px;
+      height: 33px;
     }
+
     &--une-ligne {
       width: 164px;
     }
@@ -180,6 +212,7 @@ main {
   flex-direction: column;
   min-width: 100%;
   padding: 0 #{$marge-goutiere}px;
+
   &::after {
     position: absolute;
     content: " ";
@@ -191,19 +224,24 @@ main {
     background-color: $couleur-blanc;
     z-index: 0;
   }
+
   .liste {
     margin-bottom: 27px;
   }
+
   .accroche {
     text-align: right;
     margin-bottom: 28px;
     transform: rotate(-6.11deg);
+
     @extend %texte-style-4;
   }
+
   .bouton--inscription {
     // margin-bottom: 50px;
   }
 }
+
 .connexion {
   display: flex;
   flex-direction: column;
@@ -212,30 +250,37 @@ main {
   background: $couleur-blanc;
   padding: 0 #{$marge-goutiere}px;
   padding-top: 80px;
+
   .texte-style-5 {
     color: $couleur-nfonce;
   }
+
   .texte-style-6 {
     color: $couleur-nmoyen;
     margin-bottom: 12px;
   }
 }
 
-.enregistrement, .authentification {
+.enregistrement,
+.authentification {
   display: flex;
   flex-direction: column;
   min-width: 100%;
   padding: 0 #{$marge-goutiere}px;
   padding-top: 80px;
+
   .texte-style-7 {
     color: $couleur-c1;
     margin-bottom: 23px;
   }
+
   .bouton-connexion-google {
     box-shadow: unset;
     border: 1px solid $couleur-c5;
+
     @extend %texte-style-8;
   }
+
   &__separateur {
     min-width: 100%;
     margin: 15px 0;

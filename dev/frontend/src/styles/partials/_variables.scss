@@ -6,24 +6,22 @@ $vue-lg: 375;
 $marge-goutiere: 28;
 
 // Couleurs
-$couleur-c1: rgba(234, 85, 61, 1);
-$couleur-c2: rgba(236, 246, 255, 1);
-$couleur-c3: rgba(255, 230, 0, 1);
-$couleur-c4: rgba(254, 237, 227, 1);
-$couleur-c5: rgba(66, 133, 244, 1);
-$couleur-c6: rgba(255, 249, 246, 1);
-$couleur-blanc: rgba(255, 255, 255, 1);
-$couleur-nfonce: rgba(35, 35, 35, 1);
-$couleur-nmoyen: rgba(88, 88, 88, 1);
-$couleur-bouton-ombre: rgba(0, 0, 0, 0.25);
+$couleur-c1: rgb(234 85 61 / 100%);
+$couleur-c2: rgb(236 246 255 / 100%);
+$couleur-c3: rgb(255 230 0 / 100%);
+$couleur-c4: rgb(254 237 227 / 100%);
+$couleur-c5: rgb(66 133 244 / 100%);
+$couleur-c6: rgb(255 249 246 / 100%);
+$couleur-blanc: rgb(255 255 255 / 100%);
+$couleur-nfonce: rgb(35 35 35 / 100%);
+$couleur-nmoyen: rgb(88 88 88 / 100%);
+$couleur-bouton-ombre: rgb(0 0 0 / 25%);
 
 // Typographie
 $typo-ligne-hauteur: 1.6;
-
-$typo-police-hind: Hind;
-$typo-police-roboto: Roboto;
-$typo-police-ubuntu: Ubuntu;
-
+$typo-police-hind: hind;
+$typo-police-roboto: roboto;
+$typo-police-ubuntu: ubuntu;
 $typo-casse-gras: 700;
 $typo-casse-normal: 500;
 $typo-casse-fin: 400;
@@ -41,6 +39,7 @@ $typo-casse-extrafin: 300;
   font-size: 21px;
   font-weight: $typo-casse-normal;
   line-height: 1.2;
+
   strong {
     font-weight: $typo-casse-gras;
   }
@@ -56,6 +55,7 @@ $typo-casse-extrafin: 300;
   font-size: 18px;
   font-weight: $typo-casse-extrafin;
   line-height: 1.2;
+
   strong {
     font-weight: $typo-casse-fin;
   }
@@ -65,6 +65,7 @@ $typo-casse-extrafin: 300;
   font-weight: $typo-casse-gras;
   font-size: 18px;
   line-height: 1.6;
+
   strong {
     font-weight: $typo-casse-fin;
   }
@@ -74,6 +75,7 @@ $typo-casse-extrafin: 300;
   font-weight: $typo-casse-normal;
   font-size: 15px;
   line-height: 1.6;
+
   strong {
     font-weight: $typo-casse-fin;
   }
@@ -95,7 +97,7 @@ $typo-casse-extrafin: 300;
 $bouton-style-1-lg: 320;
 $bouton-style-1-ht: 53;
 $bouton-style-1-radius: 6;
-$bouton-style-1-ombre: 0px 4px 8px $couleur-bouton-ombre;
+$bouton-style-1-ombre: 0 4px 8px $couleur-bouton-ombre;
 $bouton-style-1-police-famille: $typo-police-hind;
 $bouton-style-1-police-taille: 16;
 $bouton-style-1-police-casse: $typo-casse-gras;
