@@ -1,0 +1,10 @@
+@mixin style($nom, $emphase: false) {
+  @extend %texte-#{$nom}__police;
+  @extend %texte-#{$nom}__casse;
+  @extend %texte-#{$nom}__taille;
+  @extend %texte-#{$nom}__hauteur;
+
+  @if $emphase == true {
+    @extend %texte-#{$nom}--emphase__casse;
+  }
+}

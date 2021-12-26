@@ -1,0 +1,286 @@
+@import "./partials/variables";
+@import "./normalize";
+
+/* Squelette */
+html {
+  font-size: 18px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: $typo-ligne-hauteur !important;
+}
+
+/* Éléments de base */
+h1,
+h2,
+ul,
+li,
+p,
+button {
+  z-index: 1;
+  margin: unset;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+button {
+  border: unset;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="email"],
+input[type="password"] {
+  @extend %texte-style-8;
+
+  min-width: 100%;
+  min-height: 49px;
+  margin-bottom: 21px;
+  padding: 15px;
+  color: $couleur-nmoyen;
+  background-color: $couleur-c6;
+  border: 1px solid $couleur-c4;
+  border-radius: 6px;
+}
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.texte-style-1 {
+  @extend %texte-style-1;
+
+  margin-bottom: 6px;
+}
+
+.texte-style-2 {
+  @extend %texte-style-2;
+
+  margin-bottom: 18px;
+  color: $couleur-nmoyen;
+}
+
+.texte-style-3 {
+  @extend %texte-style-3;
+}
+
+.texte-style-4 {
+  @extend %texte-style-4;
+}
+
+.texte-style-5 {
+  @extend %texte-style-5;
+}
+
+.texte-style-6 {
+  @extend %texte-style-6;
+}
+
+.texte-style-7 {
+  @extend %texte-style-7;
+}
+
+.bouton-style-1 {
+  position: relative;
+  min-width: #{$bouton-style-1-lg}px;
+  min-height: #{$bouton-style-1-ht}px;
+  padding: unset;
+  font-weight: $bouton-style-1-police-casse;
+  font-size: #{$bouton-style-1-police-taille}px;
+  font-family: $bouton-style-1-police-famille;
+  border-radius: #{$bouton-style-1-radius}px;
+  box-shadow: $bouton-style-1-ombre;
+
+  &.couleur-c1 {
+    color: $couleur-blanc;
+    background-color: $couleur-c1;
+  }
+
+  &.couleur-c2 {
+    color: $couleur-nfonce;
+    background-color: $couleur-c2;
+  }
+
+  &.couleur-c4 {
+    color: $couleur-nmoyen;
+    background-color: $couleur-c4;
+  }
+
+  &.couleur-c6 {
+    color: $couleur-nmoyen;
+    background-color: $couleur-c6;
+  }
+
+  &.icone {
+    &-inscription {
+      &::before {
+        position: absolute;
+        top: 13px;
+        left: 14px;
+        z-index: 2;
+        width: 29px;
+        height: 29px;
+        background-image: url("/src/assets/images/icone--inscription.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        content: " ";
+      }
+    }
+
+    &-connexion {
+      &::before {
+        position: absolute;
+        top: 13px;
+        left: 14px;
+        z-index: 2;
+        width: 29px;
+        height: 29px;
+        background-image: url("/src/assets/images/icone--connexion.png");
+        background-position: center center;
+        background-size: 100%;
+        content: " ";
+      }
+    }
+
+    &-google {
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        z-index: 2;
+        width: 50px;
+        height: 50px;
+        background-image: url("/src/assets/images/icone--google.png");
+        background-position: center center;
+        background-size: 100%;
+        content: " ";
+      }
+    }
+  }
+}
+
+// TODO: À exporter dans des feuilles de style par vue
+
+/**
+*   Structure
+*/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: $couleur-blanc;
+
+  &.premiere-visite {
+    background: $couleur-c4;
+  }
+}
+
+.en-tete {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  margin: 13px 0 35px;
+  padding: 0 #{$marge-goutiere}px;
+
+  &__logo {
+    &--icone {
+      height: 33px;
+    }
+
+    &--une-ligne {
+      width: 164px;
+    }
+  }
+}
+
+.inscription {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+
+  &::after {
+    position: absolute;
+    bottom: -51px;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 102px;
+    background-color: $couleur-blanc;
+    background-image: url("/src/assets/images/forme__premiere-visite.svg");
+    content: " ";
+  }
+
+  .liste {
+    margin-bottom: 27px;
+  }
+
+  .accroche {
+    @extend %texte-style-4;
+
+    margin-bottom: 28px;
+    text-align: right;
+    transform: rotate(-6.11deg);
+  }
+}
+
+.connexion {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+  padding-top: 80px;
+  background: $couleur-blanc;
+
+  .texte-style-5 {
+    color: $couleur-nfonce;
+  }
+
+  .texte-style-6 {
+    margin-bottom: 12px;
+    color: $couleur-nmoyen;
+  }
+}
+
+.enregistrement,
+.authentification {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+  padding-top: 80px;
+
+  .texte-style-7 {
+    margin-bottom: 23px;
+    color: $couleur-c1;
+  }
+
+  .bouton-connexion-google {
+    @extend %texte-style-8;
+
+    border: 1px solid $couleur-c5;
+    box-shadow: unset;
+  }
+
+  &__separateur {
+    min-width: 100%;
+    margin: 15px 0;
+    text-align: center;
+  }
+}

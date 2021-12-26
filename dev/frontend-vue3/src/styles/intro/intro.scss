@@ -1,0 +1,15 @@
+@import "../partials/variables";
+
+main {
+  justify-content: center;
+  background: $couleur-c1;
+}
+
+img {
+  max-width: 175px;
+  filter: brightness(255);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
