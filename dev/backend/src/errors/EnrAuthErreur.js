@@ -2,7 +2,7 @@ class EnrAuthErreur extends Error {
   selectionMessageErreur (message) {
     switch (message) {
       case "EMAIL_DEJA_UTILISE":
-        return "L'adresse email est déjà associée à un compte."
+        return "L'adresse email est déjà associée à un compte.";
       case ("AUCUN_UTILISATEUR_TROUVE" || "MDP_INCORRECT"):
         return "Les informations de connexion sont incorrectes.";
       default:
