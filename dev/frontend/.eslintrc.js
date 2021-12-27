@@ -9,7 +9,6 @@ module.exports = {
     "standard"
   ],
   parserOptions: {
-    ecmaVersion: 11,
     sourceType: "module"
   },
   plugins: [
