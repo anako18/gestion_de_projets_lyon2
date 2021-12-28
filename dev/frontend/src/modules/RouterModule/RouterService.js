@@ -1,10 +1,10 @@
 "use strict"
 import Vue from "vue"
 import VueRouter from "vue-router"
-import IntroVue from "../../views/Intro.vue"
-import PremiereVisiteVue from "../../views/PremiereVisite.vue"
-import ConnexionVue from "../../views/Connexion.vue"
-import InscriptionVue from "../../views/Inscription.vue"
+import IntroVue from "@v/Intro.vue"
+import PremiereVisiteVue from "@v/PremiereVisite.vue"
+import ConnexionVue from "@v/Connexion.vue"
+import InscriptionVue from "@v/Inscription.vue"
 
 Vue.use(VueRouter)
 

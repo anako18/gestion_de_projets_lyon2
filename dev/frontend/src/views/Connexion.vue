@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AuthentificationFormulaire from "../modules/CompteModule/AuthentificationFormulaire.vue"
+import AuthentificationFormulaire from "@m/CompteModule/AuthentificationFormulaire.vue"
 export default {
   name: "InscriptionVue",
   components: {
