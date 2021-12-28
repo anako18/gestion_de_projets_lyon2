@@ -14,9 +14,9 @@
 <script>
 export default {
   name: "IntroVue"
-};
+}
 </script>
 
 <style lang="scss" scoped>
-  @import "../styles/intro/intro.scss";
+  @import "../styles/intro/intro";
 </style>

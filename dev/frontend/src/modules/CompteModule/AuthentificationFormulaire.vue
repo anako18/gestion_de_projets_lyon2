@@ -16,26 +16,26 @@
     <section class="authentification__classique">
       <form>
         <input
+          v-model="email"
           name="email"
           type="email"
-          v-model="email"
           placeholder="Adresse email"
           required
         >
         <input
+          v-model="password"
           name="password"
           type="password"
-          v-model="password"
           placeholder="Mot de passe"
           required
         >
-        <p v-html="erreur">
-          erreur
+        <p>
+          {{ erreur }}
         </p>
         <input
+          id=""
           type="checkbox"
           name="se-souvenir"
-          id=""
         >
         <label for="se souvenir">Se souvenir de moi</label>
       </form>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import AuthentificationService from "./AuthentificationService";
+import AuthentificationService from "./AuthentificationService"
 export default {
   name: "AuthentificationFormulaire",
   data () {
@@ -61,7 +61,7 @@ export default {
       email: "",
       password: "",
       erreur: null
-    };
+    }
   },
   methods: {
     async authentification () {
@@ -69,11 +69,11 @@ export default {
         await AuthentificationService.authentification({
           email: this.email,
           password: this.password
-        });
+        })
       } catch (erreur) {
-        this.erreur = erreur.response.data.message;
+        this.erreur = erreur.response.data.message
       }
     }
   }
-};
+}
 </script>

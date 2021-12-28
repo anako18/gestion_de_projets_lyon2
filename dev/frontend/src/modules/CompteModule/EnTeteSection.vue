@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "EnTete"
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -28,14 +28,16 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 3rem;
-  font-family: 'IBM Plex Sans Text',  sans-serif;
+  font-family: "IBM Plex Sans Text", sans-serif;
   color: white;
   background-color: black;
   padding: 1rem 2rem;
+
   &__menu {
     display: flex;
     flex-direction: row;
     align-items: center;
+
     &__lien {
       display: inline-block;
       margin: 0 1rem;

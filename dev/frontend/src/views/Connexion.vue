@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import AuthentificationFormulaire from "../modules/CompteModule/AuthentificationFormulaire.vue";
+import AuthentificationFormulaire from "../modules/CompteModule/AuthentificationFormulaire.vue"
 export default {
   name: "InscriptionVue",
   components: {
     AuthentificationFormulaire
   }
-};
+}
 </script>
-
-<style lang="scss">
-</style>

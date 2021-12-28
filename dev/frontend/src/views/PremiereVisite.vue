@@ -56,8 +56,5 @@
 <script>
 export default {
   name: "PremiereVisiteVue"
-};
+}
 </script>
-
-<style lang="scss">
-</style>
