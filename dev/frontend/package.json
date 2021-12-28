@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "pnpm code:lint && pnpm style:lint",
+    "code:lint": "./node_modules/.bin/eslint --fix src/**/*.vue src/*.vue",
+    "style:lint": "./node_modules/.bin/stylelint -f verbose --fix src/styles/* src/views/*.vue src/modules/**/*.vue"
   },
   "dependencies": {
     "axios": "0.24.0",
