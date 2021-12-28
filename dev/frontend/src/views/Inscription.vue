@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import EnregistrementFormulaire from "../modules/CompteModule/EnregistrementFormulaire.vue";
+import EnregistrementFormulaire from "../modules/CompteModule/EnregistrementFormulaire.vue"
 export default {
   name: "InscriptionVue",
   components: {
     EnregistrementFormulaire
   }
-};
+}
 </script>
-
-<style lang="scss">
-</style>

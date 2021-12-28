@@ -14,16 +14,16 @@
     <section class="enregistrement__classique">
       <form>
         <input
+          v-model="email"
           name="email"
           type="email"
-          v-model="email"
           placeholder="Adresse email"
           required
         >
         <input
+          v-model="password"
           name="password"
           type="password"
-          v-model="password"
           placeholder="Mot de passe"
           required
         >
@@ -33,13 +33,13 @@
           placeholder="Confirmation de mot de passe"
           required
         >
-        <p v-html="erreur">
-          erreur
+        <p>
+          {{ erreur }}
         </p>
         <input
+          id=""
           type="checkbox"
           name="se-souvenir"
-          id=""
         >
         <label for="se souvenir">Se souvenir de moi</label>
       </form>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import EnregistrementService from "./EnregistrementService";
+import EnregistrementService from "./EnregistrementService"
 export default {
   name: "EnregistrementFormulaire",
   data () {
@@ -65,7 +65,7 @@ export default {
       email: "",
       password: "",
       erreur: null
-    };
+    }
   },
   methods: {
     /**
@@ -78,12 +78,12 @@ export default {
         await EnregistrementService.enregistrement({
           email: this.email,
           password: this.password
-        });
-        this.erreur = null;
+        })
+        this.erreur = null
       } catch (erreur) {
-        this.erreur = erreur.response.data.message;
+        this.erreur = erreur.response.data.message
       }
     }
   }
-};
+}
 </script>

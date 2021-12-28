@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 
-
 html {
   tab-size: 2;
   line-height: 1.15; /* 1 */
@@ -76,7 +75,6 @@ sup {
   top: -0.5em;
 }
 
-
 table {
   text-indent: 0; /* 1 */
   border-color: inherit; /* 2 */
@@ -98,12 +96,42 @@ select { /* 1 */
   text-transform: none;
 }
 
-
 button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
   appearance: button;
+}
+
+legend {
+  padding: 0;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type="search"] {
+  appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+summary {
+  display: list-item;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+::-webkit-search-decoration {
+  appearance: none;
+}
+
+::-webkit-file-upload-button {
+  appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 ::-moz-focus-inner {
@@ -117,40 +145,4 @@ button,
 
 :-moz-ui-invalid {
   box-shadow: none;
-}
-
-legend {
-  padding: 0;
-}
-
-progress {
-  vertical-align: baseline;
-}
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-/**
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
-*/
-
-[type="search"] {
-  appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
-}
-
-::-webkit-search-decoration {
-  appearance: none;
-}
-
-::-webkit-file-upload-button {
-  appearance: button; /* 1 */
-  font: inherit; /* 2 */
-}
-
-summary {
-  display: list-item;
 }

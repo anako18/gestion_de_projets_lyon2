@@ -1,5 +1,5 @@
-"use strict";
-import Api from "../ApiModule/ApiService";
+"use strict"
+import Api from "../ApiModule/ApiService"
 
 /**
  * Requête d'enregistrement
@@ -7,6 +7,6 @@ import Api from "../ApiModule/ApiService";
  */
 export default {
   enregistrement (credentials) {
-    return Api().post("enregistrement", credentials);
+    return Api().post("enregistrement", credentials)
   }
-};
+}

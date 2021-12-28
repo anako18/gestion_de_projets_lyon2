@@ -1,5 +1,5 @@
-"use strict";
-import Api from "../ApiModule/ApiService";
+"use strict"
+import Api from "../ApiModule/ApiService"
 
 /**
  * Requête d'authentification
@@ -7,6 +7,6 @@ import Api from "../ApiModule/ApiService";
  */
 export default {
   authentification (credentials) {
-    return Api().post("authentification", credentials);
+    return Api().post("authentification", credentials)
   }
-};
+}

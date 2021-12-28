@@ -1,5 +1,5 @@
-"use strict";
-import axios from "axios";
+"use strict"
+import axios from "axios"
 
 /**
  * Définition de l'adresse où s'exécutera l'API
@@ -7,5 +7,5 @@ import axios from "axios";
 export default () => {
   return axios.create({
     baseURL: "http://localhost:8082"
-  });
-};
+  })
+}
