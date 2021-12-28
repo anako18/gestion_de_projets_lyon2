@@ -8,3 +8,20 @@
     @extend %texte-#{$nom}--emphase__casse;
   }
 }
+
+@mixin bouton-couleur($nom, $couleur, $arriere-plan) {
+  &.couleur-#{$nom} {
+    color: $couleur;
+    background-color: $arriere-plan;
+  }
+}
+
+@mixin bouton-proprietes($haut, $gauche, $taille, $url) {
+  &::before {
+    top: #{$haut}px;
+    left: #{$gauche}px;
+    width: #{$taille}px;
+    height: #{$taille}px;
+    background-image: url("#{$ai}/#{$url}.png");
+  }
+}

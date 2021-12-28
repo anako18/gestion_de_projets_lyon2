@@ -1,4 +1,6 @@
 @import "./partials/variables";
+@import "./interface/bouton";
+@import "./normalize";
 
 /* Squelette */
 html {
@@ -17,8 +19,8 @@ ul,
 li,
 p,
 button {
-  margin: unset;
   z-index: 1;
+  margin: unset;
 }
 
 a {
@@ -36,16 +38,16 @@ button {
 
 input[type="email"],
 input[type="password"] {
+  @extend %texte-style-8;
+
   min-width: 100%;
   min-height: 49px;
-  background-color: $couleur-c6;
+  margin-bottom: 21px;
+  padding: 15px;
   color: $couleur-nmoyen;
+  background-color: $couleur-c6;
   border: 1px solid $couleur-c4;
   border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 21px;
-
-  @extend %texte-style-8;
 }
 
 img {
@@ -62,8 +64,8 @@ img {
 .texte-style-2 {
   @extend %texte-style-2;
 
-  color: $couleur-nmoyen;
   margin-bottom: 18px;
+  color: $couleur-nmoyen;
 }
 
 .texte-style-3 {
@@ -86,86 +88,6 @@ img {
   @extend %texte-style-7;
 }
 
-.bouton-style-1 {
-  position: relative;
-  min-width: #{$bouton-style-1-lg}px;
-  min-height: #{$bouton-style-1-ht}px;
-  font-family: $bouton-style-1-police-famille;
-  font-size: #{$bouton-style-1-police-taille}px;
-  font-weight: $bouton-style-1-police-casse;
-  border-radius: #{$bouton-style-1-radius}px;
-  padding: unset;
-  box-shadow: $bouton-style-1-ombre;
-
-  &.couleur-c1 {
-    background-color: $couleur-c1;
-    color: $couleur-blanc;
-  }
-
-  &.couleur-c2 {
-    background-color: $couleur-c2;
-    color: $couleur-nfonce;
-  }
-
-  &.couleur-c4 {
-    background-color: $couleur-c4;
-    color: $couleur-nmoyen;
-  }
-
-  &.couleur-c6 {
-    background-color: $couleur-c6;
-    color: $couleur-nmoyen;
-  }
-
-  &.icone {
-    &-inscription {
-      &::before {
-        position: absolute;
-        top: 13px;
-        left: 14px;
-        width: 29px;
-        height: 29px;
-        content: " ";
-        background-image: url("/src/assets/icone--inscription.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-        z-index: 2;
-      }
-    }
-
-    &-connexion {
-      &::before {
-        position: absolute;
-        top: 13px;
-        left: 14px;
-        width: 29px;
-        height: 29px;
-        content: " ";
-        background-image: url("/src/assets/icone--connexion.png");
-        background-size: 100%;
-        background-position: center center;
-        z-index: 2;
-      }
-    }
-
-    &-google {
-      &::before {
-        position: absolute;
-        top: 0;
-        left: 10px;
-        width: 50px;
-        height: 50px;
-        content: " ";
-        background-image: url("/src/assets/icone--google.png");
-        background-size: 100%;
-        background-position: center center;
-        z-index: 2;
-      }
-    }
-  }
-}
-
 // TODO: À exporter dans des feuilles de style par vue
 
 /**
@@ -174,12 +96,12 @@ img {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   min-width: 100vw;
   min-height: 100vh;
-  background: $couleur-blanc;
   overflow-x: hidden;
+  background: $couleur-blanc;
 
   &.premiere-visite {
     background: $couleur-c4;
@@ -188,12 +110,12 @@ main {
 
 .en-tete {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 100%;
   gap: 4px;
-  padding: 0 #{$marge-goutiere}px;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
   margin: 13px 0 35px;
+  padding: 0 #{$marge-goutiere}px;
 
   &__logo {
     &--icone {
@@ -215,14 +137,14 @@ main {
 
   &::after {
     position: absolute;
-    content: " ";
     bottom: -51px;
     left: 0;
+    z-index: 0;
     width: 100vw;
     height: 102px;
-    background-image: url("/src/assets/forme__premiere-visite.svg");
     background-color: $couleur-blanc;
-    z-index: 0;
+    background-image: url("#{$ai}/forme__premiere-visite.svg");
+    content: " ";
   }
 
   .liste {
@@ -230,30 +152,30 @@ main {
   }
 
   .accroche {
-    text-align: right;
-    margin-bottom: 28px;
-    transform: rotate(-6.11deg);
-
     @extend %texte-style-4;
+
+    margin-bottom: 28px;
+    text-align: right;
+    transform: rotate(-6.11deg);
   }
 }
 
 .connexion {
   display: flex;
   flex-direction: column;
-  min-width: 100%;
   flex-grow: 1;
-  background: $couleur-blanc;
+  min-width: 100%;
   padding: 0 #{$marge-goutiere}px;
   padding-top: 80px;
+  background: $couleur-blanc;
 
   .texte-style-5 {
     color: $couleur-nfonce;
   }
 
   .texte-style-6 {
-    color: $couleur-nmoyen;
     margin-bottom: 12px;
+    color: $couleur-nmoyen;
   }
 }
 
@@ -266,15 +188,15 @@ main {
   padding-top: 80px;
 
   .texte-style-7 {
-    color: $couleur-c1;
     margin-bottom: 23px;
+    color: $couleur-c1;
   }
 
   .bouton-connexion-google {
-    box-shadow: unset;
-    border: 1px solid $couleur-c5;
-
     @extend %texte-style-8;
+
+    border: 1px solid $couleur-c5;
+    box-shadow: unset;
   }
 
   &__separateur {

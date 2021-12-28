@@ -1,3 +1,6 @@
+// Chemmins
+$ai: "/src/assets/images";
+
 // Tailles de la vue
 $vue-ht: 667;
 $vue-lg: 375;
@@ -29,15 +32,15 @@ $typo-casse-extrafin: 300;
 
 // Styles
 %texte-style-1 {
-  font-family: $typo-police-hind;
   font-weight: $typo-casse-gras;
   font-size: 28px;
+  font-family: $typo-police-hind;
   line-height: 1;
 }
 %texte-style-2 {
-  font-family: $typo-police-roboto;
-  font-size: 21px;
   font-weight: $typo-casse-normal;
+  font-size: 21px;
+  font-family: $typo-police-roboto;
   line-height: 1.2;
 
   strong {
@@ -45,15 +48,15 @@ $typo-casse-extrafin: 300;
   }
 }
 %texte-style-3 {
-  font-family: $typo-police-roboto;
-  font-size: 18px;
   font-weight: $typo-casse-normal;
+  font-size: 18px;
+  font-family: $typo-police-roboto;
   line-height: 1.6;
 }
 %texte-style-4 {
-  font-family: $typo-police-roboto;
-  font-size: 18px;
   font-weight: $typo-casse-extrafin;
+  font-size: 18px;
+  font-family: $typo-police-roboto;
   line-height: 1.2;
 
   strong {
@@ -61,9 +64,9 @@ $typo-casse-extrafin: 300;
   }
 }
 %texte-style-5 {
-  font-family: $typo-police-hind;
   font-weight: $typo-casse-gras;
   font-size: 18px;
+  font-family: $typo-police-hind;
   line-height: 1.6;
 
   strong {
@@ -71,9 +74,9 @@ $typo-casse-extrafin: 300;
   }
 }
 %texte-style-6 {
-  font-family: $typo-police-roboto;
   font-weight: $typo-casse-normal;
   font-size: 15px;
+  font-family: $typo-police-roboto;
   line-height: 1.6;
 
   strong {
@@ -81,15 +84,15 @@ $typo-casse-extrafin: 300;
   }
 }
 %texte-style-7 {
-  font-family: $typo-police-hind;
   font-weight: $typo-casse-gras;
   font-size: 28px;
+  font-family: $typo-police-hind;
   line-height: 1;
 }
 %texte-style-8 {
-  font-family: $typo-police-roboto;
   font-weight: $typo-casse-fin;
   font-size: 17px;
+  font-family: $typo-police-roboto;
   line-height: 1.16;
 }
 
