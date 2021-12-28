@@ -3,12 +3,12 @@
     <header class="en-tete">
       <img
         class="en-tete__logo--icone"
-        src="../assets/logo--icone.png"
+        src="@ai/logo--icone.png"
         alt="Icône Toque & Toc !"
       >
       <img
         class="en-tete__logo--une-ligne"
-        src="../assets/logo--une-ligne.png"
+        src="@ai/logo--une-ligne.png"
         alt="Logo Toque & Toc !"
       >
     </header>
@@ -17,7 +17,8 @@
         Première visite ?
       </h1>
       <p class="texte-style-2">
-        Inscris-toi et participe à des <strong>évènements</strong> proches de chez toi !
+        Inscris-toi et participe à des <strong>évènements</strong> proches de
+        chez toi !
       </p>
       <ul class="liste texte-style-3">
         <li>Rencontre de nouvelles personnes</li>
@@ -27,12 +28,8 @@
       <p class="accroche">
         ...et le tout à <strong>petit prix</strong> !
       </p>
-      <router-link
-        to="/inscription"
-        tag="button"
-        class="bouton-style-1 couleur-c1 icone-inscription bouton-inscription"
-      >
-        Je m'inscris
+      <router-link to="/inscription" tag="a">
+        <InterfaceBouton type="inscription" valeur="Je m'inscris" />
       </router-link>
     </section>
     <section class="connexion">
@@ -42,19 +39,19 @@
       <p class="texte-style-6">
         Parfait ! Connecte-toi vite !
       </p>
-      <router-link
-        to="/connexion"
-        tag="button"
-        class="bouton-style-1 couleur-c2 icone-connexion"
-      >
-        Je me connecte
+      <router-link to="/connexion" tag="a">
+        <InterfaceBouton type="connexion" valeur="Je me connecte" />
       </router-link>
     </section>
   </main>
 </template>
 
 <script>
+import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton.vue"
 export default {
-  name: "PremiereVisiteVue"
+  name: "PremiereVisiteVue",
+  components: {
+    InterfaceBouton
+  }
 }
 </script>
