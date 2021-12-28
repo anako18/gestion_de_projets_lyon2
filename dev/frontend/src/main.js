@@ -6,9 +6,9 @@
 
 import Vue from "vue"
 import App from "./App.vue"
-import router from "./modules/RouterModule/RouterService"
+import router from "@m/RouterModule/RouterService"
 
-import "./styles/_normalize.scss"
+import "@s/_normalize.scss"
 
 Vue.config.productionTip = false
 

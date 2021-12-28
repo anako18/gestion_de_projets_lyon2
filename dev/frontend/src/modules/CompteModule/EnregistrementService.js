@@ -1,5 +1,5 @@
 "use strict"
-import Api from "../ApiModule/ApiService"
+import Api from "@m/ApiModule/ApiService"
 
 /**
  * Requête d'enregistrement

@@ -3,7 +3,7 @@
     <section>
       <router-link to="/premiere-visite">
         <img
-          src="../assets/logo--deux-lignes.png"
+          src="@ai/logo--deux-lignes.png"
           alt="Logo Tocque & Toc!"
         >
       </router-link>
@@ -18,5 +18,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../styles/intro/intro";
+  @import "@s/intro/intro";
 </style>
