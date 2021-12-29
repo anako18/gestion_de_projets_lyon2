@@ -43,9 +43,11 @@
         >
         <label for="se souvenir">Se souvenir de moi</label>
       </form>
-      <button class="bouton-style-1 couleur-c1" @click="enregistrement">
-        Je m'inscris
-      </button>
+      <InterfaceBouton
+        valeur="Je m'inscris"
+        type="inscription"
+        @onClique="validationEnregistrement"
+      />
       <p>
         Tu as déjà un compte ?
         <router-link to="connexion">
@@ -58,8 +60,13 @@
 
 <script>
 import EnregistrementService from "./EnregistrementService"
+import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton"
+
 export default {
   name: "EnregistrementFormulaire",
+  components: {
+    InterfaceBouton
+  },
   data () {
     return {
       email: "",

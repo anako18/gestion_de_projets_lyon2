@@ -2,6 +2,7 @@
   <button
     type="button"
     :class="style"
+    @click="boutonClique"
   >
     {{ valeur }}
   </button>
@@ -22,15 +23,21 @@ export default {
   },
   data () {
     const correspondanceType = () => {
-      if (this.type === "connexion") {
-        return "bouton-style-1 couleur-c2 icone-connexion"
-      }
-      if (this.type === "inscription") {
-        return "bouton-style-1 couleur-c1 icone-inscription"
+      const type = this.type
+      switch (type) {
+        case "connexion":
+          return "bouton-style-1 couleur-c2 icone-connexion"
+        case "inscription":
+          return "bouton-style-1 couleur-c1 icone-inscription"
       }
     }
     return {
       style: correspondanceType()
+    }
+  },
+  methods: {
+    boutonClique () {
+      this.$emit("onClique")
     }
   }
 }
