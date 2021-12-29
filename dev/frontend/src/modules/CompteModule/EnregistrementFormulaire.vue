@@ -33,8 +33,10 @@
           placeholder="Confirmation de mot de passe"
           required
         >
-        <p>
-          {{ erreur }}
+        <p v-if="erreurs.length">
+          <span v-for="erreurValidation in erreurs" :key="erreurValidation.id">
+            {{ erreurValidation }}
+          </span>
         </p>
         <input
           id=""
@@ -71,16 +73,31 @@ export default {
     return {
       email: "",
       password: "",
-      erreur: null
+      erreurs: []
     }
   },
   methods: {
     /**
-     * **Enregistre un nouvel Utilisateur**
-     *
-     *  Envoie les données au backend.
+     * Transmet les identifiants renseignés par l'utilisateur pour l'enregistrement
+     * pour validation.
      */
-    async enregistrement () {
+    async validationEnregistrement () {
+      try {
+        await EnregistrementService.validation({
+          email: this.email,
+          password: this.password
+        })
+        this.erreurs = []
+        this.envoiEnregistrement()
+      } catch (erreur) {
+        this.erreurs = erreur
+      }
+    },
+    /**
+     * Envoie les identifiants renseignés par l'utilisateur pour l'enregistrement
+     * au backend.
+     */
+    async envoiEnregistrement () {
       try {
         await EnregistrementService.enregistrement({
           email: this.email,
