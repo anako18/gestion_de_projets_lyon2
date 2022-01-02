@@ -19,6 +19,7 @@ ul,
 li,
 p,
 button {
+  z-index: 1;
   margin: unset;
 }
 
@@ -87,6 +88,19 @@ main {
   min-height: 100vh;
   overflow-x: hidden;
   background: $couleur-blanc;
+
+  &.favoris-liste {
+    background: $couleur-c4;
+  }
+  &.evenements-liste {
+    background: $couleur-c4;
+  }
+  &.bienvenue {
+    background: $couleur-c1;
+  }
+  &.inscructions {
+    background: $couleur-c4;
+  }
 }
 
 .enregistrement,
@@ -199,4 +213,272 @@ main {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(-20px);
   opacity: 0;
+}
+
+/* ===================================== evenemenets =====================================*/
+
+.header-logo {
+  width: 100%;
+  min-height: 100px;
+  background: url("/src/assets/logo.png");
+}
+
+.filters-div {
+  height: auto;
+  width: 100%;
+  white-space: nowrap;
+  align-items: center;
+  display:flex; 
+  flex-direction: row; 
+  justify-content: center;
+  position: relative;
+  min-height: fit-content;
+}
+
+.button-left {
+  position: absolute;
+  width: 20px;
+  display: inline-block;
+  background: $couleur-c1;
+  box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.13);
+  text-align: center;
+  color: #fff;
+  z-index: 9;
+  left: 0;
+}
+
+.button-right {
+  position: absolute;
+  width: 20px;
+  display: inline-block;
+  background: $couleur-c1;
+  box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.13);
+  text-align: center;
+  color: #fff;
+  z-index: 9;
+  right: 0;
+}
+
+.filter-item {
+  border-radius: 25.5px;
+  padding: 8px 13px;
+  margin: 5px;
+  display: inline;
+  background: $couleur-c4;
+  border: 1px solid #585858;
+  box-sizing: border-box;
+  border-radius: 25.5px;
+}
+
+.active {
+  background: #fff;
+}
+
+.button-text {
+width: 114px;
+height: 15px;
+left: 45px;
+top: 122px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #585858;
+}
+
+.selectFilter {
+  background-color: transparent;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #585858;
+}
+
+.tri {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex; 
+  justify-content: space-around;
+}
+
+.buttonToLink{
+  background: none;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #585858
+}
+
+.buttonToLink:hover{
+  background: none;
+  text-decoration: underline;
+}
+
+.panel-image {
+  width: 70%;
+  padding: 10px 10px 0px 10px;
+}
+
+.panel-element {
+  width: 20%;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+
+.panel-footer {
+  width: 100%;
+  background-color: white;
+  position: absolute; 
+  bottom:0;
+  display: table;
+}
+
+.caption {
+  display: block;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: #afafaf;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  border:5px solid white;    
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.evenement {
+  background-color: white;
+  position:relative;
+  margin-bottom: 50px;
+}
+
+.evenements-liste {
+  height: 450px;
+  overflow:scroll;
+}
+
+.price-tag {
+    position: relative;
+    text-align: center;
+}
+.price-centered{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.evenement-titre {
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 17px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* Noir Foncé */
+
+color: #232323;
+}
+
+.evenement-date {
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+line-height: 15px;
+
+/* Noir Foncé */
+
+color: #232323;
+
+}
+
+.evenement-lieu {
+  font-family: Roboto;
+  font-size: 13px;
+  color: #232323;
+}
+
+.evenement-reste {
+  font-family: Roboto;
+  font-size: 13px;
+  color: #232323;
+}
+
+.evenement-description {
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 139.69%;
+float: left;
+/* or 17px */
+
+
+color: #747474;
+}
+
+.profile-titre {
+    display: flex;
+    align-items: center;
+}
+
+.evenement-content{
+  padding: 0px 20px; 
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.description-price {
+  margin-bottom: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.price-tag {
+  float:right;
+  width: 20%;
+}
+
+.yellow-button {
+  border-radius: 12px;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  background-color: $couleur-c3;
+  padding: 15px 20px;
+  width: fit-content;
+  margin-bottom: 2px;
+}
+.evenement-image{
+  position: relative;
+}
+
+.favorite {
+  background-color: transparent;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
