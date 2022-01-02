@@ -9,6 +9,7 @@ import InscriptionVue from "@v/Inscription.vue"
 import OrganisationEvenement from "@v/OrganisationEvenement.vue"
 
 import ModalInterface from "@m/OrganisationEvenementModule/ModalInterface.vue"
+import EvenementsListVue from "@v/EvenementsList.vue"
 
 Vue.use(VueRouter)
 
@@ -52,6 +53,11 @@ const routes = [
         component: ModalInterface
       }
     ]
+  },
+  {
+    path: "/evenements-liste",
+    name: "Evenements",
+    component: EvenementsListVue
   }
 ]
 
