@@ -10,9 +10,8 @@
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
-    "parser": {
-      "js": "espree"
-    }
+    "parser": "@babel/eslint-parser",
+    "sourceType": "module"
   },
   "rules": {
     "quotes": [
@@ -36,7 +35,7 @@
     "vue/max-len": [
       "error",
       {
-        "code": 100
+        "code": 120
       }
     ]
   }
