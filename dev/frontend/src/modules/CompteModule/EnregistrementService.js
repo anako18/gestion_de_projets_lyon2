@@ -8,14 +8,7 @@ import CompteValidation from "@m/CompteModule/CompteValidation"
  * @returns Vrai si les vadiations passent, une ou plusieurs erreurs sinon.
  */
 const validation = function (identifiants) {
-  // Étape obligatoire pour ne récupérer que les entrées de l'objet qui nous intéressent
-  const donneesAValider = {
-    email: identifiants.email,
-    mdp: identifiants.mdp,
-    confMdp: identifiants.confMdp
-  }
-  const erreursRetournees = CompteValidation(donneesAValider)
-  return erreursRetournees
+  return CompteValidation(identifiants)
 }
 
 /**

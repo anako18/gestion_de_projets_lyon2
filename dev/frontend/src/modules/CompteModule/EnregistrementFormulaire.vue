@@ -38,11 +38,6 @@
           placeholder="Confirmation de mot de passe"
           required
         >
-        <p v-if="erreurs.length">
-          <span v-for="erreurValidation in erreurs" :key="erreurValidation.id">
-            {{ erreurValidation }}
-          </span>
-        </p>
         <input
           id=""
           type="checkbox"
@@ -91,8 +86,7 @@ export default {
     }
   },
   watch: {
-    identifiants: { handler: "validationEnregistrement", deep: true },
-    validation: "validationEnregistrement"
+    identifiants: { handler: "validationEnregistrement", deep: true }
   },
   mounted () {
     this.validationEnregistrement()
@@ -105,7 +99,7 @@ export default {
     validationEnregistrement () {
       this.reinitialisationErreurs()
       try {
-        const resultat = EnregistrementService.validation(this.identifiants)
+        EnregistrementService.validation(this.identifiants)
         this.validation = true
       } catch (erreur) {
         this.erreurs = erreur
@@ -130,12 +124,10 @@ export default {
       }
     },
     /**
-     *
+     *  Réinitialise le tableau d'erreurs
      */
     reinitialisationErreurs () {
-      if (this.erreurs) {
-        for (const i in this.erreurs) this.erreurs[i] = null
-      }
+      for (const i in this.erreurs) this.erreurs[i] = null
     }
   }
 }
