@@ -1,5 +1,5 @@
 @import "./partials/variables";
-@import "./interface/bouton";
+@import "./interface/champs";
 @import "./normalize";
 
 /* Squelette */
@@ -38,16 +38,7 @@ button {
 
 input[type="email"],
 input[type="password"] {
-  @extend %texte-style-8;
-
-  min-width: 100%;
-  min-height: 49px;
-  margin-bottom: 21px;
-  padding: 15px;
-  color: $couleur-nmoyen;
-  background-color: $couleur-c6;
-  border: 1px solid $couleur-c4;
-  border-radius: 6px;
+  @extend %champ;
 }
 
 img {

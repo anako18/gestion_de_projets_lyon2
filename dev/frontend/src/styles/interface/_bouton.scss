@@ -16,6 +16,28 @@
   font-family: $bouton-style-1-police-famille;
   border-radius: #{$bouton-style-1-radius}px;
   box-shadow: $bouton-style-1-ombre;
+  transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
+
+  &:active {
+    transition: box-shadow 0.1s, transform 0.1s;
+    transform: translate(0, 1px);
+    box-shadow: unset;
+  }
+
+  &.etat-desactive {
+    filter: saturate(0);
+    transition: filter 0.1s;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+
+    &:active {
+      transition: unset;
+      transform: unset;
+      box-shadow: $bouton-style-1-ombre;
+    }
+  }
 }
 
 // TODO: Harmoniser la gestion des icônes et des couleurs
