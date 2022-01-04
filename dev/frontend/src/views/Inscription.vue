@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import EnregistrementFormulaire from "@m/CompteModule/EnregistrementFormulaire.vue"
+import EnregistrementFormulaire from "@m/CompteModule/EnregistrementModule/EnregistrementFormulaire.vue"
 export default {
   name: "InscriptionVue",
   components: {
