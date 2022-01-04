@@ -2,42 +2,60 @@
 
 /**
  * Valide les identifiants renseignés par l'utilisateur.
- * @param {Object} identifiants Identifiants renseignés par l'utilisateur.
+ * @param {Object} donneesAValider Identifiants renseignés par l'utilisateur.
  * @returns Vrai si les vadiations passent, une ou plusieurs erreurs sinon.
  */
-export default (identifiants) => {
-  const emailLongueur = { min: 5, max: 64 }
-  const emailExpReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
-  const mdpExpReg = /(.){8,64}/
-
-  const validationEchouee = function () {
-    if (erreurs.length > 0) {
-      throw erreurs
+export default (donneesAValider) => {
+  // Gestion des erreurs
+  const creationTableauErreurs = function () {
+    const o = {}
+    for (const i in donneesAValider) {
+      o[i] = null
+    }
+    return o
+  }
+  const retourVerificationErreurs = function () {
+    for (const i in erreurs) {
+      if (erreurs[i]) { return true }
     }
   }
 
-  const erreurs = []
-  const email = identifiants.email
-  const mdp = identifiants.password
+  // Tableau d'erreurs, règles et leurs vérifications
+  const erreurs = creationTableauErreurs()
+  const emailLongueur = { min: 5, max: 64 }
+  const emailExpReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/
+  const mdpExpReg = /(.){8,64}/
 
-  // Vérification de la présence de données dans les champs
-  if (!email) {
-    erreurs.push("EMAIL_MANQUANT")
+  const verificationLongueur = function (donnee, regle) {
+    const lg = donnee.length
+    if (lg < regle.min || lg > regle.max) { return false }
+    return true
   }
-  if (!mdp) {
-    erreurs.push("MDP_MANQUANT")
-  }
-  // Vérification des données dans les champs
-  if (email.length < emailLongueur.min || email.length > emailLongueur.max) {
-    erreurs.push("EMAIL_LONGUEUR")
-  }
-  if (!emailExpReg.test(email)) {
-    erreurs.push("EMAIL_INVALIDE")
-  }
-  if (!mdpExpReg.test(mdp)) {
-    erreurs.push("MDP_LONGUEUR")
-  }
-  validationEchouee()
 
-  return true
+  // Validations des données
+  const validationEmail = function () {
+    if (!donneesAValider.email) { return "EMAIL_MANQUANT" }
+    if (!verificationLongueur(donneesAValider.email, emailLongueur)) { return "EMAIL_LONGUEUR" }
+    if (!emailExpReg.test(donneesAValider.email)) { return "EMAIL_INVALIDE" }
+    return null
+  }
+  const validationMdp = function () {
+    if (!donneesAValider.mdp) { return "MDP_MANQUANT" }
+    if (!mdpExpReg.test(donneesAValider.mdp)) { return "MDP_LONGUEUR" }
+    return null
+  }
+  const validationConfMdp = function () {
+    if (!donneesAValider.confMdp) { return "CONFMDP_MANQUANT" }
+    if (donneesAValider.confMdp !== donneesAValider.mdp) { return "CONFMDP_INVALIDE" }
+    return null
+  }
+  const retourValidation = function () {
+    erreurs.email = validationEmail()
+    erreurs.mdp = validationMdp()
+    if ("confMdp" in donneesAValider) { erreurs.confMdp = validationConfMdp() }
+
+    if (retourVerificationErreurs()) { throw erreurs } return erreurs
+  }
+
+  retourValidation()
 }
