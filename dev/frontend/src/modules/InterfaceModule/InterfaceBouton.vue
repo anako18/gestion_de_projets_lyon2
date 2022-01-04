@@ -1,7 +1,8 @@
 <template>
   <button
     type="button"
-    :class="style"
+    :class="classes"
+    :disabled="!etat"
     @click="boutonClique"
   >
     {{ valeur }}
@@ -19,20 +20,20 @@ export default {
       type: String,
       default: "Texte",
       require: true
+    },
+    etat: {
+      type: Boolean,
+      default: false
     }
   },
-  data () {
-    const correspondanceType = () => {
-      const type = this.type
-      switch (type) {
-        case "connexion":
-          return "bouton-style-1 couleur-c2 icone-connexion"
-        case "inscription":
-          return "bouton-style-1 couleur-c1 icone-inscription"
+  computed: {
+    classes: function () {
+      return {
+        "bouton-style-1": this.type === "inscription",
+        "couleur-c1": this.type === "inscription",
+        "icone-inscription": this.type === "inscription",
+        "etat-desactive": !this.etat
       }
-    }
-    return {
-      style: correspondanceType()
     }
   },
   methods: {
@@ -42,3 +43,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  @import "@s/interface/bouton";
+</style>
