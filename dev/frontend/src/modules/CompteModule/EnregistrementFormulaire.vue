@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import EnregistrementService from "./EnregistrementService"
-import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton"
+import EnregistrementService from "./EnregistrementService.js"
+import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton.vue"
 
 export default {
   name: "EnregistrementFormulaire",

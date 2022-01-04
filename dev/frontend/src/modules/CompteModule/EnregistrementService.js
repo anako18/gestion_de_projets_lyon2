@@ -1,6 +1,6 @@
 "use strict"
-import Api from "@m/ApiModule/ApiService"
-import CompteValidation from "@m/CompteModule/CompteValidation"
+import Api from "@m/ApiModule/ApiService.js"
+import CompteValidation from "@m/CompteModule/CompteValidation.js"
 
 /**
  * Valide les identifiants renseignés par l'utilisateur pour l'enregistrement.
