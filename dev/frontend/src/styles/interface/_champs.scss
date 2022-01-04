@@ -1,0 +1,27 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+%champ {
+  @extend %texte-style-8;
+
+  min-width: 100%;
+  min-height: 44px;
+  margin-bottom: 20px;
+  padding: 9px 14px 8px;
+  border-radius: 6px;
+  outline: unset;
+  transition: outline 0.2s;
+
+  &.champ--defaut {
+    color: $couleur-nmoyen;
+    background-color: $couleur-c6;
+    border: 1px solid $couleur-c4;
+    outline: 2px solid transparent;
+
+    &:active,
+    &:focus {
+      outline: 2px solid $couleur-c3;
+      transition: outline 0.2s;
+    }
+  }
+}
