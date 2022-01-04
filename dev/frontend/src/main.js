@@ -6,7 +6,7 @@
 
 import Vue from "vue"
 import App from "./App.vue"
-import router from "@m/RouterModule/RouterService"
+import router from "@m/RouterModule/RouterService.js"
 
 import "@s/_normalize.scss"
 

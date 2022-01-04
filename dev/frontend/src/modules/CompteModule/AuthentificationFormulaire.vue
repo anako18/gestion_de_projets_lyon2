@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import AuthentificationService from "./AuthentificationService"
+import AuthentificationService from "./AuthentificationService.js"
 export default {
   name: "AuthentificationFormulaire",
   data () {

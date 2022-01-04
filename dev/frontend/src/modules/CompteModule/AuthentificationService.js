@@ -1,5 +1,5 @@
 "use strict"
-import Api from "@m/ApiModule/ApiService"
+import Api from "@m/ApiModule/ApiService.js"
 
 /**
  * Requête d'authentification
