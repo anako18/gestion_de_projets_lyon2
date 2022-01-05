@@ -29,7 +29,7 @@
         ...et le tout à <strong>petit prix</strong> !
       </p>
       <router-link to="/inscription" tag="a">
-        <InterfaceBouton type="inscription" valeur="Je m'inscris" />
+        <BoutonInterface type="inscription" valeur="Je m'inscris" />
       </router-link>
     </section>
     <section class="connexion">
@@ -40,18 +40,18 @@
         Parfait ! Connecte-toi vite !
       </p>
       <router-link to="/connexion" tag="a">
-        <InterfaceBouton type="connexion" valeur="Je me connecte" />
+        <BoutonInterface type="connexion" valeur="Je me connecte" />
       </router-link>
     </section>
   </main>
 </template>
 
 <script>
-import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton.vue"
+import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
 export default {
   name: "PremiereVisiteVue",
   components: {
-    InterfaceBouton
+    BoutonInterface
   }
 }
 </script>
