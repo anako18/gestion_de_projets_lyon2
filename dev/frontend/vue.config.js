@@ -4,6 +4,9 @@ module.exports = {
   devServer: {
     // proxy: "http://localhost:8082/"
   },
+  chainWebpack: config => {
+    config.resolve.alias.set("@", path.join(__dirname, "./src"))
+  },
   configureWebpack: {
     devServer: {
       headers: {
