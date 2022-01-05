@@ -11,41 +11,95 @@
         Continuer avec Google
       </button>
     </section>
-    <p>ou</p>
+    <p class="enregistrement__separateur">
+      ou
+    </p>
     <section class="enregistrement__classique">
-      <form>
-        <input
+      <form class="enregistrement__classique__formulaire">
+        <ChampInterface
+          :value="identifiants.email"
+          nom="email"
+          texte="Adresse email"
+          type="email"
+          @handleChange="handleChange('email', $event)"
+          @select="selectionChamp('email')"
+          @click="selectionChamp('email')"
+        />
+        <!-- <input
           v-model.trim="identifiants.email"
           class="champ--defaut"
           name="email"
           type="email"
           placeholder="Adresse email"
           required
-        >
+          @select="selectionChamp('email')"
+          @click="selectionChamp('email')"
+        > -->
         <input
           v-model.trim="identifiants.mdp"
           class="champ--defaut"
-          name="password"
+          name="mdp"
           type="password"
           placeholder="Mot de passe"
           required
+          @select="selectionChamp('mdp')"
+          @click="selectionChamp('mdp')"
         >
         <input
           v-model.trim="identifiants.confMdp"
           class="champ--defaut"
-          name="confirmation-password"
+          name="confirmation-mdp"
           type="password"
           placeholder="Confirmation de mot de passe"
           required
+          @select="selectionChamp('mdp')"
+          @click="selectionChamp('mdp')"
         >
+        <transition name="slide-fade" mode="out-in">
+          <div
+            v-if="selection === 'email'"
+            key="0"
+            class="enregistrement__classique__validations"
+          >
+            <ValidationInterface
+              texte="Présent"
+              :etat="verificationEtat('email', 'EMAIL_MANQUANT')"
+            />
+            <ValidationInterface
+              texte="Long"
+              :etat="verificationEtat('email', 'EMAIL_LONGUEUR')"
+            />
+            <ValidationInterface
+              texte="Valide"
+              :etat="verificationEtat('email', 'EMAIL_INVALIDE')"
+            />
+          </div>
+          <div
+            v-if="selection === 'mdp'"
+            key="1"
+            class="enregistrement__classique__validations"
+          >
+            <ValidationInterface
+              texte="Présent"
+              :etat="verificationEtat('mdp', 'MDP_MANQUANT')"
+            />
+            <ValidationInterface
+              texte="Long"
+              :etat="verificationEtat('mdp', 'MDP_LONGUEUR')"
+            />
+            <ValidationInterface
+              texte="Confirmé"
+              :etat="verificationEtat('confMdp', 'CONFMDP_INVALIDE')"
+            />
+          </div>
+        </transition>
         <input
-          id=""
           type="checkbox"
           name="se-souvenir"
         >
         <label for="se souvenir">Se souvenir de moi</label>
       </form>
-      <InterfaceBouton
+      <BoutonInterface
         valeur="Je m'inscris"
         type="inscription"
         :etat="validation"
@@ -63,12 +117,16 @@
 
 <script>
 import EnregistrementService from "./EnregistrementService.js"
-import InterfaceBouton from "@m/InterfaceModule/InterfaceBouton.vue"
+import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
+import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
+import ValidationInterface from "@m/InterfaceModule/ValidationInterface.vue"
 
 export default {
   name: "EnregistrementFormulaire",
   components: {
-    InterfaceBouton
+    BoutonInterface,
+    ChampInterface,
+    ValidationInterface
   },
   data () {
     return {
@@ -78,11 +136,12 @@ export default {
         confMdp: null
       },
       erreurs: {
-        email: null,
-        mdp: null,
-        confMdp: null
+        email: [],
+        mdp: [],
+        confMdp: []
       },
-      validation: false
+      validation: false,
+      selection: "email"
     }
   },
   watch: {
@@ -127,7 +186,23 @@ export default {
      *  Réinitialise le tableau d'erreurs
      */
     reinitialisationErreurs () {
-      for (const i in this.erreurs) this.erreurs[i] = null
+      for (const i in this.erreurs) this.erreurs[i] = []
+    },
+    selectionChamp (champ) {
+      this.selection = champ
+    },
+    verificationEtat (donnee, erreur) {
+      if (!this.erreurs[donnee]) { return "invalide" }
+      for (const e in this.erreurs[donnee]) {
+        if (this.erreurs[donnee][e] === erreur) {
+          return "invalide"
+        }
+      }
+      return "valide"
+    },
+    handleChange (donnee, payload) {
+      this.identifiants[donnee] = payload
+      console.log(donnee)
     }
   }
 }

@@ -10,13 +10,13 @@ export default (donneesAValider) => {
   const creationTableauErreurs = function () {
     const o = {}
     for (const i in donneesAValider) {
-      o[i] = null
+      o[i] = []
     }
     return o
   }
   const retourVerificationErreurs = function () {
     for (const i in erreurs) {
-      if (erreurs[i]) { return true }
+      if (erreurs[i].length >= 1) { return true }
     }
   }
 
@@ -34,25 +34,33 @@ export default (donneesAValider) => {
 
   // Validations des données
   const validationEmail = function () {
-    if (!donneesAValider.email) { return "EMAIL_MANQUANT" }
-    if (!verificationLongueur(donneesAValider.email, emailLongueur)) { return "EMAIL_LONGUEUR" }
-    if (!emailExpReg.test(donneesAValider.email)) { return "EMAIL_INVALIDE" }
-    return null
+    if (!donneesAValider.email) {
+      erreurs.email.push("EMAIL_MANQUANT")
+    }
+    if (!verificationLongueur(donneesAValider.email, emailLongueur)) {
+      erreurs.email.push("EMAIL_LONGUEUR")
+    }
+    if (!emailExpReg.test(donneesAValider.email)) {
+      erreurs.email.push("EMAIL_INVALIDE")
+    }
   }
   const validationMdp = function () {
-    if (!donneesAValider.mdp) { return "MDP_MANQUANT" }
-    if (!mdpExpReg.test(donneesAValider.mdp)) { return "MDP_LONGUEUR" }
-    return null
+    if (!donneesAValider.mdp) {
+      erreurs.mdp.push("MDP_MANQUANT")
+    }
+    if (!mdpExpReg.test(donneesAValider.mdp)) {
+      erreurs.mdp.push("MDP_LONGUEUR")
+    }
   }
   const validationConfMdp = function () {
-    if (!donneesAValider.confMdp) { return "CONFMDP_MANQUANT" }
-    if (donneesAValider.confMdp !== donneesAValider.mdp) { return "CONFMDP_INVALIDE" }
-    return null
+    if (donneesAValider.confMdp !== donneesAValider.mdp || !donneesAValider.confMdp) {
+      erreurs.confMdp.push("CONFMDP_INVALIDE")
+    }
   }
   const retourValidation = function () {
-    erreurs.email = validationEmail()
-    erreurs.mdp = validationMdp()
-    if ("confMdp" in donneesAValider) { erreurs.confMdp = validationConfMdp() }
+    validationEmail()
+    validationMdp()
+    if ("confMdp" in donneesAValider) { validationConfMdp() }
 
     if (retourVerificationErreurs()) { throw erreurs } return erreurs
   }
