@@ -1,6 +1,7 @@
 "use strict"
 import Vue from "vue"
 import VueRouter from "vue-router"
+
 import IntroVue from "@v/Intro.vue"
 import PremiereVisiteVue from "@v/PremiereVisite.vue"
 import ConnexionVue from "@v/Connexion.vue"
