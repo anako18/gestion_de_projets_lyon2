@@ -20,6 +20,9 @@ const enregistrement = function (identifiants) {
   return Api().post("enregistrement", identifiants)
 }
 
+/**
+ * lol
+ */
 export default {
   validation,
   enregistrement
