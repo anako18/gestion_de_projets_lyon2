@@ -1,5 +1,5 @@
 // Chemmins
-$ai: "/src/assets/images";
+$ai: "../../assets/images";
 
 // Tailles de la vue
 $vue-ht: 667;
@@ -15,9 +15,12 @@ $couleur-c3: rgb(255 230 0 / 100%);
 $couleur-c4: rgb(254 237 227 / 100%);
 $couleur-c5: rgb(66 133 244 / 100%);
 $couleur-c6: rgb(255 249 246 / 100%);
+$couleur-c7: rgb(126 159 68 / 100%);
+$couleur-c7--transparent: rgb(126 159 68 / 14%);
 $couleur-blanc: rgb(255 255 255 / 100%);
 $couleur-nfonce: rgb(35 35 35 / 100%);
 $couleur-nmoyen: rgb(88 88 88 / 100%);
+$couleur-nmoyen--transparent: rgb(88 88 88 / 14%);
 $couleur-bouton-ombre: rgb(0 0 0 / 25%);
 
 // Typographie
@@ -94,6 +97,12 @@ $typo-casse-extrafin: 300;
   font-size: 17px;
   font-family: $typo-police-roboto;
   line-height: 1.16;
+}
+%texte-style-9 {
+  font-weight: $typo-casse-fin;
+  font-size: 15px;
+  font-family: $typo-police-hind;
+  line-height: 1.6;
 }
 
 // Bouton
