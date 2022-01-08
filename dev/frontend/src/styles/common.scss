@@ -516,6 +516,11 @@ color: #747474;
   margin-bottom: 10px;
 }
 
+.mon-evenement-item {
+  border-bottom: 2px solid #FFFFFF;
+  margin-bottom: 10px;
+}
+
 .favoris-image {
   object-fit: cover;
   width:122px;
@@ -601,4 +606,44 @@ padding: 4px 10px;
 .section-titre {
   width:100%;
   margin-bottom: 10px;
+}
+
+
+/* ============================= tabs ====================== */
+
+.tab {
+  overflow: hidden;
+  width: 100%;
+  align-content: center;
+  display: flex;
+}
+
+.tab button {
+  width: 50%;
+  background-color: inherit;
+  border-bottom: 3px solid white;
+  outline: none;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab button.activetab {
+  border-bottom: 3px solid #232323;
+  font-weight: bold;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tabcontent.activetab {
+  display:flex;
 }

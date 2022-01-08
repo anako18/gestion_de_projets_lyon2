@@ -16,18 +16,30 @@
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel"></div>
-      <img class="panel-image" src="../../src/assets/panel/calender-logo.png" />
-      <span class="caption">Evenements</span>
+      <a href="/mes-evenements">
+        <img
+          class="panel-image"
+          src="../../src/assets/panel/calender-logo.png"
+        />
+        <span class="caption">Evenements</span>
+      </a>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel"></div>
-      <img class="panel-image" src="../../src/assets/panel/toc-logo.png" />
-      <span class="caption">J'organise</span>
+      <a href="#">
+        <img class="panel-image" src="../../src/assets/panel/toc-logo.png" />
+        <span class="caption">J'organise</span>
+      </a>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel"></div>
-      <img class="panel-image" src="../../src/assets/panel/profile-logo.png" />
-      <span class="caption">Mon compte</span>
+      <a href="#">
+        <img
+          class="panel-image"
+          src="../../src/assets/panel/profile-logo.png"
+        />
+        <span class="caption">Mon compte</span>
+      </a>
     </div>
   </div>
 </template>
