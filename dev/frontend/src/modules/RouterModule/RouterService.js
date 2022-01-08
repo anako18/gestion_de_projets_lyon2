@@ -58,6 +58,11 @@ const routes = [
     path: "/evenements-liste",
     name: "Evenements",
     component: EvenementsListVue
+  },
+  {
+    path: "/favoris-liste",
+    name: "Favoris",
+    component: FavorisListVue
   }
 ]
 
