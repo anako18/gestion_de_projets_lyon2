@@ -92,6 +92,9 @@ main {
   &.favoris-liste {
     background: $couleur-c4;
   }
+  &.favoris-liste {
+    background: $couleur-c4;
+  }
   &.evenements-liste {
     background: $couleur-c4;
   }
@@ -366,9 +369,14 @@ color: #585858;
   margin-bottom: 50px;
 }
 
+.favoris-liste {
+  height: 470px;
+  overflow: scroll;
+}
+
 .evenements-liste {
-  height: 450px;
-  overflow:scroll;
+  height: 400px;
+  overflow: scroll;
 }
 
 .price-tag {
@@ -389,10 +397,7 @@ font-weight: bold;
 font-size: 17px;
 line-height: 20px;
 /* identical to box height */
-
-
 /* Noir Foncé */
-
 color: #232323;
 }
 
@@ -469,16 +474,131 @@ color: #747474;
   padding: 15px 20px;
   width: fit-content;
   margin-bottom: 2px;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
 }
 .evenement-image{
   position: relative;
 }
 
-.favorite {
+.favoris-image{
+  position: relative;
+}
+
+.favorite-button {
   background-color: transparent;
   position: absolute;
   top: 20%;
   left: 10%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+/* favoris */
+.titre {
+  font-family: Futura;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #232323;
+  margin-left: 30px;
+  float:left;
+}
+
+.favoris {
+  width: 100%;
+}
+
+.favoris-item {
+  padding: 0px 30px;
+  border-bottom: 2px solid #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.favoris-image {
+  object-fit: cover;
+  width:122px;
+  height:111px; 
+}
+
+.favoris-description {
+  width: 50%;
+  margin-left: 10px;
+}
+
+.avec {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  margin-top: 3%;
+}
+
+.lieu {
+  font-family: Roboto;
+font-style: normal;
+font-weight: 300;
+font-size: 13px;
+line-height: 15px;
+
+/* Noir Foncé */
+
+color: #232323;
+}
+
+.favoris-date {
+  background: #FFFFFF;
+  font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+line-height: 15px;
+color: #232323;
+width: 60%;
+height: 22px;
+text-align: left;
+padding: 4px 10px;
+} 
+
+.favoris-chaise {
+  background: #ECF6FF;
+  font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+color: #232323;
+height: 22px;
+width: 40%;
+margin-left: 3%;
+text-align: left;
+margin-right: 0;
+padding: 4px 10px;
+}
+
+.favoris-row {
+  padding: 3px;
+  display: flex;
+}
+
+.favoris-button {
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  background-color: $couleur-c3;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-titre {
+  width:100%;
+  margin-bottom: 10px;
 }
