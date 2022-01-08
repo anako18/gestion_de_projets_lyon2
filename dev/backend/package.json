@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'node'",
+=======
+    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'npm run lint && node'",
+>>>>>>> models pour evenements
     "lint": "eslint \"./**/*.js\""
   },
   "keywords": [],
