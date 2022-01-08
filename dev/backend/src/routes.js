@@ -8,11 +8,12 @@ const evenementsControleur = require("./controllers/evenements-controleur")
 module.exports = (app) => {
   app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,
-    enregistrementControleur.enregistrement)
-
+    enregistrementControleur.enregistrement
+    )
   app.post("/api/authentification",
     authentificationPolitique.authentification,
-    authentificationControleur.authentification)
+    authentificationControleur.authentification
+  )
 
   app.post("/evenement",
     evenementsControleur.creerEvenement
