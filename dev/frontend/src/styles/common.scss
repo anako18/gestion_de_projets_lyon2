@@ -647,3 +647,97 @@ box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
 .tabcontent.activetab {
   display:flex;
 }
+
+.page-evenement {
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: left;
+  color: #232323;
+
+
+  .evenement-content {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .evenement {
+    height: 540px;
+    overflow: scroll;
+  }
+
+  .evenement-section {
+    font-size: 18px;
+    font-family: Roboto;
+    padding: 10px 10px;
+    text-align: center;
+  }
+
+  .first {
+    width: 50%;
+  }
+
+  .second {
+    border-left: 2px solid #D6D6D6;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .third {
+    border-left: 2px solid #D6D6D6;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .event-description {
+    width: 100%;
+    background-color: $couleur-c4;
+    padding: 0px 20px;
+    margin: 10px 0px;
+
+    .a-propos {
+      margin: 20px 10px;
+    }
+
+    .realisation-du-repas {
+      border: 2px solid $couleur-c3;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .hote, .informations-pratiques, .participants {
+    padding: 20px;
+  }
+  .paricipants-preview {
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 50%;
+  }
+
+  .participants {
+    display: flex;
+  }
+
+  .mes-evenements {
+    background-color: $couleur-c2;
+    padding: 20px;
+  }
+
+  .participants-info {
+    margin-left: auto; 
+    margin-right: 0; 
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .paricipants-previews {
+    display: table;
+  }
+}
