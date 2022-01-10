@@ -19,6 +19,13 @@ const hachageMotDePasse = function (utilisateur, options) {
 
 module.exports = (Sequelize, DataTypes) => {
   const Utilisateur = Sequelize.define("Utilisateur", {
+    idUtilisateur: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      primaryKey: true,
+      autoIncrement: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
