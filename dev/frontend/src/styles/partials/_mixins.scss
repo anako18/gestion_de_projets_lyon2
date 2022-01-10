@@ -25,3 +25,7 @@
     background-image: url("#{$ai}/#{$url}.png");
   }
 }
+
+@mixin marge($direction, $valeur) {
+  margin-#{$direction}: #{calc(4 * $valeur)}px;
+}

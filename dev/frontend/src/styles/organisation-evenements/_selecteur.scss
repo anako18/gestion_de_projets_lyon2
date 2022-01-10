@@ -1,0 +1,48 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.organisation-evenement-selecteur {
+  margin-bottom: 24px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    > label {
+      @extend %texte-style-12;
+
+      margin-bottom: 8px;
+    }
+  }
+
+  fieldset {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 12px;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    label {
+      display: inline-flex;
+      filter: opacity(0.33);
+
+      &:last-of-type {
+        margin-right: 12px;
+      }
+
+      &.etat-active {
+        filter: opacity(1);
+      }
+    }
+
+    span {
+      @extend %texte-style-11;
+
+      color: $couleur-nmoyen;
+    }
+  }
+}

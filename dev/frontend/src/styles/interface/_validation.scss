@@ -4,18 +4,18 @@
 .validation {
   @extend %texte-style-9;
 
-  display: inline-flex;
   position: relative;
+  display: inline-flex;
+  align-items: center;
   min-height: 25px;
   padding: 1px 14px 0;
-  border-radius: 42px;
   text-align: center;
-  align-items: center;
+  border-radius: 42px;
 
   &__icone {
-    content: " ";
-    background: center center / contain no-repeat;
     margin-right: 4px;
+    background: center center / contain no-repeat;
+    content: " ";
   }
 
   &__texte {
@@ -23,8 +23,8 @@
   }
 
   &.etat-valide {
-    background-color: $couleur-c7--transparent;
     color: $couleur-c7;
+    background-color: $couleur-c7--transparent;
 
     .validation__icone {
       width: 14px;
@@ -34,8 +34,8 @@
   }
 
   &.etat-invalide {
-    background-color: $couleur-nmoyen--transparent;
     color: $couleur-nmoyen;
+    background-color: $couleur-nmoyen--transparent;
 
     .validation__icone {
       width: 14px;
