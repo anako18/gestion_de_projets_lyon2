@@ -335,6 +335,21 @@ color: #585858;
   vertical-align: top;
   display: inline-block;
   text-align: center;
+
+  .link {
+    img {
+      filter: grayscale(1)  brightness(150%);
+    }
+  }
+
+  .link.activelink {
+    span {
+      color: $couleur-c1;
+    }
+    img {
+      filter: grayscale(0)  brightness(100%);
+    }
+  }
 }
 
 .panel-footer {
