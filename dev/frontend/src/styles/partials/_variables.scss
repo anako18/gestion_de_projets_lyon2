@@ -20,6 +20,7 @@ $couleur-c7--transparent: rgb(126 159 68 / 14%);
 $couleur-blanc: rgb(255 255 255 / 100%);
 $couleur-nfonce: rgb(35 35 35 / 100%);
 $couleur-nmoyen: rgb(88 88 88 / 100%);
+$couleur-nclair: rgb(220 220 220 / 100%);
 $couleur-nmoyen--transparent: rgb(88 88 88 / 14%);
 $couleur-bouton-ombre: rgb(0 0 0 / 25%);
 
@@ -104,12 +105,43 @@ $typo-casse-extrafin: 300;
   font-family: $typo-police-hind;
   line-height: 1.6;
 }
+%texte-style-10 {
+  font-weight: $typo-casse-normal;
+  font-size: 17px;
+  font-family: $typo-police-hind;
+}
+%texte-style-11 {
+  font-weight: $typo-casse-fin;
+  font-size: 14px;
+  font-family: $typo-police-roboto;
+  line-height: 1.2;
+
+  strong {
+    font-weight: $typo-casse-gras;
+  }
+}
+%texte-style-12 {
+  font-weight: $typo-casse-normal;
+  font-size: 14px;
+  font-family: $typo-police-hind;
+}
+%texte-style-13 {
+  font-weight: $typo-casse-extrafin;
+  font-size: 14px;
+  font-family: $typo-police-roboto;
+}
 
 // Bouton
+$bouton-style-ombre: 0 4px 8px $couleur-bouton-ombre;
 $bouton-style-1-lg: 320;
 $bouton-style-1-ht: 53;
 $bouton-style-1-radius: 6;
-$bouton-style-1-ombre: 0 4px 8px $couleur-bouton-ombre;
 $bouton-style-1-police-famille: $typo-police-hind;
 $bouton-style-1-police-taille: 16;
 $bouton-style-1-police-casse: $typo-casse-gras;
+$bouton-style-2-lg: 160;
+$bouton-style-2-ht: 36;
+$bouton-style-2-radius: 6;
+$bouton-style-2-police-famille: $typo-police-roboto;
+$bouton-style-2-police-taille: 14;
+$bouton-style-2-police-casse: $typo-casse-gras;

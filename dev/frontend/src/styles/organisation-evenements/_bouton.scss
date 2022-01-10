@@ -1,0 +1,48 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.organisation-evenement-champ-modal {
+  margin-bottom: 1px;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100%;
+    padding: unset;
+    background-color: $couleur-c6;
+    border: 1px solid $couleur-c4;
+    border-radius: #{$bouton-style-1-radius}px;
+
+    .textuel {
+      display: flex;
+      flex-basis: 100%;
+      flex-direction: row;
+      flex-grow: 2;
+      justify-content: space-between;
+      padding: 16px 0 14px;
+      padding-right: 12px;
+      padding-left: 16px;
+
+      span {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .titre {
+        @extend %texte-style-12;
+
+        color: $couleur-nfonce;
+      }
+
+      .valeur {
+        @extend %texte-style-13;
+      }
+    }
+
+    img {
+      padding-right: 16px;
+    }
+  }
+}

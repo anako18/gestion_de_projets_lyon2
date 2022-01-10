@@ -1,27 +1,19 @@
 @import "../partials/variables";
 @import "../partials/mixins";
 
-.bouton-style-1 {
-  // Couleurs
-  @include bouton-couleur("c1", $couleur-blanc, $couleur-c1);
-  @include bouton-couleur("c2", $couleur-nfonce, $couleur-c2);
-  @include bouton-couleur("c4", $couleur-nmoyen, $couleur-c4);
-  @include bouton-couleur("c6", $couleur-nmoyen, $couleur-c6);
-
-  position: relative;
-  min-width: #{$bouton-style-1-lg}px;
-  min-height: #{$bouton-style-1-ht}px;
-  font-weight: $bouton-style-1-police-casse;
-  font-size: #{$bouton-style-1-police-taille}px;
-  font-family: $bouton-style-1-police-famille;
-  border-radius: #{$bouton-style-1-radius}px;
-  box-shadow: $bouton-style-1-ombre;
+.bouton,
+%bouton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  box-shadow: $bouton-style-ombre;
   transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
 
   &:active {
-    transition: box-shadow 0.1s, transform 0.1s;
-    transform: translate(0, 1px);
     box-shadow: unset;
+    transform: translate(0, 1px);
+    transition: box-shadow 0.1s, transform 0.1s;
   }
 
   &.etat-desactive {
@@ -33,38 +25,70 @@
     }
 
     &:active {
-      transition: unset;
+      box-shadow: $bouton-style-ombre;
       transform: unset;
-      box-shadow: $bouton-style-1-ombre;
+      transition: unset;
     }
   }
 }
 
-// TODO: Harmoniser la gestion des icônes et des couleurs
-.icone,
-%icone {
-  &::before {
-    position: absolute;
-    z-index: 2;
-    background: center center / contain no-repeat;
-    content: " ";
-  }
+.bouton-style-1 {
+  @extend %bouton;
 
+  // Couleurs
+  @include bouton-couleur("c1", $couleur-blanc, $couleur-c1);
+  @include bouton-couleur("c2", $couleur-nfonce, $couleur-c2);
+  @include bouton-couleur("c4", $couleur-nmoyen, $couleur-c4);
+  @include bouton-couleur("c6", $couleur-nmoyen, $couleur-c6);
+
+  min-width: #{$bouton-style-1-lg}px;
+  min-height: #{$bouton-style-1-ht}px;
+  font-weight: $bouton-style-1-police-casse;
+  font-size: #{$bouton-style-1-police-taille}px;
+  font-family: $bouton-style-1-police-famille;
+  border-radius: #{$bouton-style-1-radius}px;
+}
+
+.bouton-style-2 {
+  @extend %bouton;
+  @include bouton-couleur("c3", $couleur-nfonce, $couleur-c3);
+
+  height: #{$bouton-style-2-ht}px;
+  padding: 0 #{calc(4 * 3)}px;
+  font-weight: $bouton-style-2-police-casse;
+  font-size: #{$bouton-style-2-police-taille}px;
+  font-family: $bouton-style-2-police-famille;
+  border-radius: #{$bouton-style-2-radius}px;
+  transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
+
+  .bouton__icone {
+    padding-right: #{calc(4 * 3)}px;
+  }
+}
+
+// TODO: Harmoniser la gestion des icônes et des couleurs
+.bouton-icone,
+%bouton-icone {
   // Icône d'inscription
   &-inscription {
-    @extend %icone;
+    @extend %bouton-icone;
     @include bouton-proprietes(13, 14, 29, "icone--inscription");
   }
 
   // Icône de connexion
   &-connexion {
-    @extend %icone;
+    @extend %bouton-icone;
     @include bouton-proprietes(13, 14, 29, "icone--connexion");
+  }
+
+  &-plus {
+    @extend %bouton-icone;
+    @include bouton-proprietes(9, 7, 14, "icone--plus");
   }
 
   // Logo de Google
   &-google {
-    @extend %icone;
+    @extend %bouton-icone;
     @include bouton-proprietes(0, 10, 50, "icone--google");
   }
 }

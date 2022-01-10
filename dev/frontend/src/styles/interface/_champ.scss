@@ -8,18 +8,20 @@
   min-height: 44px;
   margin-bottom: 20px;
   padding: 9px 14px 8px;
+  color: $couleur-nmoyen;
+  background-color: $couleur-c6;
+  border: 1px solid $couleur-c4;
   border-radius: 6px;
-  outline: unset;
+  outline: 0 solid transparent;
   transition: outline 0.2s;
 
-  &.champ--defaut {
-    color: $couleur-nmoyen;
-    background-color: $couleur-c6;
-    border: 1px solid $couleur-c4;
+  &.etat-actif {
     outline: 2px solid transparent;
 
     &:active,
-    &:focus {
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
       outline: 2px solid $couleur-c3;
       transition: outline 0.2s;
     }

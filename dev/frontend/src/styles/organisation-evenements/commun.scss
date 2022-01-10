@@ -1,0 +1,37 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.evenement {
+  section {
+    min-width: 100%;
+    padding: 0 #{$marge-goutiere}px;
+  }
+
+  &__illustration {
+    @include marge("bottom", 9);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__texte {
+      @extend %texte-style-11;
+      @include marge("bottom", 7);
+    }
+
+    &__image {
+      @include marge("bottom", 8);
+
+      display: inline-flex;
+      justify-content: center;
+      min-width: 100%;
+
+      img {
+        width: 120px;
+      }
+    }
+  }
+
+  &__informations {
+  }
+}

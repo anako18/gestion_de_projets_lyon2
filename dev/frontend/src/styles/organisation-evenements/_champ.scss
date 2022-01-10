@@ -1,0 +1,50 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.organisation-evenement-champ {
+  position: relative;
+  min-width: 100%;
+
+  input,
+  textarea {
+    @extend %texte-style-12;
+
+    min-width: 100%;
+    height: #{calc(4 * 14)}px;
+    padding: 22px 14px 3px;
+    color: $couleur-nfonce;
+    background-color: $couleur-c6;
+    border: 1px solid $couleur-c4;
+    border-radius: 6px;
+    outline: 0 solid transparent;
+    transition: outline 0.2s;
+  }
+
+  label {
+    @extend %texte-style-12;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 8px;
+    padding-left: 15px;
+    color: $couleur-nfonce;
+  }
+
+  textarea {
+    max-width: 319px;
+    min-height: 140px;
+    padding-top: 30px;
+    padding-bottom: 6px;
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+}

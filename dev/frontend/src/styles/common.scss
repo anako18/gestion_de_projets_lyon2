@@ -99,25 +99,25 @@ main {
   }
 }
 
-.en-tete {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-  margin: 13px 0 35px;
-  padding: 0 #{$marge-goutiere}px;
+// .en-tete {
+//   display: flex;
+//   gap: 4px;
+//   align-items: center;
+//   justify-content: center;
+//   min-width: 100%;
+//   margin: 13px 0 35px;
+//   padding: 0 #{$marge-goutiere}px;
 
-  &__logo {
-    &--icone {
-      height: 33px;
-    }
+//   &__logo {
+//     &--icone {
+//       height: 33px;
+//     }
 
-    &--une-ligne {
-      width: 164px;
-    }
-  }
-}
+//     &--une-ligne {
+//       width: 164px;
+//     }
+//   }
+// }
 
 .inscription {
   position: relative;
@@ -204,9 +204,9 @@ main {
 
     &__validations {
       display: flex;
+      flex-wrap: wrap;
       align-content: center;
       justify-content: space-between;
-      flex-wrap: wrap;
       margin: 24px 0;
       row-gap: 12px;
     }
