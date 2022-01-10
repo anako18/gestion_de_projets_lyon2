@@ -1,0 +1,20 @@
+{
+  "bouton-interface/type": {
+    "type": "string"
+  },
+  "BoutonInterface/type": {
+    "type": "string"
+  },
+  "bouton-interface/valeur": {
+    "type": "string"
+  },
+  "BoutonInterface/valeur": {
+    "type": "string"
+  },
+  "bouton-interface/etat": {
+    "type": "boolean"
+  },
+  "BoutonInterface/etat": {
+    "type": "boolean"
+  }
+}

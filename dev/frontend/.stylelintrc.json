@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended-vue/scss"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin",
+    "stylelint-sass-render-errors"
+  ],
+  "rules": {
+    "order/properties-alphabetical-order": null,
+    "order/properties-order": [],
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": false
+      }
+    ],
+    "plugin/sass-render-errors": true,
+    "max-nesting-depth": false,
+    "selector-class-pattern": false,
+    "selector-no-qualifying-type": false
+  }
+}
