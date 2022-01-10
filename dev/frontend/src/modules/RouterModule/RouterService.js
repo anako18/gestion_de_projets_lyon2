@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 "use strict"
 import Vue from "vue"
 import VueRouter from "vue-router"
@@ -11,7 +9,15 @@ import InscriptionVue from "@v/Inscription.vue"
 import OrganisationEvenement from "@v/OrganisationEvenement.vue"
 
 import ModalInterface from "@m/OrganisationEvenementModule/ModalInterface.vue"
-import EvenementsListVue from "@v/EvenementsList.vue"
+import EvenementsListVue from "@v/EvenementsListe.vue"
+import FavorisListVue from "@v/FavorisListe.vue"
+import MesEvenementsVue from "@v/MesEvenements.vue"
+import PageEvenementVue from "@v/PageEvenement.vue"
+import BienvenueVue from "@v/Bienvenue.vue"
+import Instructions1Vue from "@v/Instructions-1.vue"
+import Instructions2Vue from "@v/Instructions-2.vue"
+import Instructions3Vue from "@v/Instructions-3.vue"
+
 
 Vue.use(VueRouter)
 
@@ -74,7 +80,27 @@ const routes = [
   {
     path: "/page-evenement",
     name: "PageEvenement",
-    component: PageEvenement
+    component: PageEvenementVue
+  },
+  {
+    path: "/bienvenue",
+    name: "Bienvenue",
+    component: BienvenueVue
+  },
+  {
+    path: "/instructions1",
+    name: "Instructions-1",
+    component: Instructions1Vue
+  },
+  {
+    path: "/instructions2",
+    name: "Instructions-2",
+    component: Instructions2Vue
+  },
+  {
+    path: "/instructions3",
+    name: "Instructions-3",
+    component: Instructions3Vue
   }
 ]
 

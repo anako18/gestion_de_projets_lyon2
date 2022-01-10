@@ -756,3 +756,75 @@ box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     display: table;
   }
 }
+
+.bienvenue {
+  font-family: Hind;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 34px;
+  
+  color: #FFFFFF;
+}
+
+.inscructions {
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #585858;
+
+
+  img {
+    border-radius: 50%;
+  }
+
+  .titre-f {
+    font-family: Hind;
+    font-style: normal;
+    font-weight: 550;
+    font-size: 36px;
+    line-height: 116.6%;
+    color: #232323;
+    padding: 20px 30px;
+  }
+
+  .soustitre {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 25px;
+    color: #585858;
+    padding: 0px 30px;
+  }
+
+  hr.Rounded {
+    border-top: 3px solid #bbb;
+    width:30%;
+    margin: 1.5%;
+  }
+
+  
+  hr.Rounded.active {
+    border-top: 3px solid #ea553d;
+  }
+
+  .underlines {
+    width: 90%;
+    position: absolute;
+    top: 80%; 
+    display:flex;
+    margin: 40px 25px;
+  }
+
+  .bouton {
+    width: 90%;
+    position: absolute;
+    top: 90%; 
+    text-align:right; 
+    margin: 20px;
+  }
+}
