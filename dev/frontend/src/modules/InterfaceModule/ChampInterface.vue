@@ -5,8 +5,9 @@
     :placeholder="texte"
     :type="type"
     :value="value"
+    :etat="etat"
     class="champ"
-    @input="handleChange"
+    v-on="gestionEvenements"
   >
 </template>
 
@@ -34,6 +35,15 @@ export default {
       default: "Champ"
     }
   },
+  data () {
+    return {
+      gestionEvenements: {
+        input: this.handleChange,
+        select: this.remonteEvenement,
+        click: this.remonteEvenement
+      }
+    }
+  },
   computed: {
     classes: function () {
       return {
@@ -44,8 +54,16 @@ export default {
     }
   },
   methods: {
+    // TODO: Tout mettre dans une seule méthode
     handleChange (e) {
       this.$emit("handleChange", e.target.value)
+    },
+    remonteEvenement (e) {
+      if (e.type === "click") {
+        this.$emit("click")
+      } else {
+        this.$emit("select")
+      }
     }
   }
 }

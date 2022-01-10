@@ -1,12 +1,21 @@
 <template>
-  <button
-    type="button"
-    :class="classes"
-    :disabled="!etat"
-    @click="boutonClique"
-  >
-    {{ valeur }}
-  </button>
+  <div class="bouton">
+    <button
+      type="button"
+      class="bouton__conteneur"
+      :class="classes"
+      :disabled="!etat"
+      @click="boutonClique"
+    >
+      <img
+        class="bouton__icone"
+        src="@ai/icone--plus.svg"
+      >
+      <span class="bouton__texte">
+        {{ valeur }}
+      </span>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -19,7 +28,7 @@ export default {
     valeur: {
       type: String,
       default: "Texte",
-      require: true
+      required: true
     },
     etat: {
       type: Boolean,
@@ -32,6 +41,8 @@ export default {
         "bouton-style-1": this.type === "inscription",
         "couleur-c1": this.type === "inscription",
         "icone-inscription": this.type === "inscription",
+        "bouton-style-2": this.type === "ajouter-photo",
+        "couleur-c3": this.type === "ajouter-photo",
         "etat-desactive": !this.etat
       }
     }
