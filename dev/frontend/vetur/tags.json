@@ -1,0 +1,18 @@
+{
+  "bouton-interface": {
+    "attributes": [
+      "type",
+      "valeur",
+      "etat"
+    ],
+    "description": ""
+  },
+  "BoutonInterface": {
+    "attributes": [
+      "type",
+      "valeur",
+      "etat"
+    ],
+    "description": ""
+  }
+}
