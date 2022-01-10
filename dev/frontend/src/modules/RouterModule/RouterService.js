@@ -6,6 +6,9 @@ import IntroVue from "@v/Intro.vue"
 import PremiereVisiteVue from "@v/PremiereVisite.vue"
 import ConnexionVue from "@v/Connexion.vue"
 import InscriptionVue from "@v/Inscription.vue"
+import OrganisationEvenement from "@v/OrganisationEvenement.vue"
+
+import ModalInterface from "@m/OrganisationEvenementModule/ModalInterface.vue"
 
 Vue.use(VueRouter)
 
@@ -29,6 +32,21 @@ const routes = [
     path: "/inscription",
     name: "Inscription",
     component: InscriptionVue
+  },
+  {
+    path: "/organisation-evenement",
+    component: OrganisationEvenement,
+    children: [
+      {
+        path: "",
+        name: "J'organise"
+      },
+      {
+        path: "type",
+        name: "Type d'évèmenent",
+        component: ModalInterface
+      }
+    ]
   }
 ]
 
