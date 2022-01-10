@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 "use strict"
 import Vue from "vue"
 import VueRouter from "vue-router"
@@ -69,6 +70,11 @@ const routes = [
     path: "/mes-evenements",
     name: "MesEvenements",
     component: MesEvenementsVue
+  },
+  {
+    path: "/page-evenement",
+    name: "PageEvenement",
+    component: PageEvenement
   }
 ]
 
