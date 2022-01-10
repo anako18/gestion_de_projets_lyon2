@@ -3,12 +3,58 @@ import Api from "@m/ApiModule/ApiService.js"
 import CompteValidation from "@m/CompteModule/CompteValidation.js"
 
 /**
- * Valide les identifiants renseignés par l'utilisateur pour l'enregistrement.
- * @param {Object} identifiants Identifiants renseignés par l'utilisateur.
- * @returns Vrai si les vadiations passent, une ou plusieurs erreurs sinon.
+ *  Réinitialise le tableau d'erreurs
  */
-const validation = function (identifiants) {
-  return CompteValidation(identifiants)
+const reinitialisationErreurs = function () {
+  for (const i in this.erreurs) this.erreurs[i] = []
+}
+
+/**
+ * Valide les identifiants renseignés par l'utilisateur pour l'enregistrement.
+ * @returns Vrai si les validations passent, une ou plusieurs erreurs sinon.
+ */
+const validationEnregistrement = function () {
+  this.reinitialisationErreurs()
+  try {
+    const resultat = CompteValidation(this.identifiants)
+    this.validation = true
+    return resultat
+  } catch (erreur) {
+    this.erreurs = erreur
+    this.validation = false
+  }
+}
+
+/**
+ * @param {string} champ
+ */
+const selectionUtilisateurChamp = function (champ) {
+  this.selection = champ
+}
+
+/**
+ * Vérifie la présence d'un type d'erreur pour un champ donné.
+ * @param {string} champ
+ * @param {Object} nomErreur
+ */
+const verificationErreurChamp = function (champ, nomErreur) {
+  if (!this.erreurs[champ]) { return "invalide" }
+  for (const e in this.erreurs[champ]) {
+    if (this.erreurs[champ][e] === nomErreur) { return "invalide" }
+  }
+  return "valide"
+}
+
+/**
+ *
+ * @param {string} champ
+ * @returns
+ */
+const selectionEtatChamp = function (champ) {
+  if (this.selection === "email" && champ === "email") return "actif"
+  if (this.selection === "mdp" && champ === "mdp") return "actif"
+  if (this.selection === "confMdp" && champ === "confMdp") return "actif"
+  return "repos"
 }
 
 /**
@@ -21,9 +67,13 @@ const enregistrement = function (identifiants) {
 }
 
 /**
- * lol
+ *
  */
 export default {
-  validation,
+  validationEnregistrement,
+  reinitialisationErreurs,
+  selectionUtilisateurChamp,
+  verificationErreurChamp,
+  selectionEtatChamp,
   enregistrement
 }

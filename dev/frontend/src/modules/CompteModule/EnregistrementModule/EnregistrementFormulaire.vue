@@ -17,44 +17,30 @@
     <section class="enregistrement__classique">
       <form class="enregistrement__classique__formulaire">
         <ChampInterface
+          :etat="selectionEtatChamp('email')"
           :value="identifiants.email"
-          nom="email"
           texte="Adresse email"
           type="email"
-          @handleChange="handleChange('email', $event)"
-          @select="selectionChamp('email')"
-          @click="selectionChamp('email')"
+          @click="gestionClic('lol', $event)"
         />
-        <!-- <input
-          v-model.trim="identifiants.email"
-          class="champ--defaut"
-          name="email"
-          type="email"
-          placeholder="Adresse email"
-          required
-          @select="selectionChamp('email')"
-          @click="selectionChamp('email')"
-        > -->
-        <input
-          v-model.trim="identifiants.mdp"
-          class="champ--defaut"
-          name="mdp"
+        <ChampInterface
+          :etat="selectionEtatChamp('mdp')"
+          :value="identifiants.mdp"
+          texte="Mot de passe"
           type="password"
-          placeholder="Mot de passe"
-          required
-          @select="selectionChamp('mdp')"
-          @click="selectionChamp('mdp')"
-        >
-        <input
-          v-model.trim="identifiants.confMdp"
-          class="champ--defaut"
-          name="confirmation-mdp"
+          @handleChange="handleChange('mdp', $event)"
+          @select="selectionUtilisateurChamp('mdp')"
+          @click="selectionUtilisateurChamp('mdp')"
+        />
+        <ChampInterface
+          :etat="selectionEtatChamp('confMdp')"
+          :value="identifiants.confMdp"
+          texte="Confirmation mot de passe"
           type="password"
-          placeholder="Confirmation de mot de passe"
-          required
-          @select="selectionChamp('mdp')"
-          @click="selectionChamp('mdp')"
-        >
+          @handleChange="handleChange('confMdp', $event)"
+          @select="selectionUtilisateurChamp('confMdp')"
+          @click="selectionUtilisateurChamp('confMdp')"
+        />
         <transition name="slide-fade" mode="out-in">
           <div
             v-if="selection === 'email'"
@@ -63,33 +49,33 @@
           >
             <ValidationInterface
               texte="Présent"
-              :etat="verificationEtat('email', 'EMAIL_MANQUANT')"
+              :etat="verificationErreurChamp('email', 'EMAIL_MANQUANT')"
             />
             <ValidationInterface
               texte="Long"
-              :etat="verificationEtat('email', 'EMAIL_LONGUEUR')"
+              :etat="verificationErreurChamp('email', 'EMAIL_LONGUEUR')"
             />
             <ValidationInterface
               texte="Valide"
-              :etat="verificationEtat('email', 'EMAIL_INVALIDE')"
+              :etat="verificationErreurChamp('email', 'EMAIL_INVALIDE')"
             />
           </div>
           <div
-            v-if="selection === 'mdp'"
+            v-if="selection === 'mdp' || selection === 'confMdp'"
             key="1"
             class="enregistrement__classique__validations"
           >
             <ValidationInterface
               texte="Présent"
-              :etat="verificationEtat('mdp', 'MDP_MANQUANT')"
+              :etat="verificationErreurChamp('mdp', 'MDP_MANQUANT')"
             />
             <ValidationInterface
               texte="Long"
-              :etat="verificationEtat('mdp', 'MDP_LONGUEUR')"
+              :etat="verificationErreurChamp('mdp', 'MDP_LONGUEUR')"
             />
             <ValidationInterface
               texte="Confirmé"
-              :etat="verificationEtat('confMdp', 'CONFMDP_INVALIDE')"
+              :etat="verificationErreurChamp('confMdp', 'CONFMDP_INVALIDE')"
             />
           </div>
         </transition>
@@ -97,7 +83,7 @@
           type="checkbox"
           name="se-souvenir"
         >
-        <label for="se souvenir">Se souvenir de moi</label>
+        <label for="se-souvenir">Se souvenir de moi</label>
       </form>
       <BoutonInterface
         valeur="Je m'inscris"
@@ -117,6 +103,8 @@
 
 <script>
 import EnregistrementService from "./EnregistrementService.js"
+import EnregistrementEvenements from "./EnregistrementEvenements.js"
+
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
 import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
 import ValidationInterface from "@m/InterfaceModule/ValidationInterface.vue"
@@ -131,9 +119,9 @@ export default {
   data () {
     return {
       identifiants: {
-        email: null,
-        mdp: null,
-        confMdp: null
+        email: "",
+        mdp: "",
+        confMdp: ""
       },
       erreurs: {
         email: [],
@@ -151,58 +139,34 @@ export default {
     this.validationEnregistrement()
   },
   methods: {
-    /**
-     * Transmet les identifiants renseignés par l'utilisateur pour l'enregistrement
-     * pour validation.
-     */
-    validationEnregistrement () {
-      this.reinitialisationErreurs()
-      try {
-        EnregistrementService.validation(this.identifiants)
-        this.validation = true
-      } catch (erreur) {
-        this.erreurs = erreur
-        this.validation = false
-      }
-    },
+    validationEnregistrement: EnregistrementService.validationEnregistrement,
+    reinitialisationErreurs: EnregistrementService.reinitialisationErreurs,
+    selectionUtilisateurChamp: EnregistrementService.selectionUtilisateurChamp,
+    verificationErreurChamp: EnregistrementService.verificationErreurChamp,
+    selectionEtatChamp: EnregistrementService.selectionEtatChamp,
     // FIXME: Adapter les erreurs renvoyées par le backend
     /**
      * Envoie les identifiants renseignés par l'utilisateur pour l'enregistrement
      * au backend.
      */
     async envoiEnregistrement () {
-      console.log("envoi")
       try {
-        await EnregistrementService.enregistrement({
-          email: this.email,
-          password: this.password
-        })
+        await EnregistrementService.enregistrement(this.identifiants)
         this.reinitialisationErreurs()
       } catch (erreur) {
         this.erreurs.push(erreur.response.data.message)
       }
     },
     /**
-     *  Réinitialise le tableau d'erreurs
+     * @param {string} donnee
+     * @param {Array} payload
      */
-    reinitialisationErreurs () {
-      for (const i in this.erreurs) this.erreurs[i] = []
-    },
-    selectionChamp (champ) {
-      this.selection = champ
-    },
-    verificationEtat (donnee, erreur) {
-      if (!this.erreurs[donnee]) { return "invalide" }
-      for (const e in this.erreurs[donnee]) {
-        if (this.erreurs[donnee][e] === erreur) {
-          return "invalide"
-        }
-      }
-      return "valide"
-    },
     handleChange (donnee, payload) {
+      console.log(payload)
       this.identifiants[donnee] = payload
-      console.log(donnee)
+    },
+    gestionClic (lol, payload) {
+      console.log(payload)
     }
   }
 }
