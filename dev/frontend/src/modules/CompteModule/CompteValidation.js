@@ -3,7 +3,7 @@
 /**
  * Valide les identifiants renseignés par l'utilisateur.
  * @param {Object} donneesAValider Identifiants renseignés par l'utilisateur.
- * @returns Vrai si les vadiations passent, une ou plusieurs erreurs sinon.
+ * @returns Vrai si les validations passent, une ou plusieurs erreurs sinon.
  */
 export default (donneesAValider) => {
   // Gestion des erreurs
