@@ -1,19 +1,19 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs")
 
 const hachageMotDePasse = function (utilisateur, options) {
-  const FACTEUR_SEL = 8;
+  const FACTEUR_SEL = 8
 
   if (!utilisateur.changed("password")) {
-    return;
+    return
   }
 
   return bcrypt
     .genSalt(FACTEUR_SEL)
     .then(salt => bcrypt.hash(utilisateur.password, salt, null))
     .then(hash => {
-      utilisateur.setDataValue("password", hash);
-    });
-};
+      utilisateur.setDataValue("password", hash)
+    })
+}
 
 //
 
@@ -66,11 +66,11 @@ module.exports = (Sequelize, DataTypes) => {
       beforeCreate: hachageMotDePasse,
       beforeUpdate: hachageMotDePasse
     }
-  });
+  })
 
   Utilisateur.prototype.comparaisonMdp = function (motdepasse) {
-    return bcrypt.compare(motdepasse, this.password);
-  };
+    return bcrypt.compare(motdepasse, this.password)
+  }
 
-  return Utilisateur;
-};
+  return Utilisateur
+}

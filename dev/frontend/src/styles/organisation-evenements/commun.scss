@@ -2,8 +2,6 @@
 @import "../partials/mixins";
 
 .evenement {
-<<<<<<< HEAD
-=======
   min-height: 100%;
   max-height: 0;
   visibility: visible;
@@ -18,7 +16,6 @@
     transition: all 0.3s;
   }
 
->>>>>>> 00b0b9e (Front : Wow)
   section {
     min-width: 100%;
     padding: 0 #{$marge-goutiere}px;
