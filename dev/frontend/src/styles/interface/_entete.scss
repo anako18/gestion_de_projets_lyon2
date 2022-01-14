@@ -2,26 +2,6 @@
 @import "../partials/mixins";
 
 .en-tete {
-<<<<<<< HEAD
-  @include marge("bottom", 5);
-
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-  align-items: center;
-  justify-content: center;
-  min-width: 100%;
-  height: 76px;
-  background: center center / contain no-repeat url("../../assets/images/forme__entete.svg");
-
-  img {
-    filter: brightness(255);
-  }
-
-  &__icone {
-    width: 31px;
-    padding-bottom: 14px;
-=======
   @include marge("bottom", 8);
 
   position: relative;
@@ -38,14 +18,10 @@
   &__icone {
     width: 31px;
     filter: brightness(255);
->>>>>>> 00b0b9e (Front : Wow)
   }
 
   &__texte {
     width: 164px;
-<<<<<<< HEAD
-    padding-bottom: 8px;
-=======
     margin-top: -2px;
     filter: brightness(255);
   }
@@ -62,6 +38,5 @@
     right: -50px;
     z-index: 2;
     width: 237px;
->>>>>>> 00b0b9e (Front : Wow)
   }
 }

@@ -1,11 +1,5 @@
 <template>
   <div class="modal">
-<<<<<<< HEAD
-    <p>lol</p>
-    <button @click="$router.go(-1)">
-      close
-    </button>
-=======
     <EnTeteInterfaceVue />
     <NavigationInteraction
       :texte="texte"
@@ -80,18 +74,10 @@
         </label>
       </div>
     </div>
->>>>>>> 00b0b9e (Front : Wow)
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  data () {
-    const params = this.$route.params
-    return {
-      type: params.type
-=======
 import EnTeteInterfaceVue from "../InterfaceModule/EnTeteInterface.vue"
 import NavigationInteraction from "./NavigationInteraction.vue"
 import EvenementModele from "./EvenementModele.js"
@@ -132,24 +118,11 @@ export default {
     },
     effectuerSelection (nom) {
       this.selection = nom
->>>>>>> 00b0b9e (Front : Wow)
     }
   }
 }
 </script>
 
-<<<<<<< HEAD
-<style lang="scss">
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-}
-=======
 <style lang="scss" scoped>
   @import "@s/organisation-evenements/modal";
->>>>>>> 00b0b9e (Front : Wow)
 </style>

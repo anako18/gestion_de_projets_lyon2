@@ -3,12 +3,8 @@
     "attributes": [
       "type",
       "valeur",
-<<<<<<< HEAD
-      "etat"
-=======
       "etat",
       "icone"
->>>>>>> 00b0b9e (Front : Wow)
     ],
     "description": ""
   },
@@ -16,8 +12,6 @@
     "attributes": [
       "type",
       "valeur",
-<<<<<<< HEAD
-=======
       "etat",
       "icone"
     ],
@@ -75,7 +69,6 @@
   "ValidationInterface": {
     "attributes": [
       "texte",
->>>>>>> 00b0b9e (Front : Wow)
       "etat"
     ],
     "description": ""

@@ -8,11 +8,7 @@
             :id="o.id"
             :key="o.id"
             type="radio"
-<<<<<<< HEAD
-            @click="effecteurChoix"
-=======
             @click="effectuerChoix"
->>>>>>> 00b0b9e (Front : Wow)
           >
           <label
             :key="5 + o.id"
@@ -48,13 +44,8 @@ export default {
     this.reinitialiserOptions()
   },
   methods: {
-<<<<<<< HEAD
-    effecteurChoix (e) {
-      this.$emit("effecteurChoix", e.target.id)
-=======
     effectuerChoix (e) {
       this.$emit("effectuerChoix", e.target.id)
->>>>>>> 00b0b9e (Front : Wow)
       this.choix = e.target.id
       this.reinitialiserOptions()
       for (let i = 0; i < e.target.id; i++) {

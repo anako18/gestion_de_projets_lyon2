@@ -1,48 +1,3 @@
-<<<<<<< HEAD
-{
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2020": true
-  },
-  "extends": [
-    "plugin:vue/recommended",
-    "standard"
-  ],
-  "parser": "vue-eslint-parser",
-  "parserOptions": {
-    "parser": {
-      "js": "espree"
-    }
-  },
-  "rules": {
-    "quotes": [
-      "error",
-      "double",
-      {
-        "allowTemplateLiterals": true
-      }
-    ],
-    "vue/max-attributes-per-line": [
-      "error",
-      {
-        "singleline": {
-          "max": 2
-        },
-        "multiline": {
-          "max": 1
-        }
-      }
-    ],
-    "vue/max-len": [
-      "error",
-      {
-        "code": 120
-      }
-    ]
-  }
-}
-=======
 {
   "root": true,
   "env": {
@@ -87,4 +42,3 @@
     ]
   }
 }
->>>>>>> 00b0b9e (Front : Wow)
