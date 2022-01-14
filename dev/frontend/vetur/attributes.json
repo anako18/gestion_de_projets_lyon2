@@ -16,5 +16,68 @@
   },
   "BoutonInterface/etat": {
     "type": "boolean"
+<<<<<<< HEAD
+=======
+  },
+  "bouton-interface/icone": {
+    "type": "string"
+  },
+  "BoutonInterface/icone": {
+    "type": "string"
+  },
+  "case-a-cocher-interface/nom": {
+    "type": "string"
+  },
+  "CaseACocherInterface/nom": {
+    "type": "string"
+  },
+  "case-a-cocher-interface/label": {
+    "type": "string"
+  },
+  "CaseACocherInterface/label": {
+    "type": "string"
+  },
+  "champ-interface/texte": {
+    "type": "string"
+  },
+  "ChampInterface/texte": {
+    "type": "string"
+  },
+  "champ-interface/type": {
+    "type": "string"
+  },
+  "ChampInterface/type": {
+    "type": "string"
+  },
+  "champ-interface/etat": {
+    "type": "string"
+  },
+  "ChampInterface/etat": {
+    "type": "string"
+  },
+  "champ-interface/value": {
+    "type": "string"
+  },
+  "ChampInterface/value": {
+    "type": "string"
+  },
+  "champ-interface/nom": {
+    "type": "string"
+  },
+  "ChampInterface/nom": {
+    "type": "string"
+  },
+  "validation-interface/texte": {
+    "type": "string"
+  },
+  "ValidationInterface/texte": {
+    "type": "string"
+  },
+  "validation-interface/etat": {
+    "type": "string"
+  },
+  "ValidationInterface/etat": {
+    "type": "string"
+>>>>>>> 00b0b9e (Front : Wow)
   }
 }

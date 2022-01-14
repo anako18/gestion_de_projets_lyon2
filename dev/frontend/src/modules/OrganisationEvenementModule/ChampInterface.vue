@@ -5,12 +5,22 @@
       :id="id"
       :type="type"
       :placeholder="texteSubstitution"
+<<<<<<< HEAD
+=======
+      :value="valeur"
+      @input="handleChange"
+>>>>>>> 00b0b9e (Front : Wow)
     />
     <input
       v-else
       :id="id"
       :type="type"
       :placeholder="texteSubstitution"
+<<<<<<< HEAD
+=======
+      :value="valeur"
+      @input="handleChange"
+>>>>>>> 00b0b9e (Front : Wow)
     >
     <label :for="id">
       {{ label }}
@@ -31,6 +41,15 @@ export default {
       type: String,
       required: true
     },
+<<<<<<< HEAD
+=======
+    /** Valeur du champ. */
+    valeur: {
+      type: String,
+      required: false,
+      default: ""
+    },
+>>>>>>> 00b0b9e (Front : Wow)
     /** Texte de substitution à l'intérieur du champ. */
     texteSubstitution: {
       type: String,
@@ -54,6 +73,14 @@ export default {
       const valeur = this.marge * 4
       return `${valeur}px`
     }
+<<<<<<< HEAD
+=======
+  },
+  methods: {
+    handleChange (e) {
+      this.$emit("handleChange", e.target.value)
+    }
+>>>>>>> 00b0b9e (Front : Wow)
   }
 }
 </script>

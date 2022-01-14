@@ -1,0 +1,86 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: $couleur-blanc;
+  background: $couleur-c4;
+}
+
+.en-tete {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  margin: 13px 0 35px;
+  padding: 0 #{$marge-goutiere}px;
+
+  &__logo {
+    &--icone {
+      height: 33px;
+    }
+
+    &--une-ligne {
+      width: 164px;
+    }
+  }
+}
+
+.inscription {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+
+  &::after {
+    position: absolute;
+    bottom: -51px;
+    left: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 102px;
+    background-color: $couleur-blanc;
+    background-image: url("../assets/images/forme__premiere-visite.svg");
+    content: " ";
+  }
+
+  .liste {
+    margin-bottom: 27px;
+  }
+
+  .accroche {
+    @extend %texte-style-4;
+
+    margin-bottom: 28px;
+    text-align: right;
+    transform: rotate(-6.11deg);
+  }
+}
+
+.connexion {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+  padding-top: 80px;
+  background: $couleur-blanc;
+
+  .texte-style-5 {
+    color: $couleur-nfonce;
+  }
+
+  .texte-style-6 {
+    margin-bottom: 12px;
+    color: $couleur-nmoyen;
+  }
+}

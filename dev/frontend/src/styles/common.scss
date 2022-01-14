@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "./partials/variables";
 @import "./interface/champ";
 @import "./normalize";
@@ -230,3 +231,206 @@ main {
   transform: translateX(-20px);
   opacity: 0;
 }
+=======
+@import "./partials/variables";
+@import "./interface/champ";
+@import "./normalize";
+
+/* Squelette */
+html {
+  font-size: 18px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: $typo-ligne-hauteur !important;
+}
+
+/* Éléments de base */
+h1,
+h2,
+ul,
+li,
+p,
+button {
+  margin: unset;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+button {
+  border: unset;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="email"],
+input[type="password"] {
+  @extend %champ;
+}
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.texte-style-1 {
+  @extend %texte-style-1;
+
+  margin-bottom: 6px;
+}
+
+.texte-style-2 {
+  @extend %texte-style-2;
+
+  margin-bottom: 18px;
+  color: $couleur-nmoyen;
+}
+
+.texte-style-3 {
+  @extend %texte-style-3;
+}
+
+.texte-style-4 {
+  @extend %texte-style-4;
+}
+
+.texte-style-5 {
+  @extend %texte-style-5;
+}
+
+.texte-style-6 {
+  @extend %texte-style-6;
+}
+
+.texte-style-7 {
+  @extend %texte-style-7;
+}
+
+// TODO: À exporter dans des feuilles de style par vue
+
+/**
+*   Structure
+*/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: $couleur-blanc;
+}
+
+.enregistrement,
+.authentification {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+
+  &__titre {
+    @extend %texte-style-7;
+    @include marge("bottom", 4);
+
+    color: $couleur-c1;
+  }
+
+  &__google {
+    @include marge("bottom", 4);
+  }
+
+  .bouton-connexion-google {
+    @extend %texte-style-8;
+
+    border: 1px solid $couleur-c5;
+    box-shadow: unset;
+  }
+
+  &__separateur {
+    @include marge("bottom", 4);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    padding-bottom: 2px;
+    text-align: center;
+    column-gap: 16px;
+
+    &__texte {
+      @extend %texte-style-11;
+
+      line-height: 1;
+    }
+
+    &__trait {
+      width: 100%;
+      height: 1px;
+      background-color: $couleur-nfonce;
+      content: " ";
+    }
+  }
+
+  &__classique {
+    @include marge("bottom", 5);
+    &__formulaire {
+      @include marge("bottom", 5);
+      .champ {
+        @include marge("bottom", 3);
+        &:last-of-type {
+          @include marge("bottom", 4);
+        }
+      }
+      .case-a-cocher {
+        color: $couleur-nmoyen;
+        @include marge("bottom", 3);
+        &:last-of-type {
+          margin-bottom: unset;
+        }
+      }
+    }
+
+    &__validations {
+      @include marge("bottom", 6);
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: space-between;
+      row-gap: 12px;
+    }
+  }
+
+  &__connexion {
+    @extend %texte-style-11;
+    min-width: 100%;
+    text-align: center;
+    color: $couleur-nmoyen;
+  }
+}
+
+/* Enter and leave animations can use different */
+
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+>>>>>>> 00b0b9e (Front : Wow)

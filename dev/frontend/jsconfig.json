@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -24,3 +25,31 @@
     "public"
   ]
 }
+=======
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@m/*": [
+        "./src/modules/*"
+      ],
+      "@v/*": [
+        "./src/views/*"
+      ],
+      "@s/*": [
+        "./src/styles/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
+}
+>>>>>>> 00b0b9e (Front : Wow)
