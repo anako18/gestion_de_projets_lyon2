@@ -9,7 +9,7 @@ module.exports = {
         .min(5)
         .max(64)
         .required(),
-      password: Joi.string()
+      mdp: Joi.string()
         .regex(/(.){4,64}/)
         .required()
     })
@@ -23,7 +23,7 @@ module.exports = {
             erreur: "Vous devez fournir une adresse email valide"
           })
           break
-        case "password":
+        case "mdp":
           resultat.status(400).send({
             erreur: "Vous devez fournir un mot de passe entre 8 et 64 caractères."
           })
