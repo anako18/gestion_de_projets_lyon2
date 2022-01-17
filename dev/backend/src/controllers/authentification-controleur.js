@@ -27,7 +27,7 @@ module.exports = {
   async authentification (requete, resultat) {
     try {
       /** Correspondance de la requête avec BDD */
-      const { email, password } = requete.body
+      const { email, mdp } = requete.body
       const utilisateur = await Utilisateur.findOne({
         where: {
           email: email
@@ -45,9 +45,9 @@ module.exports = {
         })
         return pr
       }
-      const validationMotDePasse = function (utilisateur, password) {
+      const validationMotDePasse = function (utilisateur, mdp) {
         const pr = new Promise((resolve, reject) => {
-          const value = utilisateur.comparaisonMdp(password)
+          const value = utilisateur.comparaisonMdp(mdp)
           value.then(value => {
             if (!value) {
               reject(new AuthentificationErreur("MDP_INCORRECT"))
@@ -76,7 +76,7 @@ module.exports = {
       }
 
       /** Enclenchement des validations */
-      Promise.all([validationUtilisateur(utilisateur), validationMotDePasse(utilisateur, password)])
+      Promise.all([validationUtilisateur(utilisateur), validationMotDePasse(utilisateur, mdp)])
         .then(() => {
           return retourSuccesValidation()
         })

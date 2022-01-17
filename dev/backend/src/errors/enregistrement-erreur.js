@@ -1,17 +1,11 @@
-// TODO: Complètement à faire
 class EnregistrementErreur extends Error {
-  selectionMessageErreur (message) {
-    switch (message) {
-      case "AUCUN_UTILISATEUR_TROUVE":
-        return "Les informations de connexion sont incorrectes."
-      case "MDP_INCORRECT":
-        return "Les informations de connexion sont incorrectes."
-      default:
-        return "Authentification : erreur inconnue."
-    }
+  selectionMessageErreur (corpus, chemin, valeur) {
+    const retour = corpus[chemin][valeur]
+    if (retour) { return retour }
+    return "Type d'erreur non gérée."
   }
 
-  constructor (message, messageUtilisateur) {
+  constructor (message, corpus, corpsErreur) {
     super(message)
 
     if (Error.captureStackTrace) {
@@ -20,9 +14,17 @@ class EnregistrementErreur extends Error {
 
     this.name = "EnregistrementErreur"
     this.message = message
-    this.messageUtilisateur = this.selectionMessageErreur(message)
+    this.corpus = corpus
+    this.corpsErreur = corpsErreur
+    this.messageErreur = []
 
-    console.error(this.name, this.message, this.messageUtilisateur)
+    for (const champ in corpsErreur) {
+      for (const valeur in corpsErreur[champ]) {
+        this.messageErreur.push(this.selectionMessageErreur(corpus, champ, corpsErreur[champ][valeur]))
+      }
+    }
+
+    console.log(corpsErreur)
   }
 }
 
