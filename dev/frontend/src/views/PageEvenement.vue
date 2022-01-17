@@ -20,7 +20,7 @@
           />
           <div style="display: flex; flex-direction: column">
             <span class="evenement-titre">
-              Soirée aux couleurs de l’Italie
+              {{ evenement.titre }}
             </span>
             <span class="lieu">Avec Demien</span>
           </div>
@@ -31,22 +31,22 @@
               ><i class="icon-calendar"></i> Demain 18/11 a 11h
             </span>
             <br />
-            <span class="evenement-lieu"> Décines-Charpieu </span>
+            <span class="evenement-lieu"> {{evenement.ville}} a 11h</span>
           </div>
           <div class="evenement-section second">
-            <span class="evenement-lieu"> Facile </span>
+            <span class="evenement-lieu"> Durée: {{evenement.duree}}h </span>
           </div>
           <div class="evenement-section third">
-            <span class="evenement-lieu">     3 participants <br />
-            Il reste encore 2 places </span>
+            <span class="evenement-lieu">
+              3 participants <br />
+              Il reste encore 2 places
+            </span>
             <span class="evenement-lieu"> 13€ </span>
           </div>
         </div>
         <div class="event-description">
           <div class="a-propos">
-            Je vous propose une soirée aux couleurs de l’italie ! Nous
-            réaliserons les véritables spaghettis à la bolognaise de ma maman,
-            de la pâte à la sauce.
+           {{evenement.description}}
           </div>
           <div class="realisation-du-repas">
             <span class="evenement-titre"> Réalisation du repas </span>
@@ -132,11 +132,42 @@
 </template>
 
 <script>
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
 import FooterComponent from "../modules/Footer.vue";
 export default {
-  name: "Filters",
+  name: "EvenementPage",
   components: {
     FooterComponent,
+  },
+  data() {
+    return { evenement: null, hote: null, error: null };
+  },
+  mounted() {
+    this.getEvenement(1).then(res => this.getUtilisateur(this.evenement.hoteId))
+  },
+  methods: {
+    async getEvenement(id) {
+      try {
+        await EvenementsService.evenement(id).then(res => 
+            this.evenement = res.data.data
+        );
+        this.error = null;
+        console.log(this.evenement);
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+      async getUtilisateur(id) {
+      try {
+        await AuthentificationService.getUtilisateur(id).then(res => this.hote = res.data.data);
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
   },
 };
 </script>

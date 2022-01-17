@@ -14,7 +14,11 @@ module.exports = (app) => {
     authentificationControleurPolitique.authentification,
     authentificationControleur.authentification)
 
-    app.post("/evenement",
+  app.post("/evenement",
     EvenementsControleur.creerEvenement
+  )
+
+  app.get("/utilisateur",
+    AuthentificationControleur.getUtilisateur
   )
 }
