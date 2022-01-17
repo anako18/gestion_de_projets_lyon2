@@ -13,8 +13,7 @@ module.exports = (app) => {
   app.post("/api/authentification",
     authentificationPolitique.authentification,
     authentificationControleur.authentification
-  )
-
+    )
   app.post("/evenement",
     evenementsControleur.creerEvenement
   )
@@ -36,4 +35,4 @@ module.exports = (app) => {
   app.get("/favoris",
     evenementsControleur.getFavoris
   )
-}
+};
