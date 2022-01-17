@@ -14,12 +14,12 @@ const enregistrementJoiErreurs = {
     "string.max": "Le champ du mot de passe doit au plus contenir 64 caractères."
   },
   nom: {
-    "string.empty": "Le champ du nom ne peut être vide.",
+    "any.required": "Le champ du nom ne peut être vide.",
     "string.min": "Le champ du nom doit au moins contenir 2 caractères.",
     "string.max": "Le champ du nom doit au plus contenir 64 caractères."
   },
   prenom: {
-    "string.empty": "Le champ du prénom ne peut être vide.",
+    "any.required": "Le champ du prénom ne peut être vide.",
     "string.min": "Le champ du prénom doit au moins contenir 2 caractères.",
     "string.max": "Le champ du prénom doit au plus contenir 64 caractères."
   },
@@ -28,13 +28,14 @@ const enregistrementJoiErreurs = {
     "date.base": "La date de naissance doit être valide."
   },
   civilite: {
-    "string.empty": "La civilité ne peut être laissée vide."
+    "any.required": "La civilité ne peut être laissée vide."
   }
 }
 
 const enregistrementSequelizeErreurs = {
-  email: {},
-  mdp: {}
+  email: {
+    "email must be unique": "Veuillez choisir une adresse email différente."
+  }
 }
 
 module.exports = { enregistrementJoiErreurs, enregistrementSequelizeErreurs }
