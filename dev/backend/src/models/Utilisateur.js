@@ -3,19 +3,17 @@ const bcrypt = require("bcryptjs")
 const hachageMotDePasse = function (utilisateur, options) {
   const FACTEUR_SEL = 8
 
-  if (!utilisateur.changed("password")) {
+  if (!utilisateur.changed("mdp")) {
     return
   }
 
   return bcrypt
     .genSalt(FACTEUR_SEL)
-    .then(salt => bcrypt.hash(utilisateur.password, salt, null))
+    .then(salt => bcrypt.hash(utilisateur.mdp, salt, null))
     .then(hash => {
-      utilisateur.setDataValue("password", hash)
+      utilisateur.setDataValue("mdp", hash)
     })
 }
-
-//
 
 module.exports = (Sequelize, DataTypes) => {
   const Utilisateur = Sequelize.define("Utilisateur", {
@@ -31,7 +29,7 @@ module.exports = (Sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
-    password: {
+    mdp: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -44,21 +42,24 @@ module.exports = (Sequelize, DataTypes) => {
       allowNull: false
     },
     telephone: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true
     },
     civilite: {
       type: DataTypes.STRING,
       allowNull: false
     },
     photo: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true
     },
     dateDeNaissance: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   },
   {
@@ -68,9 +69,19 @@ module.exports = (Sequelize, DataTypes) => {
     }
   })
 
+  /** Compare le mot de passe en clair avec le mot de passe haché */
   Utilisateur.prototype.comparaisonMdp = function (motdepasse) {
-    return bcrypt.compare(motdepasse, this.password)
+    return bcrypt.compare(motdepasse, this.mdp)
   }
+
+  Utilisateur.champsObligatoires = [
+    "email",
+    "mdp",
+    "nom",
+    "prenom",
+    "dateDeNaissance",
+    "civilite"
+  ]
 
   return Utilisateur
 }
