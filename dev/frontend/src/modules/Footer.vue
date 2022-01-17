@@ -32,7 +32,7 @@
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel"></div>
-      <a  class="link" href="#">
+      <a class="link" href="/organisation-evenement">
         <img
           class="panel-image"
           src="../../src/assets/panel/active-toc-logo.png"
