@@ -4,15 +4,18 @@
         <img src="../assets/logo.png">  
     </header>
     <FiltersComponents/>
+    <FooterComponent/>
   </main>
 </template>
 
 <script>
 import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
+import FooterComponent from "../modules/Footer.vue";
 export default {
-  name: "Filters",
+  name: "Favoris",
   components: {
-    FiltersComponents
+    FiltersComponents,
+    FooterComponent
   }
 };
 </script>

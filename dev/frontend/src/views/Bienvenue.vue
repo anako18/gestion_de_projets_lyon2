@@ -1,7 +1,7 @@
 <template>
   <main class="bienvenue">
     <section>
-      <router-link to="/instructions">
+      <router-link to="/instructions1">
       <div style="text-align:center; padding: 50px 50px 20px 50px;">
           <img
         width="13%"
