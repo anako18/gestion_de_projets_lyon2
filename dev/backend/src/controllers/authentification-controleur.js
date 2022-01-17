@@ -90,5 +90,24 @@ module.exports = {
         message: error
       })
     }
+  },
+  async getUtilisateur (req, res) {
+    try {
+      const id = parseInt(req.query.id);
+      const utilisateur = await Utilisateur.findOne({
+        where: {
+          idUtilisateur: id
+        }
+      });
+      return res.status(200).json({
+        statut: "Succès",
+        data: utilisateur
+      });
+    } catch (erreur) {
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
   }
 }
