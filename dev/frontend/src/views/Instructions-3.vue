@@ -17,7 +17,7 @@
         <hr class="Rounded active" />
       </div>
       <div class="bouton">
-      <button class="yellow-button">C'est parti !</button>
+      <button class="yellow-button" onclick="window.location.href='/evenements-liste'">C'est parti !</button>
       </div>
     </section>
   </main>
