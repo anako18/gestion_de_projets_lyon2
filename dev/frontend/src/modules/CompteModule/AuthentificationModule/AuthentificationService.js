@@ -21,5 +21,10 @@ export default {
   authentification (credentials) {
     return Api().post("authentification", credentials)
   },
+  getUtilisateurs (ids) {
+    return Api().post("utilisateurs", ids)
+  },
   getUtilisateur
 }
+
+

@@ -9,6 +9,11 @@ const evenement = function (id) {
   })
 }
 
+const getEvenements = function () {
+  return Api().get("evenements")
+}
+
 export default {
-    evenement
+    evenement,
+    getEvenements
 }

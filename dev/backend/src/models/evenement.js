@@ -70,6 +70,10 @@ module.exports = (Sequelize, DataTypes) => {
     accessVoiture: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    photo: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
   return Evenement;

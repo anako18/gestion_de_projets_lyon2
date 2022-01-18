@@ -6,6 +6,10 @@ main {
     overflow: scroll;
   }
 
+  .events-scroll-ecran {
+    padding-bottom: 10%;
+  }
+
 %filter-button-style {
     position: absolute;
     width: 20px;
@@ -235,6 +239,7 @@ main {
     padding: 15px 20px;
     width: fit-content;
     margin-bottom: 2px;
+    color: $couleur-nfonce;
   }
   .evenement-image, 
   .favoris-image {

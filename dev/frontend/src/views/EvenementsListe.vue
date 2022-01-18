@@ -1,29 +1,126 @@
 <template>
   <main>
     <header class="header-logo">
-        <img src="../assets/logo.png">  
+      <img src="../assets/logo.png" />
     </header>
-    <FiltersComponents/>
-    <EvenementComponent/>
-    <FooterComponent/>
+    <FiltersComponents />
+    <div class="events-scroll-ecran" v-for="evenement in evenements" :key="evenement.idEvenement">
+      <div class="evenement">
+        <div class="evenement-image">
+          <img :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)" width="100%" height="50%" />
+          <button class="favorite-button">
+            <img src="../assets/heart.png" width="17%" />
+          </button>
+        </div>
+        <div class="evenement-content">
+          <div class="profile-titre">
+            <img
+              class="profile-pic"
+              :src="require(`../assets/avatars/${getHoteAvatar(evenement.idEvenement)}`)"
+              width="20%"
+              height="20%"
+            />
+            <span class="evenement-titre">
+              {{evenement.titre}}
+            </span>
+          </div>
+          <div class="evenement-info">
+            <span class="evenement-date"
+              ><i class="icon-calendar"></i> {{helper.afficherDate(evenement.date)}}
+            </span>
+            <span class="evenement-font-petit"> {{evenement.ville}} </span>
+          </div>
+          <div class="description-price">
+            <p class="evenement-description">
+              {{evenement.description}}
+            </p>
+            <div class="price-tag">
+              <img src="../assets/price.png" />
+              <div class="price-centered">{{evenement.prix}}€</div>
+            </div>
+          </div>
+          <center>
+            <button class="yellow-button" @click="redirect(evenement.idEvenement)">
+              Voir les details
+            </button>
+          </center>
+        </div>
+      </div>
+    </div>
+    <FooterComponent />
   </main>
 </template>
 
 <script>
 import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
 import EvenementComponent from "../modules/EvenementsModule/Evenement.vue";
+import Helper from "../modules/EvenementsModule/Helper.js";
 import FooterComponent from "../modules/Footer.vue";
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
 
 export default {
-  name: "Favoris",
+  name: "EvenementsListe",
   components: {
     FiltersComponents,
     FooterComponent,
-    EvenementComponent
-  }
+    EvenementComponent,
+  },
+  data() {
+    return { evenements: null, hotes: null, error: null, helper: null };
+  },
+  mounted() {
+    this.getEvenements().then((res) => {
+      let hoteIds = this.evenements.map((e) => e.hoteId);
+      this.getUtilisateurs(hoteIds);
+    });
+    this.helper = new Helper();
+  },
+  methods: {
+    async getEvenements() {
+      try {
+        await EvenementsService.getEvenements().then(
+          (res) => (this.evenements = res.data.data)
+        );
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    async getUtilisateurs(hoteIds) {
+      try {
+        await AuthentificationService.getUtilisateurs({ ids: hoteIds }).then(
+          (res) => (this.hotes = res.data.data)
+        );
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    getHoteAvatar(evntId) {
+        let photo = this.hotes.find(h => h.idUtilisateur == evntId).photo
+        if (photo == null) {
+          return '0.png'
+        } else {
+          return photo
+        }
+    },
+     getEvenementPhoto(photo) {
+        if (photo == null) {
+          return '0.png'
+        } else {
+          return photo
+        }
+    },
+    redirect(id) {
+      window.location.href=`/page-evenement/${id}`
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-  @import "@s/evenements/evenements";
+@import "@s/evenements/evenements";
 </style>
