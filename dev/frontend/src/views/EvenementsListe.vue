@@ -24,7 +24,11 @@
           <div class="profile-titre">
             <img
               class="profile-pic"
-              :src="require(`../assets/avatars/${getHoteAvatar(evenement.idEvenement)}`)"
+              :src="
+                require(`../assets/avatars/${getHoteAvatar(
+                  evenement.idEvenement
+                )}`)
+              "
               width="20%"
               height="20%"
             >
@@ -33,7 +37,9 @@
             </span>
           </div>
           <div class="evenement-info">
-            <span class="evenement-date"><i class="icon-calendar" /> {{ helper.afficherDate(evenement.date) }}
+            <span class="evenement-date"
+              ><i class="icon-calendar"></i>
+              {{ helper.afficherDate(evenement.date) }}
             </span>
             <span class="evenement-font-petit"> {{ evenement.ville }} </span>
           </div>
@@ -49,7 +55,10 @@
             </div>
           </div>
           <center>
-            <button class="yellow-button" @click="redirect(evenement.idEvenement)">
+            <button
+              class="yellow-button"
+              @click="redirect(evenement.idEvenement)"
+            >
               Voir plus de detail
             </button>
           </center>
@@ -73,7 +82,7 @@ export default {
   name: "EvenementsListe",
   components: {
     FiltersComponents,
-    FooterComponent
+    FooterComponent,
   },
   data () {
     return { evenements: null, hotes: null, error: null, helper: null }
@@ -108,25 +117,52 @@ export default {
         this.error = erreur
       }
     },
-    getHoteAvatar (evntId) {
-      const photo = this.hotes.find(h => h.idUtilisateur == evntId).photo
+    getHoteAvatar(evntId) {
+      let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
       if (photo == null) {
-        return "0.png"
+        return "0.png";
       } else {
-        return photo
+        return photo;
       }
     },
-    getEvenementPhoto (photo) {
+    getEvenementPhoto(photo) {
       if (photo == null) {
-        return "0.png"
+        return "0.png";
       } else {
-        return photo
+        return photo;
       }
     },
-    redirect (id) {
-      window.location.href = `/page-evenement/${id}`
-    }
-
+    async mettreFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.mettreFavoris(utilisateurId, evenementId);
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    async supprimerDeFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.deleteFavoris(utilisateurId, evenementId);
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    changerFavoris(id) {
+      let scr = document.getElementById(id).src;
+      if (scr.includes("heart.")) {
+        this.mettreFavoris(1, id);
+        document.getElementById(id).src = require("../assets/heart-f.png");
+      } else {
+        this.supprimerDeFavoris(1, id);
+        document.getElementById(id).src = require("../assets/heart.png");
+      }
+    },
+    redirect(id) {
+      window.location.href = `/page-evenement/${id}`;
+    },
   },
     FooterComponent,
     EvenementComponent,
