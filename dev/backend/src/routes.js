@@ -1,40 +1,38 @@
 const enregistrementControleur = require("./controllers/enregistrement-controleur")
 const enregistrementPolitique = require("./policies/enregistrement-politique")
 
-const AuthentificationControleur = require("./controllers/authentification-controleur")
-// const AuthentificationControleurPolitique = require("./policies/AuthentificationControleurPolitique");
-const EvenementsControleur = require("./controllers/evenements-controleur")
+const authentificationControleur = require("./controllers/authentification-controleur")
+const authentificationPolitique = require("./policies/authentification-politique")
+const evenementsControleur = require("./controllers/evenements-controleur")
+
 module.exports = (app) => {
   app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,
     enregistrementControleur.enregistrement)
 
   app.post("/api/authentification",
-    authentificationControleurPolitique.authentification,
+    authentificationPolitique.authentification,
     authentificationControleur.authentification)
 
   app.post("/evenement",
-    EvenementsControleur.creerEvenement
+    evenementsControleur.creerEvenement
   )
-
   app.get("/evenement",
-    EvenementsControleur.getEvenement
+    evenementsControleur.getEvenement
   )
-
   app.get("/evenements",
-    EvenementsControleur.getEvenements
+    evenementsControleur.getEvenements
   )
   app.post("/evenements",
-    EvenementsControleur.getEvenementsByIds
+    evenementsControleur.getEvenementsByIds
   )
   app.get("/utilisateur",
-    AuthentificationControleur.getUtilisateur
+    authentificationControleur.getUtilisateur
   )
-
   app.post("/utilisateurs",
-    AuthentificationControleur.getUtilisateurs
+    authentificationControleur.getUtilisateurs
   )
   app.get("/favoris",
-    EvenementsControleur.getFavoris
+    evenementsControleur.getFavoris
   )
 }

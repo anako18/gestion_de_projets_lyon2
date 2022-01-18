@@ -1,45 +1,45 @@
-const { Evenement } = require("../models");
-const { EvenementFavoris } = require("../models");
-const Op = require('sequelize').Op;
+const { Evenement } = require("../models")
+const { EvenementFavoris } = require("../models")
+const Op = require("sequelize").Op
 
 module.exports = {
-  async creerEvenement(req, res) {
+  async creerEvenement (request, res) {
     try {
-      const evenement = await Evenement.create(req.body);
+      const evenement = await Evenement.create(request.body)
       res.status(201).json({
         statut: "Succès",
         data: evenement
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       res.status(400).json({
         statut: "Échec",
-        erreur: erreur
-      });
+        erreur: error
+      })
     }
   },
 
-  async getEvenement(req, res) {
+  async getEvenement (request, res) {
     try {
       /** Correspondance de la requête avec BDD */
-      const id = parseInt(req.query.id);
+      const id = Number.parseInt(request.query.id)
       const evenement = await Evenement.findOne({
         where: {
           idEvenement: id
         }
-      });
+      })
       return res.status(200).json({
         statut: "Succès",
         data: evenement
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async getEvenements(req, res) {
+  async getEvenements (request, res) {
     try {
       const evenements = await Evenement.findAll({
         where: {
@@ -47,22 +47,22 @@ module.exports = {
             [Op.lt]: new Date().toISOString()
           }
         }
-      });
+      })
       return res.status(200).json({
         statut: "Succès",
         data: evenements
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
 
-  async getEvenementsByIds(req, res) {
-    const { ids } = req.body;
+  async getEvenementsByIds (request, res) {
+    const { ids } = request.body
     try {
       const evenements = await Evenement.findAll({
         where: {
@@ -70,21 +70,21 @@ module.exports = {
             [Op.in]: ids
           }
         }
-      });
+      })
       return res.status(200).json({
         statut: "Succès",
         data: evenements
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async getFavoris(req, res) {
-    const id = parseInt(req.query.id);
+  async getFavoris (request, res) {
+    const id = Number.parseInt(request.query.id)
     try {
       const favs = await EvenementFavoris.findAll({
         where: {
@@ -94,13 +94,13 @@ module.exports = {
       return res.status(200).json({
         statut: "Succès",
         data: favs
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   }
-};
+}
