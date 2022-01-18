@@ -3,7 +3,7 @@ const enregistrementPolitique = require("./policies/enregistrement-politique")
 
 const AuthentificationControleur = require("./controllers/authentification-controleur")
 // const AuthentificationControleurPolitique = require("./policies/AuthentificationControleurPolitique");
-const EvenementsControleur = require("./controllers/EvenementsControleur")
+const EvenementsControleur = require("./controllers/evenements-controleur")
 module.exports = (app) => {
   app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,
@@ -24,12 +24,17 @@ module.exports = (app) => {
   app.get("/evenements",
     EvenementsControleur.getEvenements
   )
-
+  app.post("/evenements",
+    EvenementsControleur.getEvenementsByIds
+  )
   app.get("/utilisateur",
     AuthentificationControleur.getUtilisateur
   )
 
   app.post("/utilisateurs",
     AuthentificationControleur.getUtilisateurs
+  )
+  app.get("/favoris",
+    EvenementsControleur.getFavoris
   )
 }

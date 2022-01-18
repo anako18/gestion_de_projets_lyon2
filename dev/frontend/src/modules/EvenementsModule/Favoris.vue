@@ -5,7 +5,7 @@
         <div class="favoris-image">
         <img src="../../assets/food.png" class="favoris-image" />
                 <button class="favorite-button">
-          <img src="../../assets/heart.png" width="40%" />
+          <img src="../../assets/heart-f.png" width="40%" />
         </button>
         </div>
         <div class="favoris-description">
@@ -18,7 +18,7 @@
         <div class="favoris-date">Jeudi 18/11 a 16h</div>
         <div class="favoris-chaise">Reste 1 chaise</div>
       </div>
-       <button class="favoris-button">Voir</button>
+       <button class="favoris-button">Voir plus de detail</button>
     </div>
      <div class="favoris-item">
       <div class="favoris-row">
@@ -38,14 +38,14 @@
         <div class="favoris-date">Jeudi 18/11 a 16h</div>
         <div class="favoris-chaise">Reste 5 chaises</div>
       </div>
-       <button class="favoris-button">Voir</button>
+       <button class="favoris-button">Voir plus de detail</button>
     </div>
     <div class="favoris-item">
       <div class="favoris-row">
         <div class="favoris-image">
         <img src="../../assets/images/food2.jpg" class="favoris-image" />
                 <button class="favorite-button">
-          <img src="../../assets/heart.png" width="40%" />
+          <img src="../../assets/heart-f.png" width="40%" />
         </button>
         </div>
         <div class="favoris-description">
@@ -58,7 +58,7 @@
         <div class="favoris-date">Mardi 18/11 a 16h</div>
         <div class="favoris-chaise">Reste 5 chaises</div>
       </div>
-       <button class="favoris-button">Voir</button>
+       <button class="favoris-button">Voir plus de detail</button>
     </div>
   </div>
 </template>

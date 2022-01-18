@@ -7,7 +7,7 @@
       <div class="evenement-image">
         <img src="../assets/food.png" width="100%" height="70%" />
         <button class="favorite-button">
-          <img src="../assets/heart-f.png" width="17%" />
+          <img src="../assets/heart.png" width="17%" />
         </button>
       </div>
       <div class="evenement-content">

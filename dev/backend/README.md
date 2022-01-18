@@ -22,6 +22,8 @@ INSERT INTO `Utilisateurs` (`idUtilisateur`, `email`, `mdp`, `nom`, `prenom`, `t
 
 INSERT INTO `Evenements` (`idEvenement`, `hoteId`, `titre`, `description`, `descriptionPreparations`, `date`, `codePostal`, `duree`, `ville`, `adresse`, `typeEvenement`, `typeCuisine`, `prix`, `capacite`, `accessTransportCommun`, `accessPMR`, `accessVoiture`, `createdAt`, `updatedAt`, `photo`) VALUES (1, 1, 'Soirée aux couleurs de l’Italie', 'Je vous propose une soirée aux couleurs de l’italie ! Nous réaliserons les véritables spaghettis à la bolognaise de ma maman, de la pâte à la sauce.', '- Pâtes fraîches \n- Sauce bolognaise \n- Entrée avec mozzarella', datetime('now'), 69003, 2, 'Lyon', '40 Rue de l’Abondance', 'Soirée / Dîner', 'Italien', 13, 5, 1,0,1,datetime('now'), datetime('now'), '1.png' );
 
+INSERT INTO `EvenementFavoris` (`evenementFavorisId`, `evenementId`, `utilisateurId`,`createdAt`,`updatedAt`) VALUES  (1, 1, 1, datetime('now'), datetime('now'));
+
 UPDATE Utilisateurs
 SET photo = '1.png'
 WHERE idUtilisateur = 1;
