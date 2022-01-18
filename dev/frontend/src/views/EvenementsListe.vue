@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main-evenements">
     <header class="header-logo">
       <img src="../assets/logo.png">
     </header>
