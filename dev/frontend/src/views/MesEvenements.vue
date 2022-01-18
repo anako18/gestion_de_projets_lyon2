@@ -1,7 +1,7 @@
 <template>
   <main class="favoris-liste">
     <header class="header-logo">
-      <img src="../assets/logo.png" />
+      <img src="../assets/logo.png">
     </header>
     <div class="section-titre">
       <span class="titre"> Mes evenements </span>
@@ -15,11 +15,11 @@
       </button>
     </div>
     <div id="hote" class="tabcontent activetab">
-      <MonEvenement/>
+      <MonEvenement />
     </div>
 
     <div id="invite" class="tabcontent">
-       <MonEvenement/>
+      <MonEvenement />
     </div>
 
     <FooterComponent />
@@ -27,33 +27,33 @@
 </template>
 
 <script>
-import MonEvenement from "../modules/EvenementsModule/MonEvenement.vue";
-import FooterComponent from "../modules/Footer.vue";
+import MonEvenement from "../modules/EvenementsModule/MonEvenement.vue"
+import FooterComponent from "../modules/Footer.vue"
 export default {
   name: "Favoris",
   components: {
     MonEvenement,
-    FooterComponent,
+    FooterComponent
   },
   methods: {
-    afficheCategory(event, category) {
-      var i, tabcontent, tablinks;
+    afficheCategory (event, category) {
+      let i, tabcontent, tablinks
 
-      tabcontent = document.getElementsByClassName("tabcontent");
+      tabcontent = document.getElementsByClassName("tabcontent")
       for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        tabcontent[i].style.display = "none"
       }
 
-      tablinks = document.getElementsByClassName("tablinks");
+      tablinks = document.getElementsByClassName("tablinks")
       for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" activetab", "");
+        tablinks[i].className = tablinks[i].className.replace(" activetab", "")
       }
 
-      document.getElementById(category).style.display = "block";
-      event.currentTarget.className += " activetab";
-    },
-  },
-};
+      document.getElementById(category).style.display = "block"
+      event.currentTarget.className += " activetab"
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

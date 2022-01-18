@@ -18,7 +18,6 @@ import Instructions1Vue from "@v/Instructions-1.vue"
 import Instructions2Vue from "@v/Instructions-2.vue"
 import Instructions3Vue from "@v/Instructions-3.vue"
 
-
 Vue.use(VueRouter)
 
 const routes = [

@@ -1,481 +1,508 @@
 @import "../partials/variables";
 
 main {
-    background: $couleur-c4;
-    height: 400px;
-    overflow: scroll;
-  }
-
-  .events-scroll-ecran {
-    padding-bottom: 10%;
-  }
-
-%filter-button-style {
-    position: absolute;
-    width: 20px;
-    display: inline-block;
-    background: $couleur-c1;
-    box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.13);
-    text-align: center;
-    color: #fff;
-    z-index: 9;
+  height: 400px;
+  overflow: scroll;
+  background: $couleur-c4;
 }
 
-  /* filters*/
+.events-scroll-ecran {
+  padding-bottom: 10%;
+}
+
+%filter-button-style {
+  position: absolute;
+  z-index: 9;
+  display: inline-block;
+  width: 20px;
+  color: #fff;
+  text-align: center;
+  background: $couleur-c1;
+  box-shadow: 3px 1px 4px rgb(0 0 0 / 13%);
+}
+
+/* filters */
 .filters-div {
-    height: auto;
-    width: 100%;
-    white-space: nowrap;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
-    min-height: fit-content;
-  
-    .button-left {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: fit-content;
+  white-space: nowrap;
+
+  .button-left {
     @extend %filter-button-style;
-      left: 0;
-    }
-  
-    .button-right {
-    @extend %filter-button-style;
-      right: 0;
-    }
-  
-    .filter-item {
-      border-radius: 25.5px;
-      padding: 8px 13px;
-      margin: 5px;
-      display: inline;
-      background: $couleur-c4;
-      border: 1px solid #585858;
-      box-sizing: border-box;
-      border-radius: 25.5px;
-    }
-    .active {
-      background: #fff;
-    }
+
+    left: 0;
   }
 
-  %font {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 15px;
-    color: $couleur-nmoyen;
+  .button-right {
+    @extend %filter-button-style;
+
+    right: 0;
   }
 
-  .button-text {
+  .filter-item {
+    display: inline;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 8px 13px;
+    background: $couleur-c4;
+    border: 1px solid #585858;
+    border-radius: 25.5px;
+    border-radius: 25.5px;
+  }
+
+  .active {
+    background: #fff;
+  }
+}
+
+%font {
+  color: $couleur-nmoyen;
+  font-weight: normal;
+  font-size: 13px;
+  font-family: Roboto;
+  font-style: normal;
+  line-height: 15px;
+}
+
+.button-text {
+  @extend %font;
+
+  top: 122px;
+  left: 45px;
+  width: 114px;
+  height: 15px;
+}
+
+.tri {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+
+  .selectFilter {
     @extend %font;
-    width: 114px;
-    height: 15px;
-    left: 45px;
-    top: 122px;
+
+    background-color: transparent;
+    border: none;
   }
 
-  .tri {
-    margin-bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  
-    .selectFilter {
-      @extend %font;
-      background-color: transparent;
-      border: none;
-    }
-  
-    .buttonToLink {
-      @extend %font;
-      background: none;
-      border: none;
-    }
-  
-    .buttonToLink:hover {
-      background: none;
-      text-decoration: underline;
-    }
+  .buttonToLink {
+    @extend %font;
+
+    background: none;
+    border: none;
   }
 
-  .panel-footer {
-    width: 100%;
-    background-color: white;
-    position: absolute;
-    bottom: 0;
-    display: table;
-    z-index:100;
-  
-    .panel-image {
-      width: 70%;
-      padding: 10px 10px 0px 10px;
-    }
-  
-    .panel-element {
-      width: 20%;
-      vertical-align: top;
-      display: inline-block;
-      text-align: center;
-  
-      .link {
-        img {
-          filter: grayscale(1) brightness(150%);
-        }
-      }
-  
-      .link.activelink {
-        span {
-          color: $couleur-c1;
-        }
-        img {
-          filter: grayscale(0) brightness(100%);
-        }
-      }
-    }
-  
-    .caption {
-      @extend %font;
-      display: block;
-      color: $couleur-nmoyen2;
-      margin-bottom: 10px;
-    }
+  .buttonToLink:hover {
+    text-decoration: underline;
+    background: none;
   }
-  
-  .profile-pic {
-    border-radius: 50%;
-    border: 5px solid white;
+}
+
+.panel-footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  display: table;
+  width: 100%;
+  background-color: white;
+
+  .panel-image {
+    width: 70%;
+    padding: 10px 10px 0;
+  }
+
+  .panel-element {
     display: inline-block;
-    margin-right: 20px;
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+
+    .link {
+      img {
+        filter: grayscale(1) brightness(150%);
+      }
+    }
+
+    .link.activelink {
+      span {
+        color: $couleur-c1;
+      }
+
+      img {
+        filter: grayscale(0) brightness(100%);
+      }
+    }
   }
-  
+
+  .caption {
+    @extend %font;
+
+    display: block;
+    margin-bottom: 10px;
+    color: $couleur-nmoyen2;
+  }
+}
+
+.profile-pic {
+  display: inline-block;
+  margin-right: 20px;
+  border: 5px solid white;
+  border-radius: 50%;
+}
+
+.evenement {
+  position: relative;
+  margin-bottom: 50px;
+  background-color: white;
+}
+
+.favoris-liste {
+  height: 470px;
+  overflow: scroll;
+}
+
+.price-tag {
+  position: relative;
+  text-align: center;
+}
+
+.price-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%evenement-default-font {
+  color: $couleur-nfonce;
+  font-weight: bold;
+  font-family: Roboto;
+  font-style: normal;
+}
+
+.evenement-titre {
+  @extend %evenement-default-font;
+
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.evenement-date {
+  @extend %evenement-default-font;
+
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.evenement-font-petit {
+  color: $couleur-nfonce;
+  font-size: 13px;
+  font-family: Roboto;
+}
+
+.evenement-description {
+  @extend %font;
+
+  float: left;
+  font-size: 12px;
+  line-height: 139.69%;
+}
+
+.profile-titre {
+  display: flex;
+  align-items: center;
+}
+
+.evenement-content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 0 20px;
+}
+
+.description-price {
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.price-tag {
+  float: right;
+  width: 20%;
+}
+
+%button-evnenements {
+  @extend %font;
+
+  font-weight: bold;
+  background-color: $couleur-c3;
+  border: none;
+  box-shadow: 0 8px 10px rgb(0 0 0 / 10%);
+}
+
+.yellow-button {
+  @extend %button-evnenements;
+
+  width: fit-content;
+  margin-bottom: 2px;
+  padding: 15px 20px;
+  color: $couleur-nfonce;
+  border-radius: 12px;
+}
+
+.evenement-image,
+.favoris-image {
+  position: relative;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  background-color: transparent;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* favoris */
+.titre {
+  float: left;
+  margin-left: 30px;
+  color: $couleur-nfonce;
+  font-weight: bold;
+  font-size: 25px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+}
+
+.favoris {
+  width: 100%;
+}
+
+.mon-evenement-item,
+%item {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #fff;
+}
+
+.favoris-item {
+  @extend %item;
+
+  padding: 0 30px;
+}
+
+.favoris-image {
+  width: 122px;
+  height: 111px;
+  object-fit: cover;
+}
+
+.favoris-description {
+  width: 50%;
+  margin-left: 10px;
+}
+
+.avec {
+  @extend %font;
+
+  margin-top: 3%;
+  color: $couleur-nfonce;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.lieu {
+  @extend %font;
+
+  color: $couleur-nfonce;
+  font-weight: 300;
+}
+
+.favoris-date {
+  @extend %font;
+
+  width: 60%;
+  height: 22px;
+  padding: 4px 10px;
+  font-weight: bold;
+  text-align: left;
+  background: #fff;
+}
+
+.favoris-chaise {
+  @extend %font;
+
+  width: 40%;
+  height: 22px;
+  margin-right: 0;
+  margin-left: 3%;
+  padding: 4px 10px;
+  text-align: left;
+  background: #ecf6ff;
+}
+
+.favoris-row {
+  display: flex;
+  padding: 3px;
+}
+
+.favoris-button {
+  @extend %button-evnenements;
+
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  color: $couleur-nfonce;
+  border-radius: 5px;
+}
+
+.section-titre {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* ============================= tabs ====================== */
+
+.tab {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tab button {
+  @extend %font;
+
+  width: 50%;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  background-color: inherit;
+  border-bottom: 3px solid white;
+  outline: none;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+}
+
+.tab button.activetab {
+  font-weight: bold;
+  border-bottom: 3px solid $couleur-nfonce;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.tabcontent.activetab {
+  display: flex;
+}
+
+/* ============= page evenement ======= */
+.page-evenement {
+  @extend %font;
+
+  font-size: 14px;
+  line-height: 150%;
+  text-align: left;
+
+  .evenement-content {
+    width: 100%;
+    padding: 0;
+  }
+
   .evenement {
-    background-color: white;
-    position: relative;
-    margin-bottom: 50px;
-  }
-  
-  .favoris-liste {
-    height: 470px;
+    height: 540px;
     overflow: scroll;
   }
-  
-  .price-tag {
-    position: relative;
+
+  .evenement-section {
+    padding: 10px;
+    font-size: 18px;
+    font-family: Roboto;
     text-align: center;
   }
-  .price-centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
-  %evenement-default-font {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    color: $couleur-nfonce;
-  }
-  
-  .evenement-titre {
-    @extend %evenement-default-font;
-    font-size: 17px;
-    line-height: 20px;
-  }
-  
-  .evenement-date {
-    @extend %evenement-default-font;
-    font-size: 13px;
-    line-height: 15px;
-  }
-  
-  .evenement-font-petit {
-    font-family: Roboto;
-    font-size: 13px;
-    color: $couleur-nfonce;
-  }
-
-  .evenement-description {
-    @extend %font;
-    font-size: 12px;
-    line-height: 139.69%;
-    float: left;
-  }
-  
-  .profile-titre {
-    display: flex;
-    align-items: center;
-  }
-  
-  .evenement-content {
-    padding: 0px 20px;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-  }
-  
-  .description-price {
-    margin-bottom: 20px;
-    width: 100%;
-    align-items: center;
-  }
-  
-  .price-tag {
-    float: right;
-    width: 20%;
-  }
-  
-  %button-evnenements {
-    @extend %font;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
-    background-color: $couleur-c3;
-    border: none;
-    font-weight: bold;
-  }
-  .yellow-button {
-    @extend %button-evnenements;
-    border-radius: 12px;
-    padding: 15px 20px;
-    width: fit-content;
-    margin-bottom: 2px;
-    color: $couleur-nfonce;
-  }
-  .evenement-image, 
-  .favoris-image {
-    position: relative;
-  }
-  
-  .favorite-button {
-    background-color: transparent;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-  }
-  
-  /* favoris */
-  .titre {
-    font-family: Hind;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 25px;
-    letter-spacing: 0.02em;
-    color: $couleur-nfonce;
-    margin-left: 30px;
-    float: left;
-  }
-  
-  .favoris {
-    width: 100%;
-  }
-
-  .mon-evenement-item,
-  %item {
-    border-bottom: 2px solid #ffffff;
-    margin-bottom: 10px;
-  }
-  
-  .favoris-item {
-    @extend %item;
-    padding: 0px 30px;
-  }
-  
-  .favoris-image {
-    object-fit: cover;
-    width: 122px;
-    height: 111px;
-  }
-  
-  .favoris-description {
+  .first {
     width: 50%;
-    margin-left: 10px;
   }
-  
-  .avec {
-    @extend %font;
-    color: $couleur-nfonce;
-    font-size: 15px;
-    line-height: 18px;
-    margin-top: 3%;
-  }
-  
-  .lieu {
-    @extend %font;
-    color: $couleur-nfonce;
-    font-weight: 300;
-  }
-  
-  .favoris-date {
-    @extend %font;
-    background: #ffffff;
+
+  .third,
+  .second {
+    display: inline-block;
     font-weight: bold;
-    width: 60%;
-    height: 22px;
-    text-align: left;
-    padding: 4px 10px;
+    border-left: 2px solid #d6d6d6;
   }
-  
-  .favoris-chaise {
-    @extend %font;
-    background: #ecf6ff;
-    height: 22px;
-    width: 40%;
-    margin-left: 3%;
-    text-align: left;
+
+  .event-description {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 20px;
+    background-color: $couleur-c4;
+
+    .a-propos {
+      margin: 20px 10px;
+    }
+
+    .realisation-du-repas {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      padding: 20px;
+      border: 2px solid $couleur-c3;
+    }
+  }
+
+  .hote,
+  .informations-pratiques,
+  .participants {
+    padding: 20px;
+  }
+
+  .paricipants-preview {
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 50%;
+    padding: 0 20px;
+  }
+
+  .participants {
+    display: flex;
+  }
+
+  .mes-evenements {
+    padding: 20px;
+    background-color: $couleur-c2;
+  }
+
+  .participants-info {
     margin-right: 0;
-    padding: 4px 10px;
-  }
-  
-  .favoris-row {
-    padding: 3px;
-    display: flex;
-  }
-  
-  .favoris-button {
-    @extend %button-evnenements;
-    width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 5px 20px;
-    color: $couleur-nfonce;
+    margin-left: auto;
+    font-weight: bold;
+    text-align: right;
   }
 
-  .section-titre {
-    width: 100%;
-    margin-bottom: 10px;
+  .paricipants-previews {
+    display: table;
   }
-  
-  /* ============================= tabs ====================== */
-  
-  .tab {
-    overflow: hidden;
-    width: 100%;
-    align-content: center;
-    display: flex;
-  }
-  
-  .tab button {
-    @extend %font;
-    width: 50%;
-    background-color: inherit;
-    border-bottom: 3px solid white;
-    outline: none;
-    font-size: 15px;
-    line-height: 18px;
-    text-align: center;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tab button.activetab {
-    border-bottom: 3px solid $couleur-nfonce;
-    font-weight: bold;
-  }
-  
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border-top: none;
-  }
-  
-  .tabcontent.activetab {
-    display: flex;
-  }
-  
-  /* ============= page evenement ======= */
-  .page-evenement {
-    @extend %font;
-    font-size: 14px;
-    line-height: 150%;
-    text-align: left;
-  
-    .evenement-content {
-      width: 100%;
-      padding: 0px;
-    }
-  
-    .evenement {
-      height: 540px;
-      overflow: scroll;
-    }
-  
-    .evenement-section {
-      font-size: 18px;
-      font-family: Roboto;
-      padding: 10px 10px;
-      text-align: center;
-    }
-  
-    .first {
-      width: 50%;
-    }
-    .third,
-    .second {
-      border-left: 2px solid #d6d6d6;
-      display: inline-block;
-      font-weight: bold;
-    }
-  
-    .event-description {
-      width: 100%;
-      background-color: $couleur-c4;
-      padding: 0px 20px;
-      margin: 10px 0px;
-  
-      .a-propos {
-        margin: 20px 10px;
-      }
-  
-      .realisation-du-repas {
-        border: 2px solid $couleur-c3;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        margin-bottom: 15px;
-      }
-    }
-  
-    .hote,
-    .informations-pratiques,
-    .participants {
-      padding: 20px;
-    }
-    .paricipants-preview {
-      padding: 0px 20px;
-      display: flex;
-      align-items: center;
-      float: left;
-      width: 50%;
-    }
-  
-    .participants {
-      display: flex;
-    }
-  
-    .mes-evenements {
-      background-color: $couleur-c2;
-      padding: 20px;
-    }
-  
-    .participants-info {
-      margin-left: auto;
-      margin-right: 0;
-      text-align: right;
-      font-weight: bold;
-    }
-  
-    .paricipants-previews {
-      display: table;
-    }
-  }
-  /* ============= bienvenue ======= */
-  .bienvenue {
-    font-family: Hind;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 34px;
-    color: #ffffff;
-  }
+}
+
+/* ============= bienvenue ======= */
+.bienvenue {
+  color: #fff;
+  font-weight: bold;
+  font-size: 34px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 34px;
+}

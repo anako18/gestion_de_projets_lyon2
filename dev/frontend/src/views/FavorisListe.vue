@@ -1,16 +1,16 @@
 <template>
   <main class="favoris-liste">
     <header class="header-logo">
-      <img src="../assets/logo.png" />
+      <img src="../assets/logo.png">
     </header>
     <div class="section-titre">
       <span class="titre"> Mes favoris </span>
     </div>
 
     <div
-      class="favoris-liste"
       v-for="evenement in evenements"
       :key="evenement.idEvenement"
+      class="favoris-liste"
     >
       <div class="favoris-item">
         <div class="favoris-row">
@@ -22,14 +22,18 @@
                 )}`)
               "
               class="favoris-image"
-            />
+            >
             <button class="favorite-button">
-              <img src="../assets/heart-f.png" width="40%" />
+              <img src="../assets/heart-f.png" width="40%">
             </button>
           </div>
           <div class="favoris-description">
-            <p class="evenement-titre">{{ evenement.titre }}</p>
-            <p class="avec">Avec {{ hotePrenom(evenement.idEvenement) }}</p>
+            <p class="evenement-titre">
+              {{ evenement.titre }}
+            </p>
+            <p class="avec">
+              Avec {{ hotePrenom(evenement.idEvenement) }}
+            </p>
             <span class="lieu">
               A {{ evenement.ville }} {{ evenement.prix }}€
             </span>
@@ -39,7 +43,9 @@
           <div class="favoris-date">
             {{ helper.afficherDate(evenement.date) }}
           </div>
-          <div class="favoris-chaise">Reste 1 chaise</div>
+          <div class="favoris-chaise">
+            Reste 1 chaise
+          </div>
         </div>
         <button class="favoris-button" @click="redirect(evenement.idEvenement)">
           Voir plus de detail
@@ -51,91 +57,91 @@
 </template>
 
 <script>
-import FavorisComponent from "../modules/EvenementsModule/Favoris.vue";
-import FooterComponent from "../modules/Footer.vue";
-import Helper from "../modules/EvenementsModule/Helper.js";
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
+import FavorisComponent from "../modules/EvenementsModule/Favoris.vue"
+import FooterComponent from "../modules/Footer.vue"
+import Helper from "../modules/EvenementsModule/Helper.js"
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
 export default {
   name: "Favoris",
   components: {
     FavorisComponent,
-    FooterComponent,
+    FooterComponent
   },
-  data() {
+  data () {
     return {
       favs: null,
       evenements: null,
       hotes: null,
       error: null,
-      helper: null,
-    };
+      helper: null
+    }
   },
-  mounted() {
+  mounted () {
     this.getFavoris().then((res) => {
-      let evntsIds = this.favs.map((e) => e.evenementId);
+      const evntsIds = this.favs.map((e) => e.evenementId)
       this.getEvenements(evntsIds).then((res) => {
-        let hoteIds = this.evenements.map((e) => e.hoteId);
-        this.getUtilisateurs(hoteIds);
-      });
-    });
-    this.helper = new Helper();
+        const hoteIds = this.evenements.map((e) => e.hoteId)
+        this.getUtilisateurs(hoteIds)
+      })
+    })
+    this.helper = new Helper()
   },
   methods: {
-    async getFavoris() {
+    async getFavoris () {
       try {
         await EvenementsService.getFavoris(1).then(
           (res) => (this.favs = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async getEvenements(ids) {
+    async getEvenements (ids) {
       try {
         console.log(ids)
-        await EvenementsService.getEvenementsByIds({"ids":ids}).then(
+        await EvenementsService.getEvenementsByIds({ ids: ids }).then(
           (res) => (this.evenements = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async getUtilisateurs(hoteIds) {
+    async getUtilisateurs (hoteIds) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: hoteIds }).then(
           (res) => (this.hotes = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    hotePrenom(evntId) {
-      let nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom;
+    hotePrenom (evntId) {
+      const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom
       if (nom == null) {
-        return "N/A";
+        return "N/A"
       } else {
-        return nom;
+        return nom
       }
     },
-    getEvenementPhoto(photo) {
+    getEvenementPhoto (photo) {
       if (photo == null) {
-        return "0.png";
+        return "0.png"
       } else {
-        return photo;
+        return photo
       }
     },
-    redirect(id) {
-      window.location.href = `/page-evenement/${id}`;
-    },
-  },
-};
+    redirect (id) {
+      window.location.href = `/page-evenement/${id}`
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
