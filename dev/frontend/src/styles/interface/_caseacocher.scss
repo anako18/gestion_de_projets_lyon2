@@ -4,6 +4,7 @@
 .case-a-cocher {
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   label, .ok, .nok {
     &:hover {
@@ -18,6 +19,13 @@
   .ok, .nok {
     position: absolute;
     width: 20px;
+    margin-top: -2px;
+  }
+
+  &.obligatoire {
+    .ok, .nok {
+      filter: hue-rotate(295deg);
+    }
   }
 
   .ok {
@@ -48,6 +56,7 @@
 
   label {
     @extend %texte-style-9;
+    line-height: 1.0;
     margin-left: 20px;
   }
 

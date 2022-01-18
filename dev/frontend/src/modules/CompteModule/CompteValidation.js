@@ -61,7 +61,6 @@ export default (donneesAValider) => {
     validationEmail()
     validationMdp()
     if ("confMdp" in donneesAValider) { validationConfMdp() }
-
     if (retourVerificationErreurs()) { throw erreurs } return erreurs
   }
 

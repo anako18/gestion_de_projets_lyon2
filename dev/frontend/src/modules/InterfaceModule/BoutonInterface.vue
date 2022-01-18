@@ -5,11 +5,17 @@
       class="bouton__conteneur"
       :class="classes"
       :disabled="!etat"
-      @click="boutonClique"
+      @click="gestionClic"
     >
       <img
+        v-if="type === 'ajouter-photo'"
         class="bouton__icone"
         src="@ai/icone--plus.svg"
+      >
+      <img
+        v-if="type === 'inscription'"
+        class="bouton__icone"
+        src="@ai/icone--inscription.png"
       >
       <span class="bouton__texte">
         {{ valeur }}
@@ -38,18 +44,21 @@ export default {
   computed: {
     classes: function () {
       return {
-        "bouton-style-1": this.type === "inscription",
+        "bouton-style-1": this.type === "inscription" || this.type === "connexion",
         "couleur-c1": this.type === "inscription",
-        "icone-inscription": this.type === "inscription",
+        "bouton-icone-inscription": this.type === "inscription",
+        "couleur-c2": this.type === "connexion",
+        "bouton-icone-connexion": this.type === "connexion",
         "bouton-style-2": this.type === "ajouter-photo",
         "couleur-c3": this.type === "ajouter-photo",
+        "bouton-icone-plus": this.type === "ajouter-photo",
         "etat-desactive": !this.etat
       }
     }
   },
   methods: {
-    boutonClique () {
-      this.$emit("onClique")
+    gestionClic () {
+      this.$emit("aClique")
     }
   }
 }

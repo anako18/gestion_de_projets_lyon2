@@ -7,17 +7,17 @@
       type="checkbox"
       :name="nom"
       required
-      @click="handleChange"
+      @click="gestionChangement"
     >
     <img
       src="@ai/icone--rond.svg"
       class="nok"
-      @click="handleChange"
+      @click="gestionChangement"
     >
     <img
       src="@ai/icone--rond--ok.svg"
       class="ok"
-      @click="handleChange"
+      @click="gestionChangement"
     >
     <label :for="nom">
       {{ label }}
@@ -40,8 +40,8 @@ export default {
     }
   },
   methods: {
-    handleChange (e) {
-      this.$emit("clique", this.nom)
+    gestionChangement (e) {
+      this.$emit("aClique", this.nom)
     }
   }
 }
