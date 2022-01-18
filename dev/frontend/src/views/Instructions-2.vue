@@ -15,7 +15,7 @@
         <hr class="Rounded active" />
         <hr class="Rounded" />
       </div>
-      <div class="bouton">
+      <div class="bouton-instrunctions">
       <a href="/instructions3">  <u> Passez cette étape  </u> </a>
       </div>
     </section>
@@ -27,3 +27,7 @@ export default {
   name: "InstructionsVue",
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "@s/instructions/instructions";
+</style>

@@ -72,3 +72,7 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "@s/evenements/evenements";
+</style>

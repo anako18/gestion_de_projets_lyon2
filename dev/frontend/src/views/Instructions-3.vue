@@ -16,7 +16,7 @@
         <hr class="Rounded" />
         <hr class="Rounded active" />
       </div>
-      <div class="bouton">
+      <div class="bouton-instrunctions">
       <button class="yellow-button" onclick="window.location.href='/evenements-liste'">C'est parti !</button>
       </div>
     </section>
@@ -28,3 +28,7 @@ export default {
   name: "InstructionsVue",
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "@s/instructions/instructions";
+</style>
