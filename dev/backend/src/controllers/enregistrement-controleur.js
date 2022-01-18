@@ -21,6 +21,7 @@ const retourEchecValidation = function (resultat, erreur) {
 }
 
 const creationUtilisateur = async function (donnees) {
+  console.log(donnees)
   try {
     const utilisateur = await Utilisateur.create(donnees)
     return utilisateur

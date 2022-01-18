@@ -181,11 +181,9 @@
 <script>
 import CompteService from "../CompteService.js"
 import EnregistrementService from "./EnregistrementService.js"
-
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
 import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
 import CaseACocherInterface from "@m/InterfaceModule/CaseACocherInterface.vue"
-
 export default {
   name: "EnregistrementFormulaire",
   components: {
