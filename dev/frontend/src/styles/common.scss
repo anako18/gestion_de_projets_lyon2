@@ -1,5 +1,6 @@
 @import "./partials/variables";
 @import "./interface/champ";
+@import "./polices";
 @import "./normalize";
 
 /* Squelette */
@@ -92,9 +93,11 @@ main {
   &.favoris-liste {
     background: $couleur-c4;
   }
+
   &.bienvenue {
     background: $couleur-c1;
   }
+
   &.inscructions {
     background: $couleur-c4;
   }
@@ -153,23 +156,30 @@ main {
 
   &__classique {
     @include marge("bottom", 5);
+
     &__formulaire {
       @include marge("bottom", 6);
+
       .avertissement {
-        @include marge("bottom", 3);
         @extend %texte-style-11;
+        @include marge("bottom", 3);
+
         color: $couleur-nmoyen;
       }
 
       .champ {
         @include marge("bottom", 3);
       }
+
       textarea.champ {
         @include marge("bottom", 3);
       }
+
       .case-a-cocher {
-        color: $couleur-nmoyen;
         @include marge("bottom", 3);
+
+        color: $couleur-nmoyen;
+
         &:last-of-type {
           margin-bottom: unset;
         }
@@ -178,6 +188,7 @@ main {
 
     &__validations {
       @include marge("bottom", 6);
+
       display: flex;
       flex-wrap: wrap;
       align-content: center;
@@ -188,9 +199,10 @@ main {
 
   &__connexion {
     @extend %texte-style-11;
+
     min-width: 100%;
-    text-align: center;
     color: $couleur-nmoyen;
+    text-align: center;
   }
 }
 
@@ -212,7 +224,7 @@ main {
   opacity: 0;
 }
 
-/* header*/
+/* header */
 .header-logo {
   width: 100%;
   min-height: 100px;
