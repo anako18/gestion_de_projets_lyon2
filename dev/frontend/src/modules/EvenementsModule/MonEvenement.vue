@@ -24,3 +24,7 @@ export default {
   name: "Favoris",
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "@s/evenements/evenements";
+</style>

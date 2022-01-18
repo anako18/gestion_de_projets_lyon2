@@ -31,17 +31,17 @@
               ><i class="icon-calendar"></i> Demain 18/11 a 11h
             </span>
             <br />
-            <span class="evenement-lieu"> {{evenement.ville}} a 11h</span>
+            <span class="evenement-font-petit"> {{evenement.ville}} a 11h</span>
           </div>
           <div class="evenement-section second">
-            <span class="evenement-lieu"> Durée: {{evenement.duree}}h </span>
+            <span class="evenement-font-petit"> Durée: {{evenement.duree}}h </span>
           </div>
           <div class="evenement-section third">
-            <span class="evenement-lieu">
+            <span class="evenement-font-petit">
               3 participants <br />
               Il reste encore 2 places
             </span>
-            <span class="evenement-lieu"> 13€ </span>
+            <span class="evenement-font-petit"> 13€ </span>
           </div>
         </div>
         <div class="event-description">
@@ -172,5 +172,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  @import "@s/evenements/evenements";
 </style>

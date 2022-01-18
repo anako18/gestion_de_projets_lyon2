@@ -1,0 +1,55 @@
+@import "../partials/variables";
+
+.inscructions {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    color: $couleur-nmoyen;
+    font-size: 16px;
+    line-height: 19px;
+  
+    img {
+      border-radius: 50%;
+    }
+  
+    .titre-f {
+      font-family: Hind;
+      font-weight: 550;
+      font-size: 36px;
+      line-height: 116.6%;
+      color: $couleur-nfonce;
+      padding: 20px 30px;
+    }
+  
+    .soustitre {
+      font-size: 21px;
+      line-height: 25px;
+      padding: 0px 30px;
+    }
+  
+    hr.Rounded {
+      border-top: 3px solid #bbb;
+      width: 30%;
+      margin: 1.5%;
+    }
+  
+    hr.Rounded.active {
+      border-top: 3px solid #ea553d;
+    }
+  
+    .underlines {
+      width: 90%;
+      position: absolute;
+      top: 80%;
+      display: flex;
+      margin: 40px 25px;
+    }
+  
+    .bouton-instrunctions {
+      width: 90%;
+      position: absolute;
+      top: 90%;
+      text-align: right;
+      margin: 20px;
+    }
+  }

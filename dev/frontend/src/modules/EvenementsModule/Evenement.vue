@@ -1,5 +1,5 @@
 <template>
-  <div class="evenements-liste">
+  <div>
     <div class="evenement">
       <div class="evenement-image">
         <img src="../../assets/food.png" width="100%" height="50%" />
@@ -21,7 +21,7 @@
           <span class="evenement-date"
             ><i class="icon-calendar"></i> Demain 18/11 a 11h
           </span>
-          <span class="evenement-lieu"> Décines-Charpieu </span>
+          <span class="evenement-font-petit"> Décines-Charpieu </span>
         </div>
         <div class="description-price">
           <p class="evenement-description">
@@ -60,7 +60,7 @@
           <span class="evenement-date"
             ><i class="icon-calendar"></i> Demain 18/11 a 11h
           </span>
-          <span class="evenement-lieu"> Décines-Charpieu </span>
+          <span class="evenement-font-petit"> Décines-Charpieu </span>
         </div>
         <div class="description-price">
           <p class="evenement-description">
@@ -98,3 +98,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  @import "@s/evenements/evenements";
+</style>

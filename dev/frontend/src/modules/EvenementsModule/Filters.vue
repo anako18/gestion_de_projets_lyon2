@@ -14,3 +14,7 @@ export default {
   name: "Filters"
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "@s/evenements/evenements";
+</style>
