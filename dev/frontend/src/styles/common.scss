@@ -35,11 +35,6 @@ button {
   }
 }
 
-input[type="email"],
-input[type="password"] {
-  @extend %champ;
-}
-
 img {
   max-width: 100%;
   object-fit: contain;
@@ -148,12 +143,18 @@ main {
   &__classique {
     @include marge("bottom", 5);
     &__formulaire {
-      @include marge("bottom", 5);
+      @include marge("bottom", 6);
+      .avertissement {
+        @include marge("bottom", 3);
+        @extend %texte-style-11;
+        color: $couleur-nmoyen;
+      }
+
       .champ {
         @include marge("bottom", 3);
-        &:last-of-type {
-          @include marge("bottom", 4);
-        }
+      }
+      textarea.champ {
+        @include marge("bottom", 3);
       }
       .case-a-cocher {
         color: $couleur-nmoyen;

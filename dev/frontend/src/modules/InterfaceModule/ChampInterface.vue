@@ -1,5 +1,17 @@
 <template>
+  <textarea
+    v-if="type === 'textarea'"
+    :class="classes"
+    :name="nom"
+    :placeholder="texte"
+    :type="type"
+    :value="value"
+    :etat="etat"
+    class="champ"
+    v-on="gestionEvenements"
+  ></textarea>
   <input
+    v-else
     :class="classes"
     :name="nom"
     :placeholder="texte"
@@ -38,7 +50,7 @@ export default {
   data () {
     return {
       gestionEvenements: {
-        input: this.handleChange,
+        input: this.gestionEvenement,
         select: this.remonteEvenement,
         click: this.remonteEvenement
       }
@@ -55,8 +67,8 @@ export default {
   },
   methods: {
     // TODO: Tout mettre dans une seule méthode
-    handleChange (e) {
-      this.$emit("handleChange", e.target.value)
+    gestionEvenement (e) {
+      this.$emit("gestionEvenement", e.target.value)
     },
     remonteEvenement (e) {
       if (e.type === "click") {
