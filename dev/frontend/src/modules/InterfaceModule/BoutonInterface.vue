@@ -13,6 +13,11 @@
         src="@ai/icone--plus.svg"
       >
       <img
+        v-if="type === 'connexion'"
+        class="bouton__icone"
+        src="@ai/icone--connexion.png"
+      >
+      <img
         v-if="type === 'inscription'"
         class="bouton__icone"
         src="@ai/icone--inscription.png"

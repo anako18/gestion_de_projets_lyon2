@@ -16,6 +16,7 @@ button {
   box-shadow: $bouton-style-ombre;
   transform: translateZ(0);
   transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
+
   &:active {
     box-shadow: unset;
     transform: translateZ(1px);

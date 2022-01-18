@@ -24,7 +24,7 @@ export default (donneesAValider) => {
   const erreurs = creationTableauErreurs()
   const emailLongueur = { min: 5, max: 64 }
   const emailExpReg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/
-  const mdpExpReg = /(.){8,64}/
+  const mdpExpReg = /(.){6,64}/
 
   const verificationLongueur = function (donnee, regle) {
     const lg = donnee.length

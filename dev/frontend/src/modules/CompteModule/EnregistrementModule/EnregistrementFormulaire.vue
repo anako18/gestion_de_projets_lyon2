@@ -119,42 +119,42 @@
       </form>
       <!--
       <transition name="slide-fade" mode="out-in">
-      <div
-        v-if="selection === 'email'"
-        key="0"
-        class="enregistrement__classique__validations validations__email"
-      >
-        <ValidationInterface
-          texte="Présent"
-          :etat="verificationErreurChamp('email', 'EMAIL_MANQUANT')"
-        />
-        <ValidationInterface
-          texte="Long"
-          :etat="verificationErreurChamp('email', 'EMAIL_LONGUEUR')"
-        />
-        <ValidationInterface
-          texte="Valide"
-          :etat="verificationErreurChamp('email', 'EMAIL_INVALIDE')"
-        />
-      </div>
-      <div
-        v-if="selection === 'mdp' || selection === 'confMdp'"
-        key="1"
-        class="enregistrement__classique__validations validations__email"
-      >
-        <ValidationInterface
-          texte="Présent"
-          :etat="verificationErreurChamp('mdp', 'MDP_MANQUANT')"
-        />
-        <ValidationInterface
-          texte="Long"
-          :etat="verificationErreurChamp('mdp', 'MDP_LONGUEUR')"
-        />
-        <ValidationInterface
-          texte="Confirmé"
-          :etat="verificationErreurChamp('confMdp', 'CONFMDP_INVALIDE')"
-        />
-      </div>
+        <div
+          v-if="selection === 'email'"
+          key="0"
+          class="enregistrement__classique__validations validations__email"
+        >
+          <ValidationInterface
+            texte="Présent"
+            :etat="verificationErreurChamp('email', 'EMAIL_MANQUANT')"
+          />
+          <ValidationInterface
+            texte="Long"
+            :etat="verificationErreurChamp('email', 'EMAIL_LONGUEUR')"
+          />
+          <ValidationInterface
+            texte="Valide"
+            :etat="verificationErreurChamp('email', 'EMAIL_INVALIDE')"
+          />
+        </div>
+        <div
+          v-if="selection === 'mdp' || selection === 'confMdp'"
+          key="1"
+          class="enregistrement__classique__validations validations__email"
+        >
+          <ValidationInterface
+            texte="Présent"
+            :etat="verificationErreurChamp('mdp', 'MDP_MANQUANT')"
+          />
+          <ValidationInterface
+            texte="Long"
+            :etat="verificationErreurChamp('mdp', 'MDP_LONGUEUR')"
+          />
+          <ValidationInterface
+            texte="Confirmé"
+            :etat="verificationErreurChamp('confMdp', 'CONFMDP_INVALIDE')"
+          />
+        </div>
       </transition>
       -->
       <div class="enregistrement__classique__bouton">
@@ -171,7 +171,7 @@
       <p>
         Tu as déjà un compte ?
         <router-link to="connexion">
-          Me connecter
+          Se connecter
         </router-link>
       </p>
     </aside>
@@ -179,6 +179,7 @@
 </template>
 
 <script>
+import CompteService from "../CompteService.js"
 import EnregistrementService from "./EnregistrementService.js"
 
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
@@ -229,16 +230,16 @@ export default {
     this.validationEnregistrement()
   },
   methods: {
-    conversionCamelCase: EnregistrementService.conversionCamelCase,
-    enregistrement: EnregistrementService.enregistrement,
-    envoiEnregistrement: EnregistrementService.envoiEnregistrement,
-    gestionChangement: EnregistrementService.gestionChangement,
-    reinitialisationErreurs: EnregistrementService.reinitialisationErreurs,
-    selectionCaseACocher: EnregistrementService.selectionCaseACocher,
-    selectionEtatChamp: EnregistrementService.selectionEtatChamp,
-    selectionUtilisateurChamp: EnregistrementService.selectionUtilisateurChamp,
+    conversionCamelCase: CompteService.conversionCamelCase,
+    gestionChangement: CompteService.gestionChangement,
+    reinitialisationErreurs: CompteService.reinitialisationErreurs,
+    selectionCaseACocher: CompteService.selectionCaseACocher,
+    selectionEtatChamp: CompteService.selectionEtatChamp,
+    selectionUtilisateurChamp: CompteService.selectionUtilisateurChamp,
+    verificationErreurChamp: CompteService.verificationErreurChamp,
     validationEnregistrement: EnregistrementService.validationEnregistrement,
-    verificationErreurChamp: EnregistrementService.verificationErreurChamp
+    envoiEnregistrement: EnregistrementService.envoiEnregistrement,
+    enregistrement: EnregistrementService.enregistrement
   }
 }
 </script>
