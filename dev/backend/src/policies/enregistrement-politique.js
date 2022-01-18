@@ -26,8 +26,6 @@ const schema = Joi.object({
     .max(64)
     .required(),
   dateDeNaissance: Joi.date()
-    .required(),
-  civilite: Joi.string()
     .required()
 })
 
@@ -53,7 +51,7 @@ const retourEchecValidation = function (resultat, erreur) {
  */
 const validationJoi = function (requete) {
   const p = new Promise((resolve, reject) => {
-    const resultat = schema.validate(requete.body, { abortEarly: false })
+    const resultat = schema.validate(requete.body, { abortEarly: false, allowUnknown: true })
     // La validation échoue et un objet error est renvoyé
     if (resultat.error) {
       const erreurRenvoye = {}

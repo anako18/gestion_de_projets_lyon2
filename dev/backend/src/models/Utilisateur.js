@@ -45,10 +45,6 @@ module.exports = (Sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    civilite: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     photo: {
       type: DataTypes.STRING,
       allowNull: true
@@ -79,8 +75,7 @@ module.exports = (Sequelize, DataTypes) => {
     "mdp",
     "nom",
     "prenom",
-    "dateDeNaissance",
-    "civilite"
+    "dateDeNaissance"
   ]
 
   return Utilisateur

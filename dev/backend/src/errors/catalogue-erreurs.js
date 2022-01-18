@@ -15,20 +15,19 @@ const enregistrementJoiErreurs = {
   },
   nom: {
     "any.required": "Le champ du nom ne peut être vide.",
+    "string.empty": "Le champ du nom ne peut être vide.",
     "string.min": "Le champ du nom doit au moins contenir 2 caractères.",
     "string.max": "Le champ du nom doit au plus contenir 64 caractères."
   },
   prenom: {
     "any.required": "Le champ du prénom ne peut être vide.",
+    "string.empty": "Le champ du prénom ne peut être vide.",
     "string.min": "Le champ du prénom doit au moins contenir 2 caractères.",
     "string.max": "Le champ du prénom doit au plus contenir 64 caractères."
   },
   dateDeNaissance: {
     "any.required": "La date de naissance ne peut être laissée vide.",
     "date.base": "La date de naissance doit être valide."
-  },
-  civilite: {
-    "any.required": "La civilité ne peut être laissée vide."
   }
 }
 
