@@ -41,7 +41,7 @@
           </div>
           <center>
             <button class="yellow-button" @click="redirect(evenement.idEvenement)">
-              Voir les details
+              Voir plus de detail
             </button>
           </center>
         </div>
@@ -53,7 +53,6 @@
 
 <script>
 import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
-import EvenementComponent from "../modules/EvenementsModule/Evenement.vue";
 import Helper from "../modules/EvenementsModule/Helper.js";
 import FooterComponent from "../modules/Footer.vue";
 import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
@@ -63,8 +62,7 @@ export default {
   name: "EvenementsListe",
   components: {
     FiltersComponents,
-    FooterComponent,
-    EvenementComponent,
+    FooterComponent
   },
   data() {
     return { evenements: null, hotes: null, error: null, helper: null };

@@ -9,11 +9,26 @@ const evenement = function (id) {
   })
 }
 
+const getFavoris = function (utilisateurId) {
+  return Api().get("favoris", {
+    params: {
+      id: utilisateurId
+    }
+  })
+}
+
+
 const getEvenements = function () {
   return Api().get("evenements")
 }
 
+const getEvenementsByIds = function (ids) {
+  return Api().post("evenements", ids)
+}
+
 export default {
     evenement,
-    getEvenements
+    getEvenements,
+    getFavoris,
+    getEvenementsByIds
 }
