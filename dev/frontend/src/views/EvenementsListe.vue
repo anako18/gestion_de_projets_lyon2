@@ -61,11 +61,13 @@
 </template>
 
 <script>
-import FiltersComponents from "../modules/EvenementsModule/Filters.vue"
-import Helper from "../modules/EvenementsModule/Helper.js"
-import FooterComponent from "../modules/Footer.vue"
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
+import Helper from "../modules/EvenementsModule/Helper.js";
+import FooterComponent from "../modules/Footer.vue";
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
+import EvenementComponent from "../modules/EvenementsModule/Evenement.vue";
+import FooterComponent from "../modules/Footer.vue";
 
 export default {
   name: "EvenementsListe",
@@ -124,8 +126,11 @@ export default {
     redirect (id) {
       window.location.href = `/page-evenement/${id}`
     }
-  }
-}
+
+  },
+    FooterComponent,
+    EvenementComponent
+};
 </script>
 
 <style lang="scss" scoped>
