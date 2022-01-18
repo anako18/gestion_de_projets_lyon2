@@ -24,7 +24,7 @@
               class="favoris-image"
             >
             <button class="favorite-button">
-              <img src="../assets/heart-f.png" width="40%">
+              <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" :src="require('../assets/heart.png')" width="40%" />
             </button>
           </div>
           <div class="favoris-description">
@@ -137,11 +137,39 @@ export default {
         return photo
       }
     },
-    redirect (id) {
-      window.location.href = `/page-evenement/${id}`
-    }
-  }
-}
+     async mettreFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.mettreFavoris(utilisateurId, evenementId);
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    async supprimerDeFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.deleteFavoris(utilisateurId, evenementId);
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    changerFavoris(id) {
+      let scr = document.getElementById(id).src;
+      if (scr.includes("heart.")) {
+        this.mettreFavoris(1, id);
+        document.getElementById(id).src = require("../assets/heart-f.png");
+      } else {
+        this.supprimerDeFavoris(1, id);
+        document.getElementById(id).src = require("../assets/heart.png");
+      }
+    },
+    redirect(id) {
+      window.location.href = `/page-evenement/${id}`;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

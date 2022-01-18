@@ -6,19 +6,27 @@
     <div class="evenement events-scroll-ecran">
       <div class="evenement-image">
         <img
-          src="../assets/food.png"
+          :src="
+            require(`../assets/evenements/${getEvenementPhoto(
+              evenement.photo
+            )}`)
+          "
           width="100%"
           height="70%"
-        >
-        <button class="favorite-button">
-          <img src="../assets/heart.png" width="17%">
+        />
+        <button  class="favorite-button">
+          <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" :src="require('../assets/heart.png')" width="17%" />
         </button>
       </div>
       <div class="evenement-content">
         <div class="profile-titre">
           <img
             class="profile-pic"
-            src="../assets/person.png"
+            :src="
+              require(`../assets/avatars/${getHoteAvatar(
+                hote.photo
+              )}`)
+            "
             width="20%"
             height="20%"
           >
@@ -26,25 +34,31 @@
             <span class="evenement-titre">
               {{ evenement.titre }}
             </span>
-            <span class="lieu">Avec Demien</span>
+            <span class="lieu">Avec {{hote.prenom}}</span>
           </div>
         </div>
         <div class="evenement-date-lieu" style="display: flex;">
           <div class="evenement-section first">
-            <span class="evenement-date"><i class="icon-calendar" /> Demain 18/11 a 11h
+            <span class="evenement-date"
+              ><i class="icon-calendar"></i>{{helper.afficherDate(evenement.date)}}
             </span>
-            <br>
-            <span class="evenement-font-petit"> {{ evenement.ville }} a 11h</span>
+            <br />
+            <span class="evenement-font-petit">
+              {{ evenement.ville }}</span
+            >
           </div>
           <div class="evenement-section second">
-            <span class="evenement-font-petit"> Durée: {{ evenement.duree }}h </span>
+            <span class="evenement-font-petit">
+              Durée: {{ evenement.duree }}h
+            </span>
           </div>
           <div class="evenement-section third">
             <span class="evenement-font-petit">
               3 participants <br>
               Il reste encore 2 places
             </span>
-            <span class="evenement-font-petit"> 13€ </span>
+            <br>
+            <span class="evenement-font-petit"> {{evenement.prix}}€ </span>
           </div>
         </div>
         <div class="event-description">
@@ -53,41 +67,35 @@
           </div>
           <div class="realisation-du-repas">
             <span class="evenement-titre"> Réalisation du repas </span>
-            <br>
-            - Pâtes fraîches <br>
-            - Sauce bolognaise <br>
-            - Entrée avec mozzarella
+            <br />
+            {{ evenement.descriptionPreparations }}
           </div>
         </div>
         <div class="hote">
           <span class="evenement-titre"> A propos de moi </span>
-          <br><br>
-          Bonjour, je m'appelle Demian, je suis passionné par la cuisine et
-          j'aime rencontrer de nouvelles personnes ! Je suis prêt à partager
-          avec vous un grand nombre de mes recettes préférées, ainsi qu'à passer
-          un bon moment avec une agréable conversation. Je suis une personne
-          très sociable, j'aime le football et la gastronomie. Enchanté de vous
-          rencontrer !
-          <br><br>
-          <a href="#"> <u> Poser une question a Demien </u> </a>
+          <br /><br />
+          {{ hote.description }}
+          <br /><br />
+          <a href="#"> <u> Poser une question à {{hote.prenom}} </u> </a>
         </div>
         <div class="mes-evenements">
-          <span class="evenement-titre"> Mes evenements </span>
-          <br><br>
-          J’ai participé à <b>20 événements</b>. <br>
+          <span class="evenement-titre"> Mes événements </span>
+          <br /><br />
+          J’ai participé à <b>20 événements</b>. <br />
           J’ai été <b>7 fois hôte</b> de la soirée.
         </div>
         <div class="informations-pratiques">
           <span class="evenement-titre"> Informations pratiques </span>
-          <br><br>
-          <u>Type d’événement </u>: Soirée / Dîner <br>
-          <u>Type de cuisine </u>: Italien <br>
-          <br>
-          <span class="evenement-titre"> Accessibilité </span> <br>
-          <br>
-          <u>Transport en commun </u>: Oui <br>
-          <u>PMR </u>: Oui <br>
-          <u>Voiture </u>: Oui
+          <br /><br />
+          <u>Type d’événement </u>: {{ evenement.typeEvenement }} <br />
+          <u>Type de cuisine </u>: {{ evenement.typeCuisine }} <br />
+          <br />
+          <span class="evenement-titre"> Accessibilité </span> <br />
+          <br />
+          <u>Transport en commun </u>:
+          {{ afficherOuiNon(evenement.accessTransportCommun) }} <br />
+          <u>PMR </u>: {{ afficherOuiNon(evenement.accessPMR) }} <br />
+          <u>Voiture </u>: {{ afficherOuiNon(evenement.accessVoiture) }}
         </div>
         <div class="participants">
           <span class="evenement-titre"> Participants </span> <br>
@@ -137,9 +145,10 @@
 </template>
 
 <script>
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-import FooterComponent from "../modules/Footer.vue"
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
+import FooterComponent from "../modules/Footer.vue";
+import Helper from "../modules/EvenementsModule/Helper.js";
 export default {
   name: "EvenementPage",
   components: {
@@ -148,8 +157,11 @@ export default {
   data () {
     return { evenement: null, hote: null, error: null }
   },
-  mounted () {
-    this.getEvenement(this.$route.params.id).then(res => this.getUtilisateur(this.evenement.hoteId))
+  mounted() {
+    this.getEvenement(this.$route.params.id).then((res) =>
+      this.getUtilisateur(this.evenement.hoteId)
+    );
+    this.helper = new Helper();
   },
   methods: {
     async getEvenement (id) {
@@ -172,12 +184,56 @@ export default {
         console.log("Something went wrong : ", erreur.response.data.message)
         this.error = erreur
       }
+    },
+    async mettreFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.mettreFavoris(utilisateurId, evenementId)
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    async supprimerDeFavoris(utilisateurId, evenementId) {
+      try {
+        await EvenementsService.deleteFavoris(utilisateurId, evenementId)
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+    afficherOuiNon(flag) {
+      return flag == 0 ? "Non" : "Oui";
+    },
+    getEvenementPhoto(photo) {
+      if (photo == null) {
+        return "0.png";
+      } else {
+        return photo;
+      }
+    },
+    getHoteAvatar(photo) {
+      if (photo == null) {
+        return "0.png";
+      } else {
+        return photo;
+      }
+    },
+    changerFavoris(id) {
+      let scr = document.getElementById(id).src
+      if (scr.includes("heart.")) {
+        this.mettreFavoris(1, id)
+        document.getElementById(id).src = require('../assets/heart-f.png')
+      } else {
+        this.supprimerDeFavoris(1, id)
+        document.getElementById(id).src = require('../assets/heart.png')
+      }
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
   @import "@s/evenements/evenements";
 </style>
-

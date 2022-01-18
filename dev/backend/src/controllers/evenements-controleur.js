@@ -102,5 +102,50 @@ module.exports = {
         message: error.message
       })
     }
+  },
+  async ajouterFavoris(req, res) {
+    const {evenementId, utilisateurId} = req.body;
+    console.log('user ',utilisateurId)
+    console.log('evnt ',evenementId)
+    try {
+      await EvenementFavoris.create({
+        utilisateurId: utilisateurId,
+        evenementId: evenementId
+      })
+      return res.status(200).json({
+        statut: "Succès",
+        data: null
+      });
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
+  },
+  async suprimerFavoris(req, res) {
+    const utilisateurId = parseInt(req.query.utilisateurId);
+    const evenementId = parseInt(req.query.evenementId);
+    console.log('user ',utilisateurId)
+    console.log('evnt ',evenementId)
+    try {
+      await EvenementFavoris.destroy({
+        where: {
+        utilisateurId: utilisateurId,
+        evenementId, evenementId
+        }
+      })
+      return res.status(200).json({
+        statut: "Succès",
+        data: null
+      });
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
   }
 }

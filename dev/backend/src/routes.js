@@ -35,4 +35,10 @@ module.exports = (app) => {
   app.get("/favoris",
     evenementsControleur.getFavoris
   )
+  app.post("/favoris",
+    EvenementsControleur.ajouterFavoris
+  )
+  app.delete("/favoris",
+    EvenementsControleur.suprimerFavoris
+  )
 };
