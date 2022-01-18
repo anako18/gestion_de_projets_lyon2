@@ -18,7 +18,7 @@ module.exports = {
     }
   },
 
-  async getEvenement (request, res) {
+  async evenementParId(req, res) {
     try {
       /** Correspondance de la requête avec BDD */
       const id = Number.parseInt(request.query.id)
@@ -39,13 +39,25 @@ module.exports = {
       })
     }
   },
-  async getEvenements (request, res) {
+  async evenementsListe(req, res) {
     try {
-      const evenements = await Evenement.findAll({
+      let evenements = await Evenement.findAll({
         where: {
           date: {
             [Op.lt]: new Date().toISOString()
           }
+        }
+      });
+      const favoris = await EvenementFavoris.findAll({
+        where: {
+          idUtilisateur: 1
+        }
+      })
+      evenements.forEach((evenement) => {
+        if (favoris.find(f => f.getDataValue('idEvenement') == evenement.getDataValue('idEvenement'))) {
+          evenement.setDataValue('favoris', 1)
+        } else {
+          evenement.setDataValue('favoris', 0)
         }
       })
       return res.status(200).json({
@@ -60,9 +72,8 @@ module.exports = {
       })
     }
   },
-
-  async getEvenementsByIds (request, res) {
-    const { ids } = request.body
+  async favorisListeParIds(req, res) {
+    const { ids } = req.body;
     try {
       const evenements = await Evenement.findAll({
         where: {
@@ -83,12 +94,12 @@ module.exports = {
       })
     }
   },
-  async getFavoris (request, res) {
-    const id = Number.parseInt(request.query.id)
+  async favorisListe(req, res) {
+    const id = parseInt(req.query.id);
     try {
       const favs = await EvenementFavoris.findAll({
         where: {
-          utilisateurId: id
+          idUtilisateur: id
         }
       })
       return res.status(200).json({
@@ -104,13 +115,11 @@ module.exports = {
     }
   },
   async ajouterFavoris(req, res) {
-    const {evenementId, utilisateurId} = req.body;
-    console.log('user ',utilisateurId)
-    console.log('evnt ',evenementId)
+    const { idEvenement, idUtilisateur } = req.body;
     try {
       await EvenementFavoris.create({
-        utilisateurId: utilisateurId,
-        evenementId: evenementId
+        idUtilisateur: idUtilisateur,
+        idEvenement: idEvenement
       })
       return res.status(200).json({
         statut: "Succès",
@@ -125,15 +134,13 @@ module.exports = {
     }
   },
   async suprimerFavoris(req, res) {
-    const utilisateurId = parseInt(req.query.utilisateurId);
-    const evenementId = parseInt(req.query.evenementId);
-    console.log('user ',utilisateurId)
-    console.log('evnt ',evenementId)
+    const idUtilisateur = parseInt(req.query.idUtilisateur);
+    const idEvenement = parseInt(req.query.idEvenement);
     try {
       await EvenementFavoris.destroy({
         where: {
-        utilisateurId: utilisateurId,
-        evenementId, evenementId
+          idUtilisateur: idUtilisateur,
+          idEvenement, idEvenement
         }
       })
       return res.status(200).json({

@@ -22,4 +22,4 @@ module.exports = (Sequelize, DataTypes) =>
     dateAnnulation: {
       type: DataTypes.DATE
     }
-  })
+  });

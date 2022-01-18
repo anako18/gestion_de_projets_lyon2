@@ -7,7 +7,7 @@ module.exports = (Sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    hoteId: {
+    idHote: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

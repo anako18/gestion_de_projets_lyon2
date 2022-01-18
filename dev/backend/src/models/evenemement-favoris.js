@@ -1,17 +1,17 @@
 module.exports = (Sequelize, DataTypes) =>
   Sequelize.define("EvenementFavoris", {
-    evenementFavorisId: {
+    idEvenementFavoris: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
       autoIncrement: true
     },
-    evenementId: {
+    idEvenement: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    utilisateurId: {
+    idUtilisateur: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
