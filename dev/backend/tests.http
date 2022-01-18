@@ -2,6 +2,18 @@
 @email = jbob-zdar@email.com
 @mdp = haaaaaa
 
+### Enregistrer un utilisateur (p^rod)
+POST https://toquetoc.gcch.fr/api/enregistrement HTTP/2
+content-type: application/json
+
+{
+    "email": "{{email}}",
+    "mdp": "{{mdp}}",
+    "nom": "COLIN--HAAG",
+    "prenom": "Gauthier",
+    "dateDeNaissance": "1994-01-01",
+}
+
 ### Enregistrer un utilisateur
 POST {{host}}:{{port}}/enregistrement {{protocol}}
 content-type: {{contenuType}}
@@ -12,7 +24,6 @@ content-type: {{contenuType}}
     "nom": "COLIN--HAAG",
     "prenom": "Gauthier",
     "dateDeNaissance": "1994-01-01",
-    "civilite": "M"
 }
 
 ### Authentifier un utilisateur (bon mot de passe)
