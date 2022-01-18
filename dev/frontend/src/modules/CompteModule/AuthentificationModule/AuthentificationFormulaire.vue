@@ -1,79 +1,122 @@
 <template>
   <div class="authentification">
-    <h1 class="style-7">
+    <h1 class="authentification__titre">
       Connexion
     </h1>
     <section class="authentification__google">
       <button
-        class="bouton1 couleur--c6 icone--google bouton--connexion-google"
+        class="bouton-style-1 couleur-c6 bouton-icone-google bouton-connexion-google"
       >
+        <img
+          class="bouton__icone"
+          src="@ai/icone--google.png"
+        >
         Continuer avec Google
       </button>
     </section>
-    <p class="authentification__separateur">
-      ou
-    </p>
+    <section class="authentification__separateur">
+      <span class="authentification__separateur__trait" />
+      <span class="authentification__separateur__texte">ou</span>
+      <span class="authentification__separateur__trait" />
+    </section>
     <section class="authentification__classique">
-      <form>
-        <input
-          v-model="email"
-          name="email"
+      <form class="authentification__classique__formulaire">
+        <ChampInterface
+          :etat="selectionEtatChamp('email')"
+          :value="identifiants.email"
+          texte="Adresse email"
           type="email"
-          placeholder="Adresse email"
-          required
-        >
-        <input
-          v-model="password"
-          name="password"
+          @gestionEvenement="gestionChangement('email', $event)"
+          @select="selectionUtilisateurChamp('email')"
+          @click="selectionUtilisateurChamp('email')"
+        />
+        <ChampInterface
+          :etat="selectionEtatChamp('mdp')"
+          :value="identifiants.mdp"
+          texte="Mot de passe"
           type="password"
-          placeholder="Mot de passe"
-          required
-        >
-        <p>
-          {{ erreur }}
-        </p>
-        <input
-          id=""
-          type="checkbox"
-          name="se-souvenir"
-        >
-        <label for="se souvenir">Se souvenir de moi</label>
+          @gestionEvenement="gestionChangement('mdp', $event)"
+          @select="selectionUtilisateurChamp('mdp')"
+          @click="selectionUtilisateurChamp('mdp')"
+        />
+        <CaseACocherInterface
+          :class="{ 'active': selectionsCases.seSouvenirCompte === true}"
+          class="se-souvenir-compte"
+          nom="se-souvenir-compte"
+          label="Se souvenir de moi"
+          @aClique="selectionCaseACocher"
+        />
       </form>
-      <button class="bouton1 couleur--c1" @click="authentification">
-        Je me connecte
-      </button>
+      <div class="authentification__classique__bouton">
+        <BoutonInterface
+          valeur="Je me connecte"
+          type="connexion"
+          :etat="validation"
+          icone="connexion"
+          @aClique="envoiAuthentification"
+        />
+      </div>
+    </section>
+    <aside class="authentification__inscription">
       <p>
         Tu n'as pas de compte ?
         <router-link to="inscription">
-          Se créer un compte
+          S'enregistrer
         </router-link>
       </p>
-    </section>
+    </aside>
   </div>
 </template>
 
 <script>
+import CompteService from "../CompteService.js"
 import AuthentificationService from "./AuthentificationService.js"
+
+import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
+import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
+import CaseACocherInterface from "@m/InterfaceModule/CaseACocherInterface.vue"
+
 export default {
   name: "AuthentificationFormulaire",
+  components: {
+    BoutonInterface,
+    ChampInterface,
+    CaseACocherInterface
+  },
   data () {
     return {
-      email: "",
-      password: "",
-      erreur: null
-    }
-  },
-  methods: {
-    async authentification () {
-      try {
-        await AuthentificationService.authentification({
-          email: this.email,
-          password: this.password
-        })
-      } catch (erreur) {
-        this.erreur = erreur.response.data.message
+      identifiants: {
+        email: "",
+        mdp: ""
+      },
+      erreurs: {
+        email: [],
+        mdp: []
+      },
+      validation: false,
+      selection: "email",
+      selectionsCases: {
+        seSouvenirCompte: false
       }
     }
+  },
+  watch: {
+    identifiants: { handler: "validationAuthentification", deep: true }
+  },
+  mounted () {
+    this.validationAuthentification()
+  },
+  methods: {
+    conversionCamelCase: CompteService.conversionCamelCase,
+    gestionChangement: CompteService.gestionChangement,
+    reinitialisationErreurs: CompteService.reinitialisationErreurs,
+    selectionCaseACocher: CompteService.selectionCaseACocher,
+    selectionEtatChamp: CompteService.selectionEtatChamp,
+    selectionUtilisateurChamp: CompteService.selectionUtilisateurChamp,
+    verificationErreurChamp: CompteService.verificationErreurChamp,
+    validationAuthentification: AuthentificationService.validationAuthentification,
+    envoiAuthentification: AuthentificationService.envoiAuthentification,
+    authentification: AuthentificationService.authentification
   }
 }
 </script>

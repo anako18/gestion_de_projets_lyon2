@@ -105,6 +105,7 @@ main {
 
 .enregistrement,
 .authentification {
+  @include marge("bottom", 6);
   display: flex;
   flex-direction: column;
   min-width: 100%;
@@ -167,15 +168,12 @@ main {
         color: $couleur-nmoyen;
       }
 
-      .champ {
-        @include marge("bottom", 3);
-      }
-
-      textarea.champ {
+      .champ, textarea.champ {
         @include marge("bottom", 3);
       }
 
       .case-a-cocher {
+        @include marge("top", 3);
         @include marge("bottom", 3);
 
         color: $couleur-nmoyen;
@@ -202,7 +200,31 @@ main {
 
     min-width: 100%;
     color: $couleur-nmoyen;
-    text-align: center;
+    a {
+      border-bottom: 1px solid $couleur-nmoyen;
+    }
+  }
+}
+
+.authentification {
+  &__classique {
+    &__formulaire {
+      .champ {
+        &:last-of-type {
+          @include marge("bottom", 3);
+        }
+      }
+    }
+  }
+
+  &__inscription {
+    @extend %texte-style-11;
+
+    min-width: 100%;
+    color: $couleur-nmoyen;
+    a {
+      border-bottom: 1px solid $couleur-nmoyen;
+    }
   }
 }
 

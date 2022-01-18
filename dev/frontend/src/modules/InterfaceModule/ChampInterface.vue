@@ -9,7 +9,7 @@
     :etat="etat"
     class="champ"
     v-on="gestionEvenements"
-  ></textarea>
+  />
   <input
     v-else
     :class="classes"

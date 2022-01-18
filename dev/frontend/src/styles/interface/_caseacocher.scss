@@ -6,7 +6,9 @@
   align-items: center;
   overflow: hidden;
 
-  label, .ok, .nok {
+  label,
+  .ok,
+  .nok {
     &:hover {
       cursor: pointer;
     }
@@ -16,14 +18,16 @@
     visibility: hidden;
   }
 
-  .ok, .nok {
+  .ok,
+  .nok {
     position: absolute;
     width: 20px;
     margin-top: -2px;
   }
 
   &.obligatoire {
-    .ok, .nok {
+    .ok,
+    .nok {
       filter: hue-rotate(295deg);
     }
   }
@@ -56,8 +60,8 @@
 
   label {
     @extend %texte-style-9;
-    line-height: 1.0;
-    margin-left: 20px;
-  }
 
+    margin-left: 20px;
+    line-height: 1;
+  }
 }
