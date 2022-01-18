@@ -15,7 +15,9 @@
           height="70%"
         />
         <button  class="favorite-button">
-          <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" :src="require('../assets/heart.png')" width="17%" />
+          <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" 
+          :src="evenement.favoris == 1 ? require('../assets/heart-f.png') : require('../assets/heart.png')" 
+          width="17%" />
         </button>
       </div>
       <div class="evenement-content">
@@ -159,7 +161,7 @@ export default {
   },
   mounted() {
     this.getEvenement(this.$route.params.id).then((res) =>
-      this.getUtilisateur(this.evenement.hoteId)
+      this.getUtilisateur(this.evenement.idHote)
     );
     this.helper = new Helper();
   },
@@ -185,18 +187,18 @@ export default {
         this.error = erreur
       }
     },
-    async mettreFavoris(utilisateurId, evenementId) {
+    async mettreFavoris(idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(utilisateurId, evenementId)
+        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
         this.error = null;
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message);
         this.error = erreur;
       }
     },
-    async supprimerDeFavoris(utilisateurId, evenementId) {
+    async supprimerDeFavoris(idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.deleteFavoris(utilisateurId, evenementId)
+        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
         this.error = null;
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message);

@@ -24,7 +24,9 @@
               class="favoris-image"
             >
             <button class="favorite-button">
-              <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" :src="require('../assets/heart.png')" width="40%" />
+              <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" 
+              :src="require('../assets/heart-f.png')" 
+              width="40%" />
             </button>
           </div>
           <div class="favoris-description">
@@ -77,20 +79,20 @@ export default {
       helper: null
     }
   },
-  mounted () {
-    this.getFavoris().then((res) => {
-      const evntsIds = this.favs.map((e) => e.evenementId)
+  mounted() {
+    this.favorisListe().then((res) => {
+      let evntsIds = this.favs.map((e) => e.idEvenement);
       this.getEvenements(evntsIds).then((res) => {
-        const hoteIds = this.evenements.map((e) => e.hoteId)
-        this.getUtilisateurs(hoteIds)
-      })
-    })
-    this.helper = new Helper()
+        let idHotes = this.evenements.map((e) => e.idHote);
+        this.getUtilisateurs(idHotes);
+      });
+    });
+    this.helper = new Helper();
   },
   methods: {
-    async getFavoris () {
+    async favorisListe() {
       try {
-        await EvenementsService.getFavoris(1).then(
+        await EvenementsService.favorisListe(1).then(
           (res) => (this.favs = res.data.data)
         )
         this.error = null
@@ -111,9 +113,9 @@ export default {
         this.error = erreur
       }
     },
-    async getUtilisateurs (hoteIds) {
+    async getUtilisateurs(idHotes) {
       try {
-        await AuthentificationService.getUtilisateurs({ ids: hoteIds }).then(
+        await AuthentificationService.getUtilisateurs({ ids: idHotes }).then(
           (res) => (this.hotes = res.data.data)
         )
         this.error = null
@@ -137,18 +139,18 @@ export default {
         return photo
       }
     },
-     async mettreFavoris(utilisateurId, evenementId) {
+     async mettreFavoris(idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(utilisateurId, evenementId);
+        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement);
         this.error = null;
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message);
         this.error = erreur;
       }
     },
-    async supprimerDeFavoris(utilisateurId, evenementId) {
+    async supprimerDeFavoris(idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.deleteFavoris(utilisateurId, evenementId);
+        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement);
         this.error = null;
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message);
@@ -167,7 +169,7 @@ export default {
     },
     redirect(id) {
       window.location.href = `/page-evenement/${id}`;
-    },
+    }
   },
 };
 </script>

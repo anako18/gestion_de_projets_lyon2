@@ -33,8 +33,8 @@ module.exports = (app) => {
     authentificationControleur.getUtilisateurs
   )
   app.get("/favoris",
-    evenementsControleur.getFavoris
-  )
+  EvenementsControleur.favorisListe
+  );
   app.post("/favoris",
     EvenementsControleur.ajouterFavoris
   )
