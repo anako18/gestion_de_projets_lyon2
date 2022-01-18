@@ -5,11 +5,11 @@ const authentificationControleur = require("./controllers/authentification-contr
 // const authentificationControleurPolitique = require("./policies/authentificationControleurPolitique");
 
 module.exports = (app) => {
-  app.post("/enregistrement",
+  app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,
     enregistrementControleur.enregistrement)
 
-  app.post("/authentification",
+  app.post("/api/authentification",
     // authentificationControleurPolitique.authentification,
     authentificationControleur.authentification)
 }
