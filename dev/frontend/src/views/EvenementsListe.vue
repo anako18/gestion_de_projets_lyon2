@@ -67,7 +67,10 @@ import FooterComponent from "../modules/Footer.vue";
 import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
 import EvenementComponent from "../modules/EvenementsModule/Evenement.vue";
+import Helper from "../modules/EvenementsModule/Helper.js";
 import FooterComponent from "../modules/Footer.vue";
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
 
 export default {
   name: "EvenementsListe",
@@ -129,8 +132,8 @@ export default {
 
   },
     FooterComponent,
-    EvenementComponent
-};
+    EvenementComponent,
+  };
 </script>
 
 <style lang="scss" scoped>

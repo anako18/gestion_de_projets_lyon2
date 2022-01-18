@@ -63,5 +63,7 @@ const getUtilisateur = function (id) {
 export default {
   validationAuthentification,
   envoiAuthentification,
-  authentification
+  authentification,
+  getUtilisateurs,
+  getUtilisateur
 }
