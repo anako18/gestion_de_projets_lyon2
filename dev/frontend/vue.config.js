@@ -2,7 +2,7 @@ const path = require("path")
 
 module.exports = {
   devServer: {
-    // proxy: "http://localhost:8082/"
+    proxy: "http://localhost:8082/"
   },
   configureWebpack: {
     devServer: {
