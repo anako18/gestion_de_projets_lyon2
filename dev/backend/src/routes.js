@@ -1,10 +1,10 @@
 const enregistrementControleur = require("./controllers/enregistrement-controleur")
 const enregistrementPolitique = require("./policies/enregistrement-politique")
-
 const authentificationControleur = require("./controllers/authentification-controleur")
 const authentificationPolitique = require("./policies/authentification-politique")
 const evenementsControleur = require("./controllers/evenements-controleur")
 
+const EvenementsControleur = require("./controllers/evenements-controleur")
 module.exports = (app) => {
   app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,

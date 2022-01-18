@@ -24,8 +24,6 @@ INSERT INTO `Evenements` (`idEvenement`, `hoteId`, `titre`, `description`, `desc
 
 INSERT INTO `EvenementFavoris` (`evenementFavorisId`, `evenementId`, `utilisateurId`,`createdAt`,`updatedAt`) VALUES  (1, 1, 1, datetime('now'), datetime('now'));
 
-
-
 UPDATE Utilisateurs
 SET photo = '1.png'
 WHERE idUtilisateur = 1;
