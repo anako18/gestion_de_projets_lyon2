@@ -1,15 +1,23 @@
 <template>
   <main>
     <header class="header-logo">
-      <img src="../assets/logo.png" />
+      <img src="../assets/logo.png">
     </header>
     <FiltersComponents />
-    <div class="events-scroll-ecran" v-for="evenement in evenements" :key="evenement.idEvenement">
+    <div
+      v-for="evenement in evenements"
+      :key="evenement.idEvenement"
+      class="events-scroll-ecran"
+    >
       <div class="evenement">
         <div class="evenement-image">
-          <img :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)" width="100%" height="50%" />
+          <img
+            :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)"
+            width="100%"
+            height="50%"
+          >
           <button class="favorite-button">
-            <img src="../assets/heart.png" width="17%" />
+            <img src="../assets/heart.png" width="17%">
           </button>
         </div>
         <div class="evenement-content">
@@ -19,24 +27,25 @@
               :src="require(`../assets/avatars/${getHoteAvatar(evenement.idEvenement)}`)"
               width="20%"
               height="20%"
-            />
+            >
             <span class="evenement-titre">
-              {{evenement.titre}}
+              {{ evenement.titre }}
             </span>
           </div>
           <div class="evenement-info">
-            <span class="evenement-date"
-              ><i class="icon-calendar"></i> {{helper.afficherDate(evenement.date)}}
+            <span class="evenement-date"><i class="icon-calendar" /> {{ helper.afficherDate(evenement.date) }}
             </span>
-            <span class="evenement-font-petit"> {{evenement.ville}} </span>
+            <span class="evenement-font-petit"> {{ evenement.ville }} </span>
           </div>
           <div class="description-price">
             <p class="evenement-description">
-              {{evenement.description}}
+              {{ evenement.description }}
             </p>
             <div class="price-tag">
-              <img src="../assets/price.png" />
-              <div class="price-centered">{{evenement.prix}}€</div>
+              <img src="../assets/price.png">
+              <div class="price-centered">
+                {{ evenement.prix }}€
+              </div>
             </div>
           </div>
           <center>
@@ -52,11 +61,11 @@
 </template>
 
 <script>
-import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
-import Helper from "../modules/EvenementsModule/Helper.js";
-import FooterComponent from "../modules/Footer.vue";
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
+import FiltersComponents from "../modules/EvenementsModule/Filters.vue"
+import Helper from "../modules/EvenementsModule/Helper.js"
+import FooterComponent from "../modules/Footer.vue"
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
 
 export default {
   name: "EvenementsListe",
@@ -64,59 +73,59 @@ export default {
     FiltersComponents,
     FooterComponent
   },
-  data() {
-    return { evenements: null, hotes: null, error: null, helper: null };
+  data () {
+    return { evenements: null, hotes: null, error: null, helper: null }
   },
-  mounted() {
+  mounted () {
     this.getEvenements().then((res) => {
-      let hoteIds = this.evenements.map((e) => e.hoteId);
-      this.getUtilisateurs(hoteIds);
-    });
-    this.helper = new Helper();
+      const hoteIds = this.evenements.map((e) => e.hoteId)
+      this.getUtilisateurs(hoteIds)
+    })
+    this.helper = new Helper()
   },
   methods: {
-    async getEvenements() {
+    async getEvenements () {
       try {
         await EvenementsService.getEvenements().then(
           (res) => (this.evenements = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async getUtilisateurs(hoteIds) {
+    async getUtilisateurs (hoteIds) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: hoteIds }).then(
           (res) => (this.hotes = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    getHoteAvatar(evntId) {
-        let photo = this.hotes.find(h => h.idUtilisateur == evntId).photo
-        if (photo == null) {
-          return '0.png'
-        } else {
-          return photo
-        }
+    getHoteAvatar (evntId) {
+      const photo = this.hotes.find(h => h.idUtilisateur == evntId).photo
+      if (photo == null) {
+        return "0.png"
+      } else {
+        return photo
+      }
     },
-     getEvenementPhoto(photo) {
-        if (photo == null) {
-          return '0.png'
-        } else {
-          return photo
-        }
+    getEvenementPhoto (photo) {
+      if (photo == null) {
+        return "0.png"
+      } else {
+        return photo
+      }
     },
-    redirect(id) {
-      window.location.href=`/page-evenement/${id}`
+    redirect (id) {
+      window.location.href = `/page-evenement/${id}`
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

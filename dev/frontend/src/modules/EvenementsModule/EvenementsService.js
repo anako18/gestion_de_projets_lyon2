@@ -17,7 +17,6 @@ const getFavoris = function (utilisateurId) {
   })
 }
 
-
 const getEvenements = function () {
   return Api().get("evenements")
 }
@@ -27,8 +26,8 @@ const getEvenementsByIds = function (ids) {
 }
 
 export default {
-    evenement,
-    getEvenements,
-    getFavoris,
-    getEvenementsByIds
+  evenement,
+  getEvenements,
+  getFavoris,
+  getEvenementsByIds
 }

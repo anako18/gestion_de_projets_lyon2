@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="slide-fade">
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <style lang="scss">
   @import "@s/common.scss";
-  @import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap");
 </style>
