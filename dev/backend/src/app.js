@@ -4,8 +4,6 @@ const cors = require("cors")
 const morgan = require("morgan")
 const { sequelize } = require("./models")
 
-// TODO: Finir la documentation du code
-
 /**
  * Déclaration du serveur
  *
