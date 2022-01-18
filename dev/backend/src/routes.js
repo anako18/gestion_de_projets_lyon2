@@ -3,8 +3,6 @@ const enregistrementPolitique = require("./policies/enregistrement-politique")
 const authentificationControleur = require("./controllers/authentification-controleur")
 const authentificationPolitique = require("./policies/authentification-politique")
 const evenementsControleur = require("./controllers/evenements-controleur")
-
-const EvenementsControleur = require("./controllers/evenements-controleur")
 module.exports = (app) => {
   app.post("/api/enregistrement",
     enregistrementPolitique.enregistrement,
@@ -18,13 +16,13 @@ module.exports = (app) => {
     evenementsControleur.creerEvenement
   )
   app.get("/evenement",
-    evenementsControleur.getEvenement
+    evenementsControleur.evenementParId
   )
   app.get("/evenements",
-    evenementsControleur.getEvenements
+    evenementsControleur.evenementsListe
   )
   app.post("/evenements",
-    evenementsControleur.getEvenementsByIds
+    evenementsControleur.favorisListeParIds
   )
   app.get("/utilisateur",
     authentificationControleur.getUtilisateur
@@ -33,12 +31,12 @@ module.exports = (app) => {
     authentificationControleur.getUtilisateurs
   )
   app.get("/favoris",
-  EvenementsControleur.favorisListe
-  );
+  evenementsControleur.favorisListe
+  )
   app.post("/favoris",
-    EvenementsControleur.ajouterFavoris
+  evenementsControleur.ajouterFavoris
   )
   app.delete("/favoris",
-    EvenementsControleur.suprimerFavoris
+  evenementsControleur.suprimerFavoris
   )
 };
