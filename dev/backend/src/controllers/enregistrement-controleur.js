@@ -45,8 +45,10 @@ module.exports = {
    * @param {*} resultat La réponse retournée.
    */
   async enregistrement (requete, resultat) {
-    creationUtilisateur(requete.body)
-      .then((utilisateur) => retourSuccesValidation(resultat, utilisateur))
+    await creationUtilisateur(requete.body)
+      .then((utilisateur) => {
+        retourSuccesValidation(resultat, utilisateur)
+      })
       .catch((error) => retourEchecValidation(resultat, error.messageErreur))
   }
 }
