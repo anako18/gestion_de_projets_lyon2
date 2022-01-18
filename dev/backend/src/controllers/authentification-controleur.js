@@ -2,7 +2,7 @@ const { Utilisateur } = require("../models")
 const jwt = require("jsonwebtoken")
 const config = require("../config/config")
 const AuthentificationErreur = require("../errors/authentification-erreur")
-const Op = require('sequelize').Op;
+const Op = require("sequelize").Op
 
 const signatureJwtUtilisateur = (utilisateur) => {
   const UNE_SEMAINE = 60 * 60 * 24 * 7
@@ -18,8 +18,6 @@ const signatureJwtUtilisateur = (utilisateur) => {
 module.exports = {
   /**
    * **Authentifie un Utilisateur**
-   *
-   * TODO: Finir la documentation du code
    *
    * @param {*} req La requête qui sera contrôlée puis enregistrée en base de données.
    * @param {*} resultat La réponse retournée.
@@ -92,44 +90,44 @@ module.exports = {
       })
     }
   },
-  async getUtilisateur (req, res) {
+  async getUtilisateur (request, res) {
     try {
-      const id = parseInt(req.query.id);
+      const id = Number.parseInt(request.query.id)
       const utilisateur = await Utilisateur.findOne({
         where: {
           idUtilisateur: id
         }
-      });
+      })
       return res.status(200).json({
         statut: "Succès",
         data: utilisateur
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async getUtilisateurs (req, res) {
+  async getUtilisateurs (request, res) {
     try {
-      const { ids } = req.body
+      const { ids } = request.body
       const utilisateurs = await Utilisateur.findAll({
         where: {
           idUtilisateur: {
-            [Op.in] : ids
+            [Op.in]: ids
           }
         }
-      });
+      })
       return res.status(200).json({
         statut: "Succès",
         data: utilisateurs
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   }
 }
