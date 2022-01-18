@@ -2,6 +2,7 @@ const { Utilisateur } = require("../models")
 const jwt = require("jsonwebtoken")
 const config = require("../config/config")
 const AuthentificationErreur = require("../errors/authentification-erreur")
+const Op = require('sequelize').Op;
 
 const signatureJwtUtilisateur = (utilisateur) => {
   const UNE_SEMAINE = 60 * 60 * 24 * 7
@@ -102,6 +103,27 @@ module.exports = {
       return res.status(200).json({
         statut: "Succès",
         data: utilisateur
+      });
+    } catch (erreur) {
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
+  },
+  async getUtilisateurs (req, res) {
+    try {
+      const { ids } = req.body
+      const utilisateurs = await Utilisateur.findAll({
+        where: {
+          idUtilisateur: {
+            [Op.in] : ids
+          }
+        }
+      });
+      return res.status(200).json({
+        statut: "Succès",
+        data: utilisateurs
       });
     } catch (erreur) {
       return res.status(403).json({

@@ -21,7 +21,15 @@ module.exports = (app) => {
     EvenementsControleur.getEvenement
   )
 
+  app.get("/evenements",
+    EvenementsControleur.getEvenements
+  )
+
   app.get("/utilisateur",
     AuthentificationControleur.getUtilisateur
+  )
+
+  app.post("/utilisateurs",
+    AuthentificationControleur.getUtilisateurs
   )
 }

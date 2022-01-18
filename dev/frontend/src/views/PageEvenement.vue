@@ -3,7 +3,7 @@
     <header class="header-logo">
       <img src="../assets/logo.png" />
     </header>
-    <div class="evenement">
+    <div class="evenement events-scroll-ecran">
       <div class="evenement-image">
         <img src="../assets/food.png" width="100%" height="70%" />
         <button class="favorite-button">
@@ -144,7 +144,7 @@ export default {
     return { evenement: null, hote: null, error: null };
   },
   mounted() {
-    this.getEvenement(1).then(res => this.getUtilisateur(this.evenement.hoteId))
+    this.getEvenement(this.$route.params.id).then(res => this.getUtilisateur(this.evenement.hoteId))
   },
   methods: {
     async getEvenement(id) {

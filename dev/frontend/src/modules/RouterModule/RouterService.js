@@ -78,7 +78,7 @@ const routes = [
     component: MesEvenementsVue
   },
   {
-    path: "/page-evenement",
+    path: "/page-evenement/:id",
     name: "PageEvenement",
     component: PageEvenementVue
   },

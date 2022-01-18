@@ -1,4 +1,5 @@
 const { Evenement } = require("../models");
+const Op = require('sequelize').Op;
 
 module.exports = {
   async creerEvenement (req, res) {
@@ -28,6 +29,27 @@ module.exports = {
       return res.status(200).json({
         statut: "Succès",
         data: evenement
+      });
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
+  },
+  async getEvenements(req, res) {
+    try {
+      const evenements = await Evenement.findAll({
+        where: {
+          date: {
+            [Op.lt]: new Date().toISOString()
+          }
+        }
+      });
+      return res.status(200).json({
+        statut: "Succès",
+        data: evenements
       });
     } catch (erreur) {
       /** Erreurs non gérées */
