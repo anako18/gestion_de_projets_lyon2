@@ -17,11 +17,11 @@
           >
           <button class="favorite-button">
             <img
-              @click="changerFavoris(evenement.idEvenement)"
-              v-bind:id="evenement.idEvenement"
+              :id="evenement.idEvenement"
               :src="favorisImage(evenement.favoris)"
               width="17%"
-            />
+              @click="changerFavoris(evenement.idEvenement)"
+            >
           </button>
         </div>
         <div class="evenement-content">
@@ -41,8 +41,7 @@
             </span>
           </div>
           <div class="evenement-info">
-            <span class="evenement-date"
-              ><i class="icon-calendar"></i>
+            <span class="evenement-date"><i class="icon-calendar" />
               {{ helper.afficherDate(evenement.date) }}
             </span>
             <span class="evenement-font-petit"> {{ evenement.ville }} </span>
@@ -74,27 +73,27 @@
 </template>
 
 <script>
-import FiltersComponents from "../modules/EvenementsModule/Filters.vue";
-import Helper from "../modules/EvenementsModule/Helper.js";
-import FooterComponent from "../modules/Footer.vue";
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
+import FiltersComponents from "../modules/EvenementsModule/Filters.vue"
+import Helper from "../modules/EvenementsModule/Helper.js"
+import FooterComponent from "../modules/Footer.vue"
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
 
 export default {
   name: "EvenementsListe",
   components: {
     FiltersComponents,
-    FooterComponent,
+    FooterComponent
   },
   data () {
     return { evenements: null, hotes: null, error: null, helper: null }
   },
   mounted () {
     this.getEvenements().then((res) => {
-      let idHotes = this.evenements.map((e) => e.idHote);
-      this.getUtilisateurs(idHotes);
-    });
-    this.helper = new Helper();
+      const idHotes = this.evenements.map((e) => e.idHote)
+      this.getUtilisateurs(idHotes)
+    })
+    this.helper = new Helper()
   },
   methods: {
     async getEvenements () {
@@ -108,7 +107,7 @@ export default {
         this.error = erreur
       }
     },
-    async getUtilisateurs(idHotes) {
+    async getUtilisateurs (idHotes) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: idHotes }).then(
           (res) => (this.hotes = res.data.data)
@@ -119,60 +118,60 @@ export default {
         this.error = erreur
       }
     },
-    getHoteAvatar(evntId) {
-      let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
-      if (photo == null) {
-        return "0.png";
+    getHoteAvatar (evntId) {
+      const photo = this.hotes.find((h) => h.idUtilisateur === evntId).photo
+      if (photo === null) {
+        return "0.png"
       } else {
-        return photo;
+        return photo
       }
     },
-    getEvenementPhoto(photo) {
-      if (photo == null) {
-        return "0.png";
+    getEvenementPhoto (photo) {
+      if (photo === null) {
+        return "0.png"
       } else {
-        return photo;
+        return photo
       }
     },
-    async mettreFavoris(idUtilisateur, idEvenement) {
+    async mettreFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async supprimerDeFavoris(idUtilisateur, idEvenement) {
+    async supprimerDeFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    changerFavoris(id) {
-      let scr = document.getElementById(id).src;
+    changerFavoris (id) {
+      const scr = document.getElementById(id).src
       if (scr.includes("heart.")) {
-        this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id);
-        document.getElementById(id).src = require("../assets/heart-f.png");
+        this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id)
+        document.getElementById(id).src = require("../assets/heart-f.png")
       } else {
-        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id);
-        document.getElementById(id).src = require("../assets/heart.png");
+        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id)
+        document.getElementById(id).src = require("../assets/heart.png")
       }
     },
-    redirect(id) {
-      window.location.href = `/page-evenement/${id}`;
+    redirect (id) {
+      window.location.href = `/page-evenement/${id}`
     },
-    favorisImage(flag) {
-      return flag == 1
+    favorisImage (flag) {
+      return flag === 1
         ? require("../assets/heart-f.png")
-        : require("../assets/heart.png");
-    },
+        : require("../assets/heart.png")
+    }
   },
-    FooterComponent
-  };
+  FooterComponent
+}
 </script>
 
 <style lang="scss" scoped>

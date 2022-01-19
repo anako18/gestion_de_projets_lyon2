@@ -24,9 +24,12 @@
               class="favoris-image"
             >
             <button class="favorite-button">
-              <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" 
-              :src="require('../assets/heart-f.png')" 
-              width="40%" />
+              <img
+                :id="evenement.idEvenement"
+                :src="require('../assets/heart-f.png')"
+                width="40%"
+                @click="changerFavoris(evenement.idEvenement)"
+              >
             </button>
           </div>
           <div class="favoris-description">
@@ -77,18 +80,18 @@ export default {
       helper: null
     }
   },
-  mounted() {
+  mounted () {
     this.favorisListe().then((res) => {
-      let evntsIds = this.favs.map((e) => e.idEvenement);
+      const evntsIds = this.favs.map((e) => e.idEvenement)
       this.getEvenements(evntsIds).then((res) => {
-        let idHotes = this.evenements.map((e) => e.idHote);
-        this.getUtilisateurs(idHotes);
-      });
-    });
-    this.helper = new Helper();
+        const idHotes = this.evenements.map((e) => e.idHote)
+        this.getUtilisateurs(idHotes)
+      })
+    })
+    this.helper = new Helper()
   },
   methods: {
-    async favorisListe() {
+    async favorisListe () {
       try {
         await EvenementsService.favorisListe(window.localStorage.getItem("idUtilisateur")).then(
           (res) => (this.favs = res.data.data)
@@ -111,7 +114,7 @@ export default {
         this.error = erreur
       }
     },
-    async getUtilisateurs(idHotes) {
+    async getUtilisateurs (idHotes) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: idHotes }).then(
           (res) => (this.hotes = res.data.data)
@@ -123,53 +126,53 @@ export default {
       }
     },
     hotePrenom (evntId) {
-      const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom
-      if (nom == null) {
+      const nom = this.hotes.find((h) => h.idUtilisateur === evntId).prenom
+      if (nom === null) {
         return "N/A"
       } else {
         return nom
       }
     },
     getEvenementPhoto (photo) {
-      if (photo == null) {
+      if (photo === null) {
         return "0.png"
       } else {
         return photo
       }
     },
-     async mettreFavoris(idUtilisateur, idEvenement) {
+    async mettreFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async supprimerDeFavoris(idUtilisateur, idEvenement) {
+    async supprimerDeFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    changerFavoris(id) {
-      let scr = document.getElementById(id).src;
+    changerFavoris (id) {
+      const scr = document.getElementById(id).src
       if (scr.includes("heart.")) {
-        this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id);
-        document.getElementById(id).src = require("../assets/heart-f.png");
+        this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id)
+        document.getElementById(id).src = require("../assets/heart-f.png")
       } else {
-        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id);
-        document.getElementById(id).src = require("../assets/heart.png");
+        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id)
+        document.getElementById(id).src = require("../assets/heart.png")
       }
     },
-    redirect(id) {
-      window.location.href = `/page-evenement/${id}`;
+    redirect (id) {
+      window.location.href = `/page-evenement/${id}`
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

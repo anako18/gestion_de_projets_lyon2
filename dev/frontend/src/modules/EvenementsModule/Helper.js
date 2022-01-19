@@ -3,12 +3,12 @@ export default class Helper {
     const date = new Date(Date.parse(dateStr))
     const now = new Date()
     const time = `${this.zeroPad(date.getHours())}:${this.zeroPad(date.getMinutes())}`
-    if (now.toDateString() == date.toDateString()) {
+    if (now.toDateString() === date.toDateString()) {
       return `Aujourd'hui à ${time}`
     } else {
       const tomorrow = new Date(now)
       tomorrow.setDate(tomorrow.getDate() + 1)
-      if (tomorrow.toDateString() == date.toDateString()) {
+      if (tomorrow.toDateString() === date.toDateString()) {
         return `Demain à ${time}`
       } else {
         return `${this.jourDeSemaine(date)} ${this.zeroPad(date.getDate())}/${this.zeroPad(date.getMonth() + 1)} à ${time}`
