@@ -136,7 +136,7 @@
           </div>
         </div>
         <center>
-          <button class="yellow-button">
+          <button class="yellow-button"  :disabled="evenement.idHote == idUtilisateur">
             Participer
           </button>
         </center>
@@ -157,10 +157,10 @@ export default {
     FooterComponent
   },
   data () {
-    return { evenement: null, hote: null, error: null }
+    return { evenement: null, hote: null, error: null, idUtilisateur: null }
   },
   mounted() {
-    window.sessionStorage.setItem("idUtilisateur", 1)
+    this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
     this.getEvenement(this.$route.params.id).then((res) =>
       this.getUtilisateur(this.evenement.idHote)
     );
@@ -226,10 +226,10 @@ export default {
     changerFavoris(id) {
       let scr = document.getElementById(id).src
       if (scr.includes("heart.")) {
-        this.mettreFavoris(window.sessionStorage.getItem("idUtilisateur"), id)
+        this.mettreFavoris(this.idUtilisateur, id)
         document.getElementById(id).src = require('../assets/heart-f.png')
       } else {
-        this.supprimerDeFavoris(window.sessionStorage.getItem("idUtilisateur"), id)
+        this.supprimerDeFavoris(this.idUtilisateur, id)
         document.getElementById(id).src = require('../assets/heart.png')
       }
     }

@@ -31,7 +31,7 @@ const envoiAuthentification = async function () {
     await this.authentification(this.identifiants)
       .then((valeur) => {
         const idUtilisateur = valeur.data.data.idUtilisateur
-        window.sessionStorage.setItem("idUtilisateur", idUtilisateur)
+        window.localStorage.setItem("idUtilisateur", idUtilisateur)
         this.connexionValide = true
         setTimeout(() => { router.push({ path: "bienvenue" }) }, 3000)
       })

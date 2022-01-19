@@ -257,6 +257,10 @@
   border-radius: 12px;
 }
 
+.yellow-button:disabled {
+  background-color:#eee;
+}
+
 .evenement-image,
 .favoris-image {
   position: relative;
