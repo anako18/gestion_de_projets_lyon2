@@ -28,7 +28,13 @@ module.exports = {
           idEvenement: id
         }
       })
-      console.log(evenement)
+      const reservations = await EvenementReservation.findAll({
+        where: {
+          idEvenement: id
+        }
+      })
+      let idsParticipants = reservations.map(r => r.getDataValue('idUtilisateur'))
+      evenement.setDataValue('idsParticipants', idsParticipants)
       return res.status(200).json({
         statut: "Succès",
         data: evenement
