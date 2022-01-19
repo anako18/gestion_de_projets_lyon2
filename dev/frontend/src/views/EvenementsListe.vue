@@ -14,7 +14,6 @@
           <img
             :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)"
             width="100%"
-            height="50%"
           >
           <button class="favorite-button">
             <img

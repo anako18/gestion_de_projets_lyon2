@@ -16,8 +16,9 @@
         Je suis hôte
       </button>
     </div>
-
+   
     <div id="hote" class="tabcontent activetab">
+       <div v-if="!isLoading">
       <div
         v-for="evenementInv in evenementsInvite"
         :key="evenementInv.idEvenement"
@@ -45,9 +46,11 @@
           <button class="favoris-button" @click="redirect(evenementInv.idEvenement)">Voir plus de detail</button>
         </div>
       </div>
+       </div>
     </div>
 
     <div id="invite" class="tabcontent">
+      <div v-if="!isLoading">
      <div
         v-for="evenementsHt in evenementsHote"
         :key="evenementsHt.idEvenement"
@@ -76,7 +79,7 @@
         </div>
       </div>
     </div>
-
+ </div>
     <FooterComponent />
   </main>
 </template>
@@ -93,6 +96,7 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       evenementsInvite: null,
       evenementsHote: null,
       hotes: null,
@@ -100,13 +104,14 @@ export default {
       helper: null,
     };
   },
-  mounted() {
-    this.evenementsInviteListe().then((res) => {
-      let idHotes = this.evenementsInvite.map((e) => e.idHote);
-      this.getUtilisateurs(idHotes);
-      this.evenementsHoteListe();
-    });
+  async mounted() {
+    await this.evenementsInviteListe()
+     let idHotes = this.evenementsInvite.map((e) => e.idHote);
+     await this.getUtilisateurs(idHotes);
+     await this.evenementsHoteListe();
+   
     this.helper = new Helper();
+    this.isLoading = false
   },
   methods: {
     afficheCategory(event, category) {

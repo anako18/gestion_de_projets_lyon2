@@ -264,6 +264,9 @@
 .evenement-image,
 .favoris-image {
   position: relative;
+  width:100%;
+  height:200px;
+  overflow:hidden;
 }
 
 .favorite-button {
