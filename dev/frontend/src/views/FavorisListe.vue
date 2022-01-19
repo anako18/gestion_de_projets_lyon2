@@ -1,7 +1,7 @@
 <template>
   <main class="favoris-liste">
     <header class="header-logo">
-      <img src="../assets/logo.png">
+      <img src="../assets/logo.png" />
     </header>
     <div class="section-titre">
       <span class="titre"> Mes favoris </span>
@@ -22,20 +22,21 @@
                 )}`)
               "
               class="favoris-image"
-            >
+            />
             <button class="favorite-button">
-              <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" 
-              :src="require('../assets/heart-f.png')" 
-              width="40%" />
+              <img
+                @click="changerFavoris(evenement.idEvenement)"
+                v-bind:id="evenement.idEvenement"
+                :src="require('../assets/heart-f.png')"
+                width="40%"
+              />
             </button>
           </div>
           <div class="favoris-description">
             <p class="evenement-titre">
               {{ evenement.titre }}
             </p>
-            <p class="avec">
-              Avec {{ hotePrenom(evenement.idEvenement) }}
-            </p>
+            <p class="avec">Avec {{ hotePrenom(evenement.idEvenement) }}</p>
             <span class="lieu">
               A {{ evenement.ville }} {{ evenement.prix }}€
             </span>
@@ -45,9 +46,7 @@
           <div class="favoris-date">
             {{ helper.afficherDate(evenement.date) }}
           </div>
-          <div class="favoris-chaise">
-            Reste 1 chaise
-          </div>
+          <div class="favoris-chaise">Reste 1 chaise</div>
         </div>
         <button class="favoris-button" @click="redirect(evenement.idEvenement)">
           Voir plus de detail
@@ -59,23 +58,23 @@
 </template>
 
 <script>
-import FooterComponent from "../modules/Footer.vue"
-import Helper from "../modules/EvenementsModule/Helper.js"
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import FooterComponent from "../modules/Footer.vue";
+import Helper from "../modules/EvenementsModule/Helper.js";
+import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
 export default {
   name: "Favoris",
   components: {
-    FooterComponent
+    FooterComponent,
   },
-  data () {
+  data() {
     return {
       favs: null,
       evenements: null,
       hotes: null,
       error: null,
-      helper: null
-    }
+      helper: null,
+    };
   },
   mounted() {
     this.favorisListe().then((res) => {
@@ -90,54 +89,54 @@ export default {
   methods: {
     async favorisListe() {
       try {
-        await EvenementsService.favorisListe(window.localStorage.getItem("idUtilisateur")).then(
-          (res) => (this.favs = res.data.data)
-        )
-        this.error = null
+        await EvenementsService.favorisListe(
+          window.localStorage.getItem("idUtilisateur")
+        ).then((res) => (this.favs = res.data.data));
+        this.error = null;
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message)
-        this.error = erreur
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
-    async getEvenements (ids) {
+    async getEvenements(ids) {
       try {
-        console.log(ids)
         await EvenementsService.getEvenementsByIds({ ids: ids }).then(
           (res) => (this.evenements = res.data.data)
-        )
-        this.error = null
+        );
+        this.error = null;
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message)
-        this.error = erreur
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
     async getUtilisateurs(idHotes) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: idHotes }).then(
           (res) => (this.hotes = res.data.data)
-        )
-        this.error = null
+        );
+        this.error = null;
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message)
-        this.error = erreur
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
-    hotePrenom (evntId) {
-      const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom
-      if (nom == null) {
-        return "N/A"
-      } else {
-        return nom
+    hotePrenom(evntId) {
+      if (this.hotes) {
+        const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom;
+        if (nom != null) {
+          return nom;
+        }
       }
+      return "N/A";
     },
-    getEvenementPhoto (photo) {
+    getEvenementPhoto(photo) {
       if (photo == null) {
-        return "0.png"
+        return "0.png";
       } else {
-        return photo
+        return photo;
       }
     },
-     async mettreFavoris(idUtilisateur, idEvenement) {
+    async mettreFavoris(idUtilisateur, idEvenement) {
       try {
         await EvenementsService.mettreFavoris(idUtilisateur, idEvenement);
         this.error = null;
@@ -161,13 +160,16 @@ export default {
         this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart-f.png");
       } else {
-        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id);
+        this.supprimerDeFavoris(
+          window.localStorage.getItem("idUtilisateur"),
+          id
+        );
         document.getElementById(id).src = require("../assets/heart.png");
       }
     },
     redirect(id) {
       window.location.href = `/page-evenement/${id}`;
-    }
+    },
   },
 };
 </script>

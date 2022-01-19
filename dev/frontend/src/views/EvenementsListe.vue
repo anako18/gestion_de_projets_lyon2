@@ -1,7 +1,7 @@
 <template>
   <main class="main-evenements">
     <header class="header-logo">
-      <img src="../assets/logo.png">
+      <img src="../assets/logo.png" />
     </header>
     <FiltersComponents />
     <div
@@ -12,9 +12,13 @@
       <div class="evenement">
         <div class="evenement-image">
           <img
-            :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)"
+            :src="
+              require(`../assets/evenements/${getEvenementPhoto(
+                evenement.photo
+              )}`)
+            "
             width="100%"
-          >
+          />
           <button class="favorite-button">
             <img
               @click="changerFavoris(evenement.idEvenement)"
@@ -35,7 +39,7 @@
               "
               width="20%"
               height="20%"
-            >
+            />
             <span class="evenement-titre">
               {{ evenement.titre }}
             </span>
@@ -52,10 +56,8 @@
               {{ evenement.description }}
             </p>
             <div class="price-tag">
-              <img src="../assets/price.png">
-              <div class="price-centered">
-                {{ evenement.prix }}€
-              </div>
+              <img src="../assets/price.png" />
+              <div class="price-centered">{{ evenement.prix }}€</div>
             </div>
           </div>
           <center>
@@ -86,10 +88,10 @@ export default {
     FiltersComponents,
     FooterComponent,
   },
-  data () {
-    return { evenements: null, hotes: null, error: null, helper: null }
+  data() {
+    return { evenements: null, hotes: null, error: null, helper: null };
   },
-  mounted () {
+  mounted() {
     this.getEvenements().then((res) => {
       let idHotes = this.evenements.map((e) => e.idHote);
       this.getUtilisateurs(idHotes);
@@ -97,35 +99,36 @@ export default {
     this.helper = new Helper();
   },
   methods: {
-    async getEvenements () {
+    async getEvenements() {
       try {
         await EvenementsService.getEvenements().then(
           (res) => (this.evenements = res.data.data)
-        )
-        this.error = null
+        );
+        this.error = null;
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message)
-        this.error = erreur
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
     async getUtilisateurs(idHotes) {
       try {
         await AuthentificationService.getUtilisateurs({ ids: idHotes }).then(
           (res) => (this.hotes = res.data.data)
-        )
-        this.error = null
+        );
+        this.error = null;
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message)
-        this.error = erreur
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
     getHoteAvatar(evntId) {
-      let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
-      if (photo == null) {
-        return "0.png";
-      } else {
-        return photo;
+      if (this.hotes) {
+        let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
+        if (photo != null) {
+          return photo;
+        }
       }
+      return "0.png";
     },
     getEvenementPhoto(photo) {
       if (photo == null) {
@@ -158,7 +161,10 @@ export default {
         this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart-f.png");
       } else {
-        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id);
+        this.supprimerDeFavoris(
+          window.localStorage.getItem("idUtilisateur"),
+          id
+        );
         document.getElementById(id).src = require("../assets/heart.png");
       }
     },
@@ -171,8 +177,8 @@ export default {
         : require("../assets/heart.png");
     },
   },
-    FooterComponent
-  };
+  FooterComponent,
+};
 </script>
 
 <style lang="scss" scoped>

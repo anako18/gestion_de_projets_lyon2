@@ -17,7 +17,7 @@
       </button>
     </div>
    
-    <div id="hote" class="tabcontent activetab">
+    <div id="invite" class="tabcontent activetab">
        <div v-if="!isLoading">
       <div
         v-for="evenementInv in evenementsInvite"
@@ -49,7 +49,7 @@
        </div>
     </div>
 
-    <div id="invite" class="tabcontent">
+    <div id="hote" class="tabcontent">
       <div v-if="!isLoading">
      <div
         v-for="evenementsHt in evenementsHote"
@@ -97,6 +97,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      idUtilisateur: null,
       evenementsInvite: null,
       evenementsHote: null,
       hotes: null,
@@ -105,8 +106,10 @@ export default {
     };
   },
   async mounted() {
+    this.idUtilisateur = window.localStorage.getItem("idUtilisateur");
     await this.evenementsInviteListe()
      let idHotes = this.evenementsInvite.map((e) => e.idHote);
+     idHotes.push(this.idUtilisateur)
      await this.getUtilisateurs(idHotes);
      await this.evenementsHoteListe();
    
@@ -131,9 +134,8 @@ export default {
       event.currentTarget.className += " activetab";
     },
     async evenementsInviteListe() {
-      const idUtilisateur = window.localStorage.getItem("idUtilisateur");
       try {
-        await EvenementsService.evenementsInviteListe(idUtilisateur).then(
+        await EvenementsService.evenementsInviteListe(this.idUtilisateur).then(
           (res) => (this.evenementsInvite = res.data.data)
         );
         this.error = null;
@@ -143,9 +145,9 @@ export default {
       }
     },
     async evenementsHoteListe() {
-      const idUtilisateur = window.localStorage.getItem("idUtilisateur");
+    
       try {
-        await EvenementsService.evenementsHoteListe(idUtilisateur).then(
+        await EvenementsService.evenementsHoteListe(this.idUtilisateur).then(
           (res) => (this.evenementsHote = res.data.data)
         );
         this.error = null;
@@ -166,11 +168,15 @@ export default {
       }
     },
     hotePrenom(evntId) {
-      const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom;
+      if (this.hotes != null) {
+      const nom = this.hotes.find((h) => h.idUtilisateur == evntId);
       if (nom == null) {
         return "N/A";
       } else {
-        return nom;
+        return nom.prenom;
+      }
+      } else {
+        return "N/A";
       }
     },
     getEvenementPhoto(photo) {
