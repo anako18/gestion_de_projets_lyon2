@@ -1,5 +1,6 @@
 const { Evenement } = require("../models")
 const { EvenementFavoris } = require("../models")
+const { EvenementReservation } = require("../models")
 const Op = require("sequelize").Op
 
 module.exports = {
@@ -148,6 +149,54 @@ module.exports = {
         statut: "Succès",
         data: null
       });
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
+  },
+  async inviteEvenementsListe(req, res) {
+    const idUtilisateur = parseInt(req.query.idUtilisateur);
+    try {
+      const reservations = await EvenementReservation.findAll({
+        where: {
+          idUtilisateur: idUtilisateur
+        }
+      })
+      let idsEvenements = reservations.map(r => r.getDataValue('idEvenement'))
+      const evenements = await Evenement.findAll({
+        where: {
+          idEvenement: {
+            [Op.in]: idsEvenements
+          }
+        }
+      })
+      return res.status(200).json({
+        statut: "Succès",
+        data: evenements
+      })
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
+  },
+  async hoteEvenementsListe(req, res) {
+    const idUtilisateur = parseInt(req.query.idUtilisateur);
+    try {
+      const evenements = await Evenement.findAll({
+        where: {
+          idHote: idUtilisateur
+        }
+      })
+      return res.status(200).json({
+        statut: "Succès",
+        data: evenements
+      })
     } catch (erreur) {
       /** Erreurs non gérées */
       return res.status(403).json({

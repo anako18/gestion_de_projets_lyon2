@@ -90,7 +90,7 @@ export default {
   methods: {
     async favorisListe() {
       try {
-        await EvenementsService.favorisListe(window.sessionStorage.getItem("idUtilisateur")).then(
+        await EvenementsService.favorisListe(window.localStorage.getItem("idUtilisateur")).then(
           (res) => (this.favs = res.data.data)
         )
         this.error = null
@@ -158,10 +158,10 @@ export default {
     changerFavoris(id) {
       let scr = document.getElementById(id).src;
       if (scr.includes("heart.")) {
-        this.mettreFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
+        this.mettreFavoris(window.localStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart-f.png");
       } else {
-        this.supprimerDeFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
+        this.supprimerDeFavoris(window.localStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart.png");
       }
     },

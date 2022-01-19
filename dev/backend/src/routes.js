@@ -39,4 +39,10 @@ module.exports = (app) => {
   app.delete("/api/favoris",
   evenementsControleur.suprimerFavoris
   )
+  app.get("/api/evenements-invite",
+  evenementsControleur.inviteEvenementsListe
+  )
+  app.get("/api/evenements-hote",
+  evenementsControleur.hoteEvenementsListe
+  )
 };

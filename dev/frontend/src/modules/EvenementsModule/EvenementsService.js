@@ -17,18 +17,18 @@ const favorisListe = function (idUtilisateur) {
   })
 }
 
-const mettreFavoris = function(uId, eId) {
+const mettreFavoris = function (uId, eId) {
   return Api().post("favoris", {
-      idUtilisateur : uId,
-      idEvenement : eId
+    idUtilisateur: uId,
+    idEvenement: eId
   })
 }
 
-const supprimerFavoris = function(idUtilisateur, idEvenement) {
+const supprimerFavoris = function (idUtilisateur, idEvenement) {
   return Api().delete("favoris", {
     params: {
-      idUtilisateur : idUtilisateur,
-      idEvenement : idEvenement
+      idUtilisateur: idUtilisateur,
+      idEvenement: idEvenement
     }
   })
 }
@@ -41,11 +41,29 @@ const getEvenementsByIds = function (ids) {
   return Api().post("evenements", ids)
 }
 
+const evenementsInviteListe = function (idUtilisateur) {
+  return Api().get("evenements-invite", {
+    params: {
+      idUtilisateur: idUtilisateur
+    }
+  })
+}
+
+const evenementsHoteListe = function (idUtilisateur) {
+  return Api().get("evenements-hote", {
+    params: {
+      idUtilisateur: idUtilisateur
+    }
+  })
+}
+
 export default {
-    evenement,
-    getEvenements,
-    favorisListe,
-    getEvenementsByIds,
-    mettreFavoris,
-    supprimerFavoris
+  evenement,
+  getEvenements,
+  favorisListe,
+  getEvenementsByIds,
+  mettreFavoris,
+  supprimerFavoris,
+  evenementsInviteListe,
+  evenementsHoteListe
 }
