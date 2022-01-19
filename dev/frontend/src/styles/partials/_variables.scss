@@ -138,6 +138,12 @@ $typo-casse-extrafin: 300;
   font-family: $typo-police-roboto;
   line-height: 1.2;
 }
+%texte-style-15 {
+  font-weight: $typo-casse-normal;
+  font-size: 16px;
+  font-family: $typo-police-hind;
+  line-height: 1;
+}
 
 // Bouton
 $bouton-style-ombre: 0 4px 8px $couleur-bouton-ombre;

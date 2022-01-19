@@ -1,5 +1,8 @@
 <template>
   <div class="authentification">
+    <transition name="topbottom-fade">
+      <NotificationInterface v-if="connexionValide" valeur="Connexion réussie !" />
+    </transition>
     <h1 class="authentification__titre">
       Connexion
     </h1>
@@ -75,13 +78,15 @@ import AuthentificationService from "./AuthentificationService.js"
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
 import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
 import CaseACocherInterface from "@m/InterfaceModule/CaseACocherInterface.vue"
+import NotificationInterface from "@m/InterfaceModule/NotificationInterface.vue"
 
 export default {
   name: "AuthentificationFormulaire",
   components: {
     BoutonInterface,
     ChampInterface,
-    CaseACocherInterface
+    CaseACocherInterface,
+    NotificationInterface
   },
   data () {
     return {
@@ -97,7 +102,8 @@ export default {
       selection: "email",
       selectionsCases: {
         seSouvenirCompte: false
-      }
+      },
+      connexionValide: false
     }
   },
   watch: {
