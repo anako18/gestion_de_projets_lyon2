@@ -160,13 +160,14 @@ export default {
     return { evenement: null, hote: null, error: null }
   },
   mounted() {
+    window.sessionStorage.setItem("idUtilisateur", 1)
     this.getEvenement(this.$route.params.id).then((res) =>
       this.getUtilisateur(this.evenement.idHote)
     );
     this.helper = new Helper();
   },
   methods: {
-    async getEvenement (id) {
+    async getEvenement(id) {
       try {
         await EvenementsService.evenement(id).then(res =>
           this.evenement = res.data.data
@@ -225,10 +226,10 @@ export default {
     changerFavoris(id) {
       let scr = document.getElementById(id).src
       if (scr.includes("heart.")) {
-        this.mettreFavoris(1, id)
+        this.mettreFavoris(window.sessionStorage.getItem("idUtilisateur"), id)
         document.getElementById(id).src = require('../assets/heart-f.png')
       } else {
-        this.supprimerDeFavoris(1, id)
+        this.supprimerDeFavoris(window.sessionStorage.getItem("idUtilisateur"), id)
         document.getElementById(id).src = require('../assets/heart.png')
       }
     }

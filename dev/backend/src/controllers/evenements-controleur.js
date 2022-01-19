@@ -21,12 +21,13 @@ module.exports = {
   async evenementParId(req, res) {
     try {
       /** Correspondance de la requête avec BDD */
-      const id = Number.parseInt(request.query.id)
+      const id = Number.parseInt(req.query.id)
       const evenement = await Evenement.findOne({
         where: {
           idEvenement: id
         }
       })
+      console.log(evenement)
       return res.status(200).json({
         statut: "Succès",
         data: evenement

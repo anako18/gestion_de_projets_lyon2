@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import FavorisComponent from "../modules/EvenementsModule/Favoris.vue"
 import FooterComponent from "../modules/Footer.vue"
 import Helper from "../modules/EvenementsModule/Helper.js"
 import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
@@ -67,7 +66,6 @@ import AuthentificationService from "../modules/CompteModule/AuthentificationMod
 export default {
   name: "Favoris",
   components: {
-    FavorisComponent,
     FooterComponent
   },
   data () {
@@ -92,7 +90,7 @@ export default {
   methods: {
     async favorisListe() {
       try {
-        await EvenementsService.favorisListe(1).then(
+        await EvenementsService.favorisListe(window.sessionStorage.getItem("idUtilisateur")).then(
           (res) => (this.favs = res.data.data)
         )
         this.error = null
@@ -160,10 +158,10 @@ export default {
     changerFavoris(id) {
       let scr = document.getElementById(id).src;
       if (scr.includes("heart.")) {
-        this.mettreFavoris(1, id);
+        this.mettreFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart-f.png");
       } else {
-        this.supprimerDeFavoris(1, id);
+        this.supprimerDeFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart.png");
       }
     },
