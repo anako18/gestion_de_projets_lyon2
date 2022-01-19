@@ -100,38 +100,24 @@
         <div class="participants">
           <span class="evenement-titre"> Participants </span> <br>
           <div class="participants-info">
-            3 participants <br>
-            Il reste encore 2 places
+            {{participants.length}} participants <br>
+            Il reste encore {{evenement.capacite - participants.length}} places
           </div>
         </div>
-        <div class="paricipants-previews">
+         <div
+        v-for="participant in participants"
+        :key="participant.idUtilisateur"
+        class="paricipants-previews"> >
           <div class="paricipants-preview">
             <img
               class="profile-pic"
-              src="../assets/person.png"
+              :src="require(`../assets/avatars/${participant.photo}`)"
               width="40%"
               height="40%"
             >
-            Demien
+            {{participant.prenom}}
           </div>
-          <div class="paricipants-preview">
-            <img
-              class="profile-pic"
-              src="../assets/person.png"
-              width="40%"
-              height="40%"
-            >
-            Demien
-          </div>
-          <div class="paricipants-preview">
-            <img
-              class="profile-pic"
-              src="../assets/person.png"
-              width="40%"
-              height="40%"
-            >
-            Demien
-          </div>
+        </div>
         </div>
         <center>
           <button class="yellow-button"  :disabled="evenement.idHote == idUtilisateur" @click="participerEnEvenement(evenement.idEvenement)">
@@ -156,12 +142,13 @@ export default {
     FooterComponent
   },
   data () {
-    return { isLoading: true, evenement: null, hote: null, error: null, idUtilisateur: null }
+    return { isLoading: true, evenement: null, hote: null, error: null, idUtilisateur: null, participants: null }
   },
   async mounted() {
     this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
     await this.getEvenement(this.$route.params.id)
     await this.getUtilisateur(this.evenement.idHote)
+    await this.getParicipants()
     this.helper = new Helper();
     this.isLoading = false
   },
@@ -185,6 +172,17 @@ export default {
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
         this.error = erreur
+      }
+    },
+    async getParicipants() {
+         try {
+        await AuthentificationService.getUtilisateurs({ ids: this.evenement.idsParticipants }).then(
+          (res) => (this.participants = res.data.data)
+        );
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
       }
     },
     async mettreFavoris(idUtilisateur, idEvenement) {
