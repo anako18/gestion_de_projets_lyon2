@@ -45,4 +45,7 @@ module.exports = (app) => {
   app.get("/api/evenements-hote",
   evenementsControleur.hoteEvenementsListe
   )
+  app.post("/api/evenements-participer",
+  evenementsControleur.evenementParticiper
+  )
 };

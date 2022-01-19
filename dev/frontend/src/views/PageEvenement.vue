@@ -136,7 +136,7 @@
           </div>
         </div>
         <center>
-          <button class="yellow-button"  :disabled="evenement.idHote == idUtilisateur">
+          <button class="yellow-button"  :disabled="evenement.idHote == idUtilisateur" @click="participerEnEvenement(evenement.idEvenement)">
             Participer
           </button>
         </center>
@@ -200,6 +200,16 @@ export default {
     async supprimerDeFavoris(idUtilisateur, idEvenement) {
       try {
         await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        this.error = null;
+      } catch (erreur) {
+        console.log("Something went wrong : ", erreur.response.data.message);
+        this.error = erreur;
+      }
+    },
+     async participerEnEvenement(idEvenement) {
+      try {
+        await EvenementsService.participerEnEvenement({idUtilisateur: this.idUtilisateur, idEvenement: idEvenement})
+        .then((res) => window.location.href = '/confirmation')
         this.error = null;
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message);

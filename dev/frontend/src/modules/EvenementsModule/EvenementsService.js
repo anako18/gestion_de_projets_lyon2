@@ -57,6 +57,10 @@ const evenementsHoteListe = function (idUtilisateur) {
   })
 }
 
+const participerEnEvenement = function (ids) {
+  return Api().post("evenements-participer", ids)
+}
+
 export default {
   evenement,
   getEvenements,
@@ -65,5 +69,6 @@ export default {
   mettreFavoris,
   supprimerFavoris,
   evenementsInviteListe,
-  evenementsHoteListe
+  evenementsHoteListe,
+  participerEnEvenement
 }
