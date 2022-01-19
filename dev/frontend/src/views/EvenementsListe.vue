@@ -80,8 +80,6 @@ import Helper from "../modules/EvenementsModule/Helper.js";
 import FooterComponent from "../modules/Footer.vue";
 import EvenementsService from "../modules/EvenementsModule/EvenementsService.js";
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
-import EvenementComponent from "../modules/EvenementsModule/Evenement.vue";
-
 
 export default {
   name: "EvenementsListe",
@@ -174,8 +172,7 @@ export default {
         : require("../assets/heart.png");
     },
   },
-    FooterComponent,
-    EvenementComponent,
+    FooterComponent
   };
 </script>
 

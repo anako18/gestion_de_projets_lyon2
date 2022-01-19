@@ -17,6 +17,7 @@ import BienvenueVue from "@v/Bienvenue.vue"
 import Instructions1Vue from "@v/Instructions-1.vue"
 import Instructions2Vue from "@v/Instructions-2.vue"
 import Instructions3Vue from "@v/Instructions-3.vue"
+import ConfirmationVue from "@v/ConfirmationParticipation.vue"
 
 Vue.use(VueRouter)
 
@@ -100,6 +101,11 @@ const routes = [
     path: "/instructions3",
     name: "Instructions-3",
     component: Instructions3Vue
+  },
+  {
+    path: "/confirmation",
+    name: "Confirmation",
+    component: ConfirmationVue
   }
 ]
 

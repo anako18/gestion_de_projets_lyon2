@@ -511,3 +511,38 @@
   font-style: normal;
   line-height: 34px;
 }
+/* ============= confirmation ======= */
+.confirmation {
+  @extend %font;
+}
+
+.confirmations,
+%confirmation-section {
+  margin: 20px 20px;
+  font-size: 18px;
+}
+
+.confirmation-titre {
+  font-weight: bold;
+  font-size: 25px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 34px;
+  color: $couleur-nfonce;
+}
+
+.confirmation-section-center {
+  @extend %confirmation-section;
+  text-align: center;
+}
+
+.confirmation-section-vert {
+  @extend %confirmation-section;
+  color: #4C8655;
+}
+
+.confirmation-button {
+  @extend %button-evnenements;
+  background-color: $couleur-c2;
+  padding: 5%;
+}

@@ -204,5 +204,25 @@ module.exports = {
         message: erreur.message
       });
     }
+  },
+  async evenementParticiper(req, res) {
+    const { idEvenement, idUtilisateur } = req.body;
+    try {
+      await EvenementReservation.create({
+        idUtilisateur: idUtilisateur,
+        idEvenement: idEvenement,
+        reservationDate: new Date().toISOString()
+      })
+      return res.status(200).json({
+        statut: "Succès",
+        data: null
+      });
+    } catch (erreur) {
+      /** Erreurs non gérées */
+      return res.status(403).json({
+        statut: "Échec (Erreur non gérée)",
+        message: erreur.message
+      });
+    }
   }
 }
