@@ -27,11 +27,7 @@
           <div class="profile-titre">
             <img
               class="profile-pic"
-              :src="
-                require(`../assets/avatars/${getHoteAvatar(
-                  hote.photo
-                )}`)
-              "
+              :src="require(`../assets/avatars/${getHoteAvatar()}`)"
               width="20%"
               height="20%"
             >
@@ -227,11 +223,11 @@ export default {
         return photo
       }
     },
-    getHoteAvatar (photo) {
-      if (photo === null) {
+     getHoteAvatar() {
+      if (this.hote == null || this.hote.photo == null) {
         return "0.png"
       } else {
-        return photo
+        return this.hote.photo;
       }
     },
     changerFavoris (id) {

@@ -28,13 +28,13 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-                <!-- <img
+              <img
                   :src="
                     require(`../assets/evenements/${getEvenementPhoto(
                       evenementInv.photo
                     )}`)"
                   class="favoris-image"
-                > -->
+                > 
               </div>
               <div class="favoris-description">
                 <p class="evenement-titre">
@@ -65,13 +65,13 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-                <!-- <img
+               <img
                   :src="
                     require(`../assets/evenements/${getEvenementPhoto(
                       evenementsHt.photo
                     )}`)"
                   class="favoris-image"
-                > -->
+                >
               </div>
               <div class="favoris-description">
                 <p class="evenement-titre">
@@ -123,24 +123,20 @@ export default {
     idHotes.push(this.idUtilisateur)
     await this.getUtilisateurs(idHotes)
     await this.evenementsHoteListe()
-
     this.helper = new Helper()
     this.isLoading = false
   },
   methods: {
     afficheCategory (event, category) {
       let i, tabcontent, tablinks
-
       tabcontent = document.getElementsByClassName("tabcontent")
       for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none"
       }
-
       tablinks = document.getElementsByClassName("tablinks")
       for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" activetab", "")
       }
-
       document.getElementById(category).style.display = "block"
       event.currentTarget.className += " activetab"
     },

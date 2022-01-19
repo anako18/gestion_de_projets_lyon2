@@ -76,7 +76,6 @@ import FiltersComponents from "../modules/EvenementModule/Filters.vue"
 import Helper from "../modules/EvenementModule/Helper.js"
 import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-
 export default {
   name: "EvenementsListe",
   components: {
@@ -116,12 +115,13 @@ export default {
       }
     },
     getHoteAvatar (evntId) {
-      const photo = this.hotes.find((h) => h.idUtilisateur === evntId).photo
-      if (photo === null) {
-        return "0.png"
-      } else {
-        return photo
+      if (this.hotes) {
+        let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
+        if (photo != null) {
+          return photo;
+        }
       }
+      return "0.png";
     },
     getEvenementPhoto (photo) {
       if (photo === null) {
