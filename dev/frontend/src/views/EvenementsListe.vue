@@ -158,10 +158,10 @@ export default {
     changerFavoris(id) {
       let scr = document.getElementById(id).src;
       if (scr.includes("heart.")) {
-        this.mettreFavoris(1, id);
+        this.mettreFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart-f.png");
       } else {
-        this.supprimerDeFavoris(1, id);
+        this.supprimerDeFavoris(window.sessionStorage.getItem("idUtilisateur"), id);
         document.getElementById(id).src = require("../assets/heart.png");
       }
     },
