@@ -12,31 +12,31 @@ module.exports = (app) => {
     authentificationPolitique.authentification,
     authentificationControleur.authentification
     )
-  app.post("/evenement",
+  app.post("/api/evenement",
     evenementsControleur.creerEvenement
   )
-  app.get("/evenement",
+  app.get("/api/evenement",
     evenementsControleur.evenementParId
   )
-  app.get("/evenements",
+  app.get("/api/evenements",
     evenementsControleur.evenementsListe
   )
-  app.post("/evenements",
+  app.post("/api/evenements",
     evenementsControleur.favorisListeParIds
   )
-  app.get("/utilisateur",
+  app.get("/api/utilisateur",
     authentificationControleur.getUtilisateur
   )
-  app.post("/utilisateurs",
+  app.post("/api/utilisateurs",
     authentificationControleur.getUtilisateurs
   )
-  app.get("/favoris",
+  app.get("/api/favoris",
   evenementsControleur.favorisListe
   )
-  app.post("/favoris",
+  app.post("/api/favoris",
   evenementsControleur.ajouterFavoris
   )
-  app.delete("/favoris",
+  app.delete("/api/favoris",
   evenementsControleur.suprimerFavoris
   )
 };
