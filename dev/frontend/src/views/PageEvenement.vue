@@ -3,6 +3,7 @@
     <header class="header-logo">
       <img src="../assets/logo.png">
     </header>
+    <div v-if="!isLoading">
     <div class="evenement events-scroll-ecran">
       <div class="evenement-image">
         <img
@@ -12,7 +13,6 @@
             )}`)
           "
           width="100%"
-          height="70%"
         />
         <button  class="favorite-button">
           <img @click="changerFavoris(evenement.idEvenement)" v-bind:id="evenement.idEvenement" 
@@ -142,6 +142,7 @@
         </center>
       </div>
     </div>
+    </div>
     <FooterComponent />
   </main>
 </template>
@@ -157,14 +158,14 @@ export default {
     FooterComponent
   },
   data () {
-    return { evenement: null, hote: null, error: null, idUtilisateur: null }
+    return { isLoading: true, evenement: null, hote: null, error: null, idUtilisateur: null }
   },
-  mounted() {
+  async mounted() {
     this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
-    this.getEvenement(this.$route.params.id).then((res) =>
-      this.getUtilisateur(this.evenement.idHote)
-    );
+    await this.getEvenement(this.$route.params.id)
+    await this.getUtilisateur(this.evenement.idHote)
     this.helper = new Helper();
+    this.isLoading = false
   },
   methods: {
     async getEvenement(id) {
