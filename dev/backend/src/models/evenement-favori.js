@@ -1,6 +1,6 @@
-module.exports = (Sequelize, DataTypes) =>
-  Sequelize.define("EvenementFavoris", {
-    idEvenementFavoris: {
+module.exports = (Sequelize, DataTypes) => {
+  const EvenementFavori = Sequelize.define("EvenementFavori", {
+    idEvenementFavori: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
@@ -16,3 +16,6 @@ module.exports = (Sequelize, DataTypes) =>
       allowNull: false
     }
   })
+
+  return EvenementFavori
+}

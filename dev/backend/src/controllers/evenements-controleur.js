@@ -1,5 +1,5 @@
 const { Evenement } = require("../models")
-const { EvenementFavoris } = require("../models")
+const { EvenementFavori } = require("../models")
 const { EvenementReservation } = require("../models")
 const Op = require("sequelize").Op
 
@@ -19,10 +19,10 @@ module.exports = {
     }
   },
 
-  async evenementParId(req, res) {
+  async evenementParId (request, res) {
     try {
       /** Correspondance de la requête avec BDD */
-      const id = Number.parseInt(req.query.id)
+      const id = Number.parseInt(request.query.id)
       const evenement = await Evenement.findOne({
         where: {
           idEvenement: id
@@ -41,27 +41,27 @@ module.exports = {
       })
     }
   },
-  async evenementsListe(req, res) {
+  async evenementsListe (request, res) {
     try {
-      let evenements = await Evenement.findAll({
+      const evenements = await Evenement.findAll({
         where: {
           date: {
             [Op.lt]: new Date().toISOString()
           }
         }
-      });
-      const favoris = await EvenementFavoris.findAll({
+      })
+      const favoris = await EvenementFavori.findAll({
         where: {
           idUtilisateur: 1
         }
       })
-      evenements.forEach((evenement) => {
-        if (favoris.find(f => f.getDataValue('idEvenement') == evenement.getDataValue('idEvenement'))) {
-          evenement.setDataValue('favoris', 1)
+      for (const evenement of evenements) {
+        if (favoris.find(f => f.getDataValue("idEvenement") == evenement.getDataValue("idEvenement"))) {
+          evenement.setDataValue("favoris", 1)
         } else {
-          evenement.setDataValue('favoris', 0)
+          evenement.setDataValue("favoris", 0)
         }
-      })
+      }
       return res.status(200).json({
         statut: "Succès",
         data: evenements
@@ -74,8 +74,8 @@ module.exports = {
       })
     }
   },
-  async favorisListeParIds(req, res) {
-    const { ids } = req.body;
+  async favorisListeParIds (request, res) {
+    const { ids } = request.body
     try {
       const evenements = await Evenement.findAll({
         where: {
@@ -96,10 +96,10 @@ module.exports = {
       })
     }
   },
-  async favorisListe(req, res) {
-    const id = parseInt(req.query.id);
+  async favorisListe (request, res) {
+    const id = Number.parseInt(request.query.id)
     try {
-      const favs = await EvenementFavoris.findAll({
+      const favs = await EvenementFavori.findAll({
         where: {
           idUtilisateur: id
         }
@@ -116,56 +116,57 @@ module.exports = {
       })
     }
   },
-  async ajouterFavoris(req, res) {
-    const { idEvenement, idUtilisateur } = req.body;
+  async ajouterFavoris (request, res) {
+    const { idEvenement, idUtilisateur } = request.body
     try {
-      await EvenementFavoris.create({
+      await EvenementFavori.create({
         idUtilisateur: idUtilisateur,
         idEvenement: idEvenement
       })
       return res.status(200).json({
         statut: "Succès",
         data: null
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async suprimerFavoris(req, res) {
-    const idUtilisateur = parseInt(req.query.idUtilisateur);
-    const idEvenement = parseInt(req.query.idEvenement);
+  async suprimerFavoris (request, res) {
+    const idUtilisateur = Number.parseInt(request.query.idUtilisateur)
+    const idEvenement = Number.parseInt(request.query.idEvenement)
     try {
-      await EvenementFavoris.destroy({
+      await EvenementFavori.destroy({
         where: {
           idUtilisateur: idUtilisateur,
-          idEvenement, idEvenement
+          idEvenement,
+          idEvenement
         }
       })
       return res.status(200).json({
         statut: "Succès",
         data: null
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async inviteEvenementsListe(req, res) {
-    const idUtilisateur = parseInt(req.query.idUtilisateur);
+  async inviteEvenementsListe (request, res) {
+    const idUtilisateur = Number.parseInt(request.query.idUtilisateur)
     try {
       const reservations = await EvenementReservation.findAll({
         where: {
           idUtilisateur: idUtilisateur
         }
       })
-      let idsEvenements = reservations.map(r => r.getDataValue('idEvenement'))
+      const idsEvenements = reservations.map(r => r.getDataValue("idEvenement"))
       const evenements = await Evenement.findAll({
         where: {
           idEvenement: {
@@ -177,16 +178,16 @@ module.exports = {
         statut: "Succès",
         data: evenements
       })
-    } catch (erreur) {
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async hoteEvenementsListe(req, res) {
-    const idUtilisateur = parseInt(req.query.idUtilisateur);
+  async hoteEvenementsListe (request, res) {
+    const idUtilisateur = Number.parseInt(request.query.idUtilisateur)
     try {
       const evenements = await Evenement.findAll({
         where: {
@@ -197,16 +198,16 @@ module.exports = {
         statut: "Succès",
         data: evenements
       })
-    } catch (erreur) {
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   },
-  async evenementParticiper(req, res) {
-    const { idEvenement, idUtilisateur } = req.body;
+  async evenementParticiper (request, res) {
+    const { idEvenement, idUtilisateur } = request.body
     try {
       await EvenementReservation.create({
         idUtilisateur: idUtilisateur,
@@ -216,13 +217,13 @@ module.exports = {
       return res.status(200).json({
         statut: "Succès",
         data: null
-      });
-    } catch (erreur) {
+      })
+    } catch (error) {
       /** Erreurs non gérées */
       return res.status(403).json({
         statut: "Échec (Erreur non gérée)",
-        message: erreur.message
-      });
+        message: error.message
+      })
     }
   }
 }

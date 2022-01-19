@@ -1,6 +1,5 @@
 "use strict"
 const { Utilisateur } = require("../models")
-
 const EnregistrementErreur = require("../errors/enregistrement-erreur")
 const { enregistrementSequelizeErreurs } = require("../errors/catalogue-erreurs.js")
 
@@ -21,7 +20,6 @@ const retourEchecValidation = function (resultat, erreur) {
 }
 
 const creationUtilisateur = async function (donnees) {
-  console.log(donnees)
   try {
     const utilisateur = await Utilisateur.create(donnees)
     return utilisateur
@@ -50,6 +48,9 @@ module.exports = {
       .then((utilisateur) => {
         retourSuccesValidation(resultat, utilisateur)
       })
-      .catch((error) => retourEchecValidation(resultat, error.messageErreur))
+      .catch((error) => {
+        console.log(error)
+        retourEchecValidation(resultat, error.messageErreur)
+      })
   }
 }

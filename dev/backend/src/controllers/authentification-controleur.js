@@ -80,10 +80,11 @@ module.exports = {
           return retourSuccesValidation()
         })
         .catch(error => {
+          console.log("authentification-controleur", error)
           return retourEchecValidation(error.messageUtilisateur)
         })
     } catch (error) {
-      /** Erreurs non gérées */
+      console.log("authentification-controleur", error)
       return resultat.status(403).json({
         statut: "Échec (Erreur non gérée)",
         message: error
@@ -92,6 +93,7 @@ module.exports = {
   },
   async getUtilisateur (request, res) {
     try {
+      console.log(request)
       const id = Number.parseInt(request.query.id)
       const utilisateur = await Utilisateur.findOne({
         where: {

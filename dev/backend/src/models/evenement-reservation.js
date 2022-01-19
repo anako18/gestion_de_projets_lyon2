@@ -1,5 +1,5 @@
-module.exports = (Sequelize, DataTypes) =>
-  Sequelize.define("EvenementReservation", {
+module.exports = (Sequelize, DataTypes) => {
+  const EvenementReservation = Sequelize.define("EvenementReservation", {
     evenementReservationId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -23,3 +23,6 @@ module.exports = (Sequelize, DataTypes) =>
       type: DataTypes.DATE
     }
   })
+
+  return EvenementReservation
+}
