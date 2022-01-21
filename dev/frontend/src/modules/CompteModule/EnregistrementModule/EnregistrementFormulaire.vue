@@ -1,5 +1,17 @@
 <template>
   <div class="enregistrement">
+    <transition name="topbottom-fade">
+      <NotificationInterface
+        v-if="etatEnregistrement === 'succes'"
+        etat="succes"
+        valeur="Enregistrement réussi !"
+      />
+      <NotificationInterface
+        v-if="etatEnregistrement === 'echec'"
+        etat="echec"
+        valeur="Enregistrement échoué !"
+      />
+    </transition>
     <h1 class="enregistrement__titre">
       Inscription
     </h1>
@@ -181,15 +193,19 @@
 <script>
 import CompteService from "../CompteService.js"
 import EnregistrementService from "./EnregistrementService.js"
+
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
 import ChampInterface from "@m/InterfaceModule/ChampInterface.vue"
 import CaseACocherInterface from "@m/InterfaceModule/CaseACocherInterface.vue"
+import NotificationInterface from "@m/InterfaceModule/NotificationInterface.vue"
+
 export default {
   name: "EnregistrementFormulaire",
   components: {
     BoutonInterface,
     ChampInterface,
-    CaseACocherInterface
+    CaseACocherInterface,
+    NotificationInterface
   },
   data () {
     return {
@@ -218,7 +234,8 @@ export default {
       selectionsCases: {
         seSouvenirCompte: false,
         acceptationCgu: false
-      }
+      },
+      etatEnregistrement: "repos"
     }
   },
   watch: {
@@ -230,6 +247,7 @@ export default {
   methods: {
     conversionCamelCase: CompteService.conversionCamelCase,
     gestionChangement: CompteService.gestionChangement,
+    gestionTentative: CompteService.gestionTentative,
     reinitialisationErreurs: CompteService.reinitialisationErreurs,
     selectionCaseACocher: CompteService.selectionCaseACocher,
     selectionEtatChamp: CompteService.selectionEtatChamp,

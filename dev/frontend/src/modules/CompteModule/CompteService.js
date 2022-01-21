@@ -68,6 +68,27 @@ const conversionCamelCase = function (chaine) {
   }).replace(/\s+/g, "").replace(/-/g, "")
 }
 
+/**
+ * Gère l'état de la tentative d'enregistrement ou de connexion pour la création de notifications
+ * à l'utilisateur.
+ * @param {string} validation Le résultat de la tentative
+ * @param {string} etat L'état du composant qui sera modifiée
+ */
+const gestionTentative = function (validation, etat) {
+  this.$data[etat] = validation
+  setTimeout(() => { this.$data[etat] = "repos" }, 3000)
+}
+
+/**
+ * Appose l'identifiant Utilisateur dans le stockage local du navigateur du visiteur
+ * @param {number} id
+ */
+const appositionIdentifiantUtilisateur = function (id) {
+  if (!localStorage.getItem("idUtilisateur")) {
+    localStorage.setItem("idUtilisateur", id)
+  }
+}
+
 export default {
   reinitialisationErreurs,
   verificationErreurChamp,
@@ -75,5 +96,7 @@ export default {
   selectionEtatChamp,
   selectionCaseACocher,
   gestionChangement,
-  conversionCamelCase
+  conversionCamelCase,
+  appositionIdentifiantUtilisateur,
+  gestionTentative
 }

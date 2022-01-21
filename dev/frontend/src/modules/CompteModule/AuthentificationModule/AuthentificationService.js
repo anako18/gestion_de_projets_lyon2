@@ -26,19 +26,17 @@ const validationAuthentification = function () {
  * au backend.
  */
 const envoiAuthentification = async function () {
-  // TODO: Refactoriser dans CompteService
   try {
     await this.authentification(this.identifiants)
       .then((valeur) => {
-        const idUtilisateur = valeur.data.data.idUtilisateur
-        window.localStorage.setItem("idUtilisateur", idUtilisateur)
-        this.connexionValide = true
+        CompteService.appositionIdentifiantUtilisateur(valeur.data.data.idUtilisateur)
+        this.gestionTentativeConnexion("succes")
         setTimeout(() => { router.push({ path: "bienvenue" }) }, 3000)
       })
     CompteService.reinitialisationErreurs()
   } catch (erreur) {
-    console.log(erreur)
-    this.connexionValide = false
+    console.log("authentification-service", erreur)
+    this.gestionTentativeConnexion("echec")
     // TODO: Faire le renvoi d'erreurs
     // this.erreurs.push(erreur.response.data.message)
   }

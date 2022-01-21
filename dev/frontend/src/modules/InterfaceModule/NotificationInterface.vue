@@ -1,5 +1,5 @@
 <template>
-  <div class="notification">
+  <div :class="classes" class="notification">
     <p class="notification__message">
       {{ valeur }}
     </p>
@@ -17,6 +17,14 @@ export default {
     etat: {
       type: String,
       default: ""
+    }
+  },
+  computed: {
+    classes: function () {
+      return {
+        "etat-succes": this.etat === "succes",
+        "etat-echec": this.etat === "echec"
+      }
     }
   },
   methods: {

@@ -1,7 +1,16 @@
 <template>
   <div class="authentification">
     <transition name="topbottom-fade">
-      <NotificationInterface v-if="connexionValide" valeur="Connexion réussie !" />
+      <NotificationInterface
+        v-if="etatConnexion === 'succes'"
+        etat="succes"
+        valeur="Connexion réussie !"
+      />
+      <NotificationInterface
+        v-if="etatConnexion === 'echec'"
+        etat="echec"
+        valeur="Connexion échouée !"
+      />
     </transition>
     <h1 class="authentification__titre">
       Connexion
@@ -103,7 +112,7 @@ export default {
       selectionsCases: {
         seSouvenirCompte: false
       },
-      connexionValide: false
+      etatConnexion: "repos"
     }
   },
   watch: {
@@ -122,7 +131,11 @@ export default {
     verificationErreurChamp: CompteService.verificationErreurChamp,
     validationAuthentification: AuthentificationService.validationAuthentification,
     envoiAuthentification: AuthentificationService.envoiAuthentification,
-    authentification: AuthentificationService.authentification
+    authentification: AuthentificationService.authentification,
+    gestionTentativeConnexion (validation) {
+      this.etatConnexion = validation
+      setTimeout(() => { this.etatConnexion = "repos" }, 3000)
+    }
   }
 }
 </script>

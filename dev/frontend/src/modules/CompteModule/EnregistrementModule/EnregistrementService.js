@@ -2,6 +2,7 @@
 import Api from "@m/ApiModule/ApiService.js"
 import CompteValidation from "@m/CompteModule/CompteValidation.js"
 import CompteService from "@m/CompteModule/CompteService.js"
+import router from "@m/RouterModule/RouterService"
 
 /**
  * Valide les identifiants renseignés par l'utilisateur pour l'enregistrement.
@@ -26,12 +27,18 @@ const validationEnregistrement = function () {
  */
 const envoiEnregistrement = async function () {
   // TODO: Refactoriser dans CompteService
-  const donnees = this.identifiants
   try {
-    await this.enregistrement(donnees)
+    await this.enregistrement(this.identifiants)
+      .then((valeur) => {
+        CompteService.appositionIdentifiantUtilisateur(valeur.data.data.idUtilisateur)
+        this.gestionTentative("succes", "etatEnregistrement")
+        setTimeout(() => { router.push({ path: "bienvenue" }) }, 3000)
+      })
     CompteService.reinitialisationErreurs()
   } catch (erreur) {
     // TODO: Faire le renvoi d'erreurs
+    console.log("enregistrement-service", erreur)
+    this.gestionTentative("echec", "etatEnregistrement")
     // this.erreurs.push(erreur.response.data.message)
   }
 }

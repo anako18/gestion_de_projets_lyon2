@@ -24,4 +24,12 @@
     border-radius: #{$bouton-style-1-radius}px;
     box-shadow: $bouton-style-ombre;
   }
+
+  &.etat-echec {
+    .notification__message {
+      color: $couleur-blanc;
+      background-color: $couleur-c1;
+      border: 1px solid $couleur-c1--clair;
+    }
+  }
 }
