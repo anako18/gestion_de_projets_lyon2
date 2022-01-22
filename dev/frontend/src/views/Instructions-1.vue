@@ -13,7 +13,7 @@
         <span style="color: #ea553d;">ateliers cuisine</span> près de chez toi !
       </div>
       <div class="soustitre">
-        Et retrouvez vous autour de la table pour déguster tout ça.
+        Et retrouvez-vous autour de la table pour déguster tout ça.
       </div>
       <div class="underlines">
         <hr class="Rounded active">
@@ -21,7 +21,9 @@
         <hr class="Rounded">
       </div>
       <div class="bouton-instrunctions">
-        <a href="/instructions2">  <u> Passez cette étape  </u> </a>
+        <router-link to="/instructions2">
+          <u>Mais encore ?</u>
+        </router-link>
       </div>
     </section>
   </main>

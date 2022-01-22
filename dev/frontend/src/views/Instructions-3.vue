@@ -1,7 +1,7 @@
 <template>
   <main class="inscructions">
     <section>
-      <div style=" padding: 70px 50px 20px;overflow: hidden;text-align: center;  border-radius: 50%;">
+      <div style=" padding: 70px 50px 20px;overflow: hidden;text-align: center; border-radius: 50%;">
         <img
           src="../assets/images/inst3.png"
           width="65%"
@@ -13,7 +13,7 @@
         et demain <span style="color: #ea553d;">invité </span> ?
       </div>
       <div class="soustitre">
-        C’est toi qui décide ! Invites ou reçois tes convives pour partager un bon moment.
+        À toi de décider ! Invite et reçois tes convives pour partager un bon moment.
       </div>
       <div class="underlines">
         <hr class="Rounded">
@@ -21,9 +21,11 @@
         <hr class="Rounded active">
       </div>
       <div class="bouton-instrunctions">
-        <button class="yellow-button" onclick="window.location.href='/evenements-liste'">
-          C'est parti !
-        </button>
+        <router-link to="/evenements-liste">
+          <button class="yellow-button">
+            C'est parti !
+          </button>
+        </router-link>
       </div>
     </section>
   </main>

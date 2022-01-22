@@ -148,20 +148,15 @@
         </div>
       </div>
     </div>
-    <FooterComponent />
   </main>
 </template>
 
 <script>
 import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-import FooterComponent from "../modules/Footer.vue"
 import Helper from "../modules/EvenementsModule/Helper.js"
 export default {
   name: "EvenementPage",
-  components: {
-    FooterComponent
-  },
   data () {
     return { isLoading: true, evenement: null, hote: null, error: null, idUtilisateur: null }
   },

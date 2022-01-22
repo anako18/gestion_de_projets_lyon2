@@ -19,17 +19,12 @@
         </button>
       </div>
     </div>
-    <FooterComponent />
   </main>
 </template>
 
 <script>
-import FooterComponent from "../modules/Footer.vue"
 export default {
   name: "Confirmation",
-  components: {
-    FooterComponent
-  },
   methods: {
     redirect () {
       window.location.href = `/mes-evenements`

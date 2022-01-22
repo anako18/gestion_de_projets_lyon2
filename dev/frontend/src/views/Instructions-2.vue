@@ -9,10 +9,10 @@
         >
       </div>
       <div class="titre-f">
-        Deviens  <span style="color: #ea553d;">hôte</span> et organise ton propre atelier cuisine!
+        Deviens <span style="color: #ea553d;">hôte</span> et organise ton propre atelier cuisine !
       </div>
       <div class="soustitre">
-        Partage tes talents culinaires  dans une ambiance chaleureuse !
+        Partage tes talents culinaires dans une ambiance chaleureuse !
       </div>
       <div class="underlines">
         <hr class="Rounded">
@@ -20,7 +20,9 @@
         <hr class="Rounded">
       </div>
       <div class="bouton-instrunctions">
-        <a href="/instructions3">  <u> Passez cette étape  </u> </a>
+        <router-link to="/instructions3">
+          <u>La suite !</u>
+        </router-link>
       </div>
     </section>
   </main>
