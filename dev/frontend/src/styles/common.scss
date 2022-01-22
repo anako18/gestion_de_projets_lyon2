@@ -3,6 +3,13 @@
 @import "./polices";
 @import "./normalize";
 
+#app {
+  background-color: $couleur-c4;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  min-height: 375px;
+}
+
 /* Squelette */
 html {
   font-size: 18px;
@@ -256,9 +263,6 @@ main {
   }
 }
 
-/* Enter and leave animations can use different */
-
-/* durations and timing functions.              */
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
@@ -269,9 +273,22 @@ main {
 
 .slide-fade-enter,
 .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+{
   transform: translateX(-20px);
   opacity: 0;
+}
+
+.changement-page-enter
+{
+  transform: translateX(-25%);
+  opacity: 0;
+}
+
+.changement-page-enter-to
+{
+  transition: all 0.5s ease;
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .topbottom-fade-enter-active {
@@ -284,7 +301,7 @@ main {
 
 .topbottom-fade-enter,
 .topbottom-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+{
   transform: translateY(20px);
   opacity: 0;
 }

@@ -1,44 +1,60 @@
 <template>
-  <div class="panel-footer">
+  <div v-if="routeCourante" class="panel-footer">
     <div class="panel-element">
       <div class="recherche-image-panel" />
-      <a class="link" href="/evenements-liste">
+      <router-link
+        class="link"
+        to="/evenements-liste"
+        @click.native="setActive()"
+      >
         <img
           class="panel-image"
           src="../../src/assets/panel/active-search-logo.png"
         >
         <span class="caption">Recherche</span>
-      </a>
+      </router-link>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel" />
-      <a class="link" href="/favoris-liste">
+      <router-link
+        class="link"
+        to="/favoris-liste"
+        @click.native="setActive()"
+      >
         <img
           class="panel-image"
           src="../../src/assets/panel/active-heart-logo.png"
         >
         <span class="caption">Favoris</span>
-      </a>
+      </router-link>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel" />
-      <a class="link" href="/mes-evenements">
+      <router-link
+        class="link"
+        to="/mes-evenements"
+        @click.native="setActive()"
+      >
         <img
           class="panel-image"
           src="../../src/assets/panel/active-calender-logo.png"
         >
         <span class="caption">Evenements</span>
-      </a>
+      </router-link>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel" />
-      <a class="link" href="/organisation-evenement">
+      <router-link
+        class="link"
+        to="/organisation-evenement"
+        @click.native="setActive()"
+      >
         <img
           class="panel-image"
           src="../../src/assets/panel/active-toc-logo.png"
         >
         <span class="caption">J'organise</span>
-      </a>
+      </router-link>
     </div>
     <div class="panel-element">
       <div class="recherche-image-panel" />
@@ -55,7 +71,20 @@
 
 <script>
 export default {
+  data () {
+    return {
+      vueActive: ""
+    }
+  },
+  computed: {
+    routeCourante () {
+      return this.estRouteAutorisee()
+    }
+  },
   mounted () {
+    this.setActive()
+  },
+  updated () {
     this.setActive()
   },
   methods: {
@@ -63,11 +92,28 @@ export default {
       let i
       const tablinks = document.getElementsByClassName("link")
       for (i = 0; i < tablinks.length; i++) {
-        console.log(tablinks[i].href)
         if (tablinks[i].href === window.location.href) {
           tablinks[i].className += " activelink"
         }
       }
+      this.vueActive = window.location.href
+    },
+    estRouteAutorisee () {
+      const routeActive = this.$route.fullPath
+      const routesInterdites = [
+        "/",
+        "/bienvenue",
+        "/instructions1",
+        "/instructions2",
+        "/instructions3",
+        "/premiere-visite",
+        "/connexion",
+        "/inscription"
+      ]
+      for (const route of routesInterdites) {
+        if (route === routeActive) return false
+      }
+      return true
     }
   }
 }
