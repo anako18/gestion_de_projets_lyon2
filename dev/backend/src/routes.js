@@ -19,23 +19,22 @@ module.exports = (app) => {
   app.get("/api/utilisateur",
     authentificationControleur.getUtilisateur
   )
-  // // Récupérer les Utilisateurs
+  // Récupérer les Utilisateurs
   app.post("/api/utilisateurs",
     authentificationControleur.getUtilisateurs
   )
-  // // Créer un évènement
+  // Créer un évènement
   app.post("/api/evenement",
     evenementsControleur.creerEvenement
   )
-  // // Récupérer un évènements
+  // Récupérer un évènements
   app.get("/api/evenement",
     evenementsControleur.evenementParId
   )
-  // // Récupérer les évènements
+  // Récupérer les évènements
   app.get("/api/evenements",
     evenementsControleur.evenementsListe
   )
-  // //
   app.post("/api/evenements",
     evenementsControleur.favorisListeParIds
   )
