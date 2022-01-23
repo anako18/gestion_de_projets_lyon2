@@ -4,10 +4,10 @@
 @import "./normalize";
 
 #app {
-  background-color: $couleur-c4;
+  min-height: 375px;
   overflow-x: hidden;
   overflow-y: hidden;
-  min-height: 375px;
+  background-color: $couleur-c4;
 }
 
 /* Squelette */
@@ -272,23 +272,20 @@ main {
 }
 
 .slide-fade-enter,
-.slide-fade-leave-to
-{
+.slide-fade-leave-to {
   transform: translateX(-20px);
   opacity: 0;
 }
 
-.changement-page-enter
-{
+.changement-page-enter {
   transform: translateX(-25%);
   opacity: 0;
 }
 
-.changement-page-enter-to
-{
-  transition: all 0.5s ease;
+.changement-page-enter-to {
   transform: translateX(0);
   opacity: 1;
+  transition: all 0.5s ease;
 }
 
 .topbottom-fade-enter-active {
@@ -300,8 +297,7 @@ main {
 }
 
 .topbottom-fade-enter,
-.topbottom-fade-leave-to
-{
+.topbottom-fade-leave-to {
   transform: translateY(20px);
   opacity: 0;
 }

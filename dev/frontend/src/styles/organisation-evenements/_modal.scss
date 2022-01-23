@@ -5,7 +5,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 998;
   width: 100vw;
+  min-height: 100%;
+  overflow-x: hidden;
   background-color: white;
 
   > div:first-of-type {
@@ -15,8 +18,8 @@
   &__choix {
     display: flex;
     flex-direction: column;
-    row-gap: 16px;
     margin-bottom: 26px;
+    row-gap: 16px;
 
     &__entree {
       position: relative;

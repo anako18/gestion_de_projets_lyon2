@@ -48,4 +48,12 @@
 
   &__informations {
   }
+
+  &__bouton {
+    @include marge("bottom", 22);
+  }
+}
+
+.panel-footer {
+  position: fixed;
 }

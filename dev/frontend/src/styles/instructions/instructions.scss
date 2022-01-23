@@ -30,11 +30,12 @@
   hr.Rounded {
     width: 30%;
     margin: 1.5%;
-    border-top: 3px solid #bbb;
+    border: unset;
+    border-top: 4px solid #bbb;
   }
 
   hr.Rounded.active {
-    border-top: 3px solid #ea553d;
+    border-top: 4px solid #ea553d;
   }
 
   .underlines {

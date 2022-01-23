@@ -6,7 +6,10 @@
           <img width="13%" src="../assets/icon.png">
         </div>
         <div style="padding: 20px;">
-          <span class="bienvenue">
+          <span
+            class="bienvenue"
+            style=" color: white; font-weight: 700; font-size: 34px;font-family: Hind; letter-spacing: 1px;"
+          >
             Bienvenue chez
             <img
               width="80%"
@@ -17,7 +20,7 @@
         </div>
         <img
           src="../assets/images/illustration-1.png"
-          style="position: absolute; right: 95px; bottom: -10px;"
+          style="position: absolute; right: 95px; bottom: 0;"
         >
       </section>
     </main>
