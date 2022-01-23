@@ -108,7 +108,10 @@ export default {
         "/instructions3",
         "/premiere-visite",
         "/connexion",
-        "/inscription"
+        "/inscription",
+        "/organisation-evenement/type",
+        "/organisation-evenement/lieu",
+        "/organisation-evenement/accessibilite"
       ]
       for (const route of routesInterdites) {
         if (route === routeActive) return false

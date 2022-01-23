@@ -59,6 +59,16 @@ const routes = [
         path: "type",
         name: "Type de cuisine",
         component: ModalInterface
+      },
+      {
+        path: "lieu",
+        name: "Lieu",
+        component: ModalInterface
+      },
+      {
+        path: "accessibilite",
+        name: "Accessibilité",
+        component: ModalInterface
       }
     ],
     meta: {
@@ -148,13 +158,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiertAuthentification)) {
     if (window.localStorage.getItem("idUtilisateur") === null) {
-      console.log("navigation: nop")
       next({
         path: "/connexion",
         params: { nextUrl: to.fullPath }
       })
     } else {
-      console.log("navigation: ok")
       next()
     }
   } else {

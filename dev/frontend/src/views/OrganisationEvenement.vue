@@ -63,7 +63,7 @@
           tag="a"
           @click.native="changementEtatModal"
         >
-          <ChampModalInterface titre="Type d'évènement" />
+          <ChampModalInterface titre="Type d'évènement" :valeur="evenementInformations.typeEvenement" />
         </router-link>
         <router-link
           :to="{name: 'Type de cuisine', params: {
@@ -76,14 +76,57 @@
         >
           <ChampModalInterface
             titre="Type de cuisine"
+            :valeur="evenementInformations.typeCuisine"
             style="margin-bottom: 26px;"
           />
         </router-link>
-        <ChampModalInterface titre="Date" />
-        <ChampModalInterface titre="Heure" />
-        <ChampModalInterface titre="Durée" />
-        <ChampModalInterface titre="Lieu" />
-        <ChampModalInterface titre="Accessibilité" style="margin-bottom: 26px;" />
+        <ChampInterface
+          id="evenement-description-heure"
+          label="Date"
+          texte-substitution=""
+          type="date"
+          @handleChange="handleChange('date', $event)"
+        />
+        <ChampInterface
+          id="evenement-description-date"
+          label="Heure"
+          texte-substitution=""
+          type="time"
+          @handleChange="handleChange('heure', $event)"
+        />
+        <ChampInterface
+          id="evenement-description-duree"
+          label="Durée"
+          texte-substitution="La durée de l'évènement au format XhYY"
+          type="text"
+          @handleChange="handleChange('duree', $event)"
+        />
+        <router-link
+          :to="{name: 'Lieu', params: {
+            typeModal: 'lieu',
+            texte: 'Lieu',
+            selectionRecue: evenementInformations.lieu
+          }}"
+          tag="a"
+          @click.native="changementEtatModal"
+        >
+          <ChampModalInterface titre="Lieu" :valeur="lieuRassemble" />
+        </router-link>
+        <router-link
+          :to="{name: 'Accessibilité', params: {
+            typeModal: 'accessibilite',
+            texte: 'Accessibilité',
+            selectionRecue: evenementInformations.accessibilite
+          }}"
+          tag="a"
+          @click.native="changementEtatModal"
+        >
+          <ChampModalInterface
+            titre="Accessibilité"
+            :valeur="accessibiliteRassemble"
+            style="margin-bottom: 26px;"
+          />
+        </router-link>
         <ChampInterface
           id="evenement-prix-personne"
           label="Prix par personne"
@@ -93,6 +136,14 @@
           @handleChange="handleChange('prix', $event)"
         />
       </section>
+      <div class="evenement__bouton">
+        <BoutonInterface
+          valeur="Créer l'évènement"
+          type="ajouter-photo"
+          :etat="validationInformations"
+          @aClique="envoiCreerEvenement"
+        />
+      </div>
     </div>
     <transition name="slide-fade">
       <router-view @click="changementEtatModal($event)" />
@@ -107,6 +158,7 @@ import NavigationInteraction from "@m/OrganisationEvenementModule/NavigationInte
 import ChampInterface from "@m/OrganisationEvenementModule/ChampInterface.vue"
 import SelecteurInterface from "@m/OrganisationEvenementModule/SelecteurInterface.vue"
 import ChampModalInterface from "@m/OrganisationEvenementModule/ChampModalInterface.vue"
+import EvenementService from "@m/OrganisationEvenementModule/EvenementService.js"
 
 export default {
   name: "OrganisationEvenementVue",
@@ -128,8 +180,47 @@ export default {
         nombrePlaces: 0,
         typeEvenement: undefined,
         typeCuisine: undefined,
+        date: undefined,
+        heure: undefined,
+        duree: undefined,
+        lieu: {
+          "numero-rue": "",
+          ville: "",
+          codePostal: ""
+        },
+        accessibilite: [],
         prix: undefined
       }
+    }
+  },
+  computed: {
+    lieuRassemble: function () {
+      return `${this.evenementInformations.lieu["numero-rue"]}
+      ${this.evenementInformations.lieu.ville}
+      ${this.evenementInformations.lieu.codePostal}`
+    },
+    accessibiliteRassemble: function () {
+      let chaine = ""
+      const accessibilite = this.evenementInformations.accessibilite
+      for (const index in accessibilite) {
+        if (accessibilite[index] === "Transports en commun") {
+          chaine += "Transports, "
+        } else if (accessibilite[index] === "Accessible PMR") {
+          chaine += "PMR, "
+        } else {
+          chaine += `${accessibilite[index]}, `
+        }
+      }
+      chaine = chaine.slice(0, -2)
+      return chaine
+    },
+    validationInformations: function () {
+      for (const valeur in this.evenementInformations) {
+        if (this.evenementInformations[valeur] === undefined) {
+          return false
+        }
+      }
+      return true
     }
   },
   methods: {
@@ -140,10 +231,13 @@ export default {
         this.evenementInformations[type] = donnee
       }
       this.modalActive = !this.modalActive
+      this.scrollPosition = window.scrollX
     },
     handleChange (donnee, payload) {
       this.evenementInformations[donnee] = payload
-    }
+    },
+    envoiCreerEvenement: EvenementService.envoiCreerEvenement,
+    creerEvenement: EvenementService.creerEvenement
   }
 }
 </script>
