@@ -4,7 +4,7 @@
       <img src="../assets/logo.png">
     </header>
     <div class="section-titre">
-      <span class="titre"> Mes evenements </span>
+      <span class="titre">Mes évènements</span>
     </div>
     <div class="tab">
       <button
@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <div id="hote" class="tabcontent activetab">
+    <div id="invite" class="tabcontent activetab">
       <div v-if="!isLoading">
         <div
           v-for="evenementInv in evenementsInvite"
@@ -28,13 +28,13 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-                <img
+                <!-- <img
                   :src="
                     require(`../assets/evenements/${getEvenementPhoto(
                       evenementInv.photo
                     )}`)"
                   class="favoris-image"
-                >
+                > -->
               </div>
               <div class="favoris-description">
                 <p class="evenement-titre">
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div id="invite" class="tabcontent">
+    <div id="hote" class="tabcontent">
       <div v-if="!isLoading">
         <div
           v-for="evenementsHt in evenementsHote"
@@ -65,13 +65,13 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-                <img
+                <!-- <img
                   :src="
                     require(`../assets/evenements/${getEvenementPhoto(
                       evenementsHt.photo
                     )}`)"
                   class="favoris-image"
-                >
+                > -->
               </div>
               <div class="favoris-description">
                 <p class="evenement-titre">
@@ -91,19 +91,24 @@
         </div>
       </div>
     </div>
+    <FooterComponent />
   </main>
 </template>
 
 <script>
-import Helper from "../modules/EvenementsModule/Helper.js"
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import FooterComponent from "../modules/Footer.vue"
+import Helper from "../modules/EvenementModule/Helper.js"
+import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-
 export default {
   name: "MesEvenements",
+  components: {
+    FooterComponent
+  },
   data () {
     return {
       isLoading: true,
+      idUtilisateur: null,
       evenementsInvite: null,
       evenementsHote: null,
       hotes: null,
@@ -112,8 +117,10 @@ export default {
     }
   },
   async mounted () {
+    this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
     await this.evenementsInviteListe()
     const idHotes = this.evenementsInvite.map((e) => e.idHote)
+    idHotes.push(this.idUtilisateur)
     await this.getUtilisateurs(idHotes)
     await this.evenementsHoteListe()
 
@@ -122,14 +129,14 @@ export default {
   },
   methods: {
     afficheCategory (event, category) {
-      let i
+      let i, tabcontent, tablinks
 
-      const tabcontent = document.getElementsByClassName("tabcontent")
+      tabcontent = document.getElementsByClassName("tabcontent")
       for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none"
       }
 
-      const tablinks = document.getElementsByClassName("tablinks")
+      tablinks = document.getElementsByClassName("tablinks")
       for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" activetab", "")
       }
@@ -138,9 +145,8 @@ export default {
       event.currentTarget.className += " activetab"
     },
     async evenementsInviteListe () {
-      const idUtilisateur = window.localStorage.getItem("idUtilisateur")
       try {
-        await EvenementsService.evenementsInviteListe(idUtilisateur).then(
+        await EvenementsService.evenementsInviteListe(this.idUtilisateur).then(
           (res) => (this.evenementsInvite = res.data.data)
         )
         this.error = null
@@ -150,9 +156,8 @@ export default {
       }
     },
     async evenementsHoteListe () {
-      const idUtilisateur = window.localStorage.getItem("idUtilisateur")
       try {
-        await EvenementsService.evenementsHoteListe(idUtilisateur).then(
+        await EvenementsService.evenementsHoteListe(this.idUtilisateur).then(
           (res) => (this.evenementsHote = res.data.data)
         )
         this.error = null
@@ -173,15 +178,19 @@ export default {
       }
     },
     hotePrenom (evntId) {
-      const nom = this.hotes.find((h) => h.idUtilisateur === evntId).prenom
-      if (nom === null) {
-        return "N/A"
+      if (this.hotes != null) {
+        const nom = this.hotes.find((h) => h.idUtilisateur === evntId)
+        if (nom == null) {
+          return "N/A"
+        } else {
+          return nom.prenom
+        }
       } else {
-        return nom
+        return "N/A"
       }
     },
     getEvenementPhoto (photo) {
-      if (photo === null) {
+      if (photo == null) {
         return "0.png"
       } else {
         return photo
