@@ -8,7 +8,7 @@ import ConnexionVue from "@v/Connexion.vue"
 import InscriptionVue from "@v/Inscription.vue"
 import OrganisationEvenement from "@v/OrganisationEvenement.vue"
 
-import ModalInterface from "@m/OrganisationEvenementModule/ModalInterface.vue"
+import ModalInterface from "@m/EvenementModule/OrganisationModule/ModalInterface.vue"
 import EvenementsListVue from "@v/EvenementsListe.vue"
 import FavorisListVue from "@v/FavorisListe.vue"
 import MesEvenementsVue from "@v/MesEvenements.vue"

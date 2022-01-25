@@ -154,11 +154,11 @@
 <script>
 import EnTeteInterface from "@m/InterfaceModule/EnTeteInterface.vue"
 import BoutonInterface from "@m/InterfaceModule/BoutonInterface.vue"
-import NavigationInteraction from "@m/OrganisationEvenementModule/NavigationInteraction.vue"
-import ChampInterface from "@m/OrganisationEvenementModule/ChampInterface.vue"
-import SelecteurInterface from "@m/OrganisationEvenementModule/SelecteurInterface.vue"
-import ChampModalInterface from "@m/OrganisationEvenementModule/ChampModalInterface.vue"
-import EvenementService from "@m/OrganisationEvenementModule/EvenementService.js"
+import NavigationInteraction from "@m/EvenementModule/OrganisationModule/NavigationInteraction.vue"
+import ChampInterface from "@m/EvenementModule/OrganisationModule/ChampInterface.vue"
+import SelecteurInterface from "@m/EvenementModule/OrganisationModule/SelecteurInterface.vue"
+import ChampModalInterface from "@m/EvenementModule/OrganisationModule/ChampModalInterface.vue"
+import OrganisationEvenementService from "@m/EvenementModule/OrganisationModule/OrganisationEvenementService.js"
 
 export default {
   name: "OrganisationEvenementVue",
@@ -236,8 +236,8 @@ export default {
     handleChange (donnee, payload) {
       this.evenementInformations[donnee] = payload
     },
-    envoiCreerEvenement: EvenementService.envoiCreerEvenement,
-    creerEvenement: EvenementService.creerEvenement
+    envoiCreerEvenement: OrganisationEvenementService.envoiCreerEvenement,
+    creerEvenement: OrganisationEvenementService.creerEvenement
   }
 }
 </script>

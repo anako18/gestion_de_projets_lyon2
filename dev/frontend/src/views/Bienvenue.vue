@@ -8,7 +8,7 @@
         <div style="padding: 20px;">
           <span
             class="bienvenue"
-            style=" color: white; font-weight: 700; font-size: 34px;font-family: Hind; letter-spacing: 1px;"
+            style=" color: white; font-weight: 700; font-size: 34px; font-family: Hind; letter-spacing: 1px;"
           >
             Bienvenue chez
             <img

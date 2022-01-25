@@ -63,8 +63,8 @@
 
 <script>
 import FooterComponent from "../modules/Footer.vue"
-import Helper from "../modules/EvenementsModule/Helper.js"
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import Helper from "../modules/EvenementModule/Helper.js"
+import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
 export default {
   name: "Favoris",

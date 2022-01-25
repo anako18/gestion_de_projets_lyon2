@@ -141,10 +141,10 @@
 </template>
 
 <script>
-import EnTeteInterfaceVue from "../InterfaceModule/EnTeteInterface.vue"
+import EnTeteInterfaceVue from "@m/InterfaceModule/EnTeteInterface.vue"
 import NavigationInteraction from "./NavigationInteraction.vue"
 import ChampInterface from "./ChampInterface.vue"
-import EvenementModele from "./EvenementModele.js"
+import EvenementModele from "@m/EvenementModule/EvenementModele.js"
 
 export default {
   components: {

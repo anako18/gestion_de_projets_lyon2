@@ -28,11 +28,11 @@
       <p class="accroche">
         ...et le tout à <strong>petit prix</strong> !
       </p>
-      <router-link to="/inscription" tag="a">
+      <router-link to="/inscription">
         <BoutonInterface
           type="inscription"
           valeur="Je m'inscris"
-          etat="true"
+          :etat="true"
           icone="inscription"
         />
       </router-link>
@@ -44,11 +44,11 @@
       <p class="texte-style-6">
         Parfait ! Connecte-toi vite !
       </p>
-      <router-link to="/connexion" tag="a">
+      <router-link to="/connexion">
         <BoutonInterface
           type="connexion"
           valeur="Je me connecte"
-          etat="true"
+          :etat="true"
           icone="connexion"
         />
       </router-link>

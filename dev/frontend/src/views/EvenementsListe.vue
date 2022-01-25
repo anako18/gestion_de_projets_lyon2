@@ -72,9 +72,9 @@
 </template>
 
 <script>
-import FiltersComponents from "../modules/EvenementsModule/Filters.vue"
-import Helper from "../modules/EvenementsModule/Helper.js"
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import FiltersComponents from "../modules/EvenementModule/Filters.vue"
+import Helper from "../modules/EvenementModule/Helper.js"
+import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
 
 export default {

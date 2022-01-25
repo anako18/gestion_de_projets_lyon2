@@ -152,9 +152,9 @@
 </template>
 
 <script>
-import EvenementsService from "../modules/EvenementsModule/EvenementsService.js"
+import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-import Helper from "../modules/EvenementsModule/Helper.js"
+import Helper from "../modules/EvenementModule/Helper.js"
 export default {
   name: "EvenementPage",
   data () {
