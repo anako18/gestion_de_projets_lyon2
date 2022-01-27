@@ -53,7 +53,6 @@
     background: $couleur-c4;
     border: 1px solid #585858;
     border-radius: 25.5px;
-    border-radius: 25.5px;
   }
 
   .active {
@@ -65,7 +64,7 @@
   color: $couleur-nmoyen;
   font-weight: normal;
   font-size: 13px;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-style: normal;
   line-height: 15px;
 }
@@ -111,7 +110,7 @@
   z-index: 999;
   display: table;
   width: 100%;
-  background-color: white;
+  background-color: #fff;
 
   .panel-image {
     width: 70%;
@@ -153,14 +152,14 @@
 .profile-pic {
   display: inline-block;
   margin-right: 20px;
-  border: 5px solid white;
+  border: 5px solid #fff;
   border-radius: 50%;
 }
 
 .evenement {
   position: relative;
   margin-bottom: 50px;
-  background-color: white;
+  background-color: #fff;
 }
 
 .favoris-liste {
@@ -183,7 +182,7 @@
 %evenement-default-font {
   color: $couleur-nfonce;
   font-weight: bold;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-style: normal;
 }
 
@@ -204,7 +203,7 @@
 .evenement-font-petit {
   color: $couleur-nfonce;
   font-size: 13px;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 .evenement-description {
@@ -276,7 +275,6 @@
   background-color: transparent;
   box-shadow: unset;
   transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 
 /* favoris */
@@ -286,7 +284,7 @@
   color: $couleur-nfonce;
   font-weight: bold;
   font-size: 25px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-style: normal;
   line-height: 25px;
   letter-spacing: 0.02em;
@@ -395,7 +393,7 @@
   line-height: 18px;
   text-align: center;
   background-color: inherit;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #fff;
   outline: none;
   box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
 }
@@ -437,7 +435,7 @@
   .evenement-section {
     padding: 10px;
     font-size: 18px;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     text-align: center;
   }
 
@@ -512,7 +510,7 @@
   color: #fff;
   font-weight: bold;
   font-size: 34px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-style: normal;
   line-height: 34px;
 }
@@ -533,7 +531,7 @@
   color: $couleur-nfonce;
   font-weight: bold;
   font-size: 25px;
-  font-family: Hind;
+  font-family: Hind, sans-serif;
   font-style: normal;
   line-height: 34px;
 }
