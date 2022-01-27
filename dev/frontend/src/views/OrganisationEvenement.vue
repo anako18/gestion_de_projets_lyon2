@@ -14,14 +14,24 @@
           </p>
         </div>
         <div class="evenement__illustration__image">
-          <img src="@ai/illustration__image.svg" alt="Placeholder illustration de l'évènement">
+          <img :src="urlImage" alt="Placeholder illustration de l'évènement">
         </div>
         <BoutonInterface
           :etat="true"
           valeur="Ajouter une photo"
           icone="plus"
           type="ajouter-photo"
+          @aClique="choixPhoto"
         />
+        <input
+          id="fileInput"
+          ref="fileInput"
+          type="file"
+          style=" width: 0; height: 0;visibility: hidden;"
+          accept="image/*"
+          @click="choixPhoto"
+          @change="photoChoisie"
+        >
       </section>
       <section class="evenement__informations">
         <ChampInterface
@@ -60,7 +70,6 @@
             texte: 'Type d\'évènement',
             selectionRecue: evenementInformations.typeEvenement
           }}"
-          tag="a"
           @click.native="changementEtatModal"
         >
           <ChampModalInterface titre="Type d'évènement" :valeur="evenementInformations.typeEvenement" />
@@ -71,7 +80,6 @@
             texte: 'Type de cuisine',
             selectionRecue: evenementInformations.typeCuisine
           }}"
-          tag="a"
           @click.native="changementEtatModal"
         >
           <ChampModalInterface
@@ -107,7 +115,6 @@
             texte: 'Lieu',
             selectionRecue: evenementInformations.lieu
           }}"
-          tag="a"
           @click.native="changementEtatModal"
         >
           <ChampModalInterface titre="Lieu" :valeur="lieuRassemble" />
@@ -118,7 +125,6 @@
             texte: 'Accessibilité',
             selectionRecue: evenementInformations.accessibilite
           }}"
-          tag="a"
           @click.native="changementEtatModal"
         >
           <ChampModalInterface
@@ -190,7 +196,9 @@ export default {
         },
         accessibilite: [],
         prix: undefined
-      }
+      },
+      image: "",
+      urlImage: ""
     }
   },
   computed: {
@@ -235,6 +243,20 @@ export default {
     },
     handleChange (donnee, payload) {
       this.evenementInformations[donnee] = payload
+    },
+    choixPhoto () {
+      this.$refs.fileInput.click()
+      // document.querySelector("#fileInput").click()
+    },
+    photoChoisie (evenement) {
+      const fichiers = evenement.target.files
+      // const nomDeFichier = fichiers[0].name
+      const lecteurDeFichiers = new FileReader()
+      lecteurDeFichiers.addEventListener("load", () => {
+        this.urlImage = lecteurDeFichiers.result
+      })
+      lecteurDeFichiers.readAsDataURL(fichiers[0])
+      this.image = fichiers[0]
     },
     envoiCreerEvenement: OrganisationEvenementService.envoiCreerEvenement,
     creerEvenement: OrganisationEvenementService.creerEvenement
