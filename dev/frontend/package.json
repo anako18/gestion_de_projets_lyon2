@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "pnpm code:lint && pnpm style:lint",
     "code:lint": "./node_modules/.bin/eslint --fix src/**/*.vue src/*.vue *.js src/*.js src/**/*.js",
-    "style:lint": "./node_modules/.bin/stylelint -f verbose --fix src/styles/* src/views/*.vue src/modules/**/*.vue"
+    "style:lint": "./node_modules/.bin/stylelint -f verbose --fix src/styles/*"
   },
   "dependencies": {
     "axios": "0.24.0",
