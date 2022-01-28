@@ -59,8 +59,9 @@
             </div>
             <div class="evenement-section third">
               <span class="evenement-font-petit">
-                3 participants <br />
-                Il reste encore 2 places
+                 {{ participants.length }} participants <br />
+              Il reste encore
+              {{ evenement.capacite - participants.length }} places
               </span>
               <br />
               <span class="evenement-font-petit"> {{ evenement.prix }}€ </span>

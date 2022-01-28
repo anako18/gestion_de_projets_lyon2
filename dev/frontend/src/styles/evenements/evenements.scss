@@ -7,7 +7,7 @@
 }
 
 .events-scroll-ecran {
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 }
 
 %filter-button-style {
@@ -105,7 +105,7 @@
 }
 
 .panel-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: 999;
   display: table;
