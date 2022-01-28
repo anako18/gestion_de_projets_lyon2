@@ -3,6 +3,7 @@ const enregistrementPolitique = require("./policies/enregistrement-politique")
 const authentificationControleur = require("./controllers/authentification-controleur")
 const authentificationPolitique = require("./policies/authentification-politique")
 const evenementsControleur = require("./controllers/evenements-controleur")
+const uploadControleur = require("./controllers/upload-controleur")
 
 module.exports = (app) => {
   // Enregistrer Utilisateur
@@ -55,5 +56,9 @@ module.exports = (app) => {
   )
   app.post("/api/evenements-participer",
     evenementsControleur.evenementParticiper
+  )
+  app.post("/api/upload",
+    uploadControleur.enregistrementDisque,
+    uploadControleur.retourTeleversement
   )
 }
