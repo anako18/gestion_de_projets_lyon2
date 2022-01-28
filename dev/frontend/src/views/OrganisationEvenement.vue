@@ -21,7 +21,7 @@
           valeur="Ajouter une photo"
           icone="plus"
           type="ajouter-photo"
-          @aClique="choixPhoto"
+          @aClique="declencheChoixPhoto"
         />
         <input
           id="fileInput"
@@ -29,7 +29,6 @@
           type="file"
           style=" width: 0; height: 0;visibility: hidden;"
           accept="image/*"
-          @click="choixPhoto"
           @change="photoChoisie"
         >
       </section>
@@ -165,6 +164,7 @@ import ChampInterface from "@m/EvenementModule/OrganisationModule/ChampInterface
 import SelecteurInterface from "@m/EvenementModule/OrganisationModule/SelecteurInterface.vue"
 import ChampModalInterface from "@m/EvenementModule/OrganisationModule/ChampModalInterface.vue"
 import OrganisationEvenementService from "@m/EvenementModule/OrganisationModule/OrganisationEvenementService.js"
+import UploadService from "@m/UploadModule/UploadService.js"
 
 export default {
   name: "OrganisationEvenementVue",
@@ -195,7 +195,8 @@ export default {
           codePostal: ""
         },
         accessibilite: [],
-        prix: undefined
+        prix: undefined,
+        photo: undefined
       },
       image: "",
       urlImage: ""
@@ -244,22 +245,29 @@ export default {
     handleChange (donnee, payload) {
       this.evenementInformations[donnee] = payload
     },
-    choixPhoto () {
+    /**
+     * Ouvre le sélecteur de fichiers de l'utilisateur
+     */
+    declencheChoixPhoto () {
       this.$refs.fileInput.click()
-      // document.querySelector("#fileInput").click()
     },
     photoChoisie (evenement) {
       const fichiers = evenement.target.files
-      // const nomDeFichier = fichiers[0].name
       const lecteurDeFichiers = new FileReader()
+      const formData = new FormData()
+
+      this.image = fichiers[0]
       lecteurDeFichiers.addEventListener("load", () => {
         this.urlImage = lecteurDeFichiers.result
       })
       lecteurDeFichiers.readAsDataURL(fichiers[0])
-      this.image = fichiers[0]
+
+      formData.append("file", this.image)
+      this.upload(formData)
     },
     envoiCreerEvenement: OrganisationEvenementService.envoiCreerEvenement,
-    creerEvenement: OrganisationEvenementService.creerEvenement
+    creerEvenement: OrganisationEvenementService.creerEvenement,
+    upload: UploadService.upload
   }
 }
 </script>
