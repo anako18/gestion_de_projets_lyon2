@@ -3,8 +3,8 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 
 import BienvenueVue from "@v/Bienvenue.vue"
-import EvenementConfirmationParticipationVue from "@v/EvenementConfirmationParticipation.vue"
 import ConnexionVue from "@v/Connexion.vue"
+import EvenementConfirmation from "@v/EvenementConfirmation.vue"
 import EvenementDetailVue from "@v/EvenementDetail.vue"
 import EvenementListeVue from "@v/EvenementListe.vue"
 import EvenementOrganisationVue from "@v/EvenementOrganisation.vue"
@@ -141,7 +141,7 @@ const routes = [
   {
     path: "/confirmation",
     name: "Confirmation",
-    component: EvenementConfirmationParticipationVue,
+    component: EvenementConfirmation,
     meta: {
       requiertAuthentification: true
     }

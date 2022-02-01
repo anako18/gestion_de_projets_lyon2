@@ -176,7 +176,7 @@
 }
 
 .favoris-liste {
-  height: 470px;
+  margin-bottom: 16px;
   overflow: scroll;
 }
 
@@ -315,8 +315,8 @@ center {
 
 .mon-evenement-item,
 %item {
-  margin-bottom: 10px;
   border-bottom: 2px solid #fff;
+  padding: 0 16px;
 }
 
 .favoris-item {
@@ -384,7 +384,7 @@ center {
   @extend %button-evnenements;
 
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   padding: 5px 20px;
   color: $couleur-nfonce;
   border-radius: 5px;
@@ -416,6 +416,7 @@ center {
   border-bottom: 3px solid #fff;
   outline: none;
   box-shadow: unset;
+  margin-bottom: 22px;
 }
 
 .tab button.activetab {
@@ -425,8 +426,9 @@ center {
 
 .tabcontent {
   display: none;
-  padding: 6px 12px;
+  // padding: 6px 12px;
   border-top: none;
+  min-width: 100%;
 }
 
 .tabcontent.activetab {
@@ -491,7 +493,11 @@ center {
   .hote,
   .informations-pratiques,
   .participants {
-    padding: 20px;
+    // padding: 20px;
+  }
+
+  .hote {
+    min-width: 100%;
   }
 
   .paricipants-preview {
@@ -542,6 +548,7 @@ center {
 %confirmation-section {
   margin: 20px;
   font-size: 18px;
+  line-height: 21px;
 }
 
 .confirmation-titre {
@@ -562,7 +569,8 @@ center {
 .confirmation-section-vert {
   @extend %confirmation-section;
 
-  color: #4c8655;
+  color: $couleur-c7;
+
 }
 
 .confirmation-button {

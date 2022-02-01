@@ -1,15 +1,22 @@
 "use strict"
 import Api from "@m/ApiModule/ApiService.js"
+import router from "@m/RouterModule/RouterService"
 
 const envoiCreerEvenement = async function () {
   try {
     await this.creerEvenement(this.evenementInformations)
       .then((valeur) => {
-        // this.gestionTentative("succes", "etatEnregistrement")
+        this.gestionTentative("succes", "etatCreation")
+        setTimeout(() => {
+          router.push({
+            path: "confirmation",
+            params: { type: "creation-evenement" }
+          })
+        }, 3000)
       })
   } catch (erreur) {
     console.log("evenement-service", erreur)
-    // this.gestionTentative("echec", "etatEnregistrement")
+    this.gestionTentative("echec", "etatCreation")
   }
 }
 

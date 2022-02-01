@@ -1,5 +1,17 @@
 <template>
   <main class="organisation-evenement">
+    <transition name="topbottom-fade">
+      <NotificationInterface
+        v-if="etatCreation === 'succes'"
+        etat="succes"
+        valeur="Création réussie !"
+      />
+      <NotificationInterface
+        v-if="etatCreation === 'echec'"
+        etat="echec"
+        valeur="Création échouée !"
+      />
+    </transition>
     <div class="evenement" :class="{ 'modal-active': modalActive === true }">
       <EnTeteInterface />
       <NavigationInteraction
@@ -163,8 +175,11 @@ import NavigationInteraction from "@m/EvenementModule/OrganisationModule/Navigat
 import ChampInterface from "@m/EvenementModule/OrganisationModule/ChampInterface.vue"
 import SelecteurInterface from "@m/EvenementModule/OrganisationModule/SelecteurInterface.vue"
 import ChampModalInterface from "@m/EvenementModule/OrganisationModule/ChampModalInterface.vue"
+import NotificationInterface from "@m/InterfaceModule/NotificationInterface.vue"
+
 import OrganisationEvenementService from "@m/EvenementModule/OrganisationModule/OrganisationEvenementService.js"
 import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+import CompteService from "@m/CompteModule/CompteService.js"
 
 export default {
   name: "EvenementOrganisationVue",
@@ -174,7 +189,8 @@ export default {
     BoutonInterface,
     ChampInterface,
     SelecteurInterface,
-    ChampModalInterface
+    ChampModalInterface,
+    NotificationInterface
   },
   data () {
     return {
@@ -199,7 +215,8 @@ export default {
         photo: undefined
       },
       image: "",
-      urlImage: ""
+      urlImage: "",
+      etatCreation: "repos"
     }
   },
   computed: {
@@ -272,7 +289,8 @@ export default {
     envoiCreerEvenement: OrganisationEvenementService.envoiCreerEvenement,
     creerEvenement: OrganisationEvenementService.creerEvenement,
     envoieTeleversement: TeleversementService.envoieTeleversement,
-    recupereTeleversement: TeleversementService.recupereTeleversement
+    recupereTeleversement: TeleversementService.recupereTeleversement,
+    gestionTentative: CompteService.gestionTentative
   }
 }
 </script>
