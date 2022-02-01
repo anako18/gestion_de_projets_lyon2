@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "Confirmation",
+  name: "EvenementConfirmationParticipationVue",
   methods: {
     redirect () {
       window.location.href = `/mes-evenements`

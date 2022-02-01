@@ -76,7 +76,7 @@ import AuthentificationService from "@m/CompteModule/AuthentificationModule/Auth
 import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
 
 export default {
-  name: "EvenementsListe",
+  name: "EvenementListeVue",
   components: {
     FiltersComponents
   },

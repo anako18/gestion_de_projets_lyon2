@@ -2,22 +2,21 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
-import IntroVue from "@v/Intro.vue"
-import PremiereVisiteVue from "@v/PremiereVisite.vue"
-import ConnexionVue from "@v/Connexion.vue"
-import InscriptionVue from "@v/Inscription.vue"
-import OrganisationEvenement from "@v/OrganisationEvenement.vue"
-
-import ModalInterface from "@m/EvenementModule/OrganisationModule/ModalInterface.vue"
-import EvenementsListVue from "@v/EvenementsListe.vue"
-import FavorisListVue from "@v/FavorisListe.vue"
-import MesEvenementsVue from "@v/MesEvenements.vue"
-import PageEvenementVue from "@v/PageEvenement.vue"
 import BienvenueVue from "@v/Bienvenue.vue"
+import EvenementConfirmationParticipationVue from "@v/EvenementConfirmationParticipation.vue"
+import ConnexionVue from "@v/Connexion.vue"
+import EvenementDetailVue from "@v/EvenementDetail.vue"
+import EvenementListeVue from "@v/EvenementListe.vue"
+import EvenementOrganisationVue from "@v/EvenementOrganisation.vue"
+import EvenementUtilisateurVue from "@v/EvenementUtilisateur.vue"
+import FavoriListeVue from "@v/FavoriListe.vue"
+import InscriptionVue from "@v/Inscription.vue"
 import Instructions1Vue from "@v/Instructions-1.vue"
 import Instructions2Vue from "@v/Instructions-2.vue"
 import Instructions3Vue from "@v/Instructions-3.vue"
-import ConfirmationVue from "@v/ConfirmationParticipation.vue"
+import IntroVue from "@v/Intro.vue"
+import ModalInterface from "@m/EvenementModule/OrganisationModule/ModalInterface.vue"
+import PremiereVisiteVue from "@v/PremiereVisite.vue"
 
 Vue.use(VueRouter)
 
@@ -44,7 +43,7 @@ const routes = [
   },
   {
     path: "/organisation-evenement",
-    component: OrganisationEvenement,
+    component: EvenementOrganisationVue,
     children: [
       {
         path: "",
@@ -78,7 +77,7 @@ const routes = [
   {
     path: "/evenements-liste",
     name: "Liste des évènements",
-    component: EvenementsListVue,
+    component: EvenementListeVue,
     meta: {
       requiertAuthentification: true
     }
@@ -86,7 +85,7 @@ const routes = [
   {
     path: "/favoris-liste",
     name: "Évènements favoris",
-    component: FavorisListVue,
+    component: FavoriListeVue,
     meta: {
       requiertAuthentification: true
     }
@@ -94,7 +93,7 @@ const routes = [
   {
     path: "/mes-evenements",
     name: "Mes évènements",
-    component: MesEvenementsVue,
+    component: EvenementUtilisateurVue,
     meta: {
       requiertAuthentification: true
     }
@@ -102,7 +101,7 @@ const routes = [
   {
     path: "/page-evenement/:id",
     name: "Page d'un évènement",
-    component: PageEvenementVue,
+    component: EvenementDetailVue,
     meta: {
       requiertAuthentification: true
     }
@@ -142,7 +141,7 @@ const routes = [
   {
     path: "/confirmation",
     name: "Confirmation",
-    component: ConfirmationVue,
+    component: EvenementConfirmationParticipationVue,
     meta: {
       requiertAuthentification: true
     }

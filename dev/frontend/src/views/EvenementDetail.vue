@@ -148,7 +148,7 @@ import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 import Helper from "@m/EvenementModule/Helper.js"
 export default {
-  name: "EvenementPage",
+  name: "EvenementDetailVue",
   data () {
     return {
       isLoading: true,

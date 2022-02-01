@@ -167,7 +167,7 @@ import OrganisationEvenementService from "@m/EvenementModule/OrganisationModule/
 import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
 
 export default {
-  name: "OrganisationEvenementVue",
+  name: "EvenementOrganisationVue",
   components: {
     EnTeteInterface,
     NavigationInteraction,

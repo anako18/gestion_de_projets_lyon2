@@ -65,7 +65,7 @@ import Helper from "@m/EvenementModule/Helper.js"
 import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 export default {
-  name: "Favoris",
+  name: "FavoriListeVue",
   data () {
     return {
       favs: null,
