@@ -48,7 +48,7 @@ const routes = [
     children: [
       {
         path: "",
-        name: "J'organise"
+        name: "J'organise un évènement"
       },
       {
         path: "type",
@@ -77,7 +77,7 @@ const routes = [
   },
   {
     path: "/evenements-liste",
-    name: "Evenements",
+    name: "Liste des évènements",
     component: EvenementsListVue,
     meta: {
       requiertAuthentification: true
@@ -85,7 +85,7 @@ const routes = [
   },
   {
     path: "/favoris-liste",
-    name: "Favoris",
+    name: "Évènements favoris",
     component: FavorisListVue,
     meta: {
       requiertAuthentification: true
@@ -93,7 +93,7 @@ const routes = [
   },
   {
     path: "/mes-evenements",
-    name: "MesEvenements",
+    name: "Mes évènements",
     component: MesEvenementsVue,
     meta: {
       requiertAuthentification: true
@@ -101,7 +101,7 @@ const routes = [
   },
   {
     path: "/page-evenement/:id",
-    name: "PageEvenement",
+    name: "Page d'un évènement",
     component: PageEvenementVue,
     meta: {
       requiertAuthentification: true
