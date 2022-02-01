@@ -93,7 +93,7 @@
 
 <script>
 import Helper from "@m/EvenementModule/Helper.js"
-import EvenementsService from "@m/EvenementModule/EvenementsService.js"
+import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
 
@@ -138,7 +138,7 @@ export default {
     },
     async evenementsInviteListe () {
       try {
-        await EvenementsService.evenementsInviteListe(this.idUtilisateur).then(
+        await EvenementService.evenementsInviteListe(this.idUtilisateur).then(
           (res) => (this.evenementsInvite = res.data.data)
         )
         this.error = null
@@ -149,7 +149,7 @@ export default {
     },
     async evenementsHoteListe () {
       try {
-        await EvenementsService.evenementsHoteListe(this.idUtilisateur).then(
+        await EvenementService.evenementsHoteListe(this.idUtilisateur).then(
           (res) => (this.evenementsHote = res.data.data)
         )
         this.error = null

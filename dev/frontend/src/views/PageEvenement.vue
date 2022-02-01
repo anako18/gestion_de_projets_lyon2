@@ -144,9 +144,9 @@
 </template>
 
 <script>
-import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
-import Helper from "../modules/EvenementModule/Helper.js"
+import EvenementService from "@m/EvenementModule/EvenementService.js"
+import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
+import Helper from "@m/EvenementModule/Helper.js"
 export default {
   name: "EvenementPage",
   data () {
@@ -170,7 +170,7 @@ export default {
   methods: {
     async getEvenement (id) {
       try {
-        await EvenementsService.evenement(id).then(
+        await EvenementService.evenement(id).then(
           (res) => (this.evenement = res.data.data)
         )
         this.error = null
@@ -204,7 +204,7 @@ export default {
     },
     async mettreFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
+        await EvenementService.mettreFavoris(idUtilisateur, idEvenement)
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
@@ -213,7 +213,7 @@ export default {
     },
     async supprimerDeFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        await EvenementService.supprimerFavoris(idUtilisateur, idEvenement)
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
@@ -222,7 +222,7 @@ export default {
     },
     async participerEnEvenement (idEvenement) {
       try {
-        await EvenementsService.participerEnEvenement({
+        await EvenementService.participerEnEvenement({
           idUtilisateur: this.idUtilisateur,
           idEvenement: idEvenement
         }).then((res) => (window.location.href = "/confirmation"))

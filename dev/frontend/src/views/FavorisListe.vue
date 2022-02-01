@@ -61,9 +61,9 @@
 </template>
 
 <script>
-import Helper from "../modules/EvenementModule/Helper.js"
-import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import Helper from "@m/EvenementModule/Helper.js"
+import EvenementService from "@m/EvenementModule/EvenementService.js"
+import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 export default {
   name: "Favoris",
   data () {
@@ -88,7 +88,7 @@ export default {
   methods: {
     async favorisListe () {
       try {
-        await EvenementsService.favorisListe(
+        await EvenementService.favorisListe(
           window.localStorage.getItem("idUtilisateur")
         ).then((res) => (this.favs = res.data.data))
         this.error = null
@@ -99,7 +99,7 @@ export default {
     },
     async getEvenements (ids) {
       try {
-        await EvenementsService.getEvenementsByIds({ ids: ids }).then(
+        await EvenementService.getEvenementsByIds({ ids: ids }).then(
           (res) => (this.evenements = res.data.data)
         )
         this.error = null
@@ -137,7 +137,7 @@ export default {
     },
     async mettreFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
+        await EvenementService.mettreFavoris(idUtilisateur, idEvenement)
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
@@ -146,7 +146,7 @@ export default {
     },
     async supprimerDeFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        await EvenementService.supprimerFavoris(idUtilisateur, idEvenement)
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
