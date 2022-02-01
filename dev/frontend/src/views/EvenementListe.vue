@@ -12,7 +12,7 @@
       <div class="evenement">
         <div class="evenement-image">
           <img
-            :ref="evenementImage"
+            :ref="`champImg${evenement.idEvenement}`"
             src=""
             width="100%"
           >
@@ -27,6 +27,7 @@
         </div>
         <div class="evenement-content">
           <div class="profile-titre">
+            <!-- // FIXME: Mettre en place la photo Utilisateur -->
             <!-- <img
               class="profile-pic"
               :src=" require(`../assets/avatars/${getHoteAvatar( evenement.idEvenement )}`) "
@@ -86,13 +87,14 @@ export default {
       hotes: null,
       error: null,
       helper: null,
-      photos: []
+      photos: {}
     }
   },
   mounted () {
     this.getEvenements().then((res) => {
       const idHotes = this.evenements.map((e) => e.idHote)
       this.getUtilisateurs(idHotes)
+      this.recuperePhotoEvenement()
     })
     this.helper = new Helper()
   },
@@ -172,14 +174,26 @@ export default {
         : require("../assets/heart.png")
     },
     recupereTeleversement: TeleversementService.recupereTeleversement,
-    async recupererPhotos () {
-      for (const evenement in this.evenementsHote) {
-        if (this.evenementsHote[evenement].photo !== "") {
-          await this.recupereTeleversement(this.evenementsHote[evenement].photo)
+    async recuperePhotoEvenement () {
+      console.debug("lol")
+      for (const index in this.evenements) {
+        const evenement = this.evenements[index]
+        if (evenement.photo !== "") {
+          await this.recupereTeleversement(evenement.photo)
             .then((resultat) => {
-              const nb = this.evenementsHote[evenement].idEvenement
-              this.photos[nb] = resultat.request.responseURL
-              this.$refs.evenementImage.src = this.photos[nb]
+              const id = evenement.idEvenement
+              const champNom = `champImg${id}`
+              this.photos[id] = resultat.request.responseURL
+
+              for (const valeur in Object.keys(this.$refs)) {
+                if (Object.keys(this.$refs)[valeur] === champNom) {
+                  const ref = Object.keys(this.$refs)[valeur]
+                  this.$refs[ref][0].src = this.photos[id]
+                }
+              }
+            })
+            .catch((erreur) => {
+              console.log("recuperePhotoEvenement", erreur)
             })
         }
       }
