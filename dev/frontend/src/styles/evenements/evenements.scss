@@ -315,8 +315,8 @@ center {
 
 .mon-evenement-item,
 %item {
-  border-bottom: 2px solid #fff;
   padding: 0 16px;
+  border-bottom: 2px solid #fff;
 }
 
 .favoris-item {
@@ -408,6 +408,7 @@ center {
   @extend %font;
 
   width: 50%;
+  margin-bottom: 22px;
   padding-bottom: 4px;
   font-size: 15px;
   line-height: 18px;
@@ -416,7 +417,6 @@ center {
   border-bottom: 3px solid #fff;
   outline: none;
   box-shadow: unset;
-  margin-bottom: 22px;
 }
 
 .tab button.activetab {
@@ -426,9 +426,10 @@ center {
 
 .tabcontent {
   display: none;
+  min-width: 100%;
+
   // padding: 6px 12px;
   border-top: none;
-  min-width: 100%;
 }
 
 .tabcontent.activetab {
@@ -570,7 +571,6 @@ center {
   @extend %confirmation-section;
 
   color: $couleur-c7;
-
 }
 
 .confirmation-button {

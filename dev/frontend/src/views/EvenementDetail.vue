@@ -7,11 +7,8 @@
       <div class="evenement events-scroll-ecran">
         <div class="evenement-image">
           <img
-            :src="
-              require(`../assets/evenements/${getEvenementPhoto(
-                evenement.photo
-              )}`)
-            "
+            ref="evenementPhoto"
+            src=""
             width="100%"
           >
           <button class="favorite-button">
@@ -147,6 +144,8 @@
 import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 import Helper from "@m/EvenementModule/Helper.js"
+import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+
 export default {
   name: "EvenementDetailVue",
   data () {
@@ -156,16 +155,18 @@ export default {
       hote: null,
       error: null,
       idUtilisateur: null,
-      participants: null
+      participants: null,
+      photo: null
     }
   },
   async mounted () {
     this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
     await this.getEvenement(this.$route.params.id)
     await this.getUtilisateur(this.evenement.idHote)
-    await this.getParicipants()
+    await this.getParticipants()
     this.helper = new Helper()
     this.isLoading = false
+    this.recupereEvenementPhoto()
   },
   methods: {
     async getEvenement (id) {
@@ -174,7 +175,6 @@ export default {
           (res) => (this.evenement = res.data.data)
         )
         this.error = null
-        console.log(this.evenement)
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)
         this.error = erreur
@@ -191,7 +191,7 @@ export default {
         this.error = erreur
       }
     },
-    async getParicipants () {
+    async getParticipants () {
       try {
         await AuthentificationService.getUtilisateurs({
           ids: this.evenement.idsParticipants
@@ -235,13 +235,6 @@ export default {
     afficherOuiNon (flag) {
       return flag === 0 ? "Non" : "Oui"
     },
-    getEvenementPhoto (photo) {
-      if (photo === null) {
-        return "0.png"
-      } else {
-        return photo
-      }
-    },
     getHoteAvatar () {
       if (this.hote == null || this.hote.photo == null) {
         return "0.png"
@@ -257,6 +250,20 @@ export default {
       } else {
         this.supprimerDeFavoris(this.idUtilisateur, id)
         document.getElementById(id).src = require("../assets/heart.png")
+      }
+    },
+    recupereTeleversement: TeleversementService.recupereTeleversement,
+    async recupereEvenementPhoto () {
+      console.log("evenementPhoto", this.evenement.photo)
+      if (this.evenement.photo !== "") {
+        await this.recupereTeleversement(this.evenement.photo)
+          .then((resultat) => {
+            this.photo = resultat.request.responseURL
+            this.$refs.evenementPhoto.src = this.photo
+          })
+          .catch((erreur) => {
+            console.error("recupereEvenementPhoto", erreur)
+          })
       }
     }
   }
