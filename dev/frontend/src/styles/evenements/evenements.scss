@@ -7,7 +7,7 @@
 }
 
 .events-scroll-ecran {
-  padding-bottom: 5%;
+  padding-bottom: 10%;
 }
 
 %filter-button-style {
@@ -53,6 +53,7 @@
     background: $couleur-c4;
     border: 1px solid #585858;
     border-radius: 25.5px;
+    border-radius: 25.5px;
   }
 
   .active {
@@ -64,7 +65,7 @@
   color: $couleur-nmoyen;
   font-weight: normal;
   font-size: 13px;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
   font-style: normal;
   line-height: 15px;
 }
@@ -107,23 +108,35 @@
 .panel-footer {
   position: fixed;
   bottom: 0;
-  z-index: 999;
-  display: table;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
+  height: 66px;
   background-color: #fff;
 
   .panel-image {
-    width: 70%;
-    padding: 10px 10px 0;
+    width: 100%;
+    max-height: 26px;
   }
 
   .panel-element {
-    display: inline-block;
-    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 100%;
     text-align: center;
     vertical-align: top;
 
     .link {
+      span {
+        margin-bottom: unset;
+      }
+
       img {
         filter: grayscale(1) brightness(150%);
       }
@@ -182,7 +195,7 @@
 %evenement-default-font {
   color: $couleur-nfonce;
   font-weight: bold;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
   font-style: normal;
 }
 
@@ -203,7 +216,7 @@
 .evenement-font-petit {
   color: $couleur-nfonce;
   font-size: 13px;
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 }
 
 .evenement-description {
@@ -246,6 +259,11 @@
   box-shadow: 0 8px 10px rgb(0 0 0 / 10%);
 }
 
+center {
+  bottom: 0;
+  display: absolute;
+}
+
 .yellow-button {
   @extend %button-evnenements;
 
@@ -275,6 +293,7 @@
   background-color: transparent;
   box-shadow: unset;
   transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /* favoris */
@@ -284,7 +303,7 @@
   color: $couleur-nfonce;
   font-weight: bold;
   font-size: 25px;
-  font-family: Hind, sans-serif;
+  font-family: Hind;
   font-style: normal;
   line-height: 25px;
   letter-spacing: 0.02em;
@@ -296,7 +315,6 @@
 
 .mon-evenement-item,
 %item {
-  min-width: 350px;
   margin-bottom: 10px;
   border-bottom: 2px solid #fff;
 }
@@ -374,7 +392,7 @@
 
 .section-titre {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 22px;
 }
 
 /* ============================= tabs ====================== */
@@ -390,13 +408,14 @@
   @extend %font;
 
   width: 50%;
+  padding-bottom: 4px;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
   background-color: inherit;
   border-bottom: 3px solid #fff;
   outline: none;
-  box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+  box-shadow: unset;
 }
 
 .tab button.activetab {
@@ -415,7 +434,6 @@
 }
 
 /* ============= page evenement ======= */
-
 .page-evenement {
   @extend %font;
 
@@ -436,7 +454,7 @@
   .evenement-section {
     padding: 10px;
     font-size: 18px;
-    font-family: Roboto, sans-serif;
+    font-family: Roboto;
     text-align: center;
   }
 
@@ -506,18 +524,16 @@
 }
 
 /* ============= bienvenue ======= */
-
 .bienvenue {
   color: #fff;
   font-weight: bold;
   font-size: 34px;
-  font-family: Hind, sans-serif;
+  font-family: Hind;
   font-style: normal;
   line-height: 34px;
 }
 
 /* ============= confirmation ======= */
-
 .confirmation {
   @extend %font;
 }
@@ -532,7 +548,7 @@
   color: $couleur-nfonce;
   font-weight: bold;
   font-size: 25px;
-  font-family: Hind, sans-serif;
+  font-family: Hind;
   font-style: normal;
   line-height: 34px;
 }

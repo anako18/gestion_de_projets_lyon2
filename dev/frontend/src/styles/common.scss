@@ -3,21 +3,29 @@
 @import "./polices";
 @import "./normalize";
 
-#app {
-  min-height: 375px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  background-color: $couleur-c4;
-}
-
 /* Squelette */
 html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
   font-size: 18px;
 }
 
 body {
   font-size: 1rem;
   line-height: $typo-ligne-hauteur !important;
+}
+
+#app {
+  min-width: 100%;
+  min-height: 667px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: $couleur-c4;
+  outline: 1px solid lightcoral;
 }
 
 /* Éléments de base */
@@ -92,11 +100,11 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-width: 100%;
-  min-height: 100vh;
+  min-width: 375px;
+  max-width: 375px;
+  min-height: 667px;
   overflow-x: hidden;
   background: $couleur-blanc;
-  margin-bottom: 20%;
 
   &.favoris-liste {
     background: $couleur-c4;
