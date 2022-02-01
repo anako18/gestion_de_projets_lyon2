@@ -48,7 +48,17 @@ const retourTeleversement = async function (requete, resultat) {
   }
 }
 
+const envoyerTeleversement = async function (requete, resultat) {
+  const urlFichier = requete.query.urlFichier
+  try {
+    resultat.sendFile(`${urlFichier}`, { root: path.dirname("./uploads/uploads/") })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   enregistrementDisque,
-  retourTeleversement
+  retourTeleversement,
+  envoyerTeleversement
 }

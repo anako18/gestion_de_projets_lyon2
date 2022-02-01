@@ -57,6 +57,10 @@ module.exports = (app) => {
   app.post("/api/evenements-participer",
     evenementsControleur.evenementParticiper
   )
+  // Récupérer une image
+  app.get("/api/upload",
+    uploadControleur.envoyerTeleversement)
+  // Téléverser une image
   app.post("/api/upload",
     uploadControleur.enregistrementDisque,
     uploadControleur.retourTeleversement
