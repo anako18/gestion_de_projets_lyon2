@@ -16,3 +16,6 @@ yarn-error.log*
 
 # Editeur
 .vscode
+
+# Git
+.gitconfig
