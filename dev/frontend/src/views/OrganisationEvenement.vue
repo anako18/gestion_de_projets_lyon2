@@ -164,7 +164,7 @@ import ChampInterface from "@m/EvenementModule/OrganisationModule/ChampInterface
 import SelecteurInterface from "@m/EvenementModule/OrganisationModule/SelecteurInterface.vue"
 import ChampModalInterface from "@m/EvenementModule/OrganisationModule/ChampModalInterface.vue"
 import OrganisationEvenementService from "@m/EvenementModule/OrganisationModule/OrganisationEvenementService.js"
-import UploadService from "@m/UploadModule/UploadService.js"
+import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
 
 export default {
   name: "OrganisationEvenementVue",
@@ -263,11 +263,16 @@ export default {
       lecteurDeFichiers.readAsDataURL(fichiers[0])
 
       formData.append("file", this.image)
-      this.upload(formData)
+      this.envoieTeleversement(formData)
+        .then((resultat) => this.evenementInformations.photo = resultat.data.fichier)
+        .catch((erreur) => console.log("error lors de l'upload", erreur))
+      // this.download("1643408477271.png")
+      //   .then((resultat) => this.urlImage = resultat.request.responseURL)
     },
     envoiCreerEvenement: OrganisationEvenementService.envoiCreerEvenement,
     creerEvenement: OrganisationEvenementService.creerEvenement,
-    upload: UploadService.upload
+    envoieTeleversement: TeleversementService.envoieTeleversement,
+    recupereTeleversement: TeleversementService.recupereTeleversement
   }
 }
 </script>

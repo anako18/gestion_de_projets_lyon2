@@ -1,7 +1,7 @@
 <template>
   <main class="page-evenement">
     <header class="header-logo">
-      <img src="../assets/logo.png" />
+      <img src="../assets/logo.png">
     </header>
     <div v-if="!isLoading">
       <div class="evenement events-scroll-ecran">
@@ -13,7 +13,7 @@
               )}`)
             "
             width="100%"
-          />
+          >
           <button class="favorite-button">
             <img
               :id="evenement.idEvenement"
@@ -24,7 +24,7 @@
               "
               width="17%"
               @click="changerFavoris(evenement.idEvenement)"
-            />
+            >
           </button>
         </div>
         <div class="evenement-content">
@@ -34,7 +34,7 @@
               :src="require(`../assets/avatars/${getHoteAvatar()}`)"
               width="20%"
               height="20%"
-            />
+            >
             <div style="display: flex; flex-direction: column">
               <span class="evenement-titre">
                 {{ evenement.titre }}
@@ -44,12 +44,11 @@
           </div>
           <div class="evenement-date-lieu" style="display: flex">
             <div class="evenement-section first">
-              <span class="evenement-date"
-                ><i class="icon-calendar" />{{
-                  helper.afficherDate(evenement.date)
-                }}
+              <span class="evenement-date"><i class="icon-calendar" />{{
+                helper.afficherDate(evenement.date)
+              }}
               </span>
-              <br />
+              <br>
               <span class="evenement-font-petit"> {{ evenement.ville }}</span>
             </div>
             <div class="evenement-section second">
@@ -59,11 +58,11 @@
             </div>
             <div class="evenement-section third">
               <span class="evenement-font-petit">
-                 {{ participants.length }} participants <br />
-              Il reste encore
-              {{ evenement.capacite - participants.length }} places
+                {{ participants.length }} participants <br>
+                Il reste encore
+                {{ evenement.capacite - participants.length }} places
               </span>
-              <br />
+              <br>
               <span class="evenement-font-petit"> {{ evenement.prix }}€ </span>
             </div>
           </div>
@@ -73,42 +72,42 @@
             </div>
             <div class="realisation-du-repas">
               <span class="evenement-titre"> Réalisation du repas </span>
-              <br />
+              <br>
               {{ evenement.descriptionPreparations }}
             </div>
           </div>
           <div class="hote">
             <span class="evenement-titre"> A propos de moi </span>
-            <br /><br />
+            <br><br>
             {{ hote.description }}
-            <br /><br />
+            <br><br>
             <a href="#">
               <u> Poser une question à {{ hote.prenom }} </u>
             </a>
           </div>
           <div class="mes-evenements">
             <span class="evenement-titre"> Mes événements </span>
-            <br /><br />
-            J’ai participé à <b>20 événements</b>. <br />
+            <br><br>
+            J’ai participé à <b>20 événements</b>. <br>
             J’ai été <b>7 fois hôte</b> de la soirée.
           </div>
           <div class="informations-pratiques">
             <span class="evenement-titre"> Informations pratiques </span>
-            <br /><br />
-            <u>Type d’événement </u>: {{ evenement.typeEvenement }} <br />
-            <u>Type de cuisine </u>: {{ evenement.typeCuisine }} <br />
-            <br />
-            <span class="evenement-titre"> Accessibilité </span> <br />
-            <br />
+            <br><br>
+            <u>Type d’événement </u>: {{ evenement.typeEvenement }} <br>
+            <u>Type de cuisine </u>: {{ evenement.typeCuisine }} <br>
+            <br>
+            <span class="evenement-titre"> Accessibilité </span> <br>
+            <br>
             <u>Transport en commun </u>:
-            {{ afficherOuiNon(evenement.accessTransportCommun) }} <br />
-            <u>PMR </u>: {{ afficherOuiNon(evenement.accessPMR) }} <br />
+            {{ afficherOuiNon(evenement.accessTransportCommun) }} <br>
+            <u>PMR </u>: {{ afficherOuiNon(evenement.accessPMR) }} <br>
             <u>Voiture </u>: {{ afficherOuiNon(evenement.accessVoiture) }}
           </div>
           <div class="participants">
-            <span class="evenement-titre"> Participants </span> <br />
+            <span class="evenement-titre"> Participants </span> <br>
             <div class="participants-info">
-              {{ participants.length }} participants <br />
+              {{ participants.length }} participants <br>
               Il reste encore
               {{ evenement.capacite - participants.length }} places
             </div>
@@ -125,7 +124,7 @@
                 :src="require(`../assets/avatars/${participant.photo}`)"
                 width="40%"
                 height="40%"
-              />
+              >
               {{ participant.prenom }}
             </div>
           </div>
@@ -145,123 +144,123 @@
 </template>
 
 <script>
-import EvenementsService from "../modules/EvenementModule/EvenementsService.js";
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js";
-import Helper from "../modules/EvenementModule/Helper.js";
+import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
+import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import Helper from "../modules/EvenementModule/Helper.js"
 export default {
   name: "EvenementPage",
-  data() {
+  data () {
     return {
       isLoading: true,
       evenement: null,
       hote: null,
       error: null,
       idUtilisateur: null,
-      participants: null,
-    };
+      participants: null
+    }
   },
-  async mounted() {
-    this.idUtilisateur = window.localStorage.getItem("idUtilisateur");
-    await this.getEvenement(this.$route.params.id);
-    await this.getUtilisateur(this.evenement.idHote);
-    await this.getParicipants();
-    this.helper = new Helper();
-    this.isLoading = false;
+  async mounted () {
+    this.idUtilisateur = window.localStorage.getItem("idUtilisateur")
+    await this.getEvenement(this.$route.params.id)
+    await this.getUtilisateur(this.evenement.idHote)
+    await this.getParicipants()
+    this.helper = new Helper()
+    this.isLoading = false
   },
   methods: {
-    async getEvenement(id) {
+    async getEvenement (id) {
       try {
         await EvenementsService.evenement(id).then(
           (res) => (this.evenement = res.data.data)
-        );
-        this.error = null;
-        console.log(this.evenement);
+        )
+        this.error = null
+        console.log(this.evenement)
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async getUtilisateur(id) {
+    async getUtilisateur (id) {
       try {
         await AuthentificationService.getUtilisateur(id).then(
           (res) => (this.hote = res.data.data)
-        );
-        this.error = null;
+        )
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async getParicipants() {
+    async getParicipants () {
       try {
         await AuthentificationService.getUtilisateurs({
-          ids: this.evenement.idsParticipants,
-        }).then((res) => (this.participants = res.data.data));
-        this.error = null;
+          ids: this.evenement.idsParticipants
+        }).then((res) => (this.participants = res.data.data))
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async mettreFavoris(idUtilisateur, idEvenement) {
+    async mettreFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.mettreFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async supprimerDeFavoris(idUtilisateur, idEvenement) {
+    async supprimerDeFavoris (idUtilisateur, idEvenement) {
       try {
-        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement);
-        this.error = null;
+        await EvenementsService.supprimerFavoris(idUtilisateur, idEvenement)
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    async participerEnEvenement(idEvenement) {
+    async participerEnEvenement (idEvenement) {
       try {
         await EvenementsService.participerEnEvenement({
           idUtilisateur: this.idUtilisateur,
-          idEvenement: idEvenement,
-        }).then((res) => (window.location.href = "/confirmation"));
-        this.error = null;
+          idEvenement: idEvenement
+        }).then((res) => (window.location.href = "/confirmation"))
+        this.error = null
       } catch (erreur) {
-        console.log("Something went wrong : ", erreur.response.data.message);
-        this.error = erreur;
+        console.log("Something went wrong : ", erreur.response.data.message)
+        this.error = erreur
       }
     },
-    afficherOuiNon(flag) {
-      return flag === 0 ? "Non" : "Oui";
+    afficherOuiNon (flag) {
+      return flag === 0 ? "Non" : "Oui"
     },
-    getEvenementPhoto(photo) {
+    getEvenementPhoto (photo) {
       if (photo === null) {
-        return "0.png";
+        return "0.png"
       } else {
-        return photo;
+        return photo
       }
     },
-    getHoteAvatar() {
+    getHoteAvatar () {
       if (this.hote == null || this.hote.photo == null) {
-        return "0.png";
+        return "0.png"
       } else {
-        return this.hote.photo;
+        return this.hote.photo
       }
     },
-    changerFavoris(id) {
-      const scr = document.getElementById(id).src;
+    changerFavoris (id) {
+      const scr = document.getElementById(id).src
       if (scr.includes("heart.")) {
-        this.mettreFavoris(this.idUtilisateur, id);
-        document.getElementById(id).src = require("../assets/heart-f.png");
+        this.mettreFavoris(this.idUtilisateur, id)
+        document.getElementById(id).src = require("../assets/heart-f.png")
       } else {
-        this.supprimerDeFavoris(this.idUtilisateur, id);
-        document.getElementById(id).src = require("../assets/heart.png");
+        this.supprimerDeFavoris(this.idUtilisateur, id)
+        document.getElementById(id).src = require("../assets/heart.png")
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

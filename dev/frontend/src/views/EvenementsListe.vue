@@ -12,7 +12,8 @@
       <div class="evenement">
         <div class="evenement-image">
           <img
-            :src="require(`../assets/evenements/${getEvenementPhoto(evenement.photo)}`)"
+            :ref="evenementImage"
+            src=""
             width="100%"
           >
           <button class="favorite-button">
@@ -26,16 +27,12 @@
         </div>
         <div class="evenement-content">
           <div class="profile-titre">
-            <img
+            <!-- <img
               class="profile-pic"
-              :src="
-                require(`../assets/avatars/${getHoteAvatar(
-                  evenement.idEvenement
-                )}`)
-              "
+              :src=" require(`../assets/avatars/${getHoteAvatar( evenement.idEvenement )}`) "
               width="20%"
               height="20%"
-            >
+            > -->
             <span class="evenement-titre">
               {{ evenement.titre }}
             </span>
@@ -76,13 +73,21 @@ import FiltersComponents from "../modules/EvenementModule/Filters.vue"
 import Helper from "../modules/EvenementModule/Helper.js"
 import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
 import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+
 export default {
   name: "EvenementsListe",
   components: {
     FiltersComponents
   },
   data () {
-    return { evenements: null, hotes: null, error: null, helper: null }
+    return {
+      evenements: null,
+      hotes: null,
+      error: null,
+      helper: null,
+      photos: []
+    }
   },
   mounted () {
     this.getEvenements().then((res) => {
@@ -116,12 +121,12 @@ export default {
     },
     getHoteAvatar (evntId) {
       if (this.hotes) {
-        let photo = this.hotes.find((h) => h.idUtilisateur == evntId).photo;
+        const photo = this.hotes.find((h) => h.idUtilisateur === evntId).photo
         if (photo != null) {
-          return photo;
+          return photo
         }
       }
-      return "0.png";
+      return "0.png"
     },
     getEvenementPhoto (photo) {
       if (photo === null) {
@@ -165,6 +170,19 @@ export default {
       return flag === 1
         ? require("../assets/heart-f.png")
         : require("../assets/heart.png")
+    },
+    recupereTeleversement: TeleversementService.recupereTeleversement,
+    async recupererPhotos () {
+      for (const evenement in this.evenementsHote) {
+        if (this.evenementsHote[evenement].photo !== "") {
+          await this.recupereTeleversement(this.evenementsHote[evenement].photo)
+            .then((resultat) => {
+              const nb = this.evenementsHote[evenement].idEvenement
+              this.photos[nb] = resultat.request.responseURL
+              this.$refs.evenementImage.src = this.photos[nb]
+            })
+        }
+      }
     }
   }
 }

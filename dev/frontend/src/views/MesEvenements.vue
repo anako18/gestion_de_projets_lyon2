@@ -1,7 +1,9 @@
 <template>
   <main class="favoris-liste">
     <header class="header-logo">
-      <img src="../assets/logo.png">
+      <img
+        src="../assets/logo.png"
+      >
     </header>
     <div class="section-titre">
       <span class="titre">Mes évènements</span>
@@ -28,13 +30,10 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-              <img
-                  :src="
-                    require(`../assets/evenements/${getEvenementPhoto(
-                      evenementInv.photo
-                    )}`)"
+                <img
+                  :src=" require(`../assets/evenements/${getEvenementPhoto( evenementInv.photo )}`)"
                   class="favoris-image"
-                > 
+                >
               </div>
               <div class="favoris-description">
                 <p class="evenement-titre">
@@ -65,11 +64,9 @@
           <div class="mon-evenement-item">
             <div class="favoris-row">
               <div class="favoris-image">
-               <img
-                  :src="
-                    require(`../assets/evenements/${getEvenementPhoto(
-                      evenementsHt.photo
-                    )}`)"
+                <img
+                  :ref="`champImg${evenementsHt.idEvenement}`"
+                  src=""
                   class="favoris-image"
                 >
               </div>
@@ -95,9 +92,11 @@
 </template>
 
 <script>
-import Helper from "../modules/EvenementModule/Helper.js"
-import EvenementsService from "../modules/EvenementModule/EvenementsService.js"
-import AuthentificationService from "../modules/CompteModule/AuthentificationModule/AuthentificationService.js"
+import Helper from "@m/EvenementModule/Helper.js"
+import EvenementsService from "@m/EvenementModule/EvenementsService.js"
+import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
+import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+
 export default {
   name: "MesEvenements",
   data () {
@@ -108,7 +107,8 @@ export default {
       evenementsHote: null,
       hotes: null,
       error: null,
-      helper: null
+      helper: null,
+      photos: {}
     }
   },
   async mounted () {
@@ -120,6 +120,7 @@ export default {
     await this.evenementsHoteListe()
     this.helper = new Helper()
     this.isLoading = false
+    this.recupererPhotos()
   },
   methods: {
     afficheCategory (event, category) {
@@ -189,6 +190,30 @@ export default {
     },
     redirect (id) {
       window.location.href = `/page-evenement/${id}`
+    },
+    recupereTeleversement: TeleversementService.recupereTeleversement,
+    async recupererPhotos () {
+      for (const index in this.evenementsHote) {
+        const evenement = this.evenementsHote[index]
+        if (evenement.photo !== "") {
+          await this.recupereTeleversement(evenement.photo)
+            .then((resultat) => {
+              const id = evenement.idEvenement
+              const champNom = `champImg${id}`
+              this.photos[id] = resultat.request.responseURL
+
+              for (const valeur in Object.keys(this.$refs)) {
+                if (Object.keys(this.$refs)[valeur] === champNom) {
+                  const ref = Object.keys(this.$refs)[valeur]
+                  this.$refs[ref][0].src = this.photos[id]
+                }
+              }
+            })
+            .catch((erreur) => {
+              console.log("recupererPhotos", erreur)
+            })
+        }
+      }
     }
   }
 }
