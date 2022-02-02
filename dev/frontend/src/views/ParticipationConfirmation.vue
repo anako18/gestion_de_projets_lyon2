@@ -6,14 +6,14 @@
     <div class="confirmation">
       <div class="confirmations">
         <span class="confirmation-titre">
-          {{ selectionTextes.titre }}
+          Confirmation de participation
         </span>
       </div>
       <div class="confirmation-section-vert">
-        {{ selectionTextes.message }}
+        Super ! Ta participation a bien été prise en compte.
       </div>
       <div class="confirmations">
-        {{ selectionTextes.rappel }}
+        Tu seras tenu au courant dès que quelqu'un aura rejoint ce dernier.
       </div>
       <div class="confirmation-section-center">
         <router-link
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "EvenementConfirmationVue",
+  name: "ParticipationConfirmationVue",
   data () {
     const params = this.$route
     return {
@@ -66,8 +66,6 @@ export default {
   },
   methods: {
     verifParams () {
-      console.log(this.$data)
-      console.log(this.$params)
     }
   }
 }

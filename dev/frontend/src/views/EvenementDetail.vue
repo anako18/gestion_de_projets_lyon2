@@ -114,7 +114,6 @@
             :key="participant.idUtilisateur"
             class="paricipants-previews"
           >
-            
             <div class="paricipants-preview">
               <img
                 class="profile-pic"
@@ -145,6 +144,7 @@ import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
 import Helper from "@m/EvenementModule/Helper.js"
 import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+import router from "@m/RouterModule/RouterService"
 
 export default {
   name: "EvenementDetailVue",
@@ -225,7 +225,7 @@ export default {
         await EvenementService.participerEnEvenement({
           idUtilisateur: this.idUtilisateur,
           idEvenement: idEvenement
-        }).then((res) => (window.location.href = "/confirmation/participation-evenement"))
+        }).then((res) => (router.push({ path: "confirmation-participation" })))
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)

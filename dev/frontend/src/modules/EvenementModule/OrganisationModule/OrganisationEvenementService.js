@@ -8,7 +8,10 @@ const envoiCreerEvenement = async function () {
       .then((valeur) => {
         this.gestionTentative("succes", "etatCreation")
         setTimeout(() => {
-          window.location.href = "/confirmation/creation-evenement"
+          router.push({
+            path: "confirmation-evenement",
+            params: { type: "creation-evenement" }
+          })
         }, 2000)
       })
   } catch (erreur) {

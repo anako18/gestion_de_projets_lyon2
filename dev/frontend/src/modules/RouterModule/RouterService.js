@@ -5,6 +5,7 @@ import VueRouter from "vue-router"
 import BienvenueVue from "@v/Bienvenue.vue"
 import ConnexionVue from "@v/Connexion.vue"
 import EvenementConfirmation from "@v/EvenementConfirmation.vue"
+import ParticipationConfirmation from "@v/ParticipationConfirmation.vue"
 import EvenementDetailVue from "@v/EvenementDetail.vue"
 import EvenementListeVue from "@v/EvenementListe.vue"
 import EvenementOrganisationVue from "@v/EvenementOrganisation.vue"
@@ -139,9 +140,23 @@ const routes = [
     }
   },
   {
-    path: "/confirmation/:type",
-    name: "Confirmation",
+    path: "/confirmation-evenement",
+    name: "Confirmation de création",
+    params: {
+      type: "creation-evenement"
+    },
     component: EvenementConfirmation,
+    meta: {
+      requiertAuthentification: true
+    }
+  },
+  {
+    path: "/confirmation-participation",
+    name: "Confirmation de participation",
+    params: {
+      type: "participation-evenement"
+    },
+    component: ParticipationConfirmation,
     meta: {
       requiertAuthentification: true
     }
