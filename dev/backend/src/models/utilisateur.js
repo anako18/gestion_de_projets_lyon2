@@ -47,7 +47,7 @@ module.exports = (Sequelize, DataTypes) => {
     },
     photo: {
       type: DataTypes.STRING,
-      allowNull: true
+      defaultValue: '0.png'
     },
     dateDeNaissance: {
       type: DataTypes.DATE,
