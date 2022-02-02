@@ -48,17 +48,12 @@ module.exports = {
     }
   },
   async evenementsListe (request, res) {
+    const idUtilisateur = Number.parseInt(request.query.idUtilisateur)
     try {
-      const evenements = await Evenement.findAll({
-        where: {
-          date: {
-            [Op.gte]: new Date().toISOString()
-          }
-        }
-      })
+      const evenements = await Evenement.findAll()
       const favoris = await EvenementFavori.findAll({
         where: {
-          idUtilisateur: 1
+          idUtilisateur: idUtilisateur
         }
       })
       for (const evenement of evenements) {
