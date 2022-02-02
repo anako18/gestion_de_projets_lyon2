@@ -50,7 +50,7 @@
             </div>
             <div class="evenement-section second">
               <span class="evenement-font-petit">
-                Durée: {{ evenement.duree }}h
+                Durée: {{ evenement.duree }}
               </span>
             </div>
             <div class="evenement-section third">
