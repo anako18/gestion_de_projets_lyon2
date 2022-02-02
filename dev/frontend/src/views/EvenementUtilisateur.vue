@@ -31,7 +31,7 @@
             <div class="favoris-row">
               <div class="favoris-image">
                 <img
-                  :ref="`champImg${evenementsHt.idEvenement}`"
+                  :ref="`champImg${evenementInv.idEvenement}`"
                   src=""
                   class="favoris-image"
                 >
