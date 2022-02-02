@@ -80,7 +80,8 @@ export default {
       evenements: null,
       hotes: null,
       error: null,
-      helper: null
+      helper: null,
+      photos: {}
     }
   },
   mounted () {
