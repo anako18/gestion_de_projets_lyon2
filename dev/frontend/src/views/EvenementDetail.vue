@@ -114,7 +114,7 @@
             :key="participant.idUtilisateur"
             class="paricipants-previews"
           >
-            >
+            
             <div class="paricipants-preview">
               <img
                 class="profile-pic"
