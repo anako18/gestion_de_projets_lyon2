@@ -225,7 +225,7 @@ export default {
         await EvenementService.participerEnEvenement({
           idUtilisateur: this.idUtilisateur,
           idEvenement: idEvenement
-        }).then((res) => (window.location.href = "/confirmation"))
+        }).then((res) => (window.location.href = "/confirmation/participation-evenement"))
         this.error = null
       } catch (erreur) {
         console.log("Something went wrong : ", erreur.response.data.message)

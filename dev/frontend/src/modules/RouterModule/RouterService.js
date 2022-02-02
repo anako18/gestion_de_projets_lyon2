@@ -139,7 +139,7 @@ const routes = [
     }
   },
   {
-    path: "/confirmation",
+    path: "/confirmation/:type",
     name: "Confirmation",
     component: EvenementConfirmation,
     meta: {
