@@ -12,7 +12,7 @@ const envoiCreerEvenement = async function () {
             path: "confirmation",
             params: { type: "creation-evenement" }
           })
-        }, 3000)
+        }, 2000)
       })
   } catch (erreur) {
     console.log("evenement-service", erreur)

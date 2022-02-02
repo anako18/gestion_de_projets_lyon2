@@ -54,9 +54,9 @@ export default {
           }
         default:
           return {
-            titre: "Confirmation... de quoi exactement ?",
-            message: "Il semblerait que tu aies accédé à cette page d'une manière inattendue.",
-            rappel: "Aucun soucis de notre côté, mais elle ne te servira pas à grand chose !"
+            titre: "Confirmation de création",
+            message: "Super ! Ton évènement a bien été créé.",
+            rappel: "Tu seras tenu au courant dès que quelqu'un aura rejoint ce dernier."
           }
       }
     }
