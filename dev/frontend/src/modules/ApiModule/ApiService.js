@@ -6,6 +6,7 @@ import axios from "axios"
  */
 export default () => {
   return axios.create({
-    baseURL: "http://localhost:8082/api"
+    // https://toquetoc.gcch.fr/api pour la prod
+    baseURL: "https://toquetoc.gcch.fr/api"
   })
 }

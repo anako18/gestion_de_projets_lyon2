@@ -2,7 +2,8 @@ const path = require("path")
 
 module.exports = {
   devServer: {
-    proxy: "http://localhost:8082/"
+    // https://toquetoc.gcch.fr pour la prod
+    proxy: "https://toquetoc.gcch.fr/"
   },
   configureWebpack: {
     devServer: {

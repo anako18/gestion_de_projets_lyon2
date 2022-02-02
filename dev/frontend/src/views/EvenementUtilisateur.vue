@@ -31,7 +31,8 @@
             <div class="favoris-row">
               <div class="favoris-image">
                 <img
-                  :src=" require(`../assets/evenements/${getEvenementPhoto( evenementInv.photo )}`)"
+                  :ref="`champImg${evenementsHt.idEvenement}`"
+                  src=""
                   class="favoris-image"
                 >
               </div>
