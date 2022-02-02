@@ -31,7 +31,7 @@
             <div class="favoris-row">
               <div class="favoris-image">
                 <img
-                  :ref="`champImg${evenementInv.idEvenement}`"
+                  :ref="`champImgInvite${evenementInv.idEvenement}`"
                   src=""
                   class="favoris-image"
                 >
@@ -66,7 +66,7 @@
             <div class="favoris-row">
               <div class="favoris-image">
                 <img
-                  :ref="`champImg${evenementsHt.idEvenement}`"
+                  :ref="`champImgHote${evenementsHt.idEvenement}`"
                   src=""
                   class="favoris-image"
                 >
@@ -200,7 +200,28 @@ export default {
           await this.recupereTeleversement(evenement.photo)
             .then((resultat) => {
               const id = evenement.idEvenement
-              const champNom = `champImg${id}`
+              const champNom = `champImgHote${id}`
+              this.photos[id] = resultat.request.responseURL
+
+              for (const valeur in Object.keys(this.$refs)) {
+                if (Object.keys(this.$refs)[valeur] === champNom) {
+                  const ref = Object.keys(this.$refs)[valeur]
+                  this.$refs[ref][0].src = this.photos[id]
+                }
+              }
+            })
+            .catch((erreur) => {
+              console.log("recupererPhotos", erreur)
+            })
+        }
+      }
+      for (const index in this.evenementsInvite) {
+        const evenement = this.evenementsInvite[index]
+        if (evenement.photo !== "") {
+          await this.recupereTeleversement(evenement.photo)
+            .then((resultat) => {
+              const id = evenement.idEvenement
+              const champNom = `champImgInvite${id}`
               this.photos[id] = resultat.request.responseURL
 
               for (const valeur in Object.keys(this.$refs)) {
