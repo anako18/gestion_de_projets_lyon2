@@ -15,12 +15,18 @@
       <div class="favoris-item">
         <div class="favoris-row">
           <div class="favoris-image">
-            <img
+            <!-- <img
               :src="
                 require(`../assets/evenements/${getEvenementPhoto(
                   evenement.photo
                 )}`)
               "
+              class="favoris-image"
+            > -->
+            <img
+              :ref="`champImg${evenement.idEvenement}`"
+              src=""
+              width="100%"
               class="favoris-image"
             >
             <button class="favorite-button">
@@ -64,6 +70,8 @@
 import Helper from "@m/EvenementModule/Helper.js"
 import EvenementService from "@m/EvenementModule/EvenementService.js"
 import AuthentificationService from "@m/CompteModule/AuthentificationModule/AuthentificationService.js"
+import TeleversementService from "@m/TeleversementModule/TeleversementService.js"
+
 export default {
   name: "FavoriListeVue",
   data () {
@@ -81,6 +89,7 @@ export default {
       this.getEvenements(evntsIds).then((res) => {
         const idHotes = this.evenements.map((e) => e.idHote)
         this.getUtilisateurs(idHotes)
+        this.recuperePhotoEvenement()
       })
     })
     this.helper = new Helper()
@@ -121,7 +130,7 @@ export default {
     },
     hotePrenom (evntId) {
       if (this.hotes) {
-        const nom = this.hotes.find((h) => h.idUtilisateur == evntId).prenom
+        const nom = this.hotes.find((h) => h.idUtilisateur === evntId).prenom
         if (nom != null) {
           return nom
         }
@@ -168,6 +177,31 @@ export default {
     },
     redirect (id) {
       window.location.href = `/page-evenement/${id}`
+    },
+    recupereTeleversement: TeleversementService.recupereTeleversement,
+    async recuperePhotoEvenement () {
+      console.log(this.$refs)
+      for (const index in this.evenements) {
+        const evenement = this.evenements[index]
+        if (evenement.photo !== "") {
+          await this.recupereTeleversement(evenement.photo)
+            .then((resultat) => {
+              const id = evenement.idEvenement
+              const champNom = `champImg${id}`
+              this.photos[id] = resultat.request.responseURL
+
+              for (const valeur in Object.keys(this.$refs)) {
+                if (Object.keys(this.$refs)[valeur] === champNom) {
+                  const ref = Object.keys(this.$refs)[valeur]
+                  this.$refs[ref][0].src = this.photos[id]
+                }
+              }
+            })
+            .catch((erreur) => {
+              console.log("recuperePhotoEvenement", erreur)
+            })
+        }
+      }
     }
   }
 }

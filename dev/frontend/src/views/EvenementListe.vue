@@ -28,12 +28,12 @@
         <div class="evenement-content">
           <div class="profile-titre">
             <!-- // FIXME: Mettre en place la photo Utilisateur -->
-             <img
+            <img
               class="profile-pic"
               :src=" require(`../assets/avatars/${getHoteAvatar( evenement.idEvenement )}`) "
               width="20%"
               height="20%"
-            > 
+            >
             <span class="evenement-titre">
               {{ evenement.titre }}
             </span>
@@ -175,7 +175,6 @@ export default {
     },
     recupereTeleversement: TeleversementService.recupereTeleversement,
     async recuperePhotoEvenement () {
-      console.debug("lol")
       for (const index in this.evenements) {
         const evenement = this.evenements[index]
         if (evenement.photo !== "") {
