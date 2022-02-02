@@ -101,7 +101,7 @@ export default {
   methods: {
     async getEvenements () {
       try {
-        await EvenementService.getEvenements().then(
+        await EvenementService.getEvenements(window.localStorage.getItem("idUtilisateur")).then(
           (res) => (this.evenements = res.data.data)
         )
         this.error = null

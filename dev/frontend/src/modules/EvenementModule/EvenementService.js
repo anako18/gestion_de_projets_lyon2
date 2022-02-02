@@ -33,8 +33,12 @@ const supprimerFavoris = function (idUtilisateur, idEvenement) {
   })
 }
 
-const getEvenements = function () {
-  return Api().get("evenements")
+const getEvenements = function (idUtilisateur) {
+  return Api().get("evenements", {
+    params: {
+      idUtilisateur: idUtilisateur
+    }
+  })
 }
 
 const getEvenementsByIds = function (ids) {
