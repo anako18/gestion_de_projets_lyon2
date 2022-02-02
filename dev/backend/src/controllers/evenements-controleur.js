@@ -52,7 +52,7 @@ module.exports = {
       const evenements = await Evenement.findAll({
         where: {
           date: {
-            [Op.lt]: new Date().toISOString()
+            [Op.gte]: new Date().toISOString()
           }
         }
       })
