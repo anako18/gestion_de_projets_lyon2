@@ -1,0 +1,60 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+input[type="text"],
+textarea {
+  @extend %champ;
+}
+
+textarea {
+  max-width: 319px;
+  height: 100px;
+
+  &:focus-visible {
+    outline: 2px solid $couleur-c3;
+  }
+}
+
+%champ {
+  @extend %texte-style-8;
+
+  min-width: 100%;
+  min-height: 44px;
+  padding: 9px 14px 8px;
+  color: $couleur-nmoyen;
+  background-color: $couleur-c6;
+  border: 1px solid $couleur-c4;
+  border-radius: 6px;
+  outline: 0 solid transparent;
+  transition: outline 0.2s;
+
+  &.etat-actif {
+    outline: 2px solid transparent;
+
+    &:active,
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      outline: 2px solid $couleur-c3;
+      transition: outline 0.2s;
+    }
+  }
+
+  &.obligatoire {
+    border: 1px solid $couleur-c1--clair;
+
+    &.etat-actif {
+      &:active,
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        outline: 2px solid $couleur-c1--clair;
+        transition: outline 0.2s;
+      }
+    }
+  }
+}

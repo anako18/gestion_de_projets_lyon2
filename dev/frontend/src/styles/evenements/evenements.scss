@@ -1,0 +1,581 @@
+@import "../partials/variables";
+
+.main-evenements {
+  height: 400px;
+  overflow: scroll;
+  background: $couleur-c4;
+}
+
+.events-scroll-ecran {
+  padding-bottom: 10%;
+}
+
+%filter-button-style {
+  position: absolute;
+  z-index: 9;
+  display: inline-block;
+  width: 20px;
+  color: #fff;
+  text-align: center;
+  background: $couleur-c1;
+  box-shadow: 3px 1px 4px rgb(0 0 0 / 13%);
+}
+
+/* filters */
+.filters-div {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: fit-content;
+  white-space: nowrap;
+
+  .button-left {
+    @extend %filter-button-style;
+
+    left: 0;
+  }
+
+  .button-right {
+    @extend %filter-button-style;
+
+    right: 0;
+  }
+
+  .filter-item {
+    display: inline;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 8px 13px;
+    background: $couleur-c4;
+    border: 1px solid #585858;
+    border-radius: 25.5px;
+    border-radius: 25.5px;
+  }
+
+  .active {
+    background: #fff;
+  }
+}
+
+%font {
+  color: $couleur-nmoyen;
+  font-weight: normal;
+  font-size: 13px;
+  font-family: Roboto;
+  font-style: normal;
+  line-height: 15px;
+}
+
+.button-text {
+  @extend %font;
+
+  top: 122px;
+  left: 45px;
+  width: 114px;
+  height: 15px;
+}
+
+.tri {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+
+  .selectFilter {
+    @extend %font;
+
+    background-color: transparent;
+    border: none;
+  }
+
+  .buttonToLink {
+    @extend %font;
+
+    background: none;
+    border: none;
+  }
+
+  .buttonToLink:hover {
+    text-decoration: underline;
+    background: none;
+  }
+}
+
+.panel-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 66px;
+  background-color: #fff;
+
+  .panel-image {
+    width: 100%;
+    max-height: 26px;
+  }
+
+  .panel-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+
+    .link {
+      span {
+        margin-bottom: unset;
+      }
+
+      img {
+        filter: grayscale(1) brightness(150%);
+      }
+    }
+
+    .link.activelink {
+      span {
+        color: $couleur-c1;
+      }
+
+      img {
+        filter: grayscale(0) brightness(100%);
+      }
+    }
+  }
+
+  .caption {
+    @extend %font;
+
+    display: block;
+    margin-bottom: 10px;
+    color: $couleur-nmoyen2;
+  }
+}
+
+.profile-pic {
+  display: inline-block;
+  margin-right: 20px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+}
+
+.evenement {
+  position: relative;
+  margin-bottom: 50px;
+  background-color: #fff;
+}
+
+.favoris-liste {
+  margin-bottom: 16px;
+  overflow: scroll;
+}
+
+.price-tag {
+  position: relative;
+  text-align: center;
+}
+
+.price-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%evenement-default-font {
+  color: $couleur-nfonce;
+  font-weight: bold;
+  font-family: Roboto;
+  font-style: normal;
+}
+
+.evenement-titre {
+  @extend %evenement-default-font;
+
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.evenement-date {
+  @extend %evenement-default-font;
+
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.evenement-font-petit {
+  color: $couleur-nfonce;
+  font-size: 13px;
+  font-family: Roboto;
+}
+
+.evenement-description {
+  @extend %font;
+
+  float: left;
+  font-size: 12px;
+  line-height: 139.69%;
+}
+
+.profile-titre {
+  display: flex;
+  align-items: center;
+}
+
+.evenement-content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 0 20px;
+}
+
+.description-price {
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.price-tag {
+  float: right;
+  width: 20%;
+}
+
+%button-evnenements {
+  @extend %font;
+
+  font-weight: bold;
+  background-color: $couleur-c3;
+  border: none;
+  box-shadow: 0 8px 10px rgb(0 0 0 / 10%);
+}
+
+center {
+  bottom: 0;
+  display: absolute;
+}
+
+.yellow-button {
+  @extend %button-evnenements;
+
+  width: fit-content;
+  margin-bottom: 2px;
+  padding: 15px 20px;
+  color: $couleur-nfonce;
+  border-radius: 12px;
+}
+
+.yellow-button:disabled {
+  background-color: #eee;
+}
+
+.evenement-image,
+.favoris-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  background-color: transparent;
+  box-shadow: unset;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* favoris */
+.titre {
+  float: left;
+  margin-left: 30px;
+  color: $couleur-nfonce;
+  font-weight: bold;
+  font-size: 25px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+}
+
+.favoris {
+  width: 100%;
+}
+
+.mon-evenement-item,
+%item {
+  padding: 0 16px;
+  border-bottom: 2px solid #fff;
+}
+
+.favoris-item {
+  @extend %item;
+
+  padding: 0 30px;
+}
+
+.favoris-image {
+  width: 122px;
+  height: 111px;
+  object-fit: cover;
+}
+
+.favoris-description {
+  width: 50%;
+  margin-left: 10px;
+}
+
+.avec {
+  @extend %font;
+
+  margin-top: 3%;
+  color: $couleur-nfonce;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.lieu {
+  @extend %font;
+
+  color: $couleur-nfonce;
+  font-weight: 300;
+}
+
+.favoris-date {
+  @extend %font;
+
+  width: 60%;
+  height: 22px;
+  padding: 4px 10px;
+  font-weight: bold;
+  text-align: left;
+  background: #fff;
+}
+
+.favoris-chaise {
+  @extend %font;
+
+  width: 40%;
+  height: 22px;
+  margin-right: 0;
+  margin-left: 3%;
+  padding: 4px 10px;
+  text-align: left;
+  background: #ecf6ff;
+}
+
+.favoris-row {
+  display: flex;
+  padding: 3px;
+}
+
+.favoris-button {
+  @extend %button-evnenements;
+
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 5px 20px;
+  color: $couleur-nfonce;
+  border-radius: 5px;
+}
+
+.section-titre {
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+/* ============================= tabs ====================== */
+
+.tab {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tab button {
+  @extend %font;
+
+  width: 50%;
+  margin-bottom: 22px;
+  padding-bottom: 4px;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  background-color: inherit;
+  border-bottom: 3px solid #fff;
+  outline: none;
+  box-shadow: unset;
+}
+
+.tab button.activetab {
+  font-weight: bold;
+  border-bottom: 3px solid $couleur-nfonce;
+}
+
+.tabcontent {
+  display: none;
+  min-width: 100%;
+
+  // padding: 6px 12px;
+  border-top: none;
+}
+
+.tabcontent.activetab {
+  display: flex;
+}
+
+/* ============= page evenement ======= */
+.page-evenement {
+  @extend %font;
+
+  font-size: 14px;
+  line-height: 150%;
+  text-align: left;
+
+  .evenement-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .evenement {
+    height: 540px;
+    overflow: scroll;
+  }
+
+  .evenement-section {
+    padding: 10px;
+    font-size: 18px;
+    font-family: Roboto;
+    text-align: center;
+  }
+
+  .first {
+    width: 50%;
+  }
+
+  .third,
+  .second {
+    display: inline-block;
+    font-weight: bold;
+    border-left: 2px solid #d6d6d6;
+  }
+
+  .event-description {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 20px;
+    background-color: $couleur-c4;
+
+    .a-propos {
+      margin: 20px 10px;
+    }
+
+    .realisation-du-repas {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      padding: 20px;
+      border: 2px solid $couleur-c3;
+    }
+  }
+
+  .hote,
+  .informations-pratiques,
+  .participants {
+    padding: 20px;
+  }
+
+  .hote {
+    min-width: 100%;
+  }
+
+  .paricipants-preview {
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 50%;
+    padding: 0 20px;
+  }
+
+  .participants {
+    display: flex;
+  }
+
+  .mes-evenements {
+    padding: 20px;
+    background-color: $couleur-c2;
+  }
+
+  .participants-info {
+    margin-right: 0;
+    margin-left: auto;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .paricipants-previews {
+    display: table;
+  }
+}
+
+/* ============= bienvenue ======= */
+.bienvenue {
+  color: #fff;
+  font-weight: bold;
+  font-size: 34px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 34px;
+}
+
+/* ============= confirmation ======= */
+.confirmation {
+  @extend %font;
+}
+
+.confirmations,
+%confirmation-section {
+  margin: 20px;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.confirmation-titre {
+  color: $couleur-nfonce;
+  font-weight: bold;
+  font-size: 25px;
+  font-family: Hind;
+  font-style: normal;
+  line-height: 34px;
+}
+
+.confirmation-section-center {
+  @extend %confirmation-section;
+
+  text-align: center;
+}
+
+.confirmation-section-vert {
+  @extend %confirmation-section;
+
+  color: $couleur-c7;
+}
+
+.confirmation-button {
+  @extend %button-evnenements;
+
+  padding: 5%;
+  background-color: $couleur-c2;
+}

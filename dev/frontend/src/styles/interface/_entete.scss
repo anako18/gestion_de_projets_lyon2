@@ -1,0 +1,42 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.en-tete {
+  @include marge("bottom", 8);
+
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 100%;
+  height: 181px;
+  padding-top: 16px;
+  column-gap: 4px;
+  background-color: $couleur-c1;
+
+  &__icone {
+    width: 31px;
+    filter: brightness(255);
+  }
+
+  &__texte {
+    width: 164px;
+    margin-top: -2px;
+    filter: brightness(255);
+  }
+
+  &__forme {
+    position: absolute;
+    top: 78px;
+    z-index: 1;
+  }
+
+  &__illustration {
+    position: absolute;
+    top: 47px;
+    right: -50px;
+    z-index: 2;
+    width: 237px;
+  }
+}

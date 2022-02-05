@@ -1,23 +1,73 @@
 ### Variables
 @email = jbob-zdar@email.com
-@mdp = haaaaaaaaa
+@mdp = haaaaaa
+
+### Enregistrer un utilisateur (prod)
+POST https://toquetoc.gcch.fr/api/enregistrement HTTP/2
+content-type: application/json
+
+{
+    "email": "{{email}}",
+    "mdp": "{{mdp}}",
+    "nom": "COLIN--HAAG",
+    "prenom": "Gauthier",
+    "dateDeNaissance": "1994-01-01",
+}
 
 ### Enregistrer un utilisateur
-POST {{host}}:{{port}}/enregistrement {{protocol}}
+POST {{host}}:{{port}}/api/enregistrement {{protocol}}
 content-type: {{contenuType}}
 
 {
     "email": "{{email}}",
-    "password": "{{mdp}}"
+    "mdp": "{{mdp}}",
+    "nom": "COLIN--HAAG",
+    "prenom": "Gauthier",
+    "dateDeNaissance": "1994-01-01"
+}
+
+### Créer un évènement
+GET {{host}}:{{port}}/api/evenement {{protocol}}
+content-type: application/json
+
+{
+    "idEvenement": "1",
+    "idHote": "1",
+    "titre": "Soirée aux couleurs de l'Italie",
+    "description": "gna",
+    "descriptionPreparations": "gné",
+    "date": "2021-01-19",
+    "codePostal": "69008",
+    "duree": "2",
+    "ville": "Lyon",
+    "adresse": "40 rue de l'Abondance",
+    "typeEvenement": "Soirée / Dîner",
+    "typeCuisine": "Italien",
+    "prix": "13",
+    "capacite": "5",
+    "accessTransportCommun": "1",
+    "accessPMR": "0",
+    "accessVoiture": "1",
+    "createdAt": "2021-01-19",
+    "updatedAt": "2021-01-19",
+    "photo": ""
+}
+
+### Récupérer un utilisateur
+GET http://localhost:8082/api/utilisateur {{protocol}}
+Content-Type: application/json
+
+{
+    "id": 0
 }
 
 ### Authentifier un utilisateur (bon mot de passe)
-POST {{host}}:{{port}}/authentification {{protocol}}
+POST {{host}}:{{port}}/api/authentification {{protocol}}
 content-type: {{contenuType}}
 
 {
     "email": "{{email}}",
-    "password": "{{mdp}}"
+    "mdp": "{{mdp}}"
 }
 
 ### Authentifier un utilisateur (mauvais mot de passe)
@@ -26,7 +76,7 @@ content-type: {{contenuType}}
 
 {
     "email": "{{email}}",
-    "password": "mdp"
+    "mdp": "mdp"
 }
 
 ### Authentifier un utilisateur (mauvais email)
@@ -35,5 +85,5 @@ content-type: {{contenuType}}
 
 {
     "email": "email",
-    "password": "mdp"
+    "mdp": "mdp"
 }

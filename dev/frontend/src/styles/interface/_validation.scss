@@ -1,0 +1,47 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.validation {
+  @extend %texte-style-9;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 1px 14px 0;
+  text-align: center;
+  border-radius: 42px;
+
+  &__icone {
+    margin-right: 4px;
+    background: center center / contain no-repeat;
+    content: " ";
+  }
+
+  &__texte {
+    content: " ";
+  }
+
+  &.etat-valide {
+    color: $couleur-c7;
+    background-color: $couleur-c7--transparent;
+
+    .validation__icone {
+      width: 14px;
+      height: 11px;
+      background-image: url("../../assets/images/icone--validation--ok.svg");
+    }
+  }
+
+  &.etat-invalide {
+    color: $couleur-nmoyen;
+    background-color: $couleur-nmoyen--transparent;
+
+    .validation__icone {
+      width: 14px;
+      height: 11px;
+      margin-bottom: 1px;
+      background-image: url("../../assets/images/icone--validation--nop.svg");
+    }
+  }
+}

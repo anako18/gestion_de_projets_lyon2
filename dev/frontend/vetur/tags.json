@@ -1,0 +1,76 @@
+{
+  "bouton-interface": {
+    "attributes": [
+      "type",
+      "valeur",
+      "etat",
+      "icone"
+    ],
+    "description": ""
+  },
+  "BoutonInterface": {
+    "attributes": [
+      "type",
+      "valeur",
+      "etat",
+      "icone"
+    ],
+    "description": ""
+  },
+  "case-a-cocher-interface": {
+    "attributes": [
+      "nom",
+      "label"
+    ],
+    "description": ""
+  },
+  "CaseACocherInterface": {
+    "attributes": [
+      "nom",
+      "label"
+    ],
+    "description": ""
+  },
+  "champ-interface": {
+    "attributes": [
+      "texte",
+      "type",
+      "etat",
+      "value",
+      "nom"
+    ],
+    "description": ""
+  },
+  "ChampInterface": {
+    "attributes": [
+      "texte",
+      "type",
+      "etat",
+      "value",
+      "nom"
+    ],
+    "description": ""
+  },
+  "en-tete-interface": {
+    "attributes": [],
+    "description": ""
+  },
+  "EnTeteInterface": {
+    "attributes": [],
+    "description": ""
+  },
+  "validation-interface": {
+    "attributes": [
+      "texte",
+      "etat"
+    ],
+    "description": ""
+  },
+  "ValidationInterface": {
+    "attributes": [
+      "texte",
+      "etat"
+    ],
+    "description": ""
+  }
+}

@@ -1,0 +1,128 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.bouton,
+%bouton {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+button {
+  box-shadow: $bouton-style-ombre;
+  transform: translateZ(0);
+  transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
+
+  &:active {
+    box-shadow: unset;
+    transform: translateZ(1px);
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+
+  &.etat-desactive {
+    filter: saturate(0);
+    transition: filter 0.1s;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+
+    &:active {
+      box-shadow: $bouton-style-ombre;
+      transform: unset;
+      transition: unset;
+    }
+  }
+}
+
+.bouton-style-1 {
+  @extend %bouton;
+
+  // Couleurs
+  @include bouton-couleur("c1", $couleur-blanc, $couleur-c1);
+  @include bouton-couleur("c2", $couleur-nfonce, $couleur-c2);
+  @include bouton-couleur("c4", $couleur-nmoyen, $couleur-c4);
+  @include bouton-couleur("c6", $couleur-nmoyen, $couleur-c6);
+
+  min-width: #{$bouton-style-1-lg}px;
+  height: #{$bouton-style-1-ht}px;
+  font-weight: $bouton-style-1-police-casse;
+  font-size: #{$bouton-style-1-police-taille}px;
+  font-family: $bouton-style-1-police-famille;
+  border-radius: #{$bouton-style-1-radius}px;
+
+  .bouton__texte {
+    // text-align: center;
+    // margin: 0 65px;
+  }
+}
+
+.bouton-style-2 {
+  @extend %bouton;
+  @include bouton-couleur("c3", $couleur-nfonce, $couleur-c3);
+
+  height: #{$bouton-style-2-ht}px;
+  padding: 0 #{calc(4 * 3)}px;
+  font-weight: $bouton-style-2-police-casse;
+  font-size: #{$bouton-style-2-police-taille}px;
+  font-family: $bouton-style-2-police-famille;
+  border-radius: #{$bouton-style-2-radius}px;
+  transition: box-shadow 0.1s, transform 0.1s, filter 0.1s;
+
+  .bouton__icone {
+    padding-right: #{calc(4 * 3)}px;
+  }
+}
+
+// TODO: Harmoniser la gestion des icônes et des couleurs
+.bouton-icone,
+%bouton-icone {
+  img {
+    position: absolute;
+    left: 24px;
+  }
+
+  // Icône d'inscription
+  &-inscription {
+    @extend %bouton-icone;
+    @include bouton-proprietes(13, 14, 29, "icone--inscription");
+
+    img {
+      width: 29px;
+    }
+  }
+
+  // Icône de connexion
+  &-connexion {
+    @extend %bouton-icone;
+    @include bouton-proprietes(13, 14, 29, "icone--connexion");
+
+    img {
+      width: 29px;
+    }
+  }
+
+  &-plus {
+    @extend %bouton-icone;
+    @include bouton-proprietes(9, 7, 14, "icone--plus");
+
+    img {
+      width: 29px;
+      padding-left: 24px;
+    }
+  }
+
+  // Logo de Google
+  &-google {
+    @extend %bouton-icone;
+    @include bouton-proprietes(0, 10, 50, "icone--google");
+
+    img {
+      width: 50px;
+    }
+  }
+}

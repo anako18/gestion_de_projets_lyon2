@@ -1,78 +1,320 @@
-$couleur-noire: hsl(0deg, 0%, 0%);
-$couleur-blanche: hsl(0deg, 0%, 100%);
-$marge-ligne: 1;
-$couleur-ombre: 253deg, 91%, 49%;
+@import "./partials/variables";
+@import "./interface/champ";
+@import "./polices";
+@import "./normalize";
 
-:root {
-  --shadow-color: $couleur-ombre;
-  --shadow-elevation-low:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    0.9px 0.7px 1.7px hsl(var(--shadow-color) / 0.62);
-  --shadow-elevation-medium:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    4.4px 3.4px 8.3px hsl(var(--shadow-color) / 0.86);
-  --shadow-elevation-high:
-    0.2px 0.2px 0.4px hsl(var(--shadow-color) / 0),
-    7.6px 5.9px 14.4px hsl(var(--shadow-color) / 0.71),
-    23.9px 18.5px 45.3px hsl(var(--shadow-color) / 1);
-}
-
-@mixin bordure {
-  border: 1px solid hsl(#{$couleur-ombre});
-  border-radius: 4px 4px;
-}
-@mixin marge-basse-1 {
-  margin-bottom: #{$marge-ligne}rem;
-}
-@mixin marge-basse-2 {
-  margin-bottom: #{$marge-ligne * 2}rem;
-}
-
+/* Squelette */
 html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
   font-size: 18px;
 }
 
 body {
   font-size: 1rem;
+  line-height: $typo-ligne-hauteur !important;
 }
 
-h1 {
+#app {
+  min-width: 100%;
+  min-height: 667px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: $couleur-c4;
+  outline: 1px solid lightcoral;
+}
+
+/* Éléments de base */
+h1,
+h2,
+ul,
+li,
+p,
+button {
+  z-index: 1;
   margin: unset;
-  @include marge-basse-2();
 }
-form {
-  @include marge-basse-2();
-  label {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-  }
-  input {
-    display: block;
-    @include marge-basse-1;
-  }
-}
-
 
 a {
   color: unset;
   text-decoration: unset;
+}
+
+button {
+  border: unset;
+
   &:hover {
-    color: red;
+    cursor: pointer;
   }
 }
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.texte-style-1 {
+  @extend %texte-style-1;
+
+  margin-bottom: 6px;
+}
+
+.texte-style-2 {
+  @extend %texte-style-2;
+
+  margin-bottom: 18px;
+  color: $couleur-nmoyen;
+}
+
+.texte-style-3 {
+  @extend %texte-style-3;
+}
+
+.texte-style-4 {
+  @extend %texte-style-4;
+}
+
+.texte-style-5 {
+  @extend %texte-style-5;
+}
+
+.texte-style-6 {
+  @extend %texte-style-6;
+}
+
+.texte-style-7 {
+  @extend %texte-style-7;
+}
+
+// TODO: À exporter dans des feuilles de style par vue
 
 /**
 *   Structure
 */
-.page {
+main {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 3rem);
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 375px;
+  max-width: 375px;
+  min-height: 667px;
+  overflow-x: hidden;
+  background: $couleur-blanc;
+  margin-bottom: 20%;
+
+  &.favoris-liste {
+    background: $couleur-c4;
+  }
+
+  &.bienvenue {
+    background: $couleur-c1;
+  }
+
+  &.inscructions {
+    background: $couleur-c4;
+  }
 }
 
-.container {
-  margin: auto;
-  padding: 4rem;
-  box-shadow: var(--shadow-elevation-medium);
-  // @include bordure;
+.enregistrement,
+.authentification {
+  @include marge("bottom", 6);
+
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  padding: 0 #{$marge-goutiere}px;
+
+  &__titre {
+    @extend %texte-style-7;
+    @include marge("bottom", 4);
+
+    color: $couleur-c1;
+  }
+
+  &__google {
+    @include marge("bottom", 4);
+  }
+
+  .bouton-connexion-google {
+    @extend %texte-style-8;
+
+    border: 1px solid $couleur-c5;
+    box-shadow: unset;
+  }
+
+  &__separateur {
+    @include marge("bottom", 4);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    padding-bottom: 2px;
+    text-align: center;
+    column-gap: 16px;
+
+    &__texte {
+      @extend %texte-style-11;
+
+      line-height: 1;
+    }
+
+    &__trait {
+      width: 100%;
+      height: 1px;
+      background-color: $couleur-nfonce;
+      content: " ";
+    }
+  }
+
+  &__classique {
+    @include marge("bottom", 5);
+
+    &__formulaire {
+      @include marge("bottom", 6);
+
+      .avertissement {
+        @extend %texte-style-11;
+        @include marge("bottom", 3);
+
+        color: $couleur-nmoyen;
+      }
+
+      .champ,
+      textarea.champ {
+        @include marge("bottom", 3);
+      }
+
+      .case-a-cocher {
+        @include marge("top", 3);
+        @include marge("bottom", 3);
+
+        color: $couleur-nmoyen;
+
+        &:last-of-type {
+          margin-bottom: unset;
+        }
+      }
+    }
+
+    &__validations {
+      @include marge("bottom", 6);
+
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: space-between;
+      row-gap: 12px;
+    }
+  }
+
+  &__connexion {
+    @extend %texte-style-11;
+
+    min-width: 100%;
+    color: $couleur-nmoyen;
+
+    a {
+      border-bottom: 1px solid $couleur-nmoyen;
+    }
+  }
+}
+
+.authentification {
+  &__classique {
+    &__formulaire {
+      .champ {
+        &:last-of-type {
+          @include marge("bottom", 3);
+        }
+      }
+    }
+
+    &__message {
+      @extend %texte-style-15;
+      @include marge("bottom", 5);
+
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      min-width: 100%;
+
+      p {
+        display: inline-flex;
+        align-items: center;
+        padding: #{calc(4 * 3)}px #{calc(4 * 3)}px;
+        line-height: 1;
+        background-color: $couleur-c6;
+        border: 1px solid $couleur-c4;
+        border-radius: #{$bouton-style-1-radius}px;
+        box-shadow: $bouton-style-ombre;
+      }
+    }
+  }
+
+  &__inscription {
+    @extend %texte-style-11;
+
+    min-width: 100%;
+    color: $couleur-nmoyen;
+
+    a {
+      border-bottom: 1px solid $couleur-nmoyen;
+    }
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.changement-page-enter {
+  transform: translateX(-25%);
+  opacity: 0;
+}
+
+.changement-page-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.topbottom-fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.topbottom-fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.topbottom-fade-enter,
+.topbottom-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* header */
+.header-logo {
+  width: 100%;
+  min-height: 100px;
+  background: url("/src/assets/logo.png");
 }

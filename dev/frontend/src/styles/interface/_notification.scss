@@ -1,0 +1,36 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.notification,
+%notification {
+  @extend %texte-style-15;
+  @include marge("bottom", 5);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  min-width: 100%;
+
+  &__message {
+    display: inline-flex;
+    align-items: center;
+    padding: #{calc(4 * 3)}px #{calc(4 * 3)}px;
+    line-height: 1;
+    background-color: $couleur-c6;
+    border: 1px solid $couleur-c4;
+    border-radius: #{$bouton-style-1-radius}px;
+    box-shadow: $bouton-style-ombre;
+  }
+
+  &.etat-echec {
+    .notification__message {
+      color: $couleur-blanc;
+      background-color: $couleur-c1;
+      border: 1px solid $couleur-c1--clair;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.case-a-cocher {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  label,
+  .ok,
+  .nok {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    visibility: hidden;
+  }
+
+  .ok,
+  .nok {
+    position: absolute;
+    width: 20px;
+    margin-top: -2px;
+  }
+
+  &.obligatoire {
+    .ok,
+    .nok {
+      filter: hue-rotate(295deg);
+    }
+  }
+
+  .ok {
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.active img.ok,
+  &:focus img.ok {
+    width: 20px;
+    min-width: 20px;
+    max-width: 20px;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.active img.nok,
+  &:focus img.nok {
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  label {
+    @extend %texte-style-9;
+
+    margin-left: 20px;
+    line-height: 1;
+  }
+}

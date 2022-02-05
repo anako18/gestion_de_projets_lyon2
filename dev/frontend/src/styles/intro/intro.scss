@@ -1,0 +1,17 @@
+@import "../partials/variables";
+
+main {
+  justify-content: center;
+  min-width: 375px;
+  min-height: 667px;
+  background: $couleur-c1;
+}
+
+img {
+  max-width: 175px;
+  filter: brightness(255);
+
+  &:hover {
+    cursor: pointer;
+  }
+}

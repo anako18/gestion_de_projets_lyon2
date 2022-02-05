@@ -1,0 +1,31 @@
+@mixin style($nom, $emphase: false) {
+  @extend %texte-#{$nom}__police;
+  @extend %texte-#{$nom}__casse;
+  @extend %texte-#{$nom}__taille;
+  @extend %texte-#{$nom}__hauteur;
+
+  @if $emphase == true {
+    @extend %texte-#{$nom}--emphase__casse;
+  }
+}
+
+@mixin bouton-couleur($nom, $couleur, $arriere-plan) {
+  &.couleur-#{$nom} {
+    color: $couleur;
+    background-color: $arriere-plan;
+  }
+}
+
+@mixin bouton-proprietes($haut, $gauche, $taille, $url) {
+  &::before {
+    top: #{$haut}px;
+    left: #{$gauche}px;
+    width: #{$taille}px;
+    height: #{$taille}px;
+    background-image: url("#{$ai}/#{$url}.png");
+  }
+}
+
+@mixin marge($direction, $valeur) {
+  margin-#{$direction}: #{calc(4 * $valeur)}px;
+}

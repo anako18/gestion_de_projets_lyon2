@@ -1,0 +1,85 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  width: 100vw;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: #fff;
+
+  > div:first-of-type {
+    padding: 0 #{$marge-goutiere}px;
+  }
+
+  &__choix {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 26px;
+    row-gap: 16px;
+
+    &__entree {
+      position: relative;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $couleur-nclair;
+
+      &:last-of-type {
+        border-bottom: unset;
+      }
+
+      &__titre {
+        @extend %texte-style-14;
+
+        margin: unset;
+        margin-bottom: 4px;
+        padding: unset;
+      }
+
+      &__description {
+        @extend %texte-style-11;
+
+        width: 75%;
+        color: $couleur-nmoyen;
+      }
+
+      &__selection {
+        display: none;
+      }
+
+      &__label {
+        position: absolute;
+        top: calc(50% - 16px);
+        right: 0;
+
+        .ok {
+          width: 0;
+          min-width: 0;
+          max-width: 0;
+          visibility: hidden;
+          opacity: 0;
+        }
+
+        &.active img.ok,
+        &:focus img.ok {
+          width: initial;
+          min-width: initial;
+          max-width: initial;
+          visibility: visible;
+          opacity: 1;
+        }
+
+        &.active img.nok,
+        &:focus img.nok {
+          width: 0;
+          min-width: 0;
+          max-width: 0;
+          visibility: hidden;
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

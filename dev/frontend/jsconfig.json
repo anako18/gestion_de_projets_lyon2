@@ -1,9 +1,26 @@
-  {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "target": "ES2020"
-    },
-    "include": [
-      "./src/**/*"
-    ]
-  }
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@m/*": [
+        "./src/modules/*"
+      ],
+      "@v/*": [
+        "./src/views/*"
+      ],
+      "@s/*": [
+        "./src/styles/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
+}

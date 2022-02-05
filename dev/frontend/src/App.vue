@@ -1,11 +1,22 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="changement-page">
+      <router-view />
+    </transition>
+    <FooterComponent />
   </div>
 </template>
 
-<style>
-.container {
-  margin-top: 2rem;
+<script>
+import FooterComponent from "@m/Footer.vue"
+
+export default {
+  components: {
+    FooterComponent
+  }
 }
+</script>
+
+<style lang="scss">
+  @import "@s/common.scss";
 </style>

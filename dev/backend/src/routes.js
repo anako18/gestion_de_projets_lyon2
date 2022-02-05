@@ -1,15 +1,68 @@
-const EnregistrementControleur = require("./controllers/EnregistrementControleur");
-const EnregistrementControleurPolitique = require("./policies/EnregistrementControleurPolitique");
-
-const AuthentificationControleur = require("./controllers/AuthentificationControleur");
-const AuthentificationControleurPolitique = require("./policies/AuthentificationControleurPolitique");
+const enregistrementControleur = require("./controllers/enregistrement-controleur")
+const enregistrementPolitique = require("./policies/enregistrement-politique")
+const authentificationControleur = require("./controllers/authentification-controleur")
+const authentificationPolitique = require("./policies/authentification-politique")
+const evenementsControleur = require("./controllers/evenements-controleur")
+const uploadControleur = require("./controllers/upload-controleur")
 
 module.exports = (app) => {
-  app.post("/enregistrement",
-    EnregistrementControleurPolitique.enregistrement,
-    EnregistrementControleur.enregistrement);
-
-  app.post("/authentification",
-    AuthentificationControleurPolitique.authentification,
-    AuthentificationControleur.authentification);
-};
+  // Enregistrer Utilisateur
+  app.post("/api/enregistrement",
+    enregistrementPolitique.enregistrement,
+    enregistrementControleur.enregistrement
+  )
+  // Authentifier Utilisateur
+  app.post("/api/authentification",
+    authentificationPolitique.authentification,
+    authentificationControleur.authentification
+  )
+  // Récupérer un Utilisateur
+  app.get("/api/utilisateur",
+    authentificationControleur.getUtilisateur
+  )
+  // Récupérer les Utilisateurs
+  app.post("/api/utilisateurs",
+    authentificationControleur.getUtilisateurs
+  )
+  // Créer un évènement
+  app.post("/api/evenement",
+    evenementsControleur.creerEvenement
+  )
+  // Récupérer un évènements
+  app.get("/api/evenement",
+    evenementsControleur.evenementParId
+  )
+  // Récupérer les évènements
+  app.get("/api/evenements",
+    evenementsControleur.evenementsListe
+  )
+  app.post("/api/evenements",
+    evenementsControleur.favorisListeParIds
+  )
+  app.get("/api/favoris",
+    evenementsControleur.favorisListe
+  )
+  app.post("/api/favoris",
+    evenementsControleur.ajouterFavoris
+  )
+  app.delete("/api/favoris",
+    evenementsControleur.suprimerFavoris
+  )
+  app.get("/api/evenements-invite",
+    evenementsControleur.inviteEvenementsListe
+  )
+  app.get("/api/evenements-hote",
+    evenementsControleur.hoteEvenementsListe
+  )
+  app.post("/api/evenements-participer",
+    evenementsControleur.evenementParticiper
+  )
+  // Récupérer une image
+  app.get("/api/upload",
+    uploadControleur.envoyerTeleversement)
+  // Téléverser une image
+  app.post("/api/upload",
+    uploadControleur.enregistrementDisque,
+    uploadControleur.retourTeleversement
+  )
+}
